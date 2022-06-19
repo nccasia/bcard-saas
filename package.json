@@ -1,5 +1,24 @@
 {
+  "name": "business-cards",
+  "version": "0.1.1",
+  "description": "A basic Next.js application that demonstrates the use of NextAuth using the Prisma adapter.",
+  "author": "Marothi Mahlake <marothi.codes@gmail.com>",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/marothi-codes"
+  },
+  "keywords": [
+    "Next.js",
+    "NextAuth",
+    "React.js",
+    "Prisma",
+    "OAuth",
+    "OAuth2",
+    "TypeScript",
+    "Tailwindcss"
+  ],
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
