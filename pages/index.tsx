@@ -1,10 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { getSession, signIn, signOut } from "next-auth/react";
 
-const Home: NextPage = () => {
-  const { data: session, status } = useSession();
-
+const Home: NextPage = ({ session }) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -13,12 +11,13 @@ const Home: NextPage = () => {
       </Head>
 
       <>
-        {status === "authenticated" ? (
+        {session && (
           <>
             Signed in as {session.user?.email} <br />
             <button onClick={() => signOut()}>Sign out</button>
           </>
-        ) : (
+        )}
+        {!session && (
           <>
             Not signed in <br />
             <button onClick={() => signIn()}>Sign in</button>
@@ -30,3 +29,11 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  return {
+    props: { session },
+  };
+};
