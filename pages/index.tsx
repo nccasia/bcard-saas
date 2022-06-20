@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { getSession, signIn, signOut } from "next-auth/react";
 
+import CreateProfile from "../components/CreateProfile";
 import { prisma } from "../lib/prisma";
 
 const Home: NextPage = ({ profile, session }) => {
@@ -17,6 +18,7 @@ const Home: NextPage = ({ profile, session }) => {
           <>
             Signed in as {session.user?.email} <br />
             <button onClick={() => signOut()}>Sign out</button>
+            {!profile && <CreateProfile email={session.user?.email} />}
           </>
         )}
         {!session && (
