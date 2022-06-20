@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { getSession, signIn, signOut } from "next-auth/react";
+import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
 
 import CreateProfile from "../components/CreateProfile";
 import { prisma } from "../lib/prisma";
@@ -34,7 +34,7 @@ const Home: NextPage = ({ profile, session }) => {
 
 export default Home;
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async (context: GetSessionParams | undefined) => {
   const session = await getSession(context);
 
   if (!session) {

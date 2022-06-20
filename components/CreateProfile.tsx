@@ -23,6 +23,7 @@ function CreateProfile({ email }) {
           type="email"
           defaultValue={email}
           placeholder="Enter your email"
+          disabled
           {...register("email", { required: true })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
