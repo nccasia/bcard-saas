@@ -6,7 +6,7 @@ import CreateProfile from "../components/CreateProfile";
 import Profile from "../components/Profile";
 import { prisma } from "../lib/prisma";
 
-const Home: NextPage = ({ profile, session }) => {
+const Home: NextPage = ({ profile, session }: any) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -46,8 +46,9 @@ export const getServerSideProps = async (context: GetSessionParams | undefined) 
   }
 
   const profile = await prisma.profile.findUnique({
-    where: { email: session.user?.email },
+    where: { email: session.user?.email || undefined },
     select: {
+      id: true,
       name: true,
       email: true,
       bio: true,

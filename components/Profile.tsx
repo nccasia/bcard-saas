@@ -1,11 +1,20 @@
+import Link from "next/link";
 import React from "react";
 
-function Profile({ profile }) {
+function Profile({ profile }: any) {
   return (
     <div className="text-gray-800 text-lg text-left mt-5">
       <div className="mb-6">
         <h1 className="text-2xl font-bold">{profile.name}</h1>
         <p>{profile.bio}</p>
+        <Link href="/profile/update">
+          <button
+            type="submit"
+            className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+          >
+            Update Profile
+          </button>
+        </Link>
       </div>
 
       <ul>
