@@ -26,12 +26,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(201).json({ message: "Profile created." });
       } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "An error occurred while creating your profile." });
+        res.status(500).json({
+          error: error,
+          errorMessage: "An error occurred while creating your profile.",
+        });
       }
     } else {
-      res.status(405).end({ message: "Request method not allowed." });
+      res.status(405).end({ errorMessage: "Request method not allowed." });
     }
   } else {
-    res.status(401).json({ message: "Access Denied." });
+    res.status(401).json({ errorMessage: "Access Denied." });
   }
 }

@@ -43,7 +43,7 @@ export const getServerSideProps = async (context: GetSessionParams | undefined) 
     };
   }
 
-  const profile = await prisma.profile.findUnique({ where: { email: session?.user?.email } });
+  const profile = await prisma.profile.findUnique({ where: { email: session.user?.email } });
 
   return {
     props: { profile, session },
