@@ -3,6 +3,7 @@ import Head from "next/head";
 import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
 
 import CreateProfile from "../components/CreateProfile";
+import Profile from "../components/Profile";
 import { prisma } from "../lib/prisma";
 
 const Home: NextPage = ({ profile, session }) => {
@@ -19,6 +20,7 @@ const Home: NextPage = ({ profile, session }) => {
             Signed in as {session.user?.email} <br />
             <button onClick={() => signOut()}>Sign out</button>
             {!profile && <CreateProfile email={session.user?.email} />}
+            {profile && <Profile profile={profile} />}
           </>
         )}
         {!session && (
@@ -43,7 +45,18 @@ export const getServerSideProps = async (context: GetSessionParams | undefined) 
     };
   }
 
-  const profile = await prisma.profile.findUnique({ where: { email: session.user?.email } });
+  const profile = await prisma.profile.findUnique({
+    where: { email: session.user?.email },
+    select: {
+      name: true,
+      email: true,
+      bio: true,
+      phone: true,
+      twitter: true,
+      instagram: true,
+      facebook: true,
+    },
+  });
 
   return {
     props: { profile, session },
