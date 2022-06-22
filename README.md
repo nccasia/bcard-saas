@@ -1,23 +1,16 @@
-# Next.js + Tailwind CSS Example
+# Business Card Application
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+## What's the big idea?
 
-## Deploy your own
+The aim is to demonstrate the usage of Prisma ORM, NextAuth, Next.js and your Database type of choice be it a relational database or noSQL database.
+The techniques used in this basic application showcase how simple it is to implement authentication with any provider of your choice, using an ORM to connect to any kind of major database system while being able to get more done quickly in order to deliver a high quality application in record time.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## What technologies did I use?
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+- [Prisma ORM](https://prisma.io) The ORM for communicating with the database (PostgreSQL in my case).
+- [NextAuth](https://next-auth.js.org) The best authentication mechanism for Next.js projects (Supports most if not all OAuth authentication providers).
+- [NextAuth.js](https://nextjs.org) The React framework that has everything you could ask for.
 
-## How to use
+## What do I think?
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-# or
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Next.js, NextAuth, Prisma, a state management workflow be it flux, redux, a CMS like contentful or sanity (if needed) and other libraries to make your application happen (especially in this age of JAMstack websites) is definitely the way to go. You will definitely have a high quality production application real fast without compromising on quality and the developer experience of course.
