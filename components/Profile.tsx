@@ -7,7 +7,7 @@ function Profile({ profile }: any) {
       <div className="mb-6">
         <h1 className="text-2xl font-bold">{profile.name}</h1>
         <p>{profile.bio}</p>
-        <Link href="/profile/update">
+        <Link href={`/profile/${profile.id}`}>
           <button
             type="submit"
             className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
