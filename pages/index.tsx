@@ -51,6 +51,7 @@ export const getServerSideProps = async (context: GetSessionParams | undefined) 
       id: true,
       name: true,
       email: true,
+      slug: true,
       bio: true,
       phone: true,
       twitter: true,

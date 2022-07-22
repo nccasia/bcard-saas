@@ -16,6 +16,7 @@ function EditProfile({ profile }: any) {
       name: profile.name,
       bio: profile.bio,
       email: profile.email,
+      slug: profile.slug,
       phone: profile.phone,
       twitter: profile.twitter,
       instagram: profile.instagram,
@@ -27,7 +28,7 @@ function EditProfile({ profile }: any) {
 
   const onFormSubmit = async (values: any) => {
     const config: AxiosRequestConfig = {
-      url: `/api/profile/${profile.id}`,
+      url: `/api/profile/${profile.slug}`,
       data: JSON.stringify({ ...values }),
       method: "PUT",
       headers: {

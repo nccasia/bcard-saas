@@ -20,9 +20,9 @@ export default Update;
 
 export const getServerSideProps = async (context: { params: any }) => {
   const { params } = context;
-  const { id } = params;
+  const { slug } = params;
 
-  const profile = await prisma.profile.findUnique({ where: { id: id } });
+  const profile = await prisma.profile.findUnique({ where: { slug: slug } });
 
   return {
     props: { profile },

@@ -61,11 +61,11 @@ model Profile {
   name      String
   email     String  @unique
   bio       String
-  slug      String?  @unique
+  slug      String  @unique
   phone     String?
   twitter   String?
   instagram String?
   facebook  String?
-  userId    String
+  userId    String  @unique
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

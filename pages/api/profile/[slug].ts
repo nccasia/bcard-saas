@@ -12,7 +12,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       try {
         await prisma.profile.update({
-          where: { id: req.query.id.toString() },
+          where: { slug: req.query.slug.toString() },
           data: { name, bio, phone, twitter, instagram, facebook },
         });
         res.status(200).json({ message: "Profile updated successfully." });
