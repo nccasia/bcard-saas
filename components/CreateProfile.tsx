@@ -90,7 +90,7 @@ function CreateProfile({ email }: any): JSX.Element {
           {...register("phone")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        <input
+        {/* <input
           type="url"
           placeholder="Enter your Twitter Link"
           {...register("twitter")}
@@ -107,7 +107,7 @@ function CreateProfile({ email }: any): JSX.Element {
           placeholder="Enter your Facebook Link"
           {...register("facebook")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-        />
+        /> */}
         <button
           type="submit"
           className="bg-indigo-700 text-white rounded-md px-4 py-2 hover:bg-indigo-600 my-2 active:bg-indigo-900"

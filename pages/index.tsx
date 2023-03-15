@@ -54,9 +54,6 @@ export const getServerSideProps = async (context: GetSessionParams | undefined) 
       slug: true,
       bio: true,
       phone: true,
-      twitter: true,
-      instagram: true,
-      facebook: true,
     },
   });
   return {

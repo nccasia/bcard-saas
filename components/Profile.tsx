@@ -28,7 +28,7 @@ function Profile({ profile }: any) {
           <span className="font-bold">Phone: </span>
           <a href={`tel:${profile.phone}`}>{profile.phone}</a>
         </li>
-        <li>
+        {/* <li>
           <span className="font-bold">Instagram: </span>
           <a href={profile.instagram} target="_blank" rel="noopener noreferrer">
             {profile.instagram}
@@ -45,7 +45,7 @@ function Profile({ profile }: any) {
           <a href={profile.facebook} target="_blank" rel="noopener noreferrer">
             {profile.facebook}
           </a>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
