@@ -59,7 +59,6 @@ export const getServerSideProps = async (context: GetSessionParams | undefined) 
       facebook: true,
     },
   });
-
   return {
     props: { profile, session },
   };

@@ -6,7 +6,6 @@ import { slugify } from "../../lib/slugify";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req });
-
   if (session) {
     if (req.method === "POST") {
       const { name, email, bio, phone, twitter, instagram, facebook } = req.body;
