@@ -8,7 +8,6 @@ function Profile({ profile }: any) {
         <h1 className="text-2xl font-bold">
           <Link href={`/profile/${profile.slug}`}>{profile.name}</Link>
         </h1>
-        <p>{profile.bio}</p>
         <Link href={`/profile/edit/${profile.slug}`}>
           <button
             type="submit"
@@ -18,35 +17,27 @@ function Profile({ profile }: any) {
           </button>
         </Link>
       </div>
-
-      <ul>
-        <li>
-          <span className="font-bold">Email: </span>
-          <a href={`mailto:${profile.email}`}>{profile.email}</a>
-        </li>
-        <li>
-          <span className="font-bold">Phone: </span>
-          <a href={`tel:${profile.phone}`}>{profile.phone}</a>
-        </li>
-        {/* <li>
-          <span className="font-bold">Instagram: </span>
-          <a href={profile.instagram} target="_blank" rel="noopener noreferrer">
-            {profile.instagram}
-          </a>
-        </li>
-        <li>
-          <span className="font-bold">Twitter: </span>
-          <a href={profile.twitter} target="_blank" rel="noopener noreferrer">
-            {profile.twitter}
-          </a>
-        </li>
-        <li>
-          <span className="font-bold">Facebook: </span>
-          <a href={profile.facebook} target="_blank" rel="noopener noreferrer">
-            {profile.facebook}
-          </a>
-        </li> */}
-      </ul>
+      <div style={{ width: "300px", height: "150px", backgroundColor: "gray", display: "flex" }}>
+        <div style={{ margin: "auto", width: "70px", height: "100px", textAlign: "center", color: "white", fontSize: "14px" }}>
+          <img src={profile.logo} alt="hello" style={{ borderRadius: "50%" }} />
+          <p>{profile.slogan}</p>
+        </div>
+      </div>
+      <br></br>
+      <div style={{ width: "300px", height: "150px", backgroundColor: "gray", display: "flex", justyfiContent: "space-between", fontSize: "12px", color: "white" }}>
+        <div style={{ display: "flex", flex: 1 }}>
+          <div style={{ margin: "auto", textAlign: "center", color: "white" }}>
+            <img src={profile.logo} alt="hello" style={{ borderRadius: "50%" }} width ="50px" height ="50px" />
+            <p style={{ paddingLeft: "10px" }}>{profile.slogan}</p>
+          </div>
+        </div>
+        <div style={{ margin: "auto", textAlign: "left", color: "white", flex: 1 }}>
+          <p>{profile.name}</p>
+          <p>{profile.phone}</p>
+          <p>{profile.web}</p>
+          <p>{profile.address}</p>
+        </div>
+      </div>
     </div>
   );
 }

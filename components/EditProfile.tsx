@@ -16,11 +16,12 @@ function EditProfile({ profile }: any) {
       name: profile.name,
       bio: profile.bio,
       email: profile.email,
-      slug: profile.slug,
+      web: profile.web,
+      address: profile.address,
+      logo: profile.logo,
+      slogan: profile.slogan,
       phone: profile.phone,
-      twitter: profile.twitter,
-      instagram: profile.instagram,
-      facebook: profile.facebook,
+      slug: profile.slug,
     },
   });
 
@@ -50,7 +51,6 @@ function EditProfile({ profile }: any) {
         setError(response.data.errorMessage);
       }
     } catch (error: any) {
-      console.log(error.message);
       setFeedback("");
       setError("An error occurred processing your request.");
     }
@@ -87,37 +87,49 @@ function EditProfile({ profile }: any) {
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
         <span className="text-red-700 my-1">{errors.name && errors.name.message}</span>
-        <textarea
-          rows={4}
-          placeholder="Enter your bio"
-          {...register("bio", { required: true })}
+        <span className="text-red-700 my-1">{errors.bio && errors.bio.message}</span>
+        <input
+          type="tel"
+          placeholder="Enter your email"
+          {...register("email")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        <span className="text-red-700 my-1">{errors.bio && errors.bio.message}</span>
+        <input
+          type="text"
+          placeholder="Enter your web"
+          {...register("web")}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
         <input
           type="tel"
           placeholder="Enter your phone"
           {...register("phone")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        {/* <input
+        <input
           type="url"
-          placeholder="Enter your Twitter Link"
-          {...register("twitter")}
+          placeholder="Enter your logo"
+          {...register("logo")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
         <input
-          type="url"
-          placeholder="Enter your Instagram Link"
-          {...register("instagram")}
+          type="text"
+          placeholder="Enter your slogan"
+          {...register("slogan")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
         <input
-          type="url"
-          placeholder="Enter your Facebook Link"
-          {...register("facebook")}
+          type="text"
+          placeholder="Enter your address"
+          {...register("address")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-        /> */}
+        />
+        <textarea
+          rows={4}
+          placeholder="Enter your bio"
+          {...register("bio", { required: true })}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
         <button
           type="submit"
           className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-green-600 my-2 active:bg-green-900"

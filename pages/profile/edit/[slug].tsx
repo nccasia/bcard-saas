@@ -23,7 +23,6 @@ export const getServerSideProps = async (context: { params: any }) => {
   const { slug } = params;
 
   const profile = await prisma.profile.findUnique({ where: { slug: slug } });
-
   return {
     props: { profile },
   };

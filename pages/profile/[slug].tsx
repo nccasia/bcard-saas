@@ -36,21 +36,9 @@ function ProfileDetails({ profile }: any) {
                 <a href={`tel:${profile.phone}`}>{profile.phone}</a>
               </li>
               <li>
-                <span className="font-bold">Instagram: </span>
-                <a href={profile.instagram} target="_blank" rel="noopener noreferrer">
-                  {profile.instagram}
-                </a>
-              </li>
-              <li>
-                <span className="font-bold">Twitter: </span>
-                <a href={profile.twitter} target="_blank" rel="noopener noreferrer">
-                  {profile.twitter}
-                </a>
-              </li>
-              <li>
-                <span className="font-bold">Facebook: </span>
-                <a href={profile.facebook} target="_blank" rel="noopener noreferrer">
-                  {profile.facebook}
+                <span className="font-bold">Web: </span>
+                <a href={profile.web} target="_blank" rel="noopener noreferrer">
+                  {profile.web}
                 </a>
               </li>
             </ul>
@@ -66,22 +54,21 @@ export default ProfileDetails;
 export const getStaticProps = async (context: { params: any }) => {
   const { params } = context;
   const { slug } = params;
-
   const profile = await prisma.profile.findFirst({
     where: { slug: slug },
     select: {
       name: true,
       email: true,
+      web: true,
+      address: true,
+      logo: true,
+      slogan: true,
       phone: true,
       slug: true,
       bio: true,
-      instagram: true,
-      twitter: true,
-      facebook: true,
       user: { select: { image: true } },
     },
   });
-
   return {
     props: { profile },
   };
