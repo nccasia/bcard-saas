@@ -8,16 +8,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (session) {
     if (req.method === "PUT") {
-      const { name, bio, phone, twitter, instagram, facebook } = req.body;
-
       try {
         await prisma.profile.update({
           where: { slug: req.query.slug.toString() },
-          data: { name, bio, phone, twitter, instagram, facebook },
+          data: req.body,
         });
         res.status(200).json({ message: "Profile updated successfully." });
       } catch (error) {
-        console.log(error);
         res.status(500).json({
           error: error,
           errorMessage: "An error occurred while creating your profile.",

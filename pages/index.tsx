@@ -51,14 +51,16 @@ export const getServerSideProps = async (context: GetSessionParams | undefined) 
       id: true,
       name: true,
       email: true,
+      web: true,
+      address: true,
+      logo: true,
+      slogan: true,
+      phone: true,
       slug: true,
       bio: true,
-      phone: true,
-      twitter: true,
-      instagram: true,
-      facebook: true,
     },
   });
+  console.log(prisma.profile);
   return {
     props: { profile, session },
   };

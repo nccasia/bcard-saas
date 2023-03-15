@@ -3,7 +3,7 @@ CREATE TABLE "Profile" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "web" TEXT,
+    "web" TEXT ,
     "phone" TEXT,
     "address" TEXT,
     "logo" TEXT,  
