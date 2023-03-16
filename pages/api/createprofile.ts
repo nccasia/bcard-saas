@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const session = await getSession({ req });
   if (session) {
     if (req.method === "POST") {
-      const { name, email, bio, phone, twitter, instagram, facebook } = req.body;
+      const { name, email, web, address, logo, slogan, phone, bio  } = req.body;
       const slug = slugify(email);
 
       try {
@@ -16,12 +16,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           data: {
             name,
             email: session.user?.email || email,
-            bio,
-            slug,
+            web,
+            address,
+            logo,
+            slogan,
             phone,
-            twitter,
-            instagram,
-            facebook,
+            slug,
+            bio,
             user: { connect: { email: session.user?.email || email } },
           },
         });

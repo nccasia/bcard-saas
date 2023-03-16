@@ -1,7 +1,12 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import styles from "../styles/profile.module.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Profile({ profile }: any) {
+  const [isHidden, setIsHidden] = useState(true);
+
+  const toggle = () => setIsHidden(!isHidden);
   return (
     <div className="text-gray-800 text-lg text-left mt-5">
       <div className="mb-6">
@@ -17,27 +22,44 @@ function Profile({ profile }: any) {
           </button>
         </Link>
       </div>
-      <div style={{ width: "300px", height: "150px", backgroundColor: "gray", display: "flex" }}>
-        <div style={{ margin: "auto", width: "70px", height: "100px", textAlign: "center", color: "white", fontSize: "14px" }}>
-          <img src={profile.logo} alt="hello" style={{ borderRadius: "50%" }} />
-          <p>{profile.slogan}</p>
-        </div>
-      </div>
-      <br></br>
-      <div style={{ width: "300px", height: "150px", backgroundColor: "gray", display: "flex", justyfiContent: "space-between", fontSize: "12px", color: "white" }}>
+      <button onClick={toggle}>Toggle</button>
+      {isHidden ? 
+        <div className={styles.cardHead}>
+          <div className={styles.cardHeadContent}>
+            <img src={profile.logo} alt="hello" className={styles.img}  />
+            <p>{profile.slogan}</p>
+          </div>
+        </div> 
+        : 
+        <div className={styles.cardMain}>
         <div style={{ display: "flex", flex: 1 }}>
-          <div style={{ margin: "auto", textAlign: "center", color: "white" }}>
-            <img src={profile.logo} alt="hello" style={{ borderRadius: "50%" }} width ="50px" height ="50px" />
-            <p style={{ paddingLeft: "10px" }}>{profile.slogan}</p>
+          <div className={styles.cardImage}>
+            <img src={profile.logo} alt="hello" className={styles.img} width="100px" height="100px" />
+            <p>{profile.slogan}</p>
           </div>
         </div>
-        <div style={{ margin: "auto", textAlign: "left", color: "white", flex: 1 }}>
+        <div className={styles.content}>
+          <div className={styles.itemContent}>
+          <FontAwesomeIcon icon="user" style={{fontSize: '12px'}}/>
           <p>{profile.name}</p>
+          </div>
+          <div className={styles.itemContent}>
+          <FontAwesomeIcon icon="phone" style={{fontSize: '12px'}}/>
           <p>{profile.phone}</p>
+          </div>
+          <div className={styles.itemContent}>
+          <FontAwesomeIcon icon="fire" style={{fontSize: '12px'}}/>
           <p>{profile.web}</p>
+          </div>
+          <div className={styles.itemContent}>
+          <FontAwesomeIcon icon="location-dot" style={{fontSize: '12px'}}/>
           <p>{profile.address}</p>
+          </div>
         </div>
       </div>
+      }
+      
+      
     </div>
   );
 }
