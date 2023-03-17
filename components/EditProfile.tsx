@@ -14,13 +14,16 @@ function EditProfile({ profile }: any) {
     mode: "onChange",
     defaultValues: {
       name: profile.name,
-      bio: profile.bio,
+      img: profile.img,
       email: profile.email,
       web: profile.web,
       address: profile.address,
+      company: profile.company,
+      position: profile.position,
       logo: profile.logo,
       slogan: profile.slogan,
       phone: profile.phone,
+      action: profile.action,
       slug: profile.slug,
     },
   });
@@ -80,6 +83,7 @@ function EditProfile({ profile }: any) {
       )}
 
       <form onSubmit={handleSubmit(onFormSubmit)}>
+        <p>Name:</p>
         <input
           type="text"
           placeholder="Enter your name"
@@ -88,46 +92,74 @@ function EditProfile({ profile }: any) {
         />
         <span className="text-red-700 my-1">{errors.name && errors.name.message}</span>
         <span className="text-red-700 my-1">{errors.bio && errors.bio.message}</span>
+        <p>Image:</p>
+        <input
+          type="tel"
+          placeholder="Enter your Image"
+          {...register("img")}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
+        <p>Email:</p>
         <input
           type="tel"
           placeholder="Enter your email"
           {...register("email")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
+        <p>Web:</p>
         <input
           type="text"
           placeholder="Enter your web"
           {...register("web")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
+        <p>Contact:</p>
         <input
           type="tel"
           placeholder="Enter your phone"
           {...register("phone")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
+        <p>Position:</p>
+        <input
+          type="tel"
+          placeholder="Enter your position"
+          {...register("position")}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
+        <p>Company:</p>
+        <input
+          type="tel"
+          placeholder="Enter your company"
+          {...register("company")}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
+        <p>Logo:</p>
         <input
           type="url"
           placeholder="Enter your logo"
           {...register("logo")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
+        <p>Slogan:</p>
         <input
           type="text"
           placeholder="Enter your slogan"
           {...register("slogan")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
+        <p>Address:</p>
         <input
           type="text"
           placeholder="Enter your address"
           {...register("address")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
+        <p>Action:</p>
         <textarea
           rows={4}
-          placeholder="Enter your bio"
-          {...register("bio", { required: true })}
+          placeholder="Enter your action"
+          {...register("action", { required: true })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
         <button
