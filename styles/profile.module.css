@@ -1,3 +1,10 @@
+.button{
+  background-color: antiquewhite;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 8px;
+}
+
 .cardHead {
   width: 300px;
   height: 150px;

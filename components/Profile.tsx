@@ -13,6 +13,7 @@ function Profile({ profile }: any) {
         <h1 className="text-2xl font-bold">
           <Link href={`/profile/${profile.slug}`}>{profile.name}</Link>
         </h1>
+          <p>{profile.bio}</p>
         <Link href={`/profile/edit/${profile.slug}`}>
           <button
             type="submit"
@@ -22,7 +23,6 @@ function Profile({ profile }: any) {
           </button>
         </Link>
       </div>
-      <button onClick={toggle}>Toggle</button>
       {isHidden ? 
         <div className={styles.cardHead}>
           <div className={styles.cardHeadContent}>
@@ -58,6 +58,7 @@ function Profile({ profile }: any) {
         </div>
       </div>
       }
+      <button className={styles.button} onClick={toggle}>Toggle</button>
       
       
     </div>
