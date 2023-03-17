@@ -38,6 +38,14 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "Admin" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "email" TEXT,
+    CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "VerificationToken" (
     "identifier" TEXT NOT NULL,
     "token" TEXT NOT NULL,

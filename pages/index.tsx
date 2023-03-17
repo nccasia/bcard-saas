@@ -2,11 +2,12 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
 
-import CreateProfile from "../components/CreateProfile";
-import Profile from "../components/Profile";
+import Users from "../components/users/Users";
 import { prisma } from "../lib/prisma";
+import Login from "../components/login/Login";
+import Admin from "../components/admin/Admin";
 
-const Home: NextPage = ({ profile, session }: any) => {
+const Home: NextPage = ({ profile, session, admin }: any) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -15,20 +16,9 @@ const Home: NextPage = ({ profile, session }: any) => {
       </Head>
 
       <>
-        {session && (
-          <>
-            Signed in as {session.user?.email} <br />
-            <button onClick={() => signOut()}>Sign out</button>
-            {!profile && <CreateProfile email={session.user?.email} />}
-            {profile && <Profile profile={profile} />}
-          </>
-        )}
-        {!session && (
-          <>
-            Not signed in <br />
-            <button onClick={() => signIn()}>Sign in</button>
-          </>
-        )}
+        {session && !admin && (<Users profile={profile} session={session} />)}
+        {session && admin && (<Admin />)}
+        {!session && <Login />}
       </>
     </div>
   );
@@ -44,7 +34,12 @@ export const getServerSideProps = async (context: GetSessionParams | undefined) 
       props: { session: null },
     };
   }
-
+  const admin = await prisma.admin.findUnique({
+    where: { email: session.user?.email || undefined },
+    select: {
+      email:true,
+    },
+  });
   const profile = await prisma.profile.findUnique({
     where: { email: session.user?.email || undefined },
     select: {
@@ -57,11 +52,14 @@ export const getServerSideProps = async (context: GetSessionParams | undefined) 
       slogan: true,
       phone: true,
       slug: true,
-      bio: true,
+      company: true,
+      position: true,
+      action: true,
+      img: true,
     },
   });
   console.log(prisma.profile);
   return {
-    props: { profile, session },
+    props: { profile, session, admin },
   };
 };
