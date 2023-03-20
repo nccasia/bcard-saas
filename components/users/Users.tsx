@@ -4,6 +4,7 @@ import CreateProfile from "../CreateProfile";
 import Profile from "../Profile";
 import {signOut } from "next-auth/react";
 
+
 function Users({profile, session}: any): JSX.Element {
     return(
         <div>
@@ -18,8 +19,8 @@ function Users({profile, session}: any): JSX.Element {
             <button>Exampe 1</button>
             <br></br>
             <button>Exampe 2</button>
-            {/* {!profile && <CreateProfile email={session.user?.email} />}
-            {profile && <Profile profile={profile} />} */}
+            {/* {!profile && <CreateProfile email={session.user?.email} />} */}
+            {/* {profile && <Profile profile={profile} />} */}
         </div>
     )
 }

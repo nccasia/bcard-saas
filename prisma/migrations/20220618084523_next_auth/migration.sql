@@ -46,6 +46,13 @@ CREATE TABLE "Admin" (
 );
 
 -- CreateTable
+CREATE TABLE "Card" (
+    "id" TEXT NOT NULL,
+    "card" TEXT,
+    CONSTRAINT "Card_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "VerificationToken" (
     "identifier" TEXT NOT NULL,
     "token" TEXT NOT NULL,

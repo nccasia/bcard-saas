@@ -1,9 +1,16 @@
-const Admin = () => {
-    return (
-      <div>
-         <p>Hello Admin</p>
-      </div>
-    );
-  };
+import SelectAdmin from "./SelectAdmin";
+import SelectUsers from "./SelectUsers";
+import SelectCard from "./SelectCard";
+
+function Admin() {
   
-  export default Admin;
+  return (
+    <div>
+        <SelectAdmin/>
+        <SelectUsers/>
+        <SelectCard />
+    </div>
+  );
+};
+  
+export default Admin;
