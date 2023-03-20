@@ -1,4 +1,4 @@
-.button{
+.buttonTogle{
   background-color: antiquewhite;
   padding: 5px;
   margin-top: 5px;
@@ -59,4 +59,42 @@
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.headCard{
+  width:300px; 
+  height:150px; 
+  background-color:#ff370096;
+   display: flex
+}
+.headContent {
+  margin: auto;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+}
+
+.mainCard{
+  width: 300px;
+  height: 150px;
+  background-color: #ff370096;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #fff;
+}
+
+
+.button{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.contentCard{
+  /* style={{ margin: "auto", textAlign: "left", color: "white", flex: 1 }} */
+  margin: auto;
+  text-align: left;
+  color: #fff;
+  flex: 1;
 }

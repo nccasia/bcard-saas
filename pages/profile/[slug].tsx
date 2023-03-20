@@ -1,12 +1,28 @@
+import * as htmlToImage from "html-to-image";
 import Head from "next/head";
-import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import QRCode from "qrcode-generator";
+import React, { useState } from "react";
 
 import { prisma } from "../../lib/prisma";
+import styles from  "../../styles/profile.module.css"
 
 function ProfileDetails({ profile }: any) {
+  const [isHidden, setIsHidden] = useState(true);
+  const toggle = () => setIsHidden(!isHidden);
+
   const router = useRouter();
+  const downloadAsPng = async () => {
+    const node = document.getElementById("card");
+    if (node) {
+      const imgDataUrl = await htmlToImage.toPng(node);
+      const link = document.createElement("a");
+      link.download = "your-file-name.png";
+      link.href = imgDataUrl;
+      link.click();
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -17,32 +33,47 @@ function ProfileDetails({ profile }: any) {
           <Head>
             <title>{`${profile.name}'s Profile - Business Card App`}</title>
           </Head>
-          <div className="text-gray-800 text-lg text-left mt-5">
-            <div className="mb-7">
-              <Image className="rounded-full" src={profile.user.image} width={100} height={100} />
+          <div id="card">
+          {isHidden ? 
+            <div className={styles.headCard}>
+              <div className={styles.headContent}>
+                <img src={profile.logo} alt="hello" className={styles.img} />
+                <p style={{ fontSize: 16 }}>{profile.company}</p>
+                <p style={{ fontSize: 10 }}>{profile.slogan}</p>
+              </div>
             </div>
-            <div className="mb-6">
-              <h1 className="text-2xl font-bold">{profile.name}</h1>
-              <p>{profile.bio}</p>
+            : 
+            <div className={styles.mainCard}>
+              <div style={{ display: "flex", flex: 1 }}>
+                <div className={styles.cardImage}>
+                  <img src={profile.img} alt="hello" className={styles.img}/>
+                  <p>{profile.action}</p>
+                </div>
+              </div>
+              <div className={styles.contentCard}>
+                <p>{profile.name}</p>
+                <p>{profile.position}</p>
+                <p>{profile.address}</p>
+                <p>{profile.phone}</p>
+                <p>{profile.email}</p>
+                <p>{profile.web}</p>
+              </div>
+            </div>}
+            <div className={styles.button}>
+              <button className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base" onClick={toggle}>Toggle</button>
+              <Link href={`/profile/edit/${profile.slug}`}>
+              <button
+                type="submit"
+                className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+              >
+                Update Profile
+              </button>
+              </Link>
             </div>
-
-            <ul>
-              <li>
-                <span className="font-bold">Email: </span>
-                <a href={`mailto:${profile.email}`}>{profile.email}</a>
-              </li>
-              <li>
-                <span className="font-bold">Phone: </span>
-                <a href={`tel:${profile.phone}`}>{profile.phone}</a>
-              </li>
-              <li>
-                <span className="font-bold">Web: </span>
-                <a href={profile.web} target="_blank" rel="noopener noreferrer">
-                  {profile.web}
-                </a>
-              </li>
-            </ul>
           </div>
+          <br />
+          <button onClick={downloadAsPng}>Dowload</button>
+
         </>
       )}
     </div>
@@ -65,7 +96,10 @@ export const getStaticProps = async (context: { params: any }) => {
       slogan: true,
       phone: true,
       slug: true,
-      bio: true,
+      company: true,
+      position: true,
+      action: true,
+      img: true,
       user: { select: { image: true } },
     },
   });

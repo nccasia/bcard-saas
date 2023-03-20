@@ -8,9 +8,12 @@ CREATE TABLE "Profile" (
     "address" TEXT,
     "logo" TEXT,  
     "slogan" TEXT,
-    "bio" TEXT,
-    "slug" TEXT NOT NULL,
+    "company" TEXT,
+    "position" TEXT,
+    "action" TEXT,
+    "img" TEXT,
     "userId" TEXT NOT NULL,
+    "slug" TEXT,
 
     CONSTRAINT "Profile_pkey" PRIMARY KEY ("id")
 );

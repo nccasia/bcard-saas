@@ -22,6 +22,15 @@ function Profile({ profile }: any) {
             Update Profile
           </button>
         </Link>
+        <br />
+        <Link href={`/profile/${profile.slug}`}>
+          <button
+            type="submit"
+            className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+          >
+            Card
+          </button>
+        </Link>
       </div>
       {isHidden ? 
         <div className={styles.cardHead}>
@@ -35,13 +44,15 @@ function Profile({ profile }: any) {
         <div style={{ display: "flex", flex: 1 }}>
           <div className={styles.cardImage}>
             <img src={profile.logo} alt="hello" className={styles.img} width="100px" height="100px" />
+            
             <p>{profile.slogan}</p>
           </div>
         </div>
         <div className={styles.content}>
           <div className={styles.itemContent}>
           <FontAwesomeIcon icon="user" style={{fontSize: '12px'}}/>
-          <p>{profile.name}</p>
+          <p>{profile.name}</p> <br />
+          <p>{profile.bio}</p>
           </div>
           <div className={styles.itemContent}>
           <FontAwesomeIcon icon="phone" style={{fontSize: '12px'}}/>
