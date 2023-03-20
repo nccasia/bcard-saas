@@ -14,12 +14,9 @@ const Home: NextPage = ({ profile, session, admin }: any) => {
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <>
-        {session && !admin && (<Users profile={profile} session={session} />)}
-        {session && admin && (<Admin />)}
-        {!session && <Login />}
-      </>
+      {session && !admin && (<Users profile={profile} session={session} />)}
+      {session && admin && (<Admin />)}
+      {!session && <Login />}
     </div>
   );
 };
