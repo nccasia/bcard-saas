@@ -25,12 +25,14 @@
     "@types/express": "^4.17.17",
     "axios": "^0.27.2",
     "express": "^4.18.2",
+    "fabric": "^5.3.0",
+    "fabricjs-react": "^1.2.0",
     "html-to-image": "^1.11.11",
     "next": "latest",
     "next-auth": "^4.5.0",
     "qrcode-generator": "^1.4.4",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "react-hook-form": "^7.32.2"
   },
   "devDependencies": {
