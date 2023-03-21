@@ -4,23 +4,23 @@ import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
 
 import Users from "../components/users/Users";
 import { prisma } from "../lib/prisma";
-import Login from "../components/login/Login";
 import Admin from "../components/admin/Admin";
 import Profile from "../components/Profile";
+import Login from "../components/login/Login";
+import Header from "../components/layout/header/Header";
+import Layout from "../components/layout";
+import Sidebar from "../components/layout/sidebar/Sidebar";
 
 const Home: NextPage = ({ profile, session, admin }: any) => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="">
       <Head>
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <>
-        {session && !admin && (<Profile profile={profile} session={session} />)}
-        {session && admin && (<Admin />)}
-        {!session && <Login />}
-      </>
+      {session && admin && (<Admin />)}
+      {session && !admin && (<Users profile={profile} session={session} />)}
+      {!session && <Login />}
     </div>
   );
 };
