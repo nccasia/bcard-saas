@@ -2,7 +2,7 @@ import  React from "react"
 import { prisma } from "../../lib/prisma";
 import {getUsers} from "../../api/admin/apiUsers";
 
-function SelectUsers() {
+function SelectUsers(): JSX.Element {
   const [users, setUsers]=React.useState<any>([]);
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -16,11 +16,6 @@ function SelectUsers() {
         <br></br>
         <p>Table Users</p>
         <table>
-          <tr>
-            <td>Avatar</td>
-            <td>Name</td>
-            <td>Email</td>
-          </tr>
           {users? users.map((item:any)=>{
             return(
               <tr key={item.id}>

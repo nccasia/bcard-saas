@@ -2,7 +2,7 @@ import  React from "react"
 import { prisma } from "../../lib/prisma";
 import {getCard} from "../../api/admin/apiCard";
 
-function SelectCard() {
+function SelectCard(): JSX.Element {
   const [users, setUsers]=React.useState<any>([]);
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -17,10 +17,6 @@ function SelectCard() {
         <p>Table Card</p>
         
         <table>
-          <tr>
-            <td>Id</td>
-            <td>Card</td>
-          </tr>
           {users? users.map((item:any)=>{
             return(
               <tr key={item.id}>
@@ -28,7 +24,7 @@ function SelectCard() {
                     <p>{item.id}</p>
                   </td>
                   <td>
-                    <img src={item.card} alt="hello" width="100px" height="100px"/>
+                    <img src={item.card} alt="hello" width="200px" height="200px"/>
                   </td>
               </tr>
             )
