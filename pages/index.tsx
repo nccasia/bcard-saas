@@ -9,13 +9,13 @@ import Admin from "../components/admin/Admin";
 
 const Home: NextPage = ({ profile, session, admin }: any) => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div >
       <Head>
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {session && !admin && (<Users profile={profile} session={session} />)}
-      {session && admin && (<Admin />)}
+      {session && admin && (<Admin session={session}/>)}
       {!session && <Login />}
     </div>
   );

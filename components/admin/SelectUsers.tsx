@@ -14,23 +14,47 @@ function SelectUsers(): JSX.Element {
   return (
     <div>
         <br></br>
-        <p>Table Users</p>
-        <table>
-          {users? users.map((item:any)=>{
-            return(
-              <tr key={item.id}>
-                  <td>
-                    <img src={item.image} alt="hello" width="50px" height="50px"/>
-                  </td>
-                  <td>
-                    <p>{item.name}</p>
-                  </td>
-                  <td>
-                    <p>{item.email}</p>
-                  </td>
-              </tr>
-            )
-          }):null}
+        <table
+          style={{
+            width:"100%",
+          }}
+        >
+          <thead>
+          <tr
+            style={{
+              textAlign:"center",
+              border:"1px dotted gray",
+              backgroundColor:"#8080803d"
+            }}
+          >
+              <th>Avatar</th>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users? users.map((item:any)=>{
+              return(
+                <tr 
+                  key={item.id}
+                  style={{
+                    border:"1px dotted gray",
+                    textAlign:"center",
+                  }}
+                >
+                    <td>
+                      <img src={item.image} alt="empty" width="50px" height="50px"/>
+                    </td>
+                    <td>
+                      <p>{item.name}</p>
+                    </td>
+                    <td>
+                      <p>{item.email}</p>
+                    </td>
+                </tr>
+              )
+            }):null}
+          </tbody>
         </table>
     </div>
   );

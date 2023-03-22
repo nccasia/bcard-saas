@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import QRCode from "qrcode-generator";
 import React from "react";
-
+import Link from "next/link";
 import { prisma } from "../../lib/prisma";
 
 function ProfileDetails({ profile }: any) {
@@ -30,7 +30,7 @@ function ProfileDetails({ profile }: any) {
           </Head>
           <div id="card">
             <div style={{ width:"300px", height:"150px", backgroundColor:"#ff370096", display: "flex"}}>
-              <div style={{ margin: "auto", textAlign: "center", color: "white", fontSize: "14px", textAlign: "center" }}>
+              <div style={{ margin: "auto", textAlign: "center", color: "white", fontSize: "14px" }}>
                 <img src={profile.logo} alt="hello" style={{ borderRadius: "50%", width: "70px", height: "70px", margin: "0 40px"}} />
                 <p>{profile.company}</p>
                 <p style={{ fontSize: 12 }}>{profile.slogan}</p>
@@ -39,7 +39,7 @@ function ProfileDetails({ profile }: any) {
             <br></br>
             <div style={{ width: "300px", height: "150px", backgroundColor: "#ff370096", display: "flex", justifyContent: "space-between", fontSize: "12px", color: "white" }}>
               <div style={{ display: "flex", flex: 1 }}>
-                <div style={{ margin: "auto", textAlign: "center", color: "white", width: "70px", height: "100px" }}>
+                <div style={{ margin: "auto", textAlign: "center", color: "white", width: "100px", height: "100px" }}>
                   <img src={profile.img} alt="hello" style={{ borderRadius: "50%" }} />
                   <p style={{ paddingLeft: "10px" }}>{profile.action}</p>
                 </div>
@@ -56,6 +56,14 @@ function ProfileDetails({ profile }: any) {
           </div>
           <br></br>
           <button onClick={downloadAsPng}>Dowload</button>
+          <Link href="/">
+                <button
+                    type="submit"
+                    className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+                >
+                    Home
+                </button>
+            </Link>
         </>
       )}
     </div>

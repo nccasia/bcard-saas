@@ -16,19 +16,48 @@ function SelectCard(): JSX.Element {
         <br></br>
         <p>Table Card</p>
         
-        <table>
-          {users? users.map((item:any)=>{
-            return(
-              <tr key={item.id}>
-                  <td>
-                    <p>{item.id}</p>
-                  </td>
-                  <td>
-                    <img src={item.card} alt="hello" width="200px" height="200px"/>
-                  </td>
-              </tr>
-            )
-          }):null}
+        <table
+          style={{
+            width:"100%",
+          }}
+        >
+          <thead>
+          <tr
+            style={{
+              textAlign:"center",
+              border:"1px dotted gray",
+              backgroundColor:"#8080803d"
+            }}
+          >
+              <th>Id</th>
+              <th>Card</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users? users.map((item:any)=>{
+              return(
+                <tr 
+                  key={item.id}
+                  style={{
+                    border:"1px dotted gray",
+                    textAlign:"center"
+                  }}
+                >
+                    <td>
+                      <p>{item.id}</p>
+                    </td>
+                    <td
+                      style={{
+                        display:"flex",
+                        justifyContent:"center"
+                      }}
+                    >
+                      <img src={item.card} alt="hello" width="200px" height="200px"/>
+                    </td>
+                </tr>
+              )
+            }):null}
+          </tbody>
         </table>
     </div>
   );

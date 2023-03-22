@@ -1,17 +1,29 @@
-import SelectAdmin from "./select/SelectAdmin";
+import SelectAdmin from "./SelectAdmin";
 import SelectUsers from "./SelectUsers";
 import SelectCard from "./SelectCard";
 import Test from "./Test";
-import Link from "next/link";
-import { useRouter } from 'next/router';
 import React from "react";
+import {signOut } from "next-auth/react";
 
-function Admin() {
+function Admin({session}:any) {
   const [open, setOpen]=React.useState("Admin");
   return (
     <div>
-      <div style={{display:"flex", justifyContent:"space-between"}}>
-        <ul>
+      <div style={{display:"flex"}}>
+        <ul 
+          style={{
+            paddingTop:"150px",
+            width:"25%",
+            height:"100vh",
+            textAlign:"center",
+            border:"1px dotted gray"
+          }}
+        >
+          <li>
+            <p>{session.user?.email}</p>
+            <button onClick={() => signOut()}>Sign out</button>  
+          </li>
+          <br></br>
           <li>
             <button onClick={()=>setOpen("Admin")}>Admin</button>
           </li>
@@ -22,7 +34,14 @@ function Admin() {
             <button onClick={()=>setOpen("Cards")}>Cards</button>
           </li>
         </ul>
-        <div>
+        <div
+          style={{
+            padding:"10%",
+            width:"75%",
+            height:"100vh",
+            border:"1px dotted gray"
+          }}
+        >
           {open==="Admin" && <SelectAdmin/>}
           {open==="Users" &&  <SelectUsers/>}
           {open==="Cards" && <SelectCard />}
