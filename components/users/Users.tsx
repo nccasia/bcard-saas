@@ -14,18 +14,12 @@ function Users({profile, session}: any): JSX.Element {
                 <title>Business Card App Users</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <span style={{display: "flex", justifyContent: "center"}}>Xin chào {session.user?.email}</span> <br />
-            <button className={styles.button} onClick={() => signOut()}>Sign out</button>
-            <Link href={`/profile/${profile.slug}`}>
-
-            <button>Exampe 1</button>   
-            </Link>
-            <Link href={`/profile/Exampe2/${profile.slug}`}>
-
-            <button>Exampe 2</button>   
-            </Link>
-            {/* {!profile && <CreateProfile email={session.user?.email} />} */}
-            {/* {profile && <Profile profile={profile} />} */}
+            {session.user?.email} <br />
+            {/* <button onClick={() => signOut()}>Sign out</button> */}
+            <button>Exampe 1</button>
+            <button>Exampe 2</button>
+            {!profile && <CreateProfile email={session.user?.email} />} 
+            {profile && <Profile profile={profile} />}
         </div>
     )
 }

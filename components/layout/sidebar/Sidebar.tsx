@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styled from "styled-components";
 // import bgrSidebar from "../../asset/images/bgrSidebar.jpg";
 import AccessAlarmsIcon from "@mui/icons-material/AccessAlarms";
@@ -22,6 +22,10 @@ import {
   ListSubheader,
 } from "@mui/material";
 import Link from "next/link";
+import styles from "../../../styles/sidebar.module.css"
+import user from "../../../public/user.png"
+import Image from "next/image";
+import { signOut } from "next-auth/react";
 // import Content from '../content/conten';
 // import { Link, useNavigate } from "react-router-dom";
 // import { removeAccessToken } from "../../utils/LocalStorage";
@@ -35,29 +39,8 @@ const SidebarContainer = styled.div`
   margin-top: 100px;
   position: fixed;
   background-color: white;
+  margin-top:80px;
 `;
-const User = styled.div`
-  background-repeat: no-repeat;
-  padding: 20px 15px 0;
-  position: relative;
-  width: 271px;
-`;
-
-const Use_info = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Info = styled.div`
-  display: flex;
-  align-items: center;
-  img {
-    width: 50px;
-    height: 50px;
-    padding-right: 10px;
-  }
-`;
-
 const Title = styled.div`
   color: #ffffff;
   font-size: 14px;
@@ -80,6 +63,8 @@ const ButtonLogout = styled.div`
   border: 1px solid;
   padding: 5px;
   border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
   :hover {
     background: #e9e9e9;
   }
@@ -120,9 +105,15 @@ const Lists = styled.div`
   height: 200px;
 `;
 
-const Sidebar: React.FC = () => {
-  const [open, setOpen] = React.useState(true);
 
+
+interface IProps{
+  setopenPage : Dispatch<SetStateAction<string>>
+}
+
+const Sidebar = (props: IProps) => {
+  const [open, setOpen] = React.useState(true);
+ 
   const handleClick = () => {
     setOpen(!open);
   };
@@ -134,40 +125,34 @@ const Sidebar: React.FC = () => {
     setBtn((prev) => !prev);
   };
 
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-//   const handleLogout = () => {
-//     removeAccessToken();
-//     navigate("/account/login");
-//   };
-
 
   return (
-    <SidebarContainer>
-      <User>
-        <Use_info>
-          <Info>
-            {/* <img alt="" src={`${user}`} /> */}
+    <div  className={styles.container}>
+      <div className={styles.user}>
+        <div className={styles.userInfo}>
+          <div className={styles.info}>
+          <Image src={user} 
+                    alt="logo" width={50} height={50} />
             <div>
               <Title>Admin</Title>
               <Title>admin.ncc@ncc.asia</Title>
             </div>
-          </Info>
-        </Use_info>
-        <Logout>
-          <div  onClick={handleClickBtn}>
+          </div>
+        </div>
+        <div >
+          <div className={styles.logout} onClick={handleClickBtn}>
             <KeyboardArrowDownIcon />
           </div>
           {btn ? (
-            <ButtonLogout>
+            <ButtonLogout onClick={() => signOut()}>
               <div>
                 <StartIcon />
                 Logout
               </div>
             </ButtonLogout>
           ) : null}
-        </Logout>
-      </User>
+        </div>
+      </div>
       <Lists>
         <List
           sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
@@ -187,8 +172,9 @@ const Sidebar: React.FC = () => {
               </ListItemIcon>
               <ListItemText primary="Home Page" />
             </ListItemButton>
+            
           {/* </StyleLink> */}
-          <ListItemButton onClick={handleClick}>
+          {/* <ListItemButton onClick={handleClick}>
             <ListItemIcon>
               <GroupWorkIcon />
             </ListItemIcon>
@@ -197,37 +183,44 @@ const Sidebar: React.FC = () => {
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {/* <StyleLink> */}
-                <ListItemButton sx={{ pl: 4 }}>
+                <ListItemButton sx={{ pl: 4 }} onClick= {()=>{
+                  props.setopenPage('OpenTask')
+                }}>
                   <ListItemIcon>
                     <ImportContactsIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Tasks" />
+                  <ListItemText primary="Tasks"  />
                 </ListItemButton>
-              {/* </StyleLink> */}
-              {/* <StyleLink to="/home/projects"> */}
-                <ListItemButton sx={{ pl: 4 }}>
+                <ListItemButton sx={{ pl: 4 }} onClick= {()=>{
+                  props.setopenPage('OpenProject')
+                
+                }}>
                   <ListItemIcon>
                     <ImportContactsIcon />
                   </ListItemIcon>
                   <ListItemText primary="Project" />
                 </ListItemButton>
-              {/* </StyleLink> */}
             </List>
-          </Collapse>
+          </Collapse> */}
           {/* <StyleLink to="/home/projects"> */}
-            <ListItemButton>
+            <ListItemButton onClick= {()=>{
+                  props.setopenPage('OpenAdmin')
+                
+                }}>
               <ListItemIcon>
-                <AssessmentIcon />
+                <GroupWorkIcon />
               </ListItemIcon>
-              <ListItemText primary="Project" />
+              <ListItemText primary="Admin" />
             </ListItemButton>
           {/* </StyleLink> */}
-          <ListItemButton>
+          <ListItemButton onClick= {()=>{
+                  props.setopenPage('OpenCard')
+                
+                }}>
             <ListItemIcon>
               <AccessAlarmIcon />
             </ListItemIcon>
-            <ListItemText primary="My timesheets" />
+            <ListItemText primary="Card" />
           </ListItemButton>
           <ListItemButton>
             <ListItemIcon>
@@ -247,7 +240,7 @@ const Sidebar: React.FC = () => {
           </p>
         </Content_Footer>
       </FooterSidebar>
-    </SidebarContainer>
+    </div>
   );
 };
 

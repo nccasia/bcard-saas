@@ -7,6 +7,7 @@ import { prisma } from "../../../lib/prisma";
 function Update({ profile }: any) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      
       <Head>
         <title>Update Profile - Business Card App</title>
       </Head>

@@ -13,7 +13,9 @@ import Sidebar from "../components/layout/sidebar/Sidebar";
 
 const Home: NextPage = ({ profile, session, admin }: any) => {
   return (
+
     <div className="">
+      {session  && (<Layout />)}
       <Head>
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />

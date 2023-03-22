@@ -3,7 +3,7 @@ import { prisma } from "../../lib/prisma";
 import {getUsers} from "../../api/admin/apiUsers";
 import styles from "../../styles/admin.module.css"
 
-function SelectUsers() {
+function SelectUsers(): JSX.Element {
   const [users, setUsers]=React.useState<any>([]);
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -14,10 +14,10 @@ function SelectUsers() {
   
   return (
     <div>
-        <h2>Table Users</h2>
+        <p>Table Users</p>
         <table className={styles.table}>
           <tr className={styles.tr}>
-            <th className={styles.th}>Avatar</th>
+            <th className={styles.th}>Image</th>
             <th className={styles.th}>Name</th>
             <th className={styles.th}>Email</th>
           </tr>

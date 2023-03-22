@@ -9,13 +9,14 @@ const MainContent = styled.div`
 `;
 
 const Layout= () => {
+  const [openPage,setOpenPage] = React.useState<string>('')
   return (
     <div>
       <Header />
-      <MainContent>
-        <Sidebar />
-        <MainView />
-      </MainContent>
+      <div style={{display: 'flex',}}>
+        <Sidebar setopenPage={setOpenPage} />
+        <MainView TypePage= {openPage}/>
+      </div>
     </div>
   );
 };
