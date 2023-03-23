@@ -3,7 +3,12 @@ import Link from "next/link";
 function Card({ profile }:any){
 
     return(
-        <div>
+        <div
+            style={{
+                textAlign:"center",
+                paddingTop:"100px",
+            }}
+        >
             <Link href={`/profile/${profile.slug}`}>
                 <button
                     type="submit"

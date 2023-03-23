@@ -12,10 +12,13 @@ function SelectCard(): JSX.Element {
   },[]);
 
   return (
-    <div>
-        <br></br>
-        <p>Table Card</p>
-        
+    <div
+      style={{
+        padding:"40px 0 0 0",
+        border:"1px dotted #80808059",
+        borderRadius:"10px",
+      }}
+    >     
         <table
           style={{
             width:"100%",
@@ -26,7 +29,7 @@ function SelectCard(): JSX.Element {
             style={{
               textAlign:"center",
               border:"1px dotted gray",
-              backgroundColor:"#8080803d"
+              backgroundColor:"#9ca3af94",
             }}
           >
               <th>Id</th>
@@ -39,7 +42,7 @@ function SelectCard(): JSX.Element {
                 <tr 
                   key={item.id}
                   style={{
-                    border:"1px dotted gray",
+                    border:"1px dotted #80808059",
                     textAlign:"center"
                   }}
                 >

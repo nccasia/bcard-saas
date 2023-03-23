@@ -12,7 +12,7 @@ function Admin({session}:any) {
       <div style={{display:"flex"}}>
         <ul 
           style={{
-            paddingTop:"150px",
+            paddingTop:"200px",
             width:"25%",
             height:"100vh",
             textAlign:"center",
@@ -36,7 +36,7 @@ function Admin({session}:any) {
         </ul>
         <div
           style={{
-            padding:"10%",
+            padding:"5%",
             width:"75%",
             height:"100vh",
             border:"1px dotted gray"

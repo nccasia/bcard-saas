@@ -12,7 +12,14 @@ function SelectUsers(): JSX.Element {
   },[]);
   
   return (
-    <div>
+    <div
+      style={{
+        marginTop:"100px",
+        padding:"20px 0 0 0",
+        border:"1px dotted #80808059",
+        borderRadius:"10px",
+      }}
+    >
         <br></br>
         <table
           style={{
@@ -23,8 +30,8 @@ function SelectUsers(): JSX.Element {
           <tr
             style={{
               textAlign:"center",
-              border:"1px dotted gray",
-              backgroundColor:"#8080803d"
+              border:"1px dotted #80808059",
+              backgroundColor:"#9ca3af94"
             }}
           >
               <th>Avatar</th>
@@ -38,12 +45,12 @@ function SelectUsers(): JSX.Element {
                 <tr 
                   key={item.id}
                   style={{
-                    border:"1px dotted gray",
+                    border:"1px dotted #80808059",
                     textAlign:"center",
                   }}
                 >
-                    <td>
-                      <img src={item.image} alt="empty" width="50px" height="50px"/>
+                    <td style={{display:"flex", justifyContent:"center"}}>
+                      <img src={item.image} alt="empty" width="50px" height="50px" style={{borderRadius:"50%"}}/>
                     </td>
                     <td>
                       <p>{item.name}</p>

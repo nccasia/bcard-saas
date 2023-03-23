@@ -4,7 +4,7 @@ import CreateProfile from "../CreateProfile";
 import Profile from "../Profile";
 import {signOut } from "next-auth/react";
 import Card  from "./Card";
-import Test  from "./Test";
+import Text  from "./Text";
 
 function Users({profile, session}: any): JSX.Element {
     const [open, setOpen]=React.useState("profile");
@@ -21,7 +21,8 @@ function Users({profile, session}: any): JSX.Element {
                         width:"25%",
                         height:"100vh",
                         textAlign:"center",
-                        border:"1px dotted gray"
+                        border:"1px dotted gray",
+                        position:"fixed",
                       }}
                 >
                     <li>
@@ -42,7 +43,7 @@ function Users({profile, session}: any): JSX.Element {
                         <button onClick={()=>setOpen("card")}>Card</button>
                     </li>
                     <li>
-                        <button onClick={()=>setOpen("test")}>Test</button>
+                        <button onClick={()=>setOpen("text")}>Text</button>
                     </li>
                 </ul>
                 <div
@@ -50,12 +51,13 @@ function Users({profile, session}: any): JSX.Element {
                         // padding:"10%",
                         width:"75%",
                         height:"100vh",
+                        marginLeft:"25%",
                     }}
                 >
                     {open==="profile" && !profile && <CreateProfile email={session.user?.email} />} 
                     {open==="profile" && profile && <Profile profile={profile} />}
                     {open==="card" && <Card profile={profile}/>}
-                    { open==="test" && <Test/>}
+                    {open==="text" && <Text/>}
                 </div>
             </div> 
         </div>

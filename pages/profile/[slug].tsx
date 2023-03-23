@@ -7,6 +7,7 @@ import Link from "next/link";
 import { prisma } from "../../lib/prisma";
 
 function ProfileDetails({ profile }: any) {
+  const [imageUrl, setImageUrl] = React.useState("");
   const router = useRouter();
   const downloadAsPng = async () => {
     const node = document.getElementById("card");
@@ -17,6 +18,21 @@ function ProfileDetails({ profile }: any) {
       link.href = imgDataUrl;
       link.click();
     }
+  };
+  const [text, setText] = React.useState("");
+  const generateQRCode = () => {
+    const qr = QRCode(0, "M");
+    qr.addData(text);
+    qr.make();
+    const canvas = qr.createImgTag();
+    const img = new Image();
+    img.src = canvas;
+    img.onload = async () => {
+      const node = document.createElement("card");
+      node.appendChild(img);
+      const dataUrl = await htmlToImage.toPng(node);
+      setImageUrl(dataUrl);
+    };
   };
 
   return (
@@ -57,13 +73,21 @@ function ProfileDetails({ profile }: any) {
           <br></br>
           <button onClick={downloadAsPng}>Dowload</button>
           <Link href="/">
-                <button
-                    type="submit"
-                    className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
-                >
-                    Home
-                </button>
-            </Link>
+            <button
+                type="submit"
+                className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+            >
+                Home
+            </button>
+          </Link>
+        </>
+      )}
+
+    <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+      <button onClick={generateQRCode}>Generate QR Code</button>
+      {imageUrl && (
+        <>
+          <img src={imageUrl} alt="QR code" />
         </>
       )}
     </div>

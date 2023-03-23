@@ -2,8 +2,17 @@
 
 function ExcelCard({profile}:any){
     return(
-        <div>
-            <div id="card">
+        <div
+          style={{
+            display:"flex"
+          }}
+        >
+          <div 
+            id="card"
+            style={{
+              margin:"auto",
+            }}
+          >
             <div style={{ width:"300px", height:"150px", backgroundColor:"#ff370096", display: "flex"}}>
               <div style={{ margin: "auto", textAlign: "center", color: "white", fontSize: "14px" }}>
                 <img src={profile.logo} alt="hello" style={{ borderRadius: "50%", width: "70px", height: "70px", margin: "0 40px"}} />

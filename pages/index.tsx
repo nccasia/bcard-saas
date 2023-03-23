@@ -1,22 +1,31 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
-
-import Users from "../components/users/Users";
 import { prisma } from "../lib/prisma";
-import Login from "../components/login/Login";
-import Admin from "../components/admin/Admin";
+import Free from "../components/free/Free";
+import { useRouter } from 'next/router'
+import React from "react";
 
 const Home: NextPage = ({ profile, session, admin }: any) => {
+  
+  const router:any = useRouter();
+  React.useEffect(()=>{
+    if(session && admin){
+      router.push('/admin/admin')
+    }
+    if(session && !admin){
+      router.push('/users/text');
+    }
+  },[])
+  
+
   return (
     <div >
       <Head>
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {session && !admin && (<Users profile={profile} session={session} />)}
-      {session && admin && (<Admin session={session}/>)}
-      {!session && <Login />}
+      {!session && <Free/>}
     </div>
   );
 };
