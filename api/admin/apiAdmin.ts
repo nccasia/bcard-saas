@@ -10,6 +10,7 @@ export const addAdmin = async (name:string, email:string) => {
           "Content-Type": "application/json",
         }
       });
+      return response.data;
     } catch (error: any) {
       console.log(error.message);
     }

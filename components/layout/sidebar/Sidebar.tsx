@@ -33,27 +33,7 @@ import { signOut } from "next-auth/react";
 // import { removeAccessToken } from "../../utils/LocalStorage";
 // import authSlice from "../../redux/reducers/authReducer";
 
-const SidebarContainer = styled.div`
-  width: 300px;
-  height: 100%;
-  margin-top: 100px;
-  position: fixed;
-  background-color: white;
-  margin-top:80px;
-`;
-const Title = styled.div`
-  color: #ffffff;
-  font-size: 14px;
-`;
-const Logout = styled.div`
-  div {
-    display: flex;
-    justify-content: flex-end;
-    color: #ffffff;
-    /* position: relative; */
-    cursor: pointer;
-  }
-`;
+
 const ButtonLogout = styled.div`
   display: flex;
   position: absolute;
@@ -70,32 +50,7 @@ const ButtonLogout = styled.div`
   }
 `;
 
-const StyleLink = styled(Link)`
-  color: #000000;
-  text-decoration: none;
-`;
 
-const FooterSidebar = styled.div`
-  /* margin-top: 308px; */
-  display: flex;
-  border-top: 1px solid #ccc;
-  position: absolute;
-  top: 538px;
-`;
-const Content_Footer = styled.div`
-  margin-top: 30px;
-  width: 300px;
-  p {
-    margin: 0;
-    font-size: 14px;
-    margin-left: 10px;
-  }
-  /* ul li{{
-    list-style: none;
-    font-size: 14px;
-   
-  }} */
-`;
 const Strong = styled.strong`
   color: red;
 `;
@@ -134,8 +89,8 @@ const Sidebar = (props: IProps) => {
           <Image src={user} 
                     alt="logo" width={50} height={50} />
             <div>
-              <Title>Admin</Title>
-              <Title>admin.ncc@ncc.asia</Title>
+              <div className={styles.title}>Admin</div>
+              <div className={styles.title}>admin.ncc@ncc.asia</div>
             </div>
           </div>
         </div>
@@ -166,43 +121,16 @@ const Sidebar = (props: IProps) => {
           }
         >
           {/* <StyleLink to="/home"> */}
-            <ListItemButton>
+            <ListItemButton onClick= {()=>{
+                  props.setopenPage('OpenProfile')
+                
+                }}>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Home Page" />
+              <ListItemText primary="Profile" />
             </ListItemButton>
             
-          {/* </StyleLink> */}
-          {/* <ListItemButton onClick={handleClick}>
-            <ListItemIcon>
-              <GroupWorkIcon />
-            </ListItemIcon>
-            <ListItemText primary="Admin" />
-            {open ? <HorizontalRuleIcon /> : <AddIcon />}
-          </ListItemButton>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }} onClick= {()=>{
-                  props.setopenPage('OpenTask')
-                }}>
-                  <ListItemIcon>
-                    <ImportContactsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Tasks"  />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }} onClick= {()=>{
-                  props.setopenPage('OpenProject')
-                
-                }}>
-                  <ListItemIcon>
-                    <ImportContactsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Project" />
-                </ListItemButton>
-            </List>
-          </Collapse> */}
-          {/* <StyleLink to="/home/projects"> */}
             <ListItemButton onClick= {()=>{
                   props.setopenPage('OpenAdmin')
                 
@@ -222,24 +150,18 @@ const Sidebar = (props: IProps) => {
             </ListItemIcon>
             <ListItemText primary="Card" />
           </ListItemButton>
-          <ListItemButton>
-            <ListItemIcon>
-              <DateRangeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Timesheets" />
-          </ListItemButton>
         </List>
       </Lists>
-      <FooterSidebar>
-        <Content_Footer>
-          <p>
-            &2022 <Strong>Timesheet.</Strong>
-          </p>
-          <p>
+      <div className={styles.footerSidebar}>
+        <div className={styles.contentFooter}>
+          <div className={styles.p}>
+            &2023 <Strong>Card.</Strong>
+          </div>
+          <div className={styles.p}>
             <b>Version</b> 4.3.0[20221608]
-          </p>
-        </Content_Footer>
-      </FooterSidebar>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

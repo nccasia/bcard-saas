@@ -91,21 +91,21 @@ function EditProfile({ profile }: any) {
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
         <span className="text-red-700 my-1">{errors.name && errors.name.message}</span>
-        <span className="text-red-700 my-1">{errors.bio && errors.bio.message}</span>
+        {/* <span className="text-red-700 my-1">{errors.bio && errors.bio.message}</span> */}
         <p>Image:</p>
         <input
-          type="tel"
+          type="url"
           placeholder="Enter your Image"
           {...register("img")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        <p>Email:</p>
+        {/* <p>Email:</p>
         <input
-          type="tel"
+          type="text"
           placeholder="Enter your email"
           {...register("email")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-        />
+        /> */}
         <p>Web:</p>
         <input
           type="text"
@@ -122,14 +122,14 @@ function EditProfile({ profile }: any) {
         />
         <p>Position:</p>
         <input
-          type="tel"
+          type="text"
           placeholder="Enter your position"
           {...register("position")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
         <p>Company:</p>
         <input
-          type="tel"
+          type="text"
           placeholder="Enter your company"
           {...register("company")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"

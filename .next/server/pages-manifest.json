@@ -2,9 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/admin/users/usersAll": "pages/api/admin/users/usersAll.js",
-  "/api/admin/admin/adminAll": "pages/api/admin/admin/adminAll.js",
   "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/api/admin/card/cardAll": "pages/api/admin/card/cardAll.js",
+  "/api/admin/admin/adminAll": "pages/api/admin/admin/adminAll.js",
   "/": "pages/index.js"
 }

@@ -1,13 +1,11 @@
-import SelectAdmin from "./select/SelectAdmin";
+import SelectAdmin from "./SelectAdmin";
 import SelectUsers from "./SelectUsers";
 import SelectCard from "./SelectCard";
 import Test from "./Test";
-import Link from "next/link";
-import { useRouter } from 'next/router';
 import React from "react";
 import styles from "../../styles/admin.module.css"
-
-function Admin() {
+import {signOut } from "next-auth/react";
+function Admin({session}:any) {
   const [open, setOpen]=React.useState("Admin");
   return (
     <div>
