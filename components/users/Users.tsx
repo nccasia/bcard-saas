@@ -6,8 +6,6 @@ import {signOut } from "next-auth/react";
 import Link from "next/link";
 import styles from "../../styles/login.module.css"
 
-import Test  from "./Test";
-import Card from "./card";
 
 function Users({profile, session}: any): JSX.Element {
     const [open, setOpen]=React.useState("profile");
@@ -17,49 +15,12 @@ function Users({profile, session}: any): JSX.Element {
                 <title>Business Card App Users</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div style={{display:"flex"}}>
-                <ul
-                    style={{
-                        paddingTop:"150px",
-                        width:"25%",
-                        height:"100vh",
-                        textAlign:"center",
-                        border:"1px dotted gray"
-                      }}
-                >
-                    <li>
-                        {session.user?.email}
-                        <button 
-                            className="bg-indigo-700 text-white rounded-md px-4 py-2 hover:bg-indigo-600 my-2 active:bg-green-900"
-                            onClick={() => signOut()}
-                        >
-                            Sign out
-                        </button>
-                    </li>
-                    <br />
-                    <li>
-                        <button onClick={()=>setOpen("profile")}>Profile</button>
-                    </li>
-                    <li>
-                        <button onClick={()=>setOpen("card")}>Card</button>
-                    </li>
-                    <li>
-                        <button onClick={()=>setOpen("test")}>Test</button>
-                    </li>
-                </ul>
-                <div
-                    style={{
-                        // padding:"10%",
-                        width:"75%",
-                        height:"100vh",
-                    }}
-                >
-                    {open==="profile" && !profile && <CreateProfile email={session.user?.email} />} 
-                    {open==="profile" && profile && <Profile profile={profile} />}
-                    {open==="card" && <Card profile={profile}/>}
-                    { open==="test" && <Test/>}
-                </div>
-            </div> 
+            {session.user?.email} <br />
+            {/* <button onClick={() => signOut()}>Sign out</button> */}
+            <button>Exampe 1</button>
+            <button>Exampe 2</button>
+            {!profile && <CreateProfile email={session.user?.email} />} 
+            {profile && <Profile profile={profile} />}
         </div>
     )
 }

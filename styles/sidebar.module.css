@@ -52,3 +52,19 @@
   font-size: 14px;
   margin-left: 10px;
 }
+.buttonLogout{
+  display: flex;
+  position: absolute;
+  background: red;
+  right: 0px;
+  top: 90px;
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.buttonLogout:hover{
+  background: #e9e9e9;
+}

@@ -20,14 +20,22 @@ function SelectAdmin(): JSX.Element {
   },[]);
   
   return (
-    <div>
+    <div
+      style={{
+        marginTop:"100px",
+        padding:"20px 0 0 0",
+        border:"1px dotted #80808059",
+        borderRadius:"10px",
+      }}
+    > 
         <button 
-          className="bg-indigo-700 text-white rounded-md px-4 py-2 hover:bg-indigo-600 my-2 active:bg-green-900"
-          style={{display: openAdd? "none":"block"}}
+          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+          style={{display: openAdd? "none":"block", float:"right", marginRight:"10px"}}
           onClick={()=>setOpenAdd(true)}
         >
           Add
-          </button>
+        </button>
+
         <div
           style={{display: openAdd? "block":"none"}}
         >
@@ -48,7 +56,7 @@ function SelectAdmin(): JSX.Element {
             />
           <br />
           <button 
-            className="bg-indigo-700 text-white rounded-md px-4 py-2 hover:bg-indigo-600 my-2 active:bg-green-900"
+            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
             style={{display: openAdd? "block":"none"}}
             onClick={()=>{
               addAdmin(nameAdd, emailAdd).then((data:any)=>setAdmin([...admin,data]));
@@ -60,7 +68,6 @@ function SelectAdmin(): JSX.Element {
           Add
           </button>
         </div>
-       <br />
         <table
           style={{
             width:"100%",
@@ -70,8 +77,8 @@ function SelectAdmin(): JSX.Element {
           <tr
             style={{
               textAlign:"center",
-              border:"1px dotted gray",
-              backgroundColor:"#8080803d"
+              border:"1px dotted #8080802e",
+              backgroundColor:"#9ca3af94"
             }}
           >
               <th>Name</th>
@@ -85,7 +92,7 @@ function SelectAdmin(): JSX.Element {
                 <tr 
                   key={item.id}
                   style={{
-                    border:"1px dotted gray",
+                    border:"1px dotted #80808059",
                     textAlign:"center",
                   }}
                 >
@@ -113,17 +120,7 @@ function SelectAdmin(): JSX.Element {
                     </td>
                     <td style={{display:"flex", justifyContent:"center"}}>
                       <button 
-                        className="bg-indigo-700 text-white rounded-md px-4 py-2 hover:bg-indigo-600 my-2 active:bg-green-900"
-                        onClick={()=>{
-                          deleteAdmin(item.id)
-                          const list=admin.filter((main:any)=>main.id !==item.id);
-                          setAdmin(list);
-                        }}
-                      >
-                        Delete
-                      </button>
-                      <button 
-                        className="bg-indigo-700 text-white rounded-md px-4 py-2 hover:bg-indigo-600 my-2 active:bg-green-900"
+                        className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
                         onClick={()=>setOpenEdit(item.id)}
                         style={{display: openEdit===item.id?"none":"block"}}
                       >
@@ -145,8 +142,18 @@ function SelectAdmin(): JSX.Element {
                               setAdmin(list);
                           }}
                           style={{display: openEdit===item.id?"block":"none"}}
-                          className="bg-indigo-700 text-white rounded-md px-4 py-2 hover:bg-indigo-600 my-2 active:bg-green-900"
+                          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
                         >EDIT
+                      </button>
+                      <button 
+                        className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                        onClick={()=>{
+                          deleteAdmin(item.id)
+                          const list=admin.filter((main:any)=>main.id !==item.id);
+                          setAdmin(list);
+                        }}
+                      >
+                        Delete
                       </button>
                     </td>
                 </tr>
