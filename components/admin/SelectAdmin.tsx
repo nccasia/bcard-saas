@@ -46,7 +46,7 @@ function SelectAdmin(): JSX.Element {
               value={nameAdd}
               onChange={(e)=>setNameAdd(e.target.value)}
             />
-          <br></br>
+          <br />
           <input
               type="text"
               placeholder="Enter your email"
@@ -54,7 +54,7 @@ function SelectAdmin(): JSX.Element {
               value={emailAdd}
               onChange={(e)=>setEmailAdd(e.target.value)}
             />
-          <br></br>
+          <br />
           <button 
             className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
             style={{display: openAdd? "block":"none"}}

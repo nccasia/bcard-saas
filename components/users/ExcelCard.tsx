@@ -3,7 +3,7 @@
 function ExcelCard({profile,params}:any){
     return(
       <div>
-        {params===1 &&
+        {params?.exampe==="1" &&
           <div
             style={{
               display:"flex"
@@ -42,7 +42,7 @@ function ExcelCard({profile,params}:any){
             </div>
           </div>
         }
-        {params===2 && <p>hello</p>}
+        {params?.exampe==="2" && <p>hello</p>}
       </div>
     )
 }

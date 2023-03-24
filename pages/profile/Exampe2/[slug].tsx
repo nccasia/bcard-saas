@@ -58,7 +58,7 @@ function ProfileDetails({ profile }: any) {
           <div className={styles.itemContent}>
           <FontAwesomeIcon icon="user" style={{fontSize: '20px'}}/>
           <p>{profile.name}</p> <br />
-          <p>{profile.bio}</p>
+          {/* <p>{profile.}</p> */}
           </div>
           <div className={styles.itemContent}>
           <FontAwesomeIcon icon="phone" style={{fontSize: '20px'}}/>

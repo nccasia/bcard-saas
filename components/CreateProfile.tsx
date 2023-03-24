@@ -70,13 +70,26 @@ function CreateProfile({ email }: any): JSX.Element {
       )}
 
       <form onSubmit={handleSubmit(onFormSubmit)}>
-        <input
+      <input
           type="text"
           placeholder="Enter your name"
           {...register("name", { required: true })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
         <span className="text-red-700 my-1">{errors.name && errors.name.message}</span>
+        {/* <span className="text-red-700 my-1">{errors.bio && errors.bio.message}</span> */}
+        <input
+          type="url"
+          placeholder="Enter your Image"
+          {...register("img")}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
+        <input
+          type="text"
+          placeholder="Enter your email"
+          {...register("email")}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
         <input
           type="text"
           placeholder="Enter your web"
@@ -90,11 +103,25 @@ function CreateProfile({ email }: any): JSX.Element {
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
         <input
+          type="text"
+          placeholder="Enter your position"
+          {...register("position")}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
+        <input
+          type="text"
+          placeholder="Enter your company"
+          {...register("company")}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
+        <p>Logo:</p>
+        <input
           type="url"
           placeholder="Enter your logo"
           {...register("logo")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
+        <p>Slogan:</p>
         <input
           type="text"
           placeholder="Enter your slogan"
@@ -109,8 +136,8 @@ function CreateProfile({ email }: any): JSX.Element {
         />
         <textarea
           rows={4}
-          placeholder="Enter your bio"
-          {...register("bio", { required: true })}
+          placeholder="Enter your action"
+          {...register("action", { required: true })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
         <button

@@ -1,13 +1,18 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as htmlToImage from "html-to-image";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import QRCode from "qrcode-generator";
 import React, { useState } from "react";
+<<<<<<< HEAD
 
+=======
+import Header from "../../components/layout/header/Header";
+import Sidebar from "../../components/layout/sidebar/Sidebar";
+>>>>>>> 11daa7c6dbc74b17a5636a46e807276496a8b21d
 import { prisma } from "../../lib/prisma";
 import styles from  "../../styles/profile.module.css"
-
 function ProfileDetails({ profile }: any) {
   const [imageUrl, setImageUrl] = React.useState("");
   const [isHidden, setIsHidden] = useState(true);
@@ -41,6 +46,9 @@ function ProfileDetails({ profile }: any) {
   };
 
   return (
+    <>
+       <Header/>
+       <Sidebar />
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       {router.isFallback ? (
         <div>Loading...</div>
@@ -50,6 +58,7 @@ function ProfileDetails({ profile }: any) {
             <title>{`${profile.name}'s Profile - Business Card App`}</title>
           </Head>
           <div id="card">
+<<<<<<< HEAD
               <div style={{ width:"300px", height:"150px", backgroundColor:"#ff370096", display: "flex"}}>
                 <div style={{ margin: "auto", textAlign: "center", color: "white", fontSize: "14px" }}>
                   <img src={profile.logo} alt="hello" style={{ borderRadius: "50%", width: "70px", height: "70px", margin: "0 40px"}} />
@@ -93,10 +102,53 @@ function ProfileDetails({ profile }: any) {
                   Update Profile
                 </button>
                 </Link>
+=======
+          {isHidden ? 
+            <div className={styles.headCard}>
+              <div className={styles.headContent}>
+                <img src={profile.logo} alt="hello" className={styles.img} />
+                <p style={{ fontSize: 40 }}>{profile.company}</p>
+                {/* <p style={{ fontSize: 10 }}>{profile.slogan}</p> */}
+              </div>
+            </div>
+            : 
+            <div className={styles.mainCard}>
+              <div style={{ display: "flex", flex: 1 }}>
+                <div className={styles.cardImage}>
+                  <img src={profile.img} alt="hello" className={styles.imageCard}/>
+                  <p style={{ fontSize: 25 }}>{profile.company}</p>
+                <p style={{ fontSize: 15, color: "black" }}>{profile.slogan}</p>
+                </div>
+              </div>
+              <div className={styles.contentCard}>
+                <div className={styles.title}>
+                    <h1 style={{marginLeft: "16px"}}>{profile.name}</h1>
+                    <p style={{marginLeft: "16px", color: "rgb(225 223 217)"}}>{profile.action}</p>
+                </div>
+               
+                {/* <p>{profile.position}</p> */}
+                <div className={styles.itemContent}>
+                  <FontAwesomeIcon icon="location-dot" style={{fontSize: '16px'}}/>
+                  <p>{profile.address}</p>
+                </div>
+                <div className={styles.itemContent}>
+                  <FontAwesomeIcon icon="phone" style={{fontSize: '16px'}}/>
+                  <p>{profile.phone}</p>
+                </div>
+                <div className={styles.itemContent}>
+                  <FontAwesomeIcon icon="envelope" style={{fontSize: '16px'}}/>
+                  <p>{profile.email}</p>
+                </div>
+                <div className={styles.itemContent}>
+          <FontAwesomeIcon icon="fire" style={{fontSize: '16px'}}/>
+          <p>{profile.web}</p>
+          </div>
+>>>>>>> 11daa7c6dbc74b17a5636a46e807276496a8b21d
               </div>
           </div>
           <br />
           <button onClick={downloadAsPng}>Dowload</button>
+<<<<<<< HEAD
           <Link href="/">
             <button
                 type="submit"
@@ -116,6 +168,21 @@ function ProfileDetails({ profile }: any) {
         </div>
       )}
   </div>
+=======
+          {/* <Link href="/">
+                <button
+                    type="submit"
+                    className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+                >
+                    Home
+                </button>
+            </Link> */}
+        </>
+      )}
+    </div>
+    </>
+   
+>>>>>>> 11daa7c6dbc74b17a5636a46e807276496a8b21d
   );
 }
 

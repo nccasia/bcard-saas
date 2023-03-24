@@ -16,6 +16,9 @@ const Home: NextPage = ({ profile, session, admin }: any) => {
     if(session && !admin){
       router.push('/users/card');
     }
+    if(!session ){
+      router.push('/free/free');
+    }
   },[])
   
 
@@ -25,7 +28,6 @@ const Home: NextPage = ({ profile, session, admin }: any) => {
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {!session && <Free/>}
     </div>
   );
 };

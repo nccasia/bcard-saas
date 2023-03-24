@@ -4,7 +4,6 @@ import SelectCard from "./SelectCard";
 import Test from "./Test";
 import React from "react";
 import styles from "../../styles/admin.module.css"
-
 function Admin({session}:any) {
   const [open, setOpen]=React.useState("Admin");
   return (
