@@ -1,34 +1,33 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
-
-import Users from "../components/users/Users";
 import { prisma } from "../lib/prisma";
-import Admin from "../components/admin/Admin";
-import Profile from "../components/Profile";
-import Login from "../components/login/Login";
-import Header from "../components/layout/header/Header";
-import Layout from "../components/layout";
-import Sidebar from "../components/layout/sidebar/Sidebar";
-import Card from "../components/users/card";
-import { MainView } from "../components/layout/mainview/MainView";
+import Free from "../components/free/Free";
+import { useRouter } from 'next/router'
+import React from "react";
 
 const Home: NextPage = ({ profile, session, admin }: any) => {
-  return (
+  
+  const router:any = useRouter();
+  React.useEffect(()=>{
+    if(session && admin){
+      router.push('/admin/admin')
+    }
+    if(session && !admin){
+      router.push('/users/card');
+    }
+    if(!session ){
+      router.push('/free/free');
+    }
+  },[])
+  
 
-    <div className="">
-      {session  && (<Layout />)}
+  return (
+    <div >
       <Head>
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {session && admin && (<Admin />)}
-      {session && !admin && (<Users profile={profile} session={session} />)}
-      {session && !admin && (<Card profile={profile} session={session} />)}
-      {session && !admin && (<MainView profile={profile} />)}
-      {session && !admin && (<Layout profile={profile} />)}
-      {session && admin && (<Admin session={session}/>)}
-      {!session && <Login />}
     </div>
   );
 };

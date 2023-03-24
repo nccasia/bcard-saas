@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import ExcelJS from 'exceljs';
 import {changeExcel} from "../../utils/changeExcel"
-import Link from "next/link";
 import ExcelCard  from "./ExcelCard"
+import Link from "next/link";
 
-function Test() {
+function Text() {
   const [data, setData] = useState([]);
 
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,11 +18,21 @@ function Test() {
     });
     setData(changeExcel(rows));
   };
- 
 
   return (
-    <div>
-      <input type="file" onChange={handleUpload} />
+    <div
+      style={{
+        textAlign:"center",
+        paddingTop:"100px",
+      }}
+    >
+       <Link href="/users/card">Home</Link>
+        <br></br>
+      <input 
+        type="file" 
+        accept=".xlsx, .xls"
+        onChange={handleUpload} 
+      />
       <br></br>
       {data?data.map((item:any, index:number)=>{
         return(
@@ -37,5 +47,5 @@ function Test() {
   );
 }
 
-export default Test;
+export default Text;
 

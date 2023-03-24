@@ -62,27 +62,13 @@ const Header = () => {
     <div className={styles.container}>
       <div className={styles.headerLetf}>
         <Header_Logo>
-        <Image src={logo} 
-                    alt="logo" width={30} height={30} />
+          <Image src={logo} alt="logo" width={30} height={30} />
         </Header_Logo>
         <div className={styles.title}>Card-visit</div>
       </div>
       <div className={styles.headeRight}>
-        <SelectLangueNav>
-          <IconLangue>
-            {/* <UploadFileRoundedIcon /> */}
-          </IconLangue>
-          <IconLangue>
-            {/* <TextSnippetRoundedIcon /> */}
-          </IconLangue>
-
-          <TextLangue>English</TextLangue>
-          <IconSelect>
-            {/* <ArrowDropDownIcon /> */}
-          </IconSelect>
-        </SelectLangueNav>
         <SelectBackgroundColorNav>
-          {/* <MoreVertIcon /> */}
+
         </SelectBackgroundColorNav>
       </div>
     </div>

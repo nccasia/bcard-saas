@@ -1,13 +1,13 @@
 import Head from "next/head";
 import React from "react";
 import CreateProfile from "../CreateProfile";
-import Profile from "../Profile";
+import Profile from "./Profile";
 import {signOut } from "next-auth/react";
 import Link from "next/link";
 import styles from "../../styles/login.module.css"
 
-import Test  from "./Test";
-import Card from "./card";
+import Test  from "./Text";
+import Card from "./Card";
 
 function Users({profile, session}: any): JSX.Element {
     const [open, setOpen]=React.useState("profile");
@@ -57,7 +57,7 @@ function Users({profile, session}: any): JSX.Element {
                 >
                     {open==="profile" && !profile && <CreateProfile email={session.user?.email} />} 
                     {open==="profile" && profile && <Profile profile={profile} />}
-                    {open==="card" && <Card profile={profile}/>}
+                    {open==="card" && <Card/>}
                     { open==="test" && <Test/>}
                 </div>
             </div> 

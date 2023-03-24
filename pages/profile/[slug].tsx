@@ -5,11 +5,16 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import QRCode from "qrcode-generator";
 import React, { useState } from "react";
+<<<<<<< HEAD
+
+=======
 import Header from "../../components/layout/header/Header";
 import Sidebar from "../../components/layout/sidebar/Sidebar";
+>>>>>>> 11daa7c6dbc74b17a5636a46e807276496a8b21d
 import { prisma } from "../../lib/prisma";
 import styles from  "../../styles/profile.module.css"
 function ProfileDetails({ profile }: any) {
+  const [imageUrl, setImageUrl] = React.useState("");
   const [isHidden, setIsHidden] = useState(true);
   const toggle = () => setIsHidden(!isHidden);
 
@@ -24,6 +29,21 @@ function ProfileDetails({ profile }: any) {
       link.click();
     }
   };
+  const [text, setText] = React.useState("");
+  const generateQRCode = () => {
+    const qr = QRCode(0, "M");
+    qr.addData(text);
+    qr.make();
+    const canvas = qr.createImgTag();
+    const img = new Image();
+    img.src = canvas;
+    img.onload = async () => {
+      const node = document.createElement("card");
+      node.appendChild(img);
+      const dataUrl = await htmlToImage.toPng(node);
+      setImageUrl(dataUrl);
+    };
+  };
 
   return (
     <>
@@ -33,11 +53,56 @@ function ProfileDetails({ profile }: any) {
       {router.isFallback ? (
         <div>Loading...</div>
       ) : (
-        <>
+        <div>
           <Head>
             <title>{`${profile.name}'s Profile - Business Card App`}</title>
           </Head>
           <div id="card">
+<<<<<<< HEAD
+              <div style={{ width:"300px", height:"150px", backgroundColor:"#ff370096", display: "flex"}}>
+                <div style={{ margin: "auto", textAlign: "center", color: "white", fontSize: "14px" }}>
+                  <img src={profile.logo} alt="hello" style={{ borderRadius: "50%", width: "70px", height: "70px", margin: "0 40px"}} />
+                  <p>{profile.company}</p>
+                  <p style={{ fontSize: 12 }}>{profile.slogan}</p>
+                </div>
+              </div>
+              {isHidden ? 
+                <div className={styles.headCard}>
+                  <div className={styles.headContent}>
+                    <img src={profile.logo} alt="hello" className={styles.img} />
+                    <p style={{ fontSize: 16 }}>{profile.company}</p>
+                    <p style={{ fontSize: 10 }}>{profile.slogan}</p>
+                  </div>
+                </div>
+                : 
+                <div className={styles.mainCard}>
+                  <div style={{ display: "flex", flex: 1 }}>
+                    <div className={styles.cardImage}>
+                      <img src={profile.img} alt="hello" className={styles.img}/>
+                      <p>{profile.action}</p>
+                    </div>
+                  </div>
+                  <div className={styles.contentCard}>
+                    <p>{profile.name}</p>
+                    <p>{profile.position}</p>
+                    <p>{profile.address}</p>
+                    <p>{profile.phone}</p>
+                    <p>{profile.email}</p>
+                    <p>{profile.web}</p>
+                  </div>
+                </div>
+              }
+              <div className={styles.button}>
+                <button className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base" onClick={toggle}>Toggle</button>
+                <Link href={`/profile/edit/${profile.slug}`}>
+                <button
+                  type="submit"
+                  className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+                >
+                  Update Profile
+                </button>
+                </Link>
+=======
           {isHidden ? 
             <div className={styles.headCard}>
               <div className={styles.headContent}>
@@ -78,22 +143,32 @@ function ProfileDetails({ profile }: any) {
           <FontAwesomeIcon icon="fire" style={{fontSize: '16px'}}/>
           <p>{profile.web}</p>
           </div>
+>>>>>>> 11daa7c6dbc74b17a5636a46e807276496a8b21d
               </div>
-            </div>}
-            <div className={styles.button}>
-              <button className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base" onClick={toggle}>Toggle</button>
-              <Link href={`/profile/edit/${profile.slug}`}>
-              <button
-                type="submit"
-                className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
-              >
-                Update Profile
-              </button>
-              </Link>
-            </div>
           </div>
           <br />
           <button onClick={downloadAsPng}>Dowload</button>
+<<<<<<< HEAD
+          <Link href="/">
+            <button
+                type="submit"
+                className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+            >
+                Home
+            </button>
+          </Link>
+       
+          <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+          <button onClick={generateQRCode}>Generate QR Code</button>
+          {imageUrl && (
+            <>
+              <img src={imageUrl} alt="QR code" />
+            </>
+          )}
+        </div>
+      )}
+  </div>
+=======
           {/* <Link href="/">
                 <button
                     type="submit"
@@ -107,6 +182,7 @@ function ProfileDetails({ profile }: any) {
     </div>
     </>
    
+>>>>>>> 11daa7c6dbc74b17a5636a46e807276496a8b21d
   );
 }
 

@@ -9,7 +9,7 @@ function Profile({ profile }: any) {
   const toggle = () => setIsHidden(!isHidden);
   return (
     <div>
-      {/* <div className="mb-6">
+      <div className="mb-6">
         <h1 className="text-2xl font-bold">
           <Link href={`/profile/${profile.slug}`}>{profile.name}</Link>
         </h1>
@@ -22,7 +22,19 @@ function Profile({ profile }: any) {
             Update Profile
           </button>
         </Link>
-      </div> */}
+        <br />
+        <Link href={`/profile/${profile.slug}`}>
+          <button
+            type="submit"
+            className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+          >
+            Card
+          </button>
+        </Link>
+      </div>
+
+        <br></br>
+      
 
       <p>Name: {profile.name}</p>
       <p>Avatar:
@@ -40,6 +52,7 @@ function Profile({ profile }: any) {
       <p>Address: {profile.address}</p>
       <p>Action: {profile.action}</p>
       {/* <button onClick={toggle}>Toggle</button>
+>>>>>>>>> Temporary merge branch 2
       {isHidden ? 
         <div className={styles.cardHead}>
           <div className={styles.cardHeadContent}>
@@ -76,6 +89,10 @@ function Profile({ profile }: any) {
           </div>
         </div>
       </div>
+<<<<<<<<< Temporary merge branch 1
+      }
+      <button className={styles.button} onClick={toggle}>Toggle</button>
+=========
       } */}
       
       

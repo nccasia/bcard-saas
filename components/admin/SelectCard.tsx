@@ -13,27 +13,55 @@ function SelectCard(): JSX.Element {
   },[]);
 
   return (
-    <div style={{width: "100%"}}>
-        <br />
-        <h1>Table Card</h1>
-        
-        <table className={styles.table}>
-        <tr className={styles.tr}>
-            <th className={styles.th}>ID</th>
-            <th className={styles.th}>Card</th>
-          </tr>
-          {users? users.map((item:any)=>{
-            return(
-              <tr key={item.id}>
-                  <td className={styles.td}>
-                    <p>{item.id}</p>
-                  </td>
-                  <td>
-                    <img src={item.card} alt="hello" width="200px" height="200px"/>
-                  </td>
-              </tr>
-            )
-          }):null}
+    <div
+      style={{
+        padding:"40px 0 0 0",
+        border:"1px dotted #80808059",
+        borderRadius:"10px",
+      }}
+    >     
+        <table
+          style={{
+            width:"100%",
+          }}
+        >
+          <thead>
+          <tr
+            style={{
+              textAlign:"center",
+              border:"1px dotted gray",
+              backgroundColor:"#9ca3af94",
+            }}
+          >
+              <th>Id</th>
+              <th>Card</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users? users.map((item:any)=>{
+              return(
+                <tr 
+                  key={item.id}
+                  style={{
+                    border:"1px dotted #80808059",
+                    textAlign:"center"
+                  }}
+                >
+                    <td>
+                      <p>{item.id}</p>
+                    </td>
+                    <td
+                      style={{
+                        display:"flex",
+                        justifyContent:"center"
+                      }}
+                    >
+                      <img src={item.card} alt="hello" width="200px" height="200px"/>
+                    </td>
+                </tr>
+              )
+            }):null}
+          </tbody>
         </table>
     </div>
   );
