@@ -14,7 +14,7 @@ const Home: NextPage = ({ profile, session, admin }: any) => {
       router.push('/admin/admin')
     }
     if(session && !admin){
-      router.push('/users/text');
+      router.push('/users/card');
     }
   },[])
   

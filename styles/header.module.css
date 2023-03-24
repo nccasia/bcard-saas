@@ -1,0 +1,27 @@
+.container{
+     background: #f44336;
+  display: flex;
+  height: 80px;
+  width: 100%;
+  align-items: center;
+  padding: 10px 0;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 10;
+}
+
+.headerLetf{
+    display: flex;
+  padding: 5px;
+}
+.title{
+   color: white;
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 5px; 
+}
+
+.headeRight{
+    display: flex;
+  margin-right: 15px;
+}

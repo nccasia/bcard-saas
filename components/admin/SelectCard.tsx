@@ -1,6 +1,7 @@
 import  React from "react"
 import { prisma } from "../../lib/prisma";
 import {getCard} from "../../api/admin/apiCard";
+import styles from "../../styles/admin.module.css"
 
 function SelectCard(): JSX.Element {
   const [users, setUsers]=React.useState<any>([]);

@@ -72,10 +72,10 @@ model Profile {
   address   String?
   logo      String?
   slogan    String?
-  company   String?
   position  String?
   action    String?
   img       String?
+  company   String?
   userId    String  @unique
   slug      String  @unique
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)

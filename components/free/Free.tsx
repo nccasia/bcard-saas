@@ -1,12 +1,12 @@
-import HomeLayout from '../home/HomeLayout';
+import LayoutUser from '../home/LayoutUser';
 
 function Free(){
 
     return(
         <div>
-            <HomeLayout>
+            <LayoutUser>
                 <p>hello</p>
-            </HomeLayout>
+            </LayoutUser>
         </div>
     )
 }

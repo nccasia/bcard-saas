@@ -4,11 +4,13 @@ import styles from "../styles/profile.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {getProfile} from "../../api/users/apiProfile"
 import CreateProfile from "../CreateProfile";
+import EditProfile from "../users/EditProfile";
 
 function Profile() {
   const [isHidden, setIsHidden] = React.useState(true);
   const toggle = () => setIsHidden(!isHidden);
   const [profile, setProfile]=React.useState<any>([]);
+  const [update, setUpdate]=React.useState(false);
   React.useEffect(()=>{
     getProfile().then((data)=>setProfile(data))
   },[]);
@@ -16,11 +18,12 @@ function Profile() {
   return (
     <div 
       style={{
-        display:"flex",
         marginTop:"90px",
       }}
     >
-        {profile?
+        <Link href="/users/card">Home</Link>
+        <br></br>
+        {!update && profile && (
             <div
                 style={{
                 margin:"auto",
@@ -66,19 +69,20 @@ function Profile() {
                 <div
                 style={{textAlign:"center"}}
                 >
-                <Link href={`/profile/edit/${profile.slug}`}>
-                    <button
-                    type="submit"
-                    className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-600 my-2 active:bg-gray-400 text-base"
-                    >
-                    Update Profile
-                    </button>
-                </Link>
                 </div>
             </div>
-        :
-            <CreateProfile/>
+        )}
+        {!profile && <CreateProfile/>}
+        {!update && profile && 
+          <button
+              type="submit"
+              className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-600 my-2 active:bg-gray-400 text-base"
+              onClick={()=>setUpdate(true)}
+            >
+            Update Profile
+          </button>
         }
+        {update && profile &&<EditProfile profile={profile} setUpdate={setUpdate}/>}
     </div>
   );
 }

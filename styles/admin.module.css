@@ -1,0 +1,24 @@
+.table, .tr, .th, .td{
+    border: 1px solid;
+    text-align: center;
+}
+.table{
+    width: 100%;
+}
+.td {
+    
+}
+
+.menuitem{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 20px;
+}
+
+.button{
+    background: #bcbcd2;
+    padding: 5px 10px;
+    border-radius: 5px;
+}

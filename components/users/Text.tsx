@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ExcelJS from 'exceljs';
 import {changeExcel} from "../../utils/changeExcel"
 import ExcelCard  from "./ExcelCard"
+import Link from "next/link";
 
 function Text() {
   const [data, setData] = useState([]);
@@ -25,6 +26,8 @@ function Text() {
         paddingTop:"100px",
       }}
     >
+       <Link href="/users/card">Home</Link>
+        <br></br>
       <input 
         type="file" 
         accept=".xlsx, .xls"

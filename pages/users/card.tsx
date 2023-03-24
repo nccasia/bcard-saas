@@ -1,13 +1,13 @@
-import HomeLayout  from "../../components/home/HomeLayout";
+import LayoutUser  from "../../components/home/LayoutUser";
 import React, { useState } from 'react';
 import Card from "../../components/users/Card"
 
 function CardPage() {
     return (
         <div>
-            <HomeLayout>
+            <LayoutUser>
                 <Card/>
-            </HomeLayout>   
+            </LayoutUser>   
         </div>
     );
 }
