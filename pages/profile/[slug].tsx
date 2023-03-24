@@ -7,6 +7,7 @@ import QRCode from "qrcode-generator";
 import React, { useState } from "react";
 import Header from "../../components/home/Header";
 import Sidebar from "../../components/home/Sidebar";
+
 import { prisma } from "../../lib/prisma";
 import styles from  "../../styles/profile.module.css"
 function ProfileDetails({ profile }: any) {
@@ -54,51 +55,49 @@ function ProfileDetails({ profile }: any) {
             <title>{`${profile.name}'s Profile - Business Card App`}</title>
           </Head>
           <div id="card">
-              <div style={{ width:"300px", height:"150px", backgroundColor:"#ff370096", display: "flex"}}>
-                <div style={{ margin: "auto", textAlign: "center", color: "white", fontSize: "14px" }}>
-                  <img src={profile.logo} alt="hello" style={{ borderRadius: "50%", width: "70px", height: "70px", margin: "0 40px"}} />
-                  <p>{profile.company}</p>
-                  <p style={{ fontSize: 12 }}>{profile.slogan}</p>
+          {isHidden ? 
+            <div className={styles.headCard}>
+              <div className={styles.headContent}>
+                <img src={profile.logo} alt="hello" className={styles.img} />
+                <p style={{ fontSize: 40 }}>{profile.company}</p>
+                {/* <p style={{ fontSize: 10 }}>{profile.slogan}</p> */}
+              </div>
+            </div>
+            : 
+            <div className={styles.mainCard}>
+              <div style={{ display: "flex", flex: 1 }}>
+                <div className={styles.cardImage}>
+                  <img src={profile.img} alt="hello" className={styles.imageCard}/>
+                  <p style={{ fontSize: 25 }}>{profile.company}</p>
+                <p style={{ fontSize: 15, color: "black" }}>{profile.slogan}</p>
                 </div>
               </div>
-              {isHidden ? 
-                <div className={styles.headCard}>
-                  <div className={styles.headContent}>
-                    <img src={profile.logo} alt="hello" className={styles.img} />
-                    <p style={{ fontSize: 16 }}>{profile.company}</p>
-                    <p style={{ fontSize: 10 }}>{profile.slogan}</p>
-                  </div>
+              <div className={styles.contentCard}>
+                <div className={styles.title}>
+                    <h1 style={{marginLeft: "16px"}}>{profile.name}</h1>
+                    <p style={{marginLeft: "16px", color: "rgb(225 223 217)"}}>{profile.action}</p>
                 </div>
-                : 
-                <div className={styles.mainCard}>
-                  <div style={{ display: "flex", flex: 1 }}>
-                    <div className={styles.cardImage}>
-                      <img src={profile.img} alt="hello" className={styles.img}/>
-                      <p>{profile.action}</p>
-                    </div>
-                  </div>
-                  <div className={styles.contentCard}>
-                    <p>{profile.name}</p>
-                    <p>{profile.position}</p>
-                    <p>{profile.address}</p>
-                    <p>{profile.phone}</p>
-                    <p>{profile.email}</p>
-                    <p>{profile.web}</p>
-                  </div>
+               
+                {/* <p>{profile.position}</p> */}
+                <div className={styles.itemContent}>
+                  <FontAwesomeIcon icon="location-dot" style={{fontSize: '16px'}}/>
+                  <p>{profile.address}</p>
                 </div>
-              }
-              <div className={styles.button}>
-                <button className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base" onClick={toggle}>Toggle</button>
-                <Link href={`/profile/edit/${profile.slug}`}>
-                <button
-                  type="submit"
-                  className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
-                >
-                  Update Profile
-                </button>
-                </Link>
+                <div className={styles.itemContent}>
+                  <FontAwesomeIcon icon="phone" style={{fontSize: '16px'}}/>
+                  <p>{profile.phone}</p>
+                </div>
+                <div className={styles.itemContent}>
+                  <FontAwesomeIcon icon="envelope" style={{fontSize: '16px'}}/>
+                  <p>{profile.email}</p>
+                </div>
+                <div className={styles.itemContent}>
+                <FontAwesomeIcon icon="fire" style={{fontSize: '16px'}}/>
+                <p>{profile.web}</p>
+                </div>
               </div>
-          </div>
+           </div>}
+            
           <br />
           <button onClick={downloadAsPng}>Dowload</button>
           <Link href="/">
@@ -117,12 +116,12 @@ function ProfileDetails({ profile }: any) {
               <img src={imageUrl} alt="QR code" />
             </>
           )}
+          </div>
         </div>
       )}
-     </div>
-     </>
-  );
-}
+    </div>
+   </>
+   )}
 
 
 

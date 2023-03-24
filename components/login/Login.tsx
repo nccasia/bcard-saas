@@ -1,10 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
+import {  signIn } from "next-auth/react";
 
-import Users from "../users/Users";
-import { prisma } from "../../lib/prisma";
-import styles from "../../styles/login.module.css"
 
 const Login = () => {
   return (

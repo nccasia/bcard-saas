@@ -26,90 +26,7 @@ import styles from "../../styles/sidebar.module.css"
 import user from "../../public/user.png"
 import Image from "next/image";
 import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
-// import Content from '../content/conten';
-// import { Link, useNavigate } from "react-router-dom";
-// import { removeAccessToken } from "../../utils/LocalStorage";
-// import { useDispatch } from "react-redux";
-// import { removeAccessToken } from "../../utils/LocalStorage";
-// import authSlice from "../../redux/reducers/authReducer";
 
-const SidebarContainer = styled.div`
-  width: 300px;
-  height: 100%;
-  margin-top: 100px;
-  position: fixed;
-  background-color: white;
-  margin-top:80px;
-`;
-const Title = styled.div`
-  color: #ffffff;
-  font-size: 14px;
-`;
-const Logout = styled.div`
-  div {
-    display: flex;
-    justify-content: flex-end;
-    color: #ffffff;
-    /* position: relative; */
-    cursor: pointer;
-  }
-`;
-const ButtonLogout = styled.div`
-  display: flex;
-  position: absolute;
-  background: red;
-  right: 0px;
-  top: 90px;
-  border: 1px solid;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  z-index: 10;
-  :hover {
-    background: #e9e9e9;
-  }
-`;
-
-const StyleLink = styled(Link)`
-  color: #000000;
-  text-decoration: none;
-`;
-
-const FooterSidebar = styled.div`
-  /* margin-top: 308px; */
-  display: flex;
-  border-top: 1px solid #ccc;
-  position: absolute;
-  top: 538px;
-`;
-const Content_Footer = styled.div`
-  margin-top: 30px;
-  width: 300px;
-  p {
-    margin: 0;
-    font-size: 14px;
-    margin-left: 10px;
-  }
-  /* ul li{{
-    list-style: none;
-    font-size: 14px;
-   
-  }} */
-`;
-const Strong = styled.strong`
-  color: red;
-`;
-
-const Lists = styled.div`
-  margin-top: 27px;
-  height: 200px;
-`;
-
-
-
-interface IProps{
-  setopenPage : Dispatch<SetStateAction<string>>
-}
 
 const Sidebar = () => {
   const [open, setOpen] = React.useState(true);
@@ -137,8 +54,8 @@ const Sidebar = () => {
           <div className={styles.info}>
           <img src={session?.user?.image} alt="avatar" width="50px" height="50px" style={{borderRadius:"50%"}} />
             <div>
-              <Title>{session?.user?.name}</Title>
-              <Title>{session?.user?.email}</Title>
+              <div className={styles.title}>{session?.user?.name}</div>
+              <div className={styles.title}>{session?.user?.email}</div>
             </div>
           </div>
         </div>
@@ -156,7 +73,7 @@ const Sidebar = () => {
           ) : null}
         </div>
       </div>
-      <Lists>
+      <div className={styles.lists}>
         <List
           sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
           component="nav"
@@ -199,7 +116,7 @@ const Sidebar = () => {
             </ListItemButton>
           </Link>
         </List>
-      </Lists>
+      </div>
     </div>
   );
 };

@@ -22,6 +22,7 @@ function Card(){
             <button
                 type="submit"
                 className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+                onClick={()=>setOpen(2)}
             >
                 Example 2
             </button>
@@ -31,9 +32,9 @@ function Card(){
                         display:"flex"
                     }}
                 >
-                    <Link href="/users/one/1">One</Link>
+                    <Link href={`/users/one/${open}`} >One</Link>
                     <p>vs</p>
-                    <Link href="/users/all/1">All</Link>
+                    <Link href={`/users/all/${open}`}>All</Link>
                 </div>
             )}
         </div>

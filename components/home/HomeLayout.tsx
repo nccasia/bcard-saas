@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Login from "../login/Login"
 import {menuAdmin} from "../../components/home/menuIndex";
 import  Header from "../../components/home/Header";
-import { MainView } from "../layout/mainview/MainView";
 import Sidebar from "../home/Sidebar";
 
 const HomeLayout = ({ children}: { children: React.ReactNode}) => {

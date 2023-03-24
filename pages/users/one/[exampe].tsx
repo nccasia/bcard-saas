@@ -5,7 +5,7 @@ function Exampe({params}:any) {
     return(
         <div>
             <LayoutUser>
-                <Profile/>
+                <Profile params={params}/>
             </LayoutUser>
         </div>
     )
