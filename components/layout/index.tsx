@@ -8,14 +8,14 @@ const MainContent = styled.div`
   display: flex;
 `;
 
-const Layout= () => {
+const Layout= (profile:any) => {
   const [openPage,setOpenPage] = React.useState<string>('')
   return (
     <div>
       <Header />
       <div style={{display: 'flex',}}>
         <Sidebar setopenPage={setOpenPage} />
-        <MainView TypePage= {openPage}/>
+        <MainView TypePage= {openPage} profile={profile}/>
       </div>
     </div>
   );

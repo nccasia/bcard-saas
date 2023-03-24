@@ -10,6 +10,8 @@ import Login from "../components/login/Login";
 import Header from "../components/layout/header/Header";
 import Layout from "../components/layout";
 import Sidebar from "../components/layout/sidebar/Sidebar";
+import Card from "../components/users/card";
+import { MainView } from "../components/layout/mainview/MainView";
 
 const Home: NextPage = ({ profile, session, admin }: any) => {
   return (
@@ -22,6 +24,10 @@ const Home: NextPage = ({ profile, session, admin }: any) => {
       </Head>
       {session && admin && (<Admin />)}
       {session && !admin && (<Users profile={profile} session={session} />)}
+      {session && !admin && (<Card profile={profile} session={session} />)}
+      {session && !admin && (<MainView profile={profile} />)}
+      {session && !admin && (<Layout profile={profile} />)}
+      {session && admin && (<Admin session={session}/>)}
       {!session && <Login />}
     </div>
   );

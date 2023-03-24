@@ -8,8 +8,8 @@ function Profile({ profile }: any) {
 
   const toggle = () => setIsHidden(!isHidden);
   return (
-    <div className="text-gray-800 text-lg text-left mt-5">
-      <div className="mb-6">
+    <div>
+      {/* <div className="mb-6">
         <h1 className="text-2xl font-bold">
           <Link href={`/profile/${profile.slug}`}>{profile.name}</Link>
         </h1>
@@ -22,16 +22,24 @@ function Profile({ profile }: any) {
             Update Profile
           </button>
         </Link>
-        <br />
-        <Link href={`/profile/${profile.slug}`}>
-          <button
-            type="submit"
-            className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
-          >
-            Card
-          </button>
-        </Link>
-      </div>
+      </div> */}
+
+      <p>Name: {profile.name}</p>
+      <p>Avatar:
+        <img src={profile.img} alt="avatar"/>
+      </p>
+      <p>Position: {profile.position}</p>
+      <p>Email: {profile.email}</p>
+      <p>Web: {profile.web}</p>
+      <p>Phone: {profile.phone}</p>
+      <p>Company: {profile.company}</p>
+      <p>Logo:
+        <img src={profile.logo} alt="logo"/>
+      </p>
+      <p>Solan: {profile.solgan}</p>
+      <p>Address: {profile.address}</p>
+      <p>Action: {profile.action}</p>
+      {/* <button onClick={toggle}>Toggle</button>
       {isHidden ? 
         <div className={styles.cardHead}>
           <div className={styles.cardHeadContent}>
@@ -68,8 +76,7 @@ function Profile({ profile }: any) {
           </div>
         </div>
       </div>
-      }
-      <button className={styles.button} onClick={toggle}>Toggle</button>
+      } */}
       
       
     </div>

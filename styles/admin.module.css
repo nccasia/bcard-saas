@@ -1,12 +1,13 @@
-.table, .tr, .th, .td{
-    border: 1px solid;
+.table, .tr{
+    border: 1px  dotted gray;
     text-align: center;
 }
 .table{
     width: 100%;
 }
-.td {
+.tr {
     
+    background-color: #8080803d;
 }
 
 .menuitem{

@@ -24,6 +24,10 @@
   align-items: center;
   gap: 10px;
 }
+.title{
+  color: #ffffff;
+  font-size: 14px;
+}
 
 .logout{
     display: flex;
@@ -31,4 +35,20 @@
     color: #fff;
     /* position: relative; */
     cursor: pointer;
+}
+.footerSidebar{
+  display: flex;
+  border-top: 1px solid #ccc;
+  position: absolute;
+  top: 538px;
+}
+.contentFooter{
+  margin-top: 30px;
+  width: 300px;
+}
+
+.p {
+  margin: 0;
+  font-size: 14px;
+  margin-left: 10px;
 }
