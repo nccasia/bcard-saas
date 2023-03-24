@@ -64,6 +64,7 @@ const Lists = styled.div`
 
 interface IProps{
   setopenPage : Dispatch<SetStateAction<string>>
+  profile : any
 }
 
 const Sidebar = (props: IProps) => {
@@ -79,7 +80,7 @@ const Sidebar = (props: IProps) => {
     setCheck(true);
     setBtn((prev) => !prev);
   };
-
+ console.log(props.profile,'kkkklll')
 
   return (
     <div  className={styles.container}>
@@ -89,8 +90,8 @@ const Sidebar = (props: IProps) => {
           <Image src={user} 
                     alt="logo" width={50} height={50} />
             <div>
-              <div className={styles.title}>Admin</div>
-              <div className={styles.title}>admin.ncc@ncc.asia</div>
+              {/* <div className={styles.title}>{props.profile.name}</div>
+              <div className={styles.title}>admin.ncc@ncc.asia</div> */}
             </div>
           </div>
         </div>

@@ -28,8 +28,7 @@ function Users({profile, session}: any): JSX.Element {
                       }}
                 >
                     <li>
-                        {session.user?.email} 
-                        <br></br>
+                        {session.user?.email}
                         <button 
                             className="bg-indigo-700 text-white rounded-md px-4 py-2 hover:bg-indigo-600 my-2 active:bg-green-900"
                             onClick={() => signOut()}
@@ -37,7 +36,7 @@ function Users({profile, session}: any): JSX.Element {
                             Sign out
                         </button>
                     </li>
-                    <br></br>
+                    <br />
                     <li>
                         <button onClick={()=>setOpen("profile")}>Profile</button>
                     </li>

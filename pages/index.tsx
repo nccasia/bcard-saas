@@ -14,19 +14,20 @@ import Card from "../components/users/card";
 import { MainView } from "../components/layout/mainview/MainView";
 
 const Home: NextPage = ({ profile, session, admin }: any) => {
+  
   return (
 
     <div className="">
-      {session  && (<Layout />)}
+      {session  && (<Layout  profile={profile}/>)}
       <Head>
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {session && admin && (<Admin />)}
       {session && !admin && (<Users profile={profile} session={session} />)}
-      {session && !admin && (<Card profile={profile} session={session} />)}
-      {session && !admin && (<MainView profile={profile} />)}
-      {session && !admin && (<Layout profile={profile} />)}
+      {/* {session && !admin && (<Card profile={profile} session={session} />)} */}
+      {/* {session && profile && !admin && (<MainView profile={profile} />)} */}
+      {/* {session && !admin && (<Layout profile={profile} />)} */}
       {session && admin && (<Admin session={session}/>)}
       {!session && <Login />}
     </div>

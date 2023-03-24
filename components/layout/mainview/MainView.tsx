@@ -8,7 +8,7 @@ interface Iprops {
   profile: any
 }
 export const MainView = (props: Iprops) => {
-  console.log(props)
+ 
   return (
     <div style={{margin:"80px 0 0 306px", border: '5px solid #dcdcdc', width:'80%', padding: "20px"}}>
       

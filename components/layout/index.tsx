@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components"
+import Profile from "../Profile";
 import Header from "./header/Header";
 import { MainView } from "./mainview/MainView";
 import Sidebar from "./sidebar/Sidebar";
@@ -9,12 +10,13 @@ const MainContent = styled.div`
 `;
 
 const Layout= (profile:any) => {
+  
   const [openPage,setOpenPage] = React.useState<string>('')
   return (
     <div>
       <Header />
       <div style={{display: 'flex',}}>
-        <Sidebar setopenPage={setOpenPage} />
+        <Sidebar setopenPage={setOpenPage} profile={profile} />
         <MainView TypePage= {openPage} profile={profile}/>
       </div>
     </div>
