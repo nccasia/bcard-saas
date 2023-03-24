@@ -4,7 +4,7 @@ import {changeExcel} from "../../utils/changeExcel"
 import ExcelCard  from "./ExcelCard"
 import Link from "next/link";
 
-function Text() {
+function Text({params}:any) {
   const [data, setData] = useState([]);
 
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +38,7 @@ function Text() {
         return(
           <div key={index}>
             <p>{item.name}</p>
-            <ExcelCard profile={item}/>
+              <ExcelCard profile={item} params={params}/>
             <br></br>
           </div>
         )

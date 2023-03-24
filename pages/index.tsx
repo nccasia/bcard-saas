@@ -6,19 +6,19 @@ import Free from "../components/free/Free";
 import { useRouter } from 'next/router'
 import React from "react";
 
-const Home: NextPage = ({ profile, session, admin }: any) => {
+const Home: NextPage = ({ session, admin }: any) => {
   
   const router:any = useRouter();
   React.useEffect(()=>{
-    if(session && admin){
+    if( admin){
       router.push('/admin/admin')
     }
-    if(session && !admin){
+    if(!admin){
       router.push('/users/card');
     }
-    if(!session ){
-      router.push('/free/free');
-    }
+    // if(!session ){
+    //   router.push('/free/free');
+    // }
   },[])
   
 
@@ -48,26 +48,8 @@ export const getServerSideProps = async (context: GetSessionParams | undefined) 
       email:true,
     },
   });
-  const profile = await prisma.profile.findUnique({
-    where: { email: session.user?.email || undefined },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      web: true,
-      address: true,
-      logo: true,
-      slogan: true,
-      phone: true,
-      slug: true,
-      company: true,
-      position: true,
-      action: true,
-      img: true,
-    },
-  });
   console.log(prisma.profile);
   return {
-    props: { profile, session, admin },
+    props: {session, admin },
   };
 };
