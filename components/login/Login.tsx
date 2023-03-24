@@ -14,7 +14,7 @@ const Login = () => {
           onClick={(event) => {
             signIn("google", { callbackUrl: "/" });
         }}>
-          Sign in
+          Log in
         </button>
     </div>
   );

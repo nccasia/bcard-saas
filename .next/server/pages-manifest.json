@@ -2,8 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/users/card": "pages/users/card.js",
   "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/users/one/[exampe]": "pages/users/one/[exampe].js",
-  "/api/profile/getprofile": "pages/api/profile/getprofile.js"
+  "/users/all/[exampe]": "pages/users/all/[exampe].js",
+  "/users/card": "pages/users/card.js"
 }
