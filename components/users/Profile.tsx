@@ -14,7 +14,7 @@ function Profile({params}:any) {
   const [update, setUpdate]=React.useState(false);
   React.useEffect(()=>{
     getProfile().then((data)=>setProfile(data))
-  },[]);
+  },[update]);
 
   return (
     <div 

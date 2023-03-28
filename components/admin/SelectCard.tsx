@@ -2,15 +2,23 @@ import  React from "react"
 import { prisma } from "../../lib/prisma";
 import {getCard} from "../../api/admin/apiCard";
 import styles from "../../styles/admin.module.css"
+import KonvaView  from "../users/KonvaView"
+import KonvaEdit from "../users/KonvaEdit"
 
 function SelectCard(): JSX.Element {
   const [users, setUsers]=React.useState<any>([]);
+  const [data, setData]=React.useState<any>([]);
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [openEdit, setOpenEdit] = React.useState<number>(-1);
   React.useEffect(()=>{
-    getCard().then((data)=>setUsers(data))
+    getCard().then((main)=>{
+      setUsers(main);
+      setData(main.map((item:any) => item.card));
+    })
   },[]);
+
+  //console.log(users);
 
   return (
     <div
@@ -34,11 +42,12 @@ function SelectCard(): JSX.Element {
             }}
           >
               <th>Id</th>
-              <th>Card</th>
+              <th>Name</th>
             </tr>
           </thead>
           <tbody>
             {users? users.map((item:any)=>{
+              //console.log((item.card));
               return(
                 <tr 
                   key={item.id}
@@ -50,17 +59,30 @@ function SelectCard(): JSX.Element {
                     <td>
                       <p>{item.id}</p>
                     </td>
-                    <td
-                      style={{
-                        display:"flex",
-                        justifyContent:"center"
-                      }}
-                    >
-                      <img src={item.card} alt="hello" width="200px" height="200px"/>
+                    <td>
+                      <p>{item.name}</p>
                     </td>
                 </tr>
               )
             }):null}
+            {data? data.map((item:any, index:number)=>{
+              console.log((item.card));
+              return(
+                  <div
+                    key={index}
+                    style={{
+                      margin:0,
+                      padding:0,
+                      width:"400px",
+                      height:"400px",
+                      boxSizing: "content-box",
+                      overflow: "hidden"
+                    }}
+                  >
+                    <KonvaView data={item} setData={setData}/>
+                  </div>
+                )
+              }):null}
           </tbody>
         </table>
     </div>

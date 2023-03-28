@@ -52,7 +52,9 @@ model Admin {
 
 model Card {
   id           Int   @id @default(autoincrement())
-  card         String?   @unique
+  name         String?
+  card         Json?
+  image        String?
 }
 
 model VerificationToken {
