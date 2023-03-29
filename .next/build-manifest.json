@@ -29,11 +29,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/users/card.js"
-    ],
-    "/users/one/[exampe]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/users/one/[exampe].js"
     ]
   },
   "ampFirstPages": []

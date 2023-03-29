@@ -1,13 +1,10 @@
 import Link from "next/link";
 import React from "react";
-
-
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import styles from '../../styles/public.module.css'
+import Test from "../admin/Test"
+import TestText from "./TestText"
 
 function Card(){
 
@@ -17,6 +14,7 @@ function Card(){
         <div
             style={{
                 display: "flex",
+                flexDirection: "column",
                 gap: "10px",
                 textAlign:"center",
                 paddingTop:"100px",
@@ -54,6 +52,8 @@ function Card(){
                     </div>
                 </DialogTitle>
             </Dialog>
+            {/* <Test/> */}
+            <TestText/>
         </div>
     )
 }
