@@ -1,13 +1,23 @@
 import Link from "next/link";
 import React from "react";
 
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import styles from '../../styles/public.module.css'
+
 function Card(){
 
-    const [open, setOpen]=React.useState(0);
+    const [open, setOpen]=React.useState(-1);
 
     return(
         <div
             style={{
+                display: "flex",
+                gap: "10px",
                 textAlign:"center",
                 paddingTop:"100px",
             }}
@@ -26,17 +36,24 @@ function Card(){
             >
                 Example 2
             </button>
-            {open!==0 && (
-                <div
-                    style={{
-                        display:"flex"
+            <Dialog
+                open={open!==-1? true: false}
+                onClose={()=>setOpen(-1)}       
+            >
+                <DialogTitle
+                    sx={{
+                        width:"300px",
+                        height:"100px",
+                        textAlign:"center",
                     }}
                 >
-                    <Link href={`/users/one/${open}`} >One</Link>
-                    <p>vs</p>
-                    <Link href={`/users/all/${open}`}>All</Link>
-                </div>
-            )}
+                    <h1>Are you ready?</h1>
+                    <div className={styles.box}>
+                        <button className={styles.button}><Link href={`/users/one/${open}`} >One </Link></button>
+                        <button><Link href={`/users/all/${open}`}>All</Link></button>
+                    </div>
+                </DialogTitle>
+            </Dialog>
         </div>
     )
 }

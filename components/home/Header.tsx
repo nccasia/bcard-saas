@@ -4,6 +4,8 @@ import Image from "next/image";
 import logo from "../../public/logo.png"
 import styles from "../../styles/header.module.css"
 import  Login from "../login/Login"
+import  Logout from "../login/Logout"
+import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
 
 const SelectBackgroundColorNav = styled.div`
   color: white;
@@ -11,6 +13,10 @@ const SelectBackgroundColorNav = styled.div`
 `;
 
 const Header = () => {
+  const [session, setSession]=React.useState<any>()
+  React.useEffect(()=>{
+    getSession().then(data=>setSession(data));
+  },[])
   return (
     <div className={styles.container}>
       <div className={styles.headerLetf}>
@@ -21,7 +27,8 @@ const Header = () => {
       </div>
       <div className={styles.headeRight}>
         <SelectBackgroundColorNav>
-            <Login/>
+            {!session && <Login/>}
+            {session && <Logout/>}
         </SelectBackgroundColorNav>
       </div>
     </div>

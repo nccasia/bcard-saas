@@ -15,7 +15,7 @@ function Profile({params}:any) {
   React.useEffect(()=>{
     getProfile().then((data)=>setProfile(data))
   },[]);
-
+console.log(profile)
   return (
     <div 
       style={{

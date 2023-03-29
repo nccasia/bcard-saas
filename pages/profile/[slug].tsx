@@ -45,7 +45,7 @@ function ProfileDetails({ profile }: any) {
   return (
     <>
        <Header/>
-       <Sidebar />
+       {/* <Sidebar /> */}
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       {router.isFallback ? (
         <div>Loading...</div>

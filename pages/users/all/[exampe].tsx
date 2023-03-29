@@ -8,7 +8,7 @@ function Exampe({params}:any) {
     return(
         <div>
             <LayoutUser>
-                <Text/>
+                <Text params={params}/>
             </LayoutUser>   
         </div>
     )
