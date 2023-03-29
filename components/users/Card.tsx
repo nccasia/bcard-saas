@@ -37,19 +37,34 @@ function Card(){
                 <DialogTitle
                     sx={{
                         width:"300px",
-                        height:"100px",
+                        height:"150px",
                         textAlign:"center",
                     }}
                 >
                     <p>Are you ready?</p>
-                    <Link href={`/users/one/${open}`} >One </Link>
+                    <Link href={`/users/one/${open}`} >
+                        <button
+                            className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-green-600 my-2 active:bg-green-900"
+                        >
+                            One
+                        </button>
+                    </Link>
                     vs
-                    <Link href={`/users/all/${open}`}>All</Link>
+                    <Link href={`/users/all/${open}`}>
+                        <button
+                            className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-green-600 my-2 active:bg-green-900"
+                        >
+                            All
+                        </button>   
+                    </Link>
                 </DialogTitle>
             </Dialog>
             {/* <Test/> */}
             <br></br>
+            <p>Test...</p>
+            <br></br>
             <Link href="/card/createcard">Test create card</Link>
+            <br></br>
             <Link href="/card/viewcard">Test view card</Link>
         </div>
     )

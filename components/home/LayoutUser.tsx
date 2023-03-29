@@ -15,6 +15,7 @@ const LayoutUser = ({ children}: { children: React.ReactNode}) => {
         style={{
             display:"flex",
             justifyContent:"center",
+            padding:"100px",
         }}
       >
         <main>{children}</main>
