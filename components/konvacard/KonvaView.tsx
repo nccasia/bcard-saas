@@ -1,6 +1,8 @@
 import React from 'react';
 import {editTextCard} from "../../utils/konvaCard";
-import {useDataDebouncer}  from "../../utils/useDeboune"
+import {useDataDebouncer}  from "../../utils/useDeboune";
+import {imgUrl} from "../../utils/imgUrl";
+
 function KonvaView({data, setData}:any){
 
     const [Konva, setKonva] = React.useState<any>(null);
@@ -22,11 +24,6 @@ function KonvaView({data, setData}:any){
         }
     };
 
-    const imgUrl=(main:string)=>{
-        const img = new window.Image();
-        img.src = main;
-        return img;
-    }
     //console.log(data)
     
     return (

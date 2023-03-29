@@ -1,7 +1,7 @@
 import React from 'react'
 import Admin from '../../admin/Admin'
 import Profile from '../../Profile'
-import Card from '../../users/card'
+import Card from '../../users/Card'
 import Users from '../../users/Users'
 interface Iprops {
   TypePage?: string, 
@@ -15,7 +15,7 @@ export const MainView = (props: Iprops) => {
       
       {/* {props.TypePage && props.TypePage== 'OpenProfile'&& <Profile/>} */}
       {props.TypePage && props.TypePage== 'OpenAdmin'&& <Admin/>}
-      {props.TypePage && props.TypePage=='OpenCard'&&<Card profile={props.profile} />}
+      {props.TypePage && props.TypePage=='OpenCard'&&<Card />}
       </div>
   )
 }
