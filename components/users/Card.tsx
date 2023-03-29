@@ -3,7 +3,7 @@ import React from "react";
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import Test from "../admin/Test"
-import TestText from "./TestText"
+
 
 function Card(){
 
@@ -48,7 +48,8 @@ function Card(){
                 </DialogTitle>
             </Dialog>
             {/* <Test/> */}
-            <TestText/>
+            <br></br>
+            <Link href="/card/createcard">Test card</Link>
         </div>
     )
 }
