@@ -49,7 +49,8 @@ function Card(){
             </Dialog>
             {/* <Test/> */}
             <br></br>
-            <Link href="/card/createcard">Test card</Link>
+            <Link href="/card/createcard">Test create card</Link>
+            <Link href="/card/viewcard">Test view card</Link>
         </div>
     )
 }
