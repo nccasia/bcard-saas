@@ -6,6 +6,7 @@ import styles from "../../styles/header.module.css"
 import  Login from "../login/Login"
 import  Logout from "../login/Logout"
 import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
+import Signup from "../login/Signup";
 
 const SelectBackgroundColorNav = styled.div`
   color: white;
@@ -24,10 +25,13 @@ const Header = () => {
           <Image src={logo} alt="logo" width={30} height={30} />
         </div>
         <div className={styles.title}>Card-visit</div>
-      </div>
+     </div>
       <div className={styles.headeRight}>
         <SelectBackgroundColorNav>
+           <div style={{display: "flex", gap: "5px"}}>
             {!session && <Login/>}
+           {!session && <Signup/>}
+           </div>
             {session && <Logout/>}
         </SelectBackgroundColorNav>
       </div>

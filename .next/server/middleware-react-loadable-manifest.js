@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST={"..\\components\\users\\KonvaView.tsx -> react-konva":{"id":"..\\components\\users\\KonvaView.tsx -> react-konva","files":["static/chunks/node_modules_react-konva_es_ReactKonva_js.js"]}}
+self.__REACT_LOADABLE_MANIFEST={}

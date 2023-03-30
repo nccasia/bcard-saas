@@ -4,7 +4,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import styles from '../../styles/public.module.css'
 import Test from "../admin/Test"
-import TestText from "./TestText"
+
 
 function Card(){
 
@@ -53,7 +53,8 @@ function Card(){
                 </DialogTitle>
             </Dialog>
             {/* <Test/> */}
-            <TestText/>
+            <br/>
+            <Link href="/card/createcard">Test card</Link>
         </div>
     )
 }

@@ -15,7 +15,7 @@ function Profile({params}:any) {
   React.useEffect(()=>{
     getProfile().then((data)=>setProfile(data))
   },[update]);
-
+console.log(profile)
   return (
     <div 
       style={{
@@ -23,7 +23,7 @@ function Profile({params}:any) {
       }}
     >
         <Link href="/users/card">Home</Link>
-        <br></br>
+        <br/>
         {!update && profile && (
           <ExcelCard profile={profile} params={params}/>
         )}

@@ -2,8 +2,8 @@ import  React from "react"
 import { prisma } from "../../lib/prisma";
 import {getCard} from "../../api/admin/apiCard";
 import styles from "../../styles/admin.module.css"
-import KonvaView  from "../users/KonvaView"
-import KonvaEdit from "../users/KonvaEdit"
+import KonvaView  from "../konvacard/KonvaView"
+import KonvaEdit from "../konvacard/KonvaEdit"
 
 function SelectCard(): JSX.Element {
   const [users, setUsers]=React.useState<any>([]);
