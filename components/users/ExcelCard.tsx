@@ -11,34 +11,50 @@ function ExcelCard({profile,params}:any){
           >
             <div 
               id="card"
-              style={{
-                margin:"auto",
-              }}
             >
-              <div style={{ width:"300px", height:"150px", backgroundColor:"#161537e8", display: "flex"}}>
-                <div style={{ margin: "auto", textAlign: "center", color: "white", fontSize: "14px" }}>
-                  <img src={profile.logo} alt="hello" style={{ borderRadius: "50%", width: "70px", height: "70px", margin: "0 40px"}} />
-                  <p>{profile.company}</p>
-                  <p style={{ fontSize: 12 }}>{profile.slogan}</p>
-                </div>
-              </div>
+              
+             <div className={styles.headCard}>
+               <div className={styles.headContent}>
+                 <img src={profile.logo} alt="hello" className={styles.img} />
+                 <p style={{ fontSize: 40 }}>{profile.company}</p>
+                 {/* <p style={{ fontSize: 10 }}>{profile.slogan}</p> */}
+               </div>
+             </div>
               <br></br>
-              <div style={{ width: "300px", height: "150px", backgroundColor: "#161537e8", display: "flex", justifyContent: "space-between", fontSize: "12px", color: "white" }}>
-                <div style={{ display: "flex", flex: 1 }}>
-                  <div style={{ margin: "auto", textAlign: "center", color: "white", width: "100px", height: "100px" }}>
-                    <img src={profile.img} alt="hello" style={{ borderRadius: "50%", width: "80px", height: "100px", }} />
-                    {/* <p style={{ paddingLeft: "10px" }}>{profile.action}</p> */}
-                  </div>
+             <div className={styles.mainCard1}>
+               <div style={{ display: "flex", flex: 1 }}>
+                 <div className={styles.cardImage}>
+                  <img src={profile.logo} alt="hello" className={styles.img1} />
+                  <p style={{ fontSize: 20, color:"#ff370096" }}>{profile.company}</p>
+                  <p style={{ fontSize: 13, color:"gray" }}>{profile.action}</p>
+                 </div>
+               </div>
+               <div className={styles.contentCard1}>
+                 <div className={styles.title1}>
+                     <h1 style={{marginLeft: "16px"}}>{profile.name}</h1>
+                     <p style={{marginLeft: "16px", color: "gray"}}>{profile.position}</p>
+                 </div>
+                
+                 {/* <p>{profile.position}</p> */}
+                 <div className={styles.itemContent}>
+                   <FontAwesomeIcon icon="location-dot" style={{fontSize: '16px', color:"#ff370096"}}/>
+                   <p>{profile.address}</p>
+                 </div>
+                 <div className={styles.itemContent}>
+                   <FontAwesomeIcon icon="phone" style={{fontSize: '16px', color:"#ff370096"}}/>
+                   <p>{profile.phone}</p>
+                 </div>
+                 <div className={styles.itemContent}>
+                   <FontAwesomeIcon icon="envelope" style={{fontSize: '16px', color:"#ff370096"}}/>
+                   <p>{profile.email}</p>
+                 </div>
+                 <div className={styles.itemContent}>
+                <FontAwesomeIcon icon="fire" style={{fontSize: '16px', color:"#ff370096"}}/>
+                <p>{profile.web}</p>
                 </div>
-                <div style={{ margin: "auto", textAlign: "left", color: "white", flex: 1 }}>
-                  <p>{profile.name}</p>
-                  <p>{profile.position}</p>
-                  <p>{profile.address}</p>
-                  <p>{profile.phone}</p>
-                  <p>{profile.email}</p>
-                  <p>{profile.web}</p>
-                </div>
-              </div>
+                    </div>
+             </div>
+          
             </div>
           </div>
         }
@@ -52,7 +68,7 @@ function ExcelCard({profile,params}:any){
                  {/* <p style={{ fontSize: 10 }}>{profile.slogan}</p> */}
                </div>
              </div>
-            <br></br>
+              <br></br>
              <div className={styles.mainCard}>
                <div style={{ display: "flex", flex: 1 }}>
                  <div className={styles.cardImage}>

@@ -4,16 +4,17 @@ import { getSession } from "next-auth/react";
 import { prisma } from "../../../lib/prisma";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const session = await getSession({ req });
+//   const session = await getSession({ req });
 
-  //if (session) {
-    if (req.method === "PUT") {
+//   if (session) {
+    const { id } = req.query;
+    if (req.method === "GET") {
       try {
-        await prisma.profile.update({
-          where: { slug: req.query.slug.toString() },
-          data: req.body,
+        const data=await prisma.card.findUnique({
+          where: { id: Number(id) },
+          select: { card: true },
         });
-        res.status(200).json({ message: "Profile updated successfully." });
+        res.status(200).json(data);
       } catch (error) {
         res.status(500).json({
           error: error,
@@ -21,9 +22,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         });
       }
     }
-  // } else {
-  //   res.status(401).json({ errorMessage: "Access Denied." });
-  // }
+//   } else {
+//     res.status(401).json({ errorMessage: "Access Denied." });
+//   }
 }
 
 export default handler;

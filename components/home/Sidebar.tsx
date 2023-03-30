@@ -25,13 +25,7 @@ import Link from "next/link";
 import styles from "../../styles/sidebar.module.css"
 import user from "../../public/user.png"
 import Image from "next/image";
-import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
-// import Content from '../content/conten';
-// import { Link, useNavigate } from "react-router-dom";
-// import { removeAccessToken } from "../../utils/LocalStorage";
-// import { useDispatch } from "react-redux";
-// import { removeAccessToken } from "../../utils/LocalStorage";
-// import authSlice from "../../redux/reducers/authReducer";
+import { useSession,SessionProvider } from "next-auth/react"
 
 const SidebarContainer = styled.div`
   width: 300px;
@@ -125,17 +119,15 @@ const Sidebar = () => {
     setBtn((prev) => !prev);
   };
 
-  const [session, setSession]=React.useState<any>();
-  React.useEffect(()=>{
-    getSession().then(data=>setSession(data))
-  },[]);
-  
+  //const [session, setSession]=React.useState<any>();
+  const { data: session, status } = useSession()
   return (
+    
     <div  className={styles.container}>
       <div className={styles.user}>
         <div className={styles.userInfo}>
           <div className={styles.info}>
-          <img src={session?.user?.image} alt="avatar" width="50px" height="50px" style={{borderRadius:"50%"}} />
+            <img src={session?.user?.image} alt="avatar" width="50px" height="50px" style={{borderRadius:"50%"}} />
             <div>
               <Title>{session?.user?.name}</Title>
               <Title>{session?.user?.email}</Title>

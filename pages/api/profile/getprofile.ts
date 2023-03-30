@@ -6,12 +6,12 @@ import { slugify } from "../../../lib/slugify";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req });
-  if (session) {
+  //if (session) {
     if (req.method === "GET") {
       try {
         const data= await prisma.profile.findUnique({
           where: {
-            email: session.user?.email || "",
+            email: session?.user?.email || "",
           },
         });
         res.status(201).json(data);
@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } else {
       res.status(405).end({ errorMessage: "Request method not allowed." });
     }
-  } else {
-    res.status(401).json({ errorMessage: "Access Denied." });
-  }
+  // } else {
+  //   res.status(401).json({ errorMessage: "Access Denied." });
+  // }
 }

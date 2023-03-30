@@ -9,13 +9,15 @@ function KonvaCreate({data, setData}:any){
 
     return(
         <div>
-            <p>Konva Create</p>
+            <h1>Add</h1>
             <button 
+                className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-green-600 my-2 active:bg-green-900"
                 onClick={()=>setOpenText(!openText)}
             >
                 Add Text
             </button>
-            <button 
+            <button
+                className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-green-600 my-2 active:bg-green-900" 
                 onClick={()=>setOpenImage(!openImage)}
             >
                 Add Image

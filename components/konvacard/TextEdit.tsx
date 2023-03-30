@@ -19,6 +19,7 @@ function TextEdit({item, data, setData, type, setOpen}:TypeEdit){
       } = useForm({mode: "onChange",});
     
     React.useEffect(() => {
+        setValue("id", item?.id || "");
         setValue("text", item?.style?.text || "");
         setValue("fill", (item?.style?.fill) || "black");
         setValue("fontSize", (item?.style?.fontSize) || 18);
@@ -30,7 +31,7 @@ function TextEdit({item, data, setData, type, setOpen}:TypeEdit){
         if(type==="edit"){
             const list = data.map((main:any)=>{
                 if(main.id=== item.id){
-                    return {...main, style:{...item.style, text:values.text,  fill: values.fill, rotation:(values.rotation), fontSize:(values.fontSize), fontFamily:values.fontFamily}}
+                    return {...main,id:values.id.replace(/\s+/g, ""),onclick:false, style:{...item.style,draggable:false, text:values.text,  fill: values.fill, rotation:(values.rotation), fontSize:(values.fontSize), fontFamily:values.fontFamily}}
                     
                 }else{
                     return main;
@@ -43,7 +44,7 @@ function TextEdit({item, data, setData, type, setOpen}:TypeEdit){
             setData([
                 ...data, 
                 {
-                    id:String(newId),
+                    id:values.id.replace(/\s+/g, ""),
                     type:"text",
                     style:{
                         x:50,
@@ -70,6 +71,14 @@ function TextEdit({item, data, setData, type, setOpen}:TypeEdit){
             {type==="edit" && <h1>Edit Text</h1>}
             {type==="create" && <h1>Create Text</h1>}
             <form onSubmit={handleSubmit(buttonType)}>
+                <p>Name:</p>
+                <input
+                    type="text"
+                    placeholder="Enter your name"
+                    {...register("id", { required: true })}
+                    className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+                />
+                
                 <p>Text:</p>
                 <input
                     type="text"

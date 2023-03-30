@@ -14,7 +14,6 @@ function SelectUsers(): JSX.Element {
   return (
     <div
       style={{
-        marginTop:"100px",
         padding:"20px 0 0 0",
         border:"1px dotted #80808059",
         borderRadius:"10px",
