@@ -34,3 +34,19 @@ export const updateCard = async (props:any) => {
     console.log(error.message);
   }
 };
+
+export const getKonva = async (index:string) => {
+  try{
+    const res=await axios({
+      url: index,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    return res.data;
+  }catch  (error:any){
+    console.log(error)
+    return []
+  }
+};

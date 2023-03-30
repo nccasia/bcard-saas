@@ -11,6 +11,7 @@ function ImageEdit({item, data, setData, type}:any){
       } = useForm({mode: "onChange"});
 
     React.useEffect(() => {
+        setValue("id", item?.id || "");
         setValue("image", item?.style?.image || "");
         setValue("width", (item?.style?.width) || 300);
         setValue("height", (item?.style?.height) || 150);
@@ -22,7 +23,7 @@ function ImageEdit({item, data, setData, type}:any){
         if(type==="edit"){
             const list = data.map((main:any)=>{
                 if(main.id=== item.id){
-                    return {...main, style:{...item.style, image:values.image,  width: (values.width), rotation:(values.rotation), height:(values.height), cornerRadius:(values.cornerRadius)}}
+                    return {...main,id:values.id.replace(/\s+/g, ""), onclick:false, style:{...item.style,draggable:false, image:values.image,  width: (values.width), rotation:(values.rotation), height:(values.height), cornerRadius:(values.cornerRadius)}}
                     
                 }else{
                     return main;
@@ -31,11 +32,10 @@ function ImageEdit({item, data, setData, type}:any){
             setData(list);
         }
         if(type==="create"){
-            const newId = data.length + 1;
             setData([
                 ...data,
                 {
-                    id: String(newId),
+                    id: values.id.replace(/\s+/g, ""),
                     type:"image",
                     style:{
                         x: 0,
@@ -58,6 +58,14 @@ function ImageEdit({item, data, setData, type}:any){
             {type==="edit" && <h1>Edit Image</h1>}
             {type==="create" && <h1>Create Image</h1>}
             <form onSubmit={handleSubmit(buttonType)}>
+                <p>Name:</p>
+                <input
+                    type="text"
+                    placeholder="Enter your name"
+                    {...register("id", { required: true })}
+                    className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+                />
+                
                 <p>Image:</p>
                 <input
                     type="text"

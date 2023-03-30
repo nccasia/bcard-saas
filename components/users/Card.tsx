@@ -18,14 +18,15 @@ function Card(){
         >
             <button
                 type="submit"
-                className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+                style={{margin:"0 8px"}}
+                className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
                 onClick={()=>setOpen(1)}
             >
                 Example 1
             </button>
             <button
                 type="submit"
-                className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+                className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
                 onClick={()=>setOpen(2)}
             >
                 Example 2
@@ -41,31 +42,25 @@ function Card(){
                         textAlign:"center",
                     }}
                 >
-                    <p>Are you ready?</p>
+                    <h1>Are you sure?</h1>
                     <Link href={`/users/one/${open}`} >
                         <button
-                            className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-green-600 my-2 active:bg-green-900"
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                            style={{margin:"0 7px"}}
                         >
                             One
                         </button>
                     </Link>
-                    vs
+                    
                     <Link href={`/users/all/${open}`}>
                         <button
-                            className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-green-600 my-2 active:bg-green-900"
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
                         >
-                            All
+                         Excel
                         </button>   
                     </Link>
                 </DialogTitle>
             </Dialog>
-            {/* <Test/> */}
-            <br></br>
-            <p>Test...</p>
-            <br></br>
-            <Link href="/card/createcard">Test create card</Link>
-            <br></br>
-            <Link href="/card/viewcard">Test view card</Link>
         </div>
     )
 }

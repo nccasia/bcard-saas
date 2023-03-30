@@ -20,33 +20,34 @@ function ProfileDetails() {
       link.click();
     }
   };
-  //React.useEffect(()=>{
-    // const node = document.getElementById("card");
-    // if(node){
-    //   const width = node.offsetWidth;
-    //   const height = node.offsetHeight;
-    //   htmlToImage.toPng(node, { width, height })
-    //     .then(function (dataUrl) {
-    //       const qr = QRCode(0, 'L'); // 0 = error correction level, 'L' = QR code version
-    //       qr.addData(dataUrl.slice(0, 100)); // truncate dataUrl to first 2000 characters
-    //       qr.make();
-    //       const qrCodeImage = qr.createImgTag(5); // 5 = QR code cell size
-    //       setImageUrl(dataUrl);
-    //     })
-    //     .catch(function (error) {
-    //         console.error('Lỗi:', error);
-    //     });
-    //}
-    // const imageNode:any= document.getElementById("my-image");
-    // const qr = QRCode(0, "L");
-    // if(imageNode){
-    //   qr.addData(imageNode.src);
-    //   qr.make();
-    //   const qrCodeImage = qr.createImgTag(4);
-    //   setQrUrl(qrCodeImage)
-    //   console.log(qrCodeImage)
-    // }
-  //},[])
+  React.useEffect(()=>{
+    const node = document.getElementById("card");
+    if(node){
+      const width = node.offsetWidth;
+      const height = node.offsetHeight;
+      htmlToImage.toPng(node, { width, height })
+        .then(function (dataUrl) {
+          const qr = QRCode(0, 'L'); // 0 = error correction level, 'L' = QR code version
+          qr.addData(dataUrl.slice(0, 100)); // truncate dataUrl to first 2000 characters
+          qr.make();
+          const qrCodeImage = qr.createImgTag(5); // 5 = QR code cell size
+          //setImageUrl(dataUrl);
+          setQrUrl(qrCodeImage)
+        })
+        .catch(function (error) {
+            console.error('Lỗi:', error);
+        });
+    }
+    const imageNode:any= document.getElementById("my-image");
+    const qr = QRCode(0, "L");
+    if(imageNode){
+      qr.addData(imageNode.src);
+      qr.make();
+      const qrCodeImage = qr.createImgTag(4);
+      //setQrUrl(qrCodeImage)
+      console.log(qrCodeImage)
+    }
+  },[])
  
 
   
@@ -86,7 +87,7 @@ function ProfileDetails() {
                 Home
             </button>
           </Link>
-          <img src={imageUrl} alt="QR Code" id="my-image" />
+          {/* <img src={imageUrl} alt="QR Code" id="my-image" /> */}
           <img src={qrUrl} alt="QR Code" width="100px" height="100px"/>
         </>
       )}

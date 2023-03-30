@@ -13,15 +13,14 @@ function KonvaView({data, setData}:any){
     }, []);
     const handleNodeClick = (e: any) => {
         const nodeId = e.target.attrs.id;
-        const newData = [...data];
-        const nodeIndex = newData.findIndex(node => node.id === nodeId);
-      
-        if (nodeIndex !== -1) {
-          const node = newData[nodeIndex];
-          node.onclick = !node.onclick;
-          node.style = { ...node.style, draggable: !node.style?.draggable};
-          setData(newData);
-        }
+        const list= data.map((main:any)=>{
+            if(main.id===nodeId){
+                return {...main, onclick:!main.onclick, style:{...main.style, draggable: !main.style?.draggable}}
+            }else{
+                return {...main, onclick:false, style:{...main.style, draggable: false}}
+            }
+        })
+        setData(list);
     };
 
     //console.log(data)

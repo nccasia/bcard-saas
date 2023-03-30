@@ -12,6 +12,7 @@ function KonvaEdit({data, setData}:any){
                 padding:0,
             }}
         >
+            <h1>Click to Edit</h1>
             {data?data.map((item:any, index:number) => {
                 if(item.onclick){
                     return (

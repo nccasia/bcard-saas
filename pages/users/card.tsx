@@ -8,39 +8,47 @@ import Link from 'next/link';
 function CardPage() {
 
     const [card, setCard]=React.useState<any>([])
-
     React.useEffect(()=>{
         getCard().then((main)=>setCard(main))
-      },[]);
+    },[]);
 
     return (
         <div>
             <LayoutUser>
                 <Card/>
-                {card? card.map((item:any, index:number)=>{
-                    return(
-                        <div 
-                            key={index}
-                            style={{
-                                border:"1px dotted gray",
-                                borderRadius:"10px",
-                                width:"100px",
-                                height:"150px",
-                            }}
-                        >
-                            <img 
-                                src={item.image} 
-                                alt="card"
+                {/* <br></br>
+                <p>...Test</p>
+                <div
+                    style={{
+                        display:"flex",
+                    }}
+                >
+                    {card? card.map((item:any, index:number)=>{
+                        return(
+                            <div 
+                                key={index}
                                 style={{
-                                    width:"100px",
-                                    height:"100px",
-                                    borderRadius:"10px 10px 0 0"
+                                    border:"1px dotted gray",
+                                    borderRadius:"10px",
+                                    width:"250px",
+                                    height:"250px",
+                                    margin:"0 10px"
                                 }}
-                            />
-                            <Link href={`/card/${item.id}`}>{item.name}</Link>
-                        </div>
-                    )
-                }):null}
+                            >
+                                <img 
+                                    src={item.image} 
+                                    alt="card"
+                                    style={{
+                                        width:"250px",
+                                        height:"200px",
+                                        borderRadius:"10px 10px 0 0"
+                                    }}
+                                />
+                                <Link href={`/card/${item.id}`}>{item.name}</Link>
+                            </div>
+                        )
+                    }):null}
+                </div> */}
             </LayoutUser>   
         </div>
     );
