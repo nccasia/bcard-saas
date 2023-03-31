@@ -25,7 +25,7 @@ const HomeLayout = ({ children}: { children: React.ReactNode}) => {
         <div
             style={{
               width:"80%",
-              padding:"50px 20px"
+              padding:"200px 20px"
             }}
         >
             <main>

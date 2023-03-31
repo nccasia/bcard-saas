@@ -22,14 +22,15 @@ function Card(){
         >
             <button
                 type="submit"
-                className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+                style={{margin:"0 8px"}}
+                className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
                 onClick={()=>setOpen(1)}
             >
                 Example 1
             </button>
             <button
                 type="submit"
-                className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+                className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
                 onClick={()=>setOpen(2)}
             >
                 Example 2
@@ -41,20 +42,29 @@ function Card(){
                 <DialogTitle
                     sx={{
                         width:"300px",
-                        height:"100px",
+                        height:"150px",
                         textAlign:"center",
                     }}
                 >
-                    <h1>Are you ready?</h1>
-                    <div className={styles.box}>
-                        <button className={styles.button}><Link href={`/users/one/${open}`} >One </Link></button>
-                        <button><Link href={`/users/all/${open}`}>All</Link></button>
-                    </div>
+                    <h1>Are you sure?</h1>
+                    <Link href={`/users/one/${open}`} >
+                        <button
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                            style={{margin:"0 7px"}}
+                        >
+                            One
+                        </button>
+                    </Link>
+                    
+                    <Link href={`/users/all/${open}`}>
+                        <button
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                        >
+                         Excel
+                        </button>   
+                    </Link>
                 </DialogTitle>
             </Dialog>
-            {/* <Test/> */}
-            <br/>
-            <Link href="/card/createcard">Test card</Link>
         </div>
     )
 }

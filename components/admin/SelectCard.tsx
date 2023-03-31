@@ -4,6 +4,7 @@ import {getCard} from "../../api/admin/apiCard";
 import styles from "../../styles/admin.module.css"
 import KonvaView  from "../konvacard/KonvaView"
 import KonvaEdit from "../konvacard/KonvaEdit"
+import Link from "next/link";
 
 function SelectCard(): JSX.Element {
   const [users, setUsers]=React.useState<any>([]);
@@ -14,7 +15,6 @@ function SelectCard(): JSX.Element {
   React.useEffect(()=>{
     getCard().then((main)=>{
       setUsers(main);
-      setData(main.map((item:any) => item.card));
     })
   },[]);
 
@@ -28,6 +28,14 @@ function SelectCard(): JSX.Element {
         borderRadius:"10px",
       }}
     >     
+         <Link href="/card/createcard">
+              <button
+                  style={{float:"right"}}
+                  className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+              >
+                  Create
+              </button>   
+          </Link>
         <table
           style={{
             width:"100%",
@@ -43,6 +51,7 @@ function SelectCard(): JSX.Element {
           >
               <th>Id</th>
               <th>Name</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -62,27 +71,18 @@ function SelectCard(): JSX.Element {
                     <td>
                       <p>{item.name}</p>
                     </td>
+                    <td>
+                      <Link href={`/card/${item.id}`}>
+                          <button
+                              className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                          >
+                              Edit
+                          </button>   
+                      </Link>
+                    </td>
                 </tr>
               )
             }):null}
-            {data? data.map((item:any, index:number)=>{
-              console.log((item.card));
-              return(
-                  <div
-                    key={index}
-                    style={{
-                      margin:0,
-                      padding:0,
-                      width:"400px",
-                      height:"400px",
-                      boxSizing: "content-box",
-                      overflow: "hidden"
-                    }}
-                  >
-                    <KonvaView data={item} setData={setData}/>
-                  </div>
-                )
-              }):null}
           </tbody>
         </table>
     </div>

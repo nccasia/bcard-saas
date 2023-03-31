@@ -25,7 +25,7 @@ import Link from "next/link";
 import styles from "../../styles/sidebar.module.css"
 import user from "../../public/user.png"
 import Image from "next/image";
-import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
+import { useSession,SessionProvider } from "next-auth/react"
 
 
 const Sidebar = () => {
@@ -42,17 +42,15 @@ const Sidebar = () => {
     setBtn((prev) => !prev);
   };
 
-  const [session, setSession]=React.useState<any>();
-  React.useEffect(()=>{
-    getSession().then(data=>setSession(data))
-  },[]);
-  
+  //const [session, setSession]=React.useState<any>();
+  const { data: session, status } = useSession()
   return (
+    
     <div  className={styles.container}>
       <div className={styles.user}>
         <div className={styles.userInfo}>
           <div className={styles.info}>
-          <img src={session?.user?.image} alt="avatar" width="50px" height="50px" style={{borderRadius:"50%"}} />
+            <img src={session?.user?.image} alt="avatar" width="50px" height="50px" style={{borderRadius:"50%"}} />
             <div>
               <div className={styles.title}>{session?.user?.name}</div>
               <div className={styles.title}>{session?.user?.email}</div>

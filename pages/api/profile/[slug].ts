@@ -6,7 +6,7 @@ import { prisma } from "../../../lib/prisma";
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req });
 
-  if (session) {
+  //if (session) {
     if (req.method === "PUT") {
       try {
         await prisma.profile.update({
@@ -21,9 +21,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         });
       }
     }
-  } else {
-    res.status(401).json({ errorMessage: "Access Denied." });
-  }
+  // } else {
+  //   res.status(401).json({ errorMessage: "Access Denied." });
+  // }
 }
 
 export default handler;

@@ -1,6 +1,8 @@
 import React from 'react';
 import {editTextCard} from "../../utils/konvaCard";
-import {useDataDebouncer}  from "../../utils/useDeboune"
+import {useDataDebouncer}  from "../../utils/useDeboune";
+import {imgUrl} from "../../utils/imgUrl";
+
 function KonvaView({data, setData}:any){
 
     const [Konva, setKonva] = React.useState<any>(null);
@@ -11,22 +13,16 @@ function KonvaView({data, setData}:any){
     }, []);
     const handleNodeClick = (e: any) => {
         const nodeId = e.target.attrs.id;
-        const newData = [...data];
-        const nodeIndex = newData.findIndex(node => node.id === nodeId);
-      
-        if (nodeIndex !== -1) {
-          const node = newData[nodeIndex];
-          node.onclick = !node.onclick;
-          node.style = { ...node.style, draggable: !node.style?.draggable};
-          setData(newData);
-        }
+        const list= data.map((main:any)=>{
+            if(main.id===nodeId){
+                return {...main, onclick:!main.onclick, style:{...main.style, draggable: !main.style?.draggable}}
+            }else{
+                return {...main, onclick:false, style:{...main.style, draggable: false}}
+            }
+        })
+        setData(list);
     };
 
-    const imgUrl=(main:string)=>{
-        const img = new window.Image();
-        img.src = main;
-        return img;
-    }
     //console.log(data)
     
     return (
