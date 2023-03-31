@@ -83,3 +83,20 @@ model Profile {
   slug      String  @unique
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+model Excel {
+  id        Int   @id @default(autoincrement())
+  name      String? @unique
+  email     String? @unique
+  username  String?
+  web       String?
+  phone     Int?
+  address   String?
+  logo      String?
+  slogan    String?
+  position  String?
+  action    String?
+  img       String?
+  company   String?
+}
+

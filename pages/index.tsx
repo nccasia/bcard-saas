@@ -9,18 +9,17 @@ import React from "react";
 const Home: NextPage = ({ session, admin }: any) => {
   
   const router:any = useRouter();
-  React.useEffect(()=>{
-    if( admin){
-      router.push('/admin/admin')
-    }
-    if(!admin){
-      router.push('/users/card');
-    }
+  //React.useEffect(()=>{
+    // if( admin){
+    //   router.push('/admin/admin')
+    // }
+    // if(!admin){
+    //   router.push('/users/card');
+    // }
     // if(!session ){
     //   router.push('/free/free');
     // }
-  },[])
-  
+  //},[])  
 
   return (
     <div >
@@ -28,6 +27,8 @@ const Home: NextPage = ({ session, admin }: any) => {
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      
     </div>
   );
 };

@@ -90,9 +90,7 @@ function ProfileDetails() {
           {/* <img src={imageUrl} alt="QR Code" id="my-image" /> */}
           <img src={qrUrl} alt="QR Code" width="100px" height="100px"/>
         </>
-      )}
-
-    
+      )}    
     </div>
   );
 }
