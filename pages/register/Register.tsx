@@ -1,64 +1,4 @@
-// import  React from "react"
-// import {addAdmin, getAdmin, deleteAdmin, updateAdmin } from "../../api/admin/apiAdmin";
-// import Header from "../../components/home/Header";
-// import styles from "../../styles/form.module.css"
 
-// interface TypeAdmin {
-//   id:number,
-//   name:string,
-//   email:string,
-// }
-
-// function SignUp(): JSX.Element {
-//   const [admin, setAdmin]=React.useState<TypeAdmin[]>([]);
-//   const [name, setName] = React.useState("");
-//   const [email, setEmail] = React.useState("");
-//   const [nameAdd, setNameAdd] = React.useState("");
-//   const [emailAdd, setEmailAdd] = React.useState("");
-//   const [openEdit, setOpenEdit] = React.useState<number>(-1);
-//   const [openAdd, setOpenAdd] = React.useState<boolean>(false);
-//   React.useEffect(()=>{
-//     getAdmin().then((data)=>setAdmin(data))
-//   },[]);
-//   return (
-//     <>
-//     <div className={styles.form}
-//     > 
-//         <div className={styles.content}>
-//           <input
-//               type="text"
-//               placeholder="Enter your name"
-//               className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-//               value={nameAdd}
-//               onChange={(e)=>setNameAdd(e.target.value)}
-//             />
-//           <br />
-//           <input
-//               type="text"
-//               placeholder="Enter your email"
-//               className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-//               value={emailAdd}
-//               onChange={(e)=>setEmailAdd(e.target.value)}
-//             />
-//           <br />
-//           <button 
-//             className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-//             // style={{display: openAdd? "block":"none"}}
-//             onClick={()=>{
-//               addAdmin(nameAdd, emailAdd).then((data:any)=>setAdmin([...admin,data]));
-//               setEmailAdd("");
-//               setNameAdd("");
-//               setOpenAdd(false)
-//             }}
-//           >
-//           Đăng Ký 
-//           </button>
-//         </div>
-//     </div>
-//     </>
-//  )}
-
-//  export default  SignUp;
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -76,7 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { addAdmin, getAdmin } from '../../api/admin/apiAdmin';
 
 interface TypeAdmin {
-  id:number,
+  // id:number,
   name:string,
   email:string,
 }
@@ -111,10 +51,10 @@ export default function SignUp(): JSX.Element {
     const [emailAdd, setEmailAdd] = React.useState("");
     const [openEdit, setOpenEdit] = React.useState<number>(-1);
     const [openAdd, setOpenAdd] = React.useState<boolean>(false);
-    React.useEffect(()=>{
-      getAdmin().then((data)=>setAdmin(data))
-    },[]);
-
+    // React.useEffect(()=>{
+    //   addAdmin().then((data)=>setAdmin(data))
+    // },[]);
+    console.log(nameAdd,  "vvv")
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

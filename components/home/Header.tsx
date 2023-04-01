@@ -28,7 +28,7 @@ const Header = () => {
      </div>
       <div className={styles.headeRight}>
         <SelectBackgroundColorNav>
-           <div style={{display: "flex", gap: "5px"}}>
+           <div style={{display: "flex", gap: "5px", alignItems: "center"}}>
             {!session && <Login/>}
            {!session && <Signup/>}
            </div>

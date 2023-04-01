@@ -11,7 +11,7 @@ const LayoutUser = ({ children}: { children: React.ReactNode}) => {
       <Header/>
       <div
         style={{
-            padding:"13vh 0",
+            padding:"5vh 0",
         }}
       >
         <main>{children}</main>

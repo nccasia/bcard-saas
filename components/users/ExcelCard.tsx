@@ -1,16 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from  "../../styles/profile.module.css"
 import React, { useState } from "react";
+import Sidebar from "../home/Sidebar";
 function ExcelCard({profile,params}:any){
   console.log(profile)
   const [isHidden, setIsHidden] =useState(true);
   const toggle = () => setIsHidden(!isHidden);
     return(
-      <div>
+      <>
+      <div style={{marginBottom: "50px"}}>
         {params?.exampe==="1" &&
           <div
             style={{
-              display:"flex"
+              display:"flex",
+              justifyContent: "center"
             }}
           >
             <div 
@@ -20,11 +23,11 @@ function ExcelCard({profile,params}:any){
              <div className={styles.headCard}>
                <div className={styles.headContent}>
                  <img src={profile.logo} alt="hello" className={styles.img} />
-                 <p style={{ fontSize: 40 }}>{profile.company}</p>
+                 <p style={{ fontSize: 50 }}>{profile.company}</p>
                  {/* <p style={{ fontSize: 10 }}>{profile.slogan}</p> */}
                </div>
              </div>
-              <br></br>
+             <br />
              <div className={styles.mainCard1}>
                <div style={{ display: "flex", flex: 1 }}>
                  <div className={styles.cardImage}>
@@ -101,15 +104,16 @@ function ExcelCard({profile,params}:any){
                    <p>{profile.email}</p>
                  </div>
                  <div className={styles.itemContent}>
-           <FontAwesomeIcon icon="fire" style={{fontSize: '16px'}}/>
-           <p>{profile.web}</p>
-           </div>
+                <FontAwesomeIcon icon="fire" style={{fontSize: '16px'}}/>
+                <p>{profile.web}</p>
+                </div>
                </div>
              </div>
           
            </div>
         }
       </div>
+      </>
     )
 }
 export default ExcelCard;

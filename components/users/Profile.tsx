@@ -8,6 +8,7 @@ import EditProfile from "../users/EditProfile";
 import  ExcelCard from "../../components/users/ExcelCard"
 import * as htmlToImage from "html-to-image";
 import QRCode from "qrcode-generator";
+import Sidebar from "../home/Sidebar";
 
 function Profile({params}:any) {
   const [isHidden, setIsHidden] = React.useState(true);
@@ -29,20 +30,27 @@ function Profile({params}:any) {
     }
   };
 
+  // console.log(profile)
+
   return (
+    <>
+    {/* <Sidebar/> */}
     <div 
       style={{
-        marginTop:"90px",
+        marginTop:"50px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
       }}
     >
-        <Link href="/users/card">
+        {/* <Link href="/users/card">
           <button
              className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-600 my-2 active:bg-gray-400 text-base"
           >
             Home
           </button>
-        </Link>
-        <br></br>
+        </Link> */}
+        <br />
         {!update && profile && (
           <div id="card1">
             <ExcelCard profile={profile} params={params}/>
@@ -52,7 +60,7 @@ function Profile({params}:any) {
         {!update && profile && 
           <button
               type="submit"
-              style={{margin:"0 8px"}}
+              style={{margin:"0 8px", width: "200px"}}
               className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-600 my-2 active:bg-gray-400 text-base"
               onClick={()=>setUpdate(true)}
             >
@@ -60,14 +68,15 @@ function Profile({params}:any) {
           </button>
         }
         
-        <button 
+        {/* <button 
           className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-600 my-2 active:bg-gray-400 text-base"
           onClick={downloadAsPng}
         >
           Download
-        </button>
+        </button> */}
         {update && profile &&<EditProfile profile={profile} setUpdate={setUpdate}/>}
     </div>
+    </>
   );
 }
 
