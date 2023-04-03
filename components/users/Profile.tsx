@@ -58,14 +58,14 @@ function Profile({params}:any) {
         )}
         {!profile && <CreateProfile/>}
         {!update && profile && 
-          <button
-              type="submit"
-              style={{margin:"0 8px", width: "200px"}}
-              className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-600 my-2 active:bg-gray-400 text-base"
-              onClick={()=>setUpdate(true)}
-            >
-            Update Profile
-          </button>
+            <button
+                type="submit"
+                style={{margin:"0 8px"}}
+                className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-600 my-2 active:bg-gray-400 text-base"
+                onClick={()=>setUpdate(true)}
+              >
+              Update Profile
+            </button>
         }
         
         {/* <button 
