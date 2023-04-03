@@ -60,8 +60,7 @@
   width: 100px;
   height: auto;
   border-radius: 10px;
-  background-image: url("https://discordapp.com/channels/@me/1027501652699263026/1090944771272491048");
-  
+  filter: grayscale(100%) brightness(1000%);
 }
 .imageCard {
   width: 100px;
