@@ -25,7 +25,7 @@ function Name({params}:any) {
 
     const link="http://localhost:3000/view/"
     const qrCode=(index:string)=>{
-        const qr = QRCode(0, 'M');
+        const qr = QRCode(0, 'H');
         qr.addData(index);
         qr.make();
         return qr;
@@ -77,7 +77,7 @@ function Name({params}:any) {
                         }}
                     >
                         {open && <ExcelCard profile={profile} params={{exampe:"1"}}/>}
-                        {!open && <img src={qrCode(link+params?.name).createDataURL()} alt="QR code" width="400px" height="400px"/>}
+                        {!open && <img src={qrCode(link+params?.name).createDataURL()} alt="QR code" width="250px" height="250px"/>}
                     </div>
                 </div>
             }
