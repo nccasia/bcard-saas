@@ -13,6 +13,7 @@ import { Input, InputLabel, Button } from '@mui/material';
 const Home: NextPage = ({ session, admin }: any) => {
   
   const router:any = useRouter();
+  const [open, setOpen]=React.useState(false);
   React.useEffect(()=>{
     // if( admin){
     //   router.push('/admin/admin')
@@ -20,7 +21,7 @@ const Home: NextPage = ({ session, admin }: any) => {
     // if(!admin){
     //   router.push('/users/card');
     // }
-    if(!session ){
+    if(!session){
       router.push('/update');
     }
   },[])  
@@ -33,6 +34,7 @@ const Home: NextPage = ({ session, admin }: any) => {
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
     </div>
   );
 };

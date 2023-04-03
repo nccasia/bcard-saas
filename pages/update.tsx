@@ -54,7 +54,7 @@ function Update(){
         ];
         const data = [
             { 
-                name: "", 
+                name: "ten.hoten", 
                 username: "",
                 email:"",
                 phone:0,
