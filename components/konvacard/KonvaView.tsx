@@ -34,8 +34,8 @@ function KonvaView({data, setData}:any){
         >
             {Konva && (
                 <Konva.Stage 
-                    width={400}
-                    height={400}
+                    // width={400}
+                    // height={400}
                     style={{border:"1px dotted gray"}}
                 >
                     <Konva.Layer>             

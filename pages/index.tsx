@@ -5,21 +5,27 @@ import { prisma } from "../lib/prisma";
 import Free from "../components/free/Free";
 import { useRouter } from 'next/router'
 import React from "react";
+import ExcelJS from 'exceljs';
+import {changeExcel} from "../utils/changeExcel"
+import {updateProfile} from "../api/profile/apiProfile"
+import { Input, InputLabel, Button } from '@mui/material';
 
 const Home: NextPage = ({ session, admin }: any) => {
   
   const router:any = useRouter();
-  //React.useEffect(()=>{
+  React.useEffect(()=>{
     // if( admin){
     //   router.push('/admin/admin')
     // }
     // if(!admin){
     //   router.push('/users/card');
     // }
-    // if(!session ){
-    //   router.push('/free/free');
-    // }
-  //},[])  
+    if(!session ){
+      router.push('/update');
+    }
+  },[])  
+
+  
 
   return (
     <div >
@@ -27,8 +33,6 @@ const Home: NextPage = ({ session, admin }: any) => {
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      
     </div>
   );
 };

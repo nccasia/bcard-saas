@@ -7,7 +7,9 @@ import ExcelCard from "../../components/konvacard/ExcelCard";
 import  {updateCard} from "../../api/admin/apiCard";
 import Grid from '@mui/material/Grid';
 
-function KonvaCard({data, setData, open, setOpen}:any){
+function KonvaCard({data, setData}:any){
+
+    const [open, setOpen]=React.useState("");
 
     return(
         <div>
