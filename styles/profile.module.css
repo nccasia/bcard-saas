@@ -88,14 +88,14 @@
 
 .title1 {
   line-height: 1.2;
-  border-left: 5px solid #ff0d0096;
+  border-left: 5px solid #da2325;
   margin-left: 4px;
 }
 .headCard {
   width: 500px;
   height: 300px;
   border-radius: 8px;
-  background-color: #ff0d00a8;
+  background-color: #da2325;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -170,7 +170,7 @@
   width: 450px;
   height: 250px;
   border-radius: 8px;
-  background-color: #ff0d00a8;
+  background-color: #da2325;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -191,4 +191,11 @@
     justify-content: center;
     padding: 5px 0;
     border-radius: 8px;
+}
+.text{
+  width: 300px;
+    font-size: 22px;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+    margin-top: 20px
 }
