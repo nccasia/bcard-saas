@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from  "../../styles/profile.module.css"
 import Image from "next/image";
-import  logoncc  from "../../public/logoNCC.png"
+import  logoncc  from "../../public/logoncc.png"
 import  logo_content  from "../../public/logo_content.png"
 
 
