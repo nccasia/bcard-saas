@@ -14,16 +14,18 @@ export const editTextCard = (e: any) => {
     textarea.value = node.text();
     document.body.appendChild(textarea);
     textarea.style.position = 'absolute';
+    textarea.style.zIndex="10"
     textarea.style.top = absPos.y + 'px';
     textarea.style.left = absPos.x + 'px';
-    textarea.style.width = String(Number(nodeRect.width+20)) + 'px';
-    textarea.style.height = String(Number(nodeRect.height+20)) + 'px';
-    textarea.style.border = '1px solid red';
+    textarea.style.width = String(Number(nodeRect.width+5)) + 'px';
+    textarea.style.height = String(Number(nodeRect.height+5)) + 'px';
+    textarea.style.border = 'none';
+    textarea.style.outline = 'none';
     textarea.style.padding = '0';
     textarea.style.fontSize = node.fontSize() + 'px';
     textarea.style.fontFamily = node.fontFamily();
-    textarea.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-    textarea.style.color = 'black';
+    //textarea.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+    textarea.style.color = node.fill();
     textarea.style.resize = 'none';
     textarea.focus();
 

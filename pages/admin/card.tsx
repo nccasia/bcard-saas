@@ -1,16 +1,16 @@
-import  React from "react"
+import React from "react";
+
+import SelectCard from "../../components/admin/SelectCard";
 import HomeLayout from "../../components/home/HomeLayout";
-import  SelectCard from "../../components/admin/SelectCard"
 
 function CardPage(): JSX.Element {
-  
   return (
     <div>
-        <HomeLayout>
-            <SelectCard/>
-        </HomeLayout>
+      <HomeLayout>
+        <SelectCard />
+      </HomeLayout>
     </div>
   );
-};
-  
+}
+
 export default CardPage;

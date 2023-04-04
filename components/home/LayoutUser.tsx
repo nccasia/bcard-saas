@@ -1,17 +1,13 @@
-import React from 'react';
-import Link from 'next/link';
-import Login from "../login/Login"
-import Logout from "../login/Logout"
-import {menuAdmin} from "../../components/home/menuIndex";
-import  Header from "../../components/home/Header";
-const LayoutUser = ({ children}: { children: React.ReactNode}) => {
-  const [openPage,setOpenPage] = React.useState<string>('')
+import React from "react";
+
+import Header from "../../components/home/Header";
+const LayoutUser = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <Header/>
+      <Header />
       <div
         style={{
-            padding:"5vh 0",
+          padding: "5vh 0",
         }}
       >
         <main>{children}</main>
@@ -21,4 +17,3 @@ const LayoutUser = ({ children}: { children: React.ReactNode}) => {
 };
 
 export default LayoutUser;
-

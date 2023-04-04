@@ -1,12 +1,11 @@
-import  Free from "../../components/free/Free"
+import Free from "../../components/free/Free";
 
-function FreePage(){
-
-    return(
-        <div>
-            <Free/>
-        </div>
-    )
+function FreePage() {
+  return (
+    <div>
+      <Free />
+    </div>
+  );
 }
 
 export default FreePage;

@@ -1,41 +1,25 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import styled from "styled-components";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 // import bgrSidebar from "../../asset/images/bgrSidebar.jpg";
-import AccessAlarmsIcon from "@mui/icons-material/AccessAlarms";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import GroupWorkIcon from "@mui/icons-material/GroupWork";
+import HomeIcon from "@mui/icons-material/Home";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import StartIcon from "@mui/icons-material/Start";
-import HomeIcon from "@mui/icons-material/Home";
-import GroupWorkIcon from "@mui/icons-material/GroupWork";
-import AddIcon from "@mui/icons-material/Add";
-import ImportContactsIcon from "@mui/icons-material/ImportContacts";
-import AssessmentIcon from "@mui/icons-material/Assessment";
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
-import DateRangeIcon from "@mui/icons-material/DateRange";
-import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
-import {
-  Button,
-  Collapse,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  ListSubheader,
-} from "@mui/material";
-import Link from "next/link";
-import styles from "../../styles/sidebar.module.css"
-import user from "../../public/user.png"
+import { List, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from "@mui/material";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Image from "next/image";
-import { useSession,SessionProvider, signOut } from "next-auth/react"
+import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
+import React, { useState } from "react";
 
+import styles from "../../styles/sidebar.module.css";
 
 const Sidebar = () => {
-  const [open, setOpen] = React.useState(true);
- 
-  const handleClick = () => {
-    setOpen(!open);
-  };
-
   const [btn, setBtn] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [check, setCheck] = useState(false);
   const handleClickBtn = () => {
     setCheck(true);
@@ -43,28 +27,37 @@ const Sidebar = () => {
   };
 
   //const [session, setSession]=React.useState<any>();
-  const { data: session, status } = useSession()
-  console.log(session)
+  const { data: session } = useSession();
+  console.log(session);
   return (
-    
-    <div  className={styles.container}>
+    <div className={styles.container}>
       <div className={styles.user}>
         <div className={styles.userInfo}>
           <div className={styles.info}>
-          {session?.user?.image && 
-           <img src={session.user.image} alt="avatar" width="50px" height="50px" style={{borderRadius:"50%"}} />
-          }
+            {session?.user?.image && (
+              <img
+                src={session.user.image}
+                alt="avatar"
+                width="50px"
+                height="50px"
+                style={{ borderRadius: "50%" }}
+              />
+            )}
             <div>
               <div className={styles.title}>{session?.user?.name}</div>
               <div className={styles.title}>{session?.user?.email}</div>
             </div>
           </div>
         </div>
-        <div >
+        // eslint-disable-next-line react/jsx-no-comment-textnodes, react/jsx-no-comment-textnodes
+        <div>
+          // eslint-disable-next-line jsx-a11y/no-static-element-interactions,
+          jsx-a11y/no-static-element-interactions
           <div className={styles.logout} onClick={handleClickBtn}>
             <KeyboardArrowDownIcon />
           </div>
           {btn ? (
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
             <div className={styles.buttonLogout} onClick={() => signOut()}>
               <div>
                 <StartIcon />
@@ -79,12 +72,7 @@ const Sidebar = () => {
           sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
           component="nav"
           aria-labelledby="nested-list-subheader"
-          subheader={
-            <ListSubheader
-              component="div"
-              id="nested-list-subheader"
-            ></ListSubheader>
-          }
+          subheader={<ListSubheader component="div" id="nested-list-subheader"></ListSubheader>}
         >
           <ListItemButton>
             <ListItemIcon>
@@ -105,7 +93,7 @@ const Sidebar = () => {
               <ListItemIcon>
                 <AccessAlarmIcon />
               </ListItemIcon>
-              <ListItemText primary="Users" />   
+              <ListItemText primary="Users" />
             </ListItemButton>
           </Link>
           <Link href="/admin/card">
