@@ -44,14 +44,14 @@ function Update() {
       { header: "email", key: "email", width: 30 },
       { header: "phone", key: "phone", width: 30 },
       { header: "position", key: "position", width: 30 },
-      { header: " company", key: " company'", width: 40 },
+      { header: "company", key: "company", width: 40 },
       { header: "web", key: "web", width: 30 },
-      { header: "address", key: "address'", width: 40 },
+      { header: "address", key: "address", width: 40 },
     ];
     const data = [
       {
         name: "ten.hoten",
-        username: "Họ và Tên",
+        username: "Họ Và Tên",
         email: "example@gmail.com",
         phone: "(+84) 2466874606",
         position: "manager",
