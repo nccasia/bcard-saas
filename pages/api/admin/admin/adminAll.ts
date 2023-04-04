@@ -1,15 +1,15 @@
-import { prisma } from "../../../../lib/prisma";
-import { NextApiHandler } from 'next';
-import { PrismaClient } from '@prisma/client';
-import { getSession } from "next-auth/react";
+import { NextApiHandler } from "next";
 import { NextApiRequest, NextApiResponse } from "next";
+import { getSession } from "next-auth/react";
+
+import { prisma } from "../../../../lib/prisma";
 
 const adminAll: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   if (!session) {
     return res.status(401).json({ error: "Unauthorized" });
   }
-  if(req.method==="GET"){
+  if (req.method === "GET") {
     try {
       const admin = await prisma.admin.findMany();
       return res.status(200).json(admin);
@@ -20,15 +20,15 @@ const adminAll: NextApiHandler = async (req: NextApiRequest, res: NextApiRespons
       await prisma.$disconnect();
     }
   }
-  if(req.method==="POST"){
+  if (req.method === "POST") {
     try {
-      const {name, email} = req.body;
+      const { name, email } = req.body;
       const admin = await prisma.admin.create({
         data: {
           name: name,
           email: email,
         },
-      })
+      });
       return res.status(200).json(admin);
     } catch (e) {
       console.error(e);
@@ -37,14 +37,14 @@ const adminAll: NextApiHandler = async (req: NextApiRequest, res: NextApiRespons
       await prisma.$disconnect();
     }
   }
-  if(req.method==="DELETE"){
+  if (req.method === "DELETE") {
     try {
-      const {id} = req.body;
+      const { id } = req.body;
       const admin = await prisma.admin.delete({
         where: {
           id: id,
         },
-      })
+      });
       return res.status(200).json(admin);
     } catch (e) {
       console.error(e);
@@ -53,18 +53,18 @@ const adminAll: NextApiHandler = async (req: NextApiRequest, res: NextApiRespons
       await prisma.$disconnect();
     }
   }
-  if(req.method==="PUT"){
+  if (req.method === "PUT") {
     try {
-      const {id, name, email} = req.body;
+      const { id, name, email } = req.body;
       const admin = await prisma.admin.update({
         where: {
           id: id,
         },
         data: {
           name: name,
-          email:email,
+          email: email,
         },
-      })
+      });
       return res.status(200).json(admin);
     } catch (e) {
       console.error(e);

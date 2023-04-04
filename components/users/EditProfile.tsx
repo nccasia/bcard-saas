@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -7,15 +6,11 @@ function EditProfile({ profile, setUpdate }: any) {
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState("");
 
-  const {
-    handleSubmit,
-    formState: { errors },
-    register,
-  } = useForm({
+  const { handleSubmit, register } = useForm({
     mode: "onChange",
     defaultValues: {
-      name: profile?.name ,
-      img: profile?.img ,
+      name: profile?.name,
+      img: profile?.img,
       email: profile?.email || "",
       web: profile?.web || "",
       address: profile?.address || "",
@@ -29,9 +24,7 @@ function EditProfile({ profile, setUpdate }: any) {
     },
   });
 
-  const router = useRouter();
-
-  console.log(profile.slug)
+  // console.log(profile.slug)
   const onFormSubmit = async (values: any) => {
     const config: AxiosRequestConfig = {
       url: `/api/profile/${profile.slug}`,
@@ -93,8 +86,6 @@ function EditProfile({ profile, setUpdate }: any) {
           {...register("name", { required: true })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        <span className="text-red-700 my-1">{errors.name && errors.name.message}</span>
-        {/* <span className="text-red-700 my-1">{errors.bio && errors.bio.message}</span> */}
         <p>Image:</p>
         <input
           type="tel"

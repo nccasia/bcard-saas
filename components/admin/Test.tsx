@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { Stage, Layer, Text } from 'react-konva';
-import Tesseract from 'tesseract.js';
+import React, { useEffect, useState } from "react";
+import Tesseract from "tesseract.js";
 function Test() {
   const [words, setWords] = useState<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [Konva, setKonva] = React.useState<any>(null);
   React.useEffect(() => {
-    import('react-konva').then((konva) => {
-        setKonva(konva);
+    import("react-konva").then((konva) => {
+      setKonva(konva);
     });
   }, []);
-  
+
   useEffect(() => {
     const image = new Image();
     image.src = "";
     image.onload = () => {
       Tesseract.recognize(image)
-        .then((result:any) => {
-          const words = result?.words.map((word:any) => ({
+        .then((result: any) => {
+          const words = result?.words.map((word: any) => ({
             text: word.text,
             x: word.position.x,
             y: word.position.y,
           }));
           setWords(words);
         })
-        .catch((error:any) => {
+        .catch((error: any) => {
           console.error(error);
         });
     };
   }, []);
 
   // console.log(Konva)
-  console.log(words)
+  console.log(words);
 
   return (
     <div>
@@ -50,5 +50,4 @@ function Test() {
   );
 }
 
-export default Test
-
+export default Test;

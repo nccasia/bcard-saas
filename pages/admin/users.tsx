@@ -1,16 +1,16 @@
-import  React from "react"
+import React from "react";
+
+import SelectUsers from "../../components/admin/SelectUsers";
 import HomeLayout from "../../components/home/HomeLayout";
-import SelectUsers from "../../components/admin/SelectUsers"
 
 function UsersPage(): JSX.Element {
-  
   return (
     <div>
-        <HomeLayout>
-            <SelectUsers/>
-        </HomeLayout>
+      <HomeLayout>
+        <SelectUsers />
+      </HomeLayout>
     </div>
   );
-};
-  
+}
+
 export default UsersPage;

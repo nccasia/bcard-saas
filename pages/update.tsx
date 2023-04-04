@@ -72,6 +72,7 @@ function Update() {
 
   return (
     <div className={styles.container}>
+      {/* <CreateProfile email={"fj"} /> */}
       {!open && (
         <div>
           <h1 className={styles.heading}>CREATE YOUR CARD</h1>
