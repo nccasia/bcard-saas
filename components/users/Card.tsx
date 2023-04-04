@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
+import styles from '../../styles/public.module.css'
 import Test from "../admin/Test"
 
 
@@ -10,15 +11,18 @@ function Card(){
     const [open, setOpen]=React.useState(-1);
 
     return(
+        <>
         <div
             style={{
+                display: "flex",
+                gap: "10px",
                 textAlign:"center",
                 paddingTop:"100px",
+                justifyContent:"center"
             }}
         >
             <button
                 type="submit"
-                style={{margin:"0 8px"}}
                 className="bg-gray-400 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
                 onClick={()=>setOpen(1)}
             >
@@ -62,6 +66,7 @@ function Card(){
                 </DialogTitle>
             </Dialog>
         </div>
+        </>
     )
 }
 

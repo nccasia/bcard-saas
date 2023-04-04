@@ -1,14 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from  "../../styles/profile.module.css"
+import Image from "next/image";
+import  logoncc  from "../../public/logoncc.png"
+import  logo_content  from "../../public/logo_content.png"
 
 
 function ExcelCard({profile,params}:any){
+  console.log(profile)
+  // const [isHidden, setIsHidden] =React.useState(true);
+  // const toggle = () => setIsHidden(!isHidden);
     return(
-      <div>
+      <>
+      <div style={{marginBottom: "50px"}}>
         {params?.exampe==="1" &&
           <div
             style={{
-              display:"flex"
+              display:"flex",
+              justifyContent: "center"
             }}
           >
             <div 
@@ -17,40 +25,42 @@ function ExcelCard({profile,params}:any){
               
              <div className={styles.headCard1}>
                <div className={styles.headContent}>
-                 <img src={profile?.logo} alt="hello" className={styles.img2} />
-                 <p style={{ fontSize: 22 }}>{profile?.company}</p>
+                 {/* <img src={profile?.logo} alt="hello" className={styles.img2} /> */}
+                 <Image src={logoncc} alt="logo" width={100} height={100} className={styles.img2} />
+                 <p className={styles.text}>{profile?.company}</p>
                  {/* <p style={{ fontSize: 10 }}>{profile.slogan}</p> */}
                </div>
              </div>
-              <br></br>
+             <br />
              <div className={styles.mainCard1}>
                <div style={{ display: "flex", flex: 1 }}>
                  <div className={styles.cardImage}>
-                  <img src={profile?.img} alt="hello" className={styles.img1} />
-                  {/* <p style={{ fontSize: 16, color:"#ff0d00a8" }}>{profile?.company}</p>
-                  <p style={{ fontSize: 13, color:"gray" }}>{profile?.slogan}</p> */}
+                 <Image src={logo_content} alt="logo" width={150} height={50} className={styles.img3}  />
+                  {/* <img src={profile?.img} alt="hello" className={styles.img1} /> */}
+                  {/* <p style={{ fontSize: 16, color:"#f1626f" }}>{profile?.company}</p> */}
+                  {/* <p style={{ fontSize: 13, color:"gray" }}>{profile?.slogan}</p> */}
                  </div>
                </div>
                <div className={styles.contentCard1}>
                  <div className={styles.title1}>
-                     <h1 style={{marginLeft: "16px",fontSize: '20px', color: "#ff0d00a8"}}>{profile?.username}</h1>
-                     <p style={{marginLeft: "16px", color: "#ff0d00a8",fontSize: '16px'}}>{profile?.position}</p>
+                     <h1 style={{marginLeft: "16px",fontSize: '20px', color: "#da2325"}}>{profile?.username}</h1>
+                     <p style={{marginLeft: "16px", color: "#da2325",fontSize: '16px'}}>{profile?.position}</p>
                  </div>
                  {/* <p>{profile.position}</p> */}
                  <div className={styles.itemContent} style={{marginTop:"15px"}}>
-                   <FontAwesomeIcon icon="location-dot" style={{fontSize: '16px', color:"#ff0d00a8"}}/>
+                   <FontAwesomeIcon icon="location-dot" style={{fontSize: '16px', color:"#da2325"}}/>
                    <p style={{fontSize: '16px', lineHeight:1.3}}>{profile?.address}</p>
                  </div>
                  <div className={styles.itemContent}>
-                   <FontAwesomeIcon icon="phone" style={{fontSize: '16px', color:"#ff0d00a8"}}/>
+                   <FontAwesomeIcon icon="phone" style={{fontSize: '16px', color:"#da2325"}}/>
                    <p style={{fontSize: '16px'}}>{profile?.phone}</p>
                  </div>
                  <div className={styles.itemContent}>
-                   <FontAwesomeIcon icon="envelope" style={{fontSize: '16px', color:"#ff0d00a8"}}/>
+                   <FontAwesomeIcon icon="envelope" style={{fontSize: '16px', color:"#da2325"}}/>
                    <p style={{fontSize: '16px'}}>{profile?.email}</p>
                  </div>
                  <div className={styles.itemContent}>
-                <FontAwesomeIcon icon="fire" style={{fontSize: '16px', color:"#ff0d00a8"}}/>
+                <FontAwesomeIcon icon="fire" style={{fontSize: '16px', color:"#da2325"}}/>
                   <p style={{fontSize: '16px'}}>{profile?.web}</p>
                 </div>
               </div>
@@ -106,6 +116,7 @@ function ExcelCard({profile,params}:any){
            </div>
         }
       </div>
+      </>
     )
 }
 export default ExcelCard;

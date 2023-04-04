@@ -6,55 +6,8 @@ import styles from "../../styles/header.module.css"
 import  Login from "../login/Login"
 import  Logout from "../login/Logout"
 import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
+import Signup from "../login/Signup";
 
-const HeaderContainer = styled.div`
-  background: #f44336;
-  display: flex;
-  height: 80px;
-  width: 100%;
-  align-items: center;
-  padding: 10px 0;
-  justify-content: space-between;
-  position: fixed;
-  z-index: 10;
-  /* background-color: red; */
-`;
-const Header_Lefl = styled.div`
-  display: flex;
-  padding: 5px;
-`;
-const Header_Logo = styled.div`
-  img {
-    height: 30px;
-    width: 30px;
-  }
-`;
-const Title = styled.div`
-  color: white;
-  font-size: 20px;
-  font-weight: 500;
-  margin-left: 5px;
-`;
-const HeaderRight = styled.div`
-  display: flex;
-  margin-right: 15px;
-`;
-const SelectLangueNav = styled.div`
-  display: flex;
-`;
-
-const IconLangue = styled.div`
-  color: white;
-  padding-right: 5px;
-`;
-const TextLangue = styled.div`
-  color: white;
-  font-size: 15px;
-`;
-
-const IconSelect = styled.div`
-  color: white;
-`;
 const SelectBackgroundColorNav = styled.div`
   color: white;
   cursor: pointer;
@@ -68,14 +21,17 @@ const Header = () => {
   return (
     <div className={styles.container}>
       <div className={styles.headerLetf}>
-        <Header_Logo>
+        <div>
           <Image src={logo} alt="logo" width={30} height={30} />
-        </Header_Logo>
+        </div>
         <div className={styles.title}>Card-visit</div>
-      </div>
+     </div>
       <div className={styles.headeRight}>
         <SelectBackgroundColorNav>
+           <div style={{display: "flex", gap: "5px", alignItems: "center"}}>
             {!session && <Login/>}
+           {!session && <Signup/>}
+           </div>
             {session && <Logout/>}
         </SelectBackgroundColorNav>
       </div>

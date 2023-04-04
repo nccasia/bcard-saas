@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import QRCode from "qrcode-generator";
 import React, { useState } from "react";
-import Header from "../../components/layout/header/Header";
-import Sidebar from "../../components/layout/sidebar/Sidebar";
+import Header from "../../components/home/Header";
+import Sidebar from "../../components/home/Sidebar";
+
 import { prisma } from "../../lib/prisma";
 import styles from  "../../styles/profile.module.css"
 function ProfileDetails({ profile }: any) {
@@ -91,23 +92,38 @@ function ProfileDetails({ profile }: any) {
                   <p>{profile.email}</p>
                 </div>
                 <div className={styles.itemContent}>
-          <FontAwesomeIcon icon="fire" style={{fontSize: '16px'}}/>
-          <p>{profile.web}</p>
-          </div>
+                <FontAwesomeIcon icon="fire" style={{fontSize: '16px'}}/>
+                <p>{profile.web}</p>
+                </div>
               </div>
-            </div>
-          }
-          </div>
+           </div>}
+            
           <br />
           <button onClick={downloadAsPng}>Dowload</button>
+          <Link href="/">
+            <button
+                type="submit"
+                className="bg-gray-100 text-black rounded-md px-2 py-1 hover:bg-gray-50 my-2 active:bg-gray-400 text-base"
+            >
+                Home
+            </button>
+          </Link>
+       
+          <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+          <button onClick={generateQRCode}>Generate QR Code</button>
+          {imageUrl && (
+            <>
+              <img src={imageUrl} alt="QR code" />
+            </>
+          )}
+          </div>
         </div>
-     
       )}
     </div>
-    </>
-   
-  );
-}
+   </>
+   )}
+
+
 
 export default ProfileDetails;
 

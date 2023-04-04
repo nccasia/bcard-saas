@@ -28,3 +28,13 @@
     font-size: 20px;
     color: #fff;
 }
+
+.signup{
+    background: #a09b9b;
+    height: 39px;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}

@@ -1,6 +1,7 @@
 import  React from "react"
 import { prisma } from "../../lib/prisma";
 import {getUsers} from "../../api/admin/apiUsers";
+import styles from "../../styles/admin.module.css"
 
 function SelectUsers(): JSX.Element {
   const [users, setUsers]=React.useState<any>([]);

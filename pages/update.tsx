@@ -11,6 +11,7 @@ import excel  from "../public/excel.png";
 import Image from "next/image";
 import {fileSize} from "../utils/fileSize";
 import { useRouter } from 'next/router'
+import styles  from "../styles/update.module.css"
 
 function Update(){
 
@@ -46,8 +47,8 @@ function Update(){
           { header: 'phone', key: 'phone', width: 30 },
           { header: 'position', key: 'position', width: 30 },
           { header: 'company', key: 'company', width: 30 },
-          { header: 'logo', key: 'logo', width: 30 },
-          { header: 'slogan', key: 'slogan', width: 30 },
+        //   { header: 'logo', key: 'logo', width: 30 },
+        //   { header: 'slogan', key: 'slogan', width: 30 },
           { header: 'web', key: 'web', width: 30 },
           { header: 'address', key: 'address', width:30 },
         //   { header: 'action', key: 'action', width: 30 },
@@ -55,15 +56,15 @@ function Update(){
         const data = [
             { 
                 name: "ten.hoten", 
-                username: "",
-                email:"",
-                phone:0,
-                position:"",
+                username: "ten.hoten",
+                email:"examlate@gmail.com",
+                phone:"(+84) 2466874606",
+                position:"manager",
                 company:"NCCPLUS VIETNAM JSC",
-                logo:"https://ncc.asia/assets/images/logo.png",
-                slogan:"We do it with passion",
+                // logo:"https://ncc.asia/assets/images/logo.png",
+                // slogan:"We do it with passion",
                 web:"http://ncc.asia",
-                address:"",
+                address:"address",
             },
         ];
         worksheet.addRows(data);
@@ -72,53 +73,49 @@ function Update(){
         saveAs(blob, 'example.xlsx');
     };
     const router:any = useRouter();
-    //console.log(data? data[0]:null)
+    console.log(data? data[0]:null)
 
     return(
-        <div
-            style={{
-                display:"flex",
-                alignItems:"center",
-                justifyContent:"center",
-                height:"100vh",
-                flexDirection:"column",
-            }}
-        >
+        <div className={styles.container}>
             {!open && 
-                <div>         
-                    <InputLabel htmlFor="file-upload">
-                        <Input
-                            id="file-upload"
-                            type="file"
-                            inputProps={{
-                                style: { display: 'none', margin:0 },
-                                accept: ".xlsx, .xls",
-                                onChange: handleUpload,
-                            }}
-                        />
-                        
-                        <Button
-                            component="span"
-                            sx={{
-                                display:"flex",
-                                flexDirection:"column",
-                                color:"black",
-                                margin:0,
-                                fontSize:"14px",
-                                border:"1px dotted gray",
-                                borderRadius:"10px",
-                                padding:"0 20px",
-                                textAlign:"center",
-                                width:"400px",
-                                height:"250px"
-                                //backgroundColor:"#D9D9D9",
-                            }}
-                        >
-                            <FileUploadOutlinedIcon sx={{fontSize:"100px"}}/>
-                            <p>Select a file or drop it here</p>
-                            <p style={{fontSize:"12px"}}>Support: .xlsx</p>
-                        </Button>
-                    </InputLabel>
+            <div>        
+                <h1 className={styles.heading}>CREATE YOUR CARD</h1> 
+                <InputLabel htmlFor="file-upload">
+                    <Input
+                        id="file-upload"
+                        type="file"
+                        inputProps={{
+                            style: { display: 'none', margin:0 },
+                            accept: ".xlsx, .xls",
+                            onChange: handleUpload,
+                        }}
+                    />
+                    
+                    <Button
+                        component="span"
+                        sx={{
+                            display:"flex",
+                            flexDirection:"column",
+                            color:"black",
+                            margin:0,
+                            fontSize:"14px",
+                            border:"1px dotted gray",
+                            borderRadius:"10px",
+                            padding:"0 20px",
+                            textAlign:"center",
+                            width:"360px",
+                            height:"250px"
+                            //backgroundColor:"#D9D9D9",
+                        }}
+                    >
+                      <FileUploadOutlinedIcon sx={{fontSize:"100px"}}/>
+                      <div style={{marginTop: "30px"}}>
+                        <p>Select a file or drop it here</p>
+                        <p style={{fontSize:"12px"}}>Support: .xlsx</p>
+                      </div>
+                    </Button>
+                </InputLabel>
+                <div className={styles.template}>
                     <div
                         style={{
                             float:"right",
@@ -142,21 +139,16 @@ function Update(){
                         </button>
                     </div>
                 </div>
+            </div>        
             }
             { open && 
-                <div
-                    style={{
-                        border:"1px dotted gray",
-                        width:"400px",
-                        height:"260px",
-                        display:"flex",
-                        flexDirection:"column",
-                        alignItems:"center", 
-                        padding:15
-                    }}
-                >         
-                    <FileUploadOutlinedIcon sx={{fontSize:"80px"}}/>
-                    <p>1 file selected</p>
+            <div>
+                <h1 className={styles.heading}>CREATE YOUR CARD</h1> 
+                <div  className={styles.boxcontent}>        
+                    <div>
+                        <FileUploadOutlinedIcon sx={{fontSize:"80px"}}/>
+                        <p>1 file selected</p>
+                    </div>
                     <InputLabel htmlFor="file-upload">
                         <Input
                             id="file-upload"
@@ -170,14 +162,7 @@ function Update(){
                         <Button
                             component="span"
                         >
-                            <div
-                                style={{
-                                    display:"flex",
-                                    gap:10,
-                                    marginTop:"8px",
-                                    color:"black",
-                                }}
-                            >
+                            <div className={styles.content}>
                                 <Image src={excel} width="50px" height="50px" alt="excel" />
                                 <div>
                                     <p>{nameFile}</p>
@@ -196,12 +181,14 @@ function Update(){
                         style={{
                             marginTop:"10px",
                             padding: "5px 20px",
+                            width: 110,
                         }}
                         className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
                         >
                             Upload
                     </button>
                 </div>
+            </div>
             }
              
         </div>
