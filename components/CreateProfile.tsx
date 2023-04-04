@@ -114,14 +114,12 @@ function CreateProfile({ email }: any): JSX.Element {
           {...register("company")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        <p>Logo:</p>
         <input
           type="url"
           placeholder="Enter your logo"
           {...register("logo")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        <p>Slogan:</p>
         <input
           type="text"
           placeholder="Enter your slogan"

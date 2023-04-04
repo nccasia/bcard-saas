@@ -481,9 +481,9 @@
     react-is "^18.2.0"
 
 "@next-auth/prisma-adapter@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/@next-auth/prisma-adapter/-/prisma-adapter-1.0.3.tgz"
-  integrity sha512-3Lq1cD3ytKM3EGKJZ4UZvlqshLtlPvYxLeCrUV9ifYwYlq51kmDaHjsIawlp8EbH5pE1UhlsvtlXMery7RghtA==
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@next-auth/prisma-adapter/-/prisma-adapter-1.0.5.tgz"
+  integrity sha512-VqMS11IxPXrPGXw6Oul6jcyS/n8GLOWzRMrPr3EMdtD6eOalM6zz05j08PcNiis8QzkfuYnCv49OvufTuaEwYQ==
 
 "@next/env@12.1.6":
   version "12.1.6"
@@ -3017,7 +3017,7 @@ negotiator@0.6.3:
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.3.tgz"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
-next-auth@*, next-auth@^4.0.1, next-auth@^4.5.0:
+next-auth@*, next-auth@^4, next-auth@^4.0.1, next-auth@^4.5.0:
   version "4.5.0"
   resolved "https://registry.npmjs.org/next-auth/-/next-auth-4.5.0.tgz"
   integrity sha512-B6gYRIbqtj8nlDsx3y2Ruwp/mvZnItPs7VUULY43QYw+M9xtDPIM9EBZ3ryd/wNYA3MDteBJlzGm/ivseXcmJA==

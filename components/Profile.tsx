@@ -52,7 +52,7 @@ function Profile({ profile }: any) {
       <p>Address: {profile.address}</p>
       <p>Action: {profile.action}</p>
       {/* <button onClick={toggle}>Toggle</button>
->>>>>>>>> Temporary merge branch 2
+>>>>>>> 876dcd1401022be41aa7777152f8e81b2e6fecee
       {isHidden ? 
         <div className={styles.cardHead}>
           <div className={styles.cardHeadContent}>
@@ -89,6 +89,10 @@ function Profile({ profile }: any) {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
+      }
+      <button className={styles.button} onClick={toggle}>Toggle</button>
+=======
 <<<<<<<<< Temporary merge branch 1
       }
       <button className={styles.button} onClick={toggle}>Toggle</button>
