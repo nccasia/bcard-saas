@@ -6,6 +6,7 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faUser);
 library.add(faPhone);
@@ -14,3 +15,4 @@ library.add(faLocationDot);
 library.add(faArrowRight);
 library.add(faEnvelope);
 library.add(faAddressCard);
+library.add(faGlobe);

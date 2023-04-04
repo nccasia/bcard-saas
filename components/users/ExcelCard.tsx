@@ -79,7 +79,7 @@ function ExcelCard({ profile, params }: any) {
                     <p style={{ fontSize: "16px" }}>{profile?.email}</p>
                   </div>
                   <div className={styles.itemContent}>
-                    <FontAwesomeIcon icon="fire" style={{ fontSize: "16px", color: "#da2325" }} />
+                    <FontAwesomeIcon icon="globe" style={{ fontSize: "16px", color: "#da2325" }} />
                     <p style={{ fontSize: "16px" }}>{profile?.web}</p>
                   </div>
                 </div>
