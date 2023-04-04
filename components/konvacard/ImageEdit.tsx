@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-function ImageEdit({item, data, setData, type}:any){
+function ImageEdit({item, data, setData, type, setOpen}:any){
 
     const {
         handleSubmit,
@@ -51,6 +51,9 @@ function ImageEdit({item, data, setData, type}:any){
                 },
             ]);
         } 
+        if(setOpen){
+            setOpen(false);
+        }   
     }    
     
     return(

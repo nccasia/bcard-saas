@@ -26,7 +26,7 @@ function KonvaCreate({data, setData}:any){
                 <TextEdit item={{}} data={data} setData={setData} type="create" setOpen={setOpenText}/>
             }
             {openImage && 
-                <ImageEdit item={{}} data={data} setData={setData} type="create"/>
+                <ImageEdit item={{}} data={data} setData={setData} type="create" setOpen={setOpenImage}/>
             }
 
         </div>

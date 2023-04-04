@@ -116,23 +116,30 @@ function Update(){
                     </Button>
                 </InputLabel>
                 <div className={styles.template}>
-                    <button
+                    <div
                         style={{
-                            display:"flex",
-                            alignItems:"center",
-                            marginRight:"5px",
-                            fontSize:"14px",
-                            gap:5,
-                            padding: "5px 10px",
+                            float:"right",
+                            marginTop:"10px"
                         }}
-                        className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
-                        onClick={exampleExcel}
                     >
-                        <p>Download Template</p>
-                        <SaveAltIcon sx={{fontSize:"18px",}}/>
-                    </button>
+                        <button
+                            style={{
+                                display:"flex",
+                                alignItems:"center",
+                                marginRight:"5px",
+                                fontSize:"14px",
+                                gap:5,
+                                padding: "5px 10px",
+                            }}
+                            className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
+                            onClick={exampleExcel}
+                        >
+                            <p>Download Template</p>
+                            <SaveAltIcon sx={{fontSize:"18px",}}/>
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </div>        
             }
             { open && 
             <div>
