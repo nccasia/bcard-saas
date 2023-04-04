@@ -18,7 +18,6 @@ function Update() {
   const [open, setOpen] = useState(false);
   const [nameFile, setNameFile] = useState("");
   const [sizeFile, setSizeFile] = useState(0);
-
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file: any = event.target.files ? event.target.files[0] : null;
     const workbook = new ExcelJS.Workbook();
@@ -29,6 +28,7 @@ function Update() {
       rows.push(row.values);
     });
     setData(changeExcel(rows));
+    //const fileName = file ? file.name : "";
     setNameFile(file ? file.name : "");
     setSizeFile(file ? file.size : "");
     setOpen(true);
@@ -44,25 +44,20 @@ function Update() {
       { header: "email", key: "email", width: 30 },
       { header: "phone", key: "phone", width: 30 },
       { header: "position", key: "position", width: 30 },
-      { header: "company", key: "company", width: 30 },
-      //   { header: 'logo', key: 'logo', width: 30 },
-      //   { header: 'slogan', key: 'slogan', width: 30 },
+      { header: " company", key: " company'", width: 40 },
       { header: "web", key: "web", width: 30 },
-      { header: "address", key: "address", width: 30 },
-      //   { header: 'action', key: 'action', width: 30 },
+      { header: "address", key: "address'", width: 40 },
     ];
     const data = [
       {
         name: "ten.hoten",
-        username: "ten.hoten",
-        email: "examlate@gmail.com",
+        username: "Họ và Tên",
+        email: "example@gmail.com",
         phone: "(+84) 2466874606",
         position: "manager",
         company: "NCCPLUS VIETNAM JSC",
-        // logo:"https://ncc.asia/assets/images/logo.png",
-        // slogan:"We do it with passion",
         web: "http://ncc.asia",
-        address: "address",
+        address: "address1",
       },
     ];
     worksheet.addRows(data);
@@ -73,7 +68,7 @@ function Update() {
     saveAs(blob, "example.xlsx");
   };
   const router: any = useRouter();
-  console.log(data ? data[0] : null);
+  console.log(data);
 
   return (
     <div className={styles.container}>
@@ -90,7 +85,6 @@ function Update() {
                 onChange: handleUpload,
               }}
             />
-
             <Button
               component="span"
               sx={{
