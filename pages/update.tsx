@@ -58,7 +58,7 @@ function Update(){
                 name: "ten.hoten", 
                 username: "ten.hoten",
                 email:"examlate@gmail.com",
-                phone:0,
+                phone:"(+84) 2466874606",
                 position:"manager",
                 company:"NCCPLUS VIETNAM JSC",
                 // logo:"https://ncc.asia/assets/images/logo.png",
@@ -73,7 +73,7 @@ function Update(){
         saveAs(blob, 'example.xlsx');
     };
     const router:any = useRouter();
-    //console.log(data? data[0]:null)
+    console.log(data? data[0]:null)
 
     return(
         <div className={styles.container}>

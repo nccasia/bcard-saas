@@ -90,7 +90,7 @@ model Excel {
   email     String? @unique
   username  String?
   web       String?
-  phone     Int?
+  phone     String?
   address   String?
   logo      String?
   slogan    String?
