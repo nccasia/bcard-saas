@@ -85,63 +85,63 @@ function Update(){
             }}
         >
             {!open && 
-            <div>         
-                <InputLabel htmlFor="file-upload">
-                    <Input
-                        id="file-upload"
-                        type="file"
-                        inputProps={{
-                            style: { display: 'none', margin:0 },
-                            accept: ".xlsx, .xls",
-                            onChange: handleUpload,
-                        }}
-                    />
-                    
-                    <Button
-                        component="span"
-                        sx={{
-                            display:"flex",
-                            flexDirection:"column",
-                            color:"black",
-                            margin:0,
-                            fontSize:"14px",
-                            border:"1px dotted gray",
-                            borderRadius:"10px",
-                            padding:"0 20px",
-                            textAlign:"center",
-                            width:"400px",
-                            height:"250px"
-                            //backgroundColor:"#D9D9D9",
-                        }}
-                    >
-                        <FileUploadOutlinedIcon sx={{fontSize:"100px"}}/>
-                        <p>Select a file or drop it here</p>
-                        <p style={{fontSize:"12px"}}>Support: .xlsx</p>
-                    </Button>
-                </InputLabel>
-                <div
-                    style={{
-                        float:"right",
-                        marginTop:"10px"
-                    }}
-                >
-                    <button
+                <div>         
+                    <InputLabel htmlFor="file-upload">
+                        <Input
+                            id="file-upload"
+                            type="file"
+                            inputProps={{
+                                style: { display: 'none', margin:0 },
+                                accept: ".xlsx, .xls",
+                                onChange: handleUpload,
+                            }}
+                        />
+                        
+                        <Button
+                            component="span"
+                            sx={{
+                                display:"flex",
+                                flexDirection:"column",
+                                color:"black",
+                                margin:0,
+                                fontSize:"14px",
+                                border:"1px dotted gray",
+                                borderRadius:"10px",
+                                padding:"0 20px",
+                                textAlign:"center",
+                                width:"400px",
+                                height:"250px"
+                                //backgroundColor:"#D9D9D9",
+                            }}
+                        >
+                            <FileUploadOutlinedIcon sx={{fontSize:"100px"}}/>
+                            <p>Select a file or drop it here</p>
+                            <p style={{fontSize:"12px"}}>Support: .xlsx</p>
+                        </Button>
+                    </InputLabel>
+                    <div
                         style={{
-                            display:"flex",
-                            alignItems:"center",
-                            marginRight:"5px",
-                            fontSize:"14px",
-                            gap:5,
-                            padding: "5px 10px",
+                            float:"right",
+                            marginTop:"10px"
                         }}
-                        className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
-                        onClick={exampleExcel}
                     >
-                        <p>Download Template</p>
-                        <SaveAltIcon sx={{fontSize:"18px",}}/>
-                    </button>
+                        <button
+                            style={{
+                                display:"flex",
+                                alignItems:"center",
+                                marginRight:"5px",
+                                fontSize:"14px",
+                                gap:5,
+                                padding: "5px 10px",
+                            }}
+                            className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
+                            onClick={exampleExcel}
+                        >
+                            <p>Download Template</p>
+                            <SaveAltIcon sx={{fontSize:"18px",}}/>
+                        </button>
+                    </div>
                 </div>
-            </div>
             }
             { open && 
                 <div

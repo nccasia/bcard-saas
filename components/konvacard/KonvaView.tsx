@@ -11,7 +11,7 @@ function KonvaView({data, setData}:any){
             setKonva(konva);
         });
     }, []);
-    const handleNodeClick = (e: any) => {
+    const handleNodeClick = (e: any, index:number) => {
         const nodeId = e.target.attrs.id;
         const list= data.map((main:any)=>{
             if(main.id===nodeId){
@@ -20,7 +20,14 @@ function KonvaView({data, setData}:any){
                 return {...main, onclick:false, style:{...main.style, draggable: false}}
             }
         })
-        setData(list);
+        const newData = [...list];
+        if(newData[index]?.style?.text){
+            editTextCard(e).then((main)=>{  
+                newData[index].style.text =main;
+                setData(newData);
+            });  
+        }
+        setData(newData);   
     };
 
     //console.log(data)
@@ -34,8 +41,8 @@ function KonvaView({data, setData}:any){
         >
             {Konva && (
                 <Konva.Stage 
-                    // width={400}
-                    // height={400}
+                    width={850}
+                    height={523}
                     style={{border:"1px dotted gray"}}
                 >
                     <Konva.Layer>             
@@ -53,16 +60,14 @@ function KonvaView({data, setData}:any){
                                             y={node.style?.y}
                                             fontSize={node.style?.fontSize}
                                             draggable={node.style?.draggable}
-                                            onDragMove
-                                            onDragEnd
                                             rotation={node.style?.rotation} 
-                                            onClick={handleNodeClick}
+                                            onClick={(e:any)=>handleNodeClick(e, index)}
                                             onDblClick={(e:any)=>{
-                                                editTextCard(e).then((main)=>{
-                                                   const newData = [...data];
-                                                    newData[index].style.text =main;
-                                                    setData(newData);
-                                                });  
+                                                // editTextCard(e).then((main)=>{
+                                                //    const newData = [...data];
+                                                //     newData[index].style.text =main;
+                                                //     setData(newData);
+                                                // });  
                                             }}                                    
                                         />
                                     }
@@ -75,8 +80,6 @@ function KonvaView({data, setData}:any){
                                             height={node.style?.height}
                                             image={imgUrl(node.style?.image)}
                                             draggable={node.style?.draggable}
-                                            // onDragMove
-                                            // onDragEnd
                                             rotation={node.style?.rotation} 
                                             cornerRadius={node.style?.cornerRadius}
                                             onClick={handleNodeClick}
@@ -86,6 +89,7 @@ function KonvaView({data, setData}:any){
                                         <Konva.Transformer
                                             id={"transformer"+node.id} 
                                             key={(node.id)}
+                                            padding={10}
                                             ref={(item:any) => {
                                                 if (item) {
                                                     const transformer = item;

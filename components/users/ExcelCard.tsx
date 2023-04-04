@@ -26,9 +26,9 @@ function ExcelCard({profile,params}:any){
              <div className={styles.mainCard1}>
                <div style={{ display: "flex", flex: 1 }}>
                  <div className={styles.cardImage}>
-                  <img src={profile?.logo} alt="hello" className={styles.img1} />
-                  <p style={{ fontSize: 16, color:"#ff0d00a8" }}>{profile?.company}</p>
-                  <p style={{ fontSize: 13, color:"gray" }}>{profile?.slogan}</p>
+                  <img src={profile?.img} alt="hello" className={styles.img1} />
+                  {/* <p style={{ fontSize: 16, color:"#ff0d00a8" }}>{profile?.company}</p>
+                  <p style={{ fontSize: 13, color:"gray" }}>{profile?.slogan}</p> */}
                  </div>
                </div>
                <div className={styles.contentCard1}>
