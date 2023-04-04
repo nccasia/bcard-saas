@@ -44,20 +44,20 @@ function Update() {
       { header: "email", key: "email", width: 30 },
       { header: "phone", key: "phone", width: 30 },
       { header: "position", key: "position", width: 30 },
-      { header: "company", key: "company'", width: 30 },
+      { header: " company", key: " company'", width: 40 },
       { header: "web", key: "web", width: 30 },
-      { header: "address", key: "address'", width: 30 },
+      { header: "address", key: "address'", width: 40 },
     ];
     const data = [
       {
         name: "ten.hoten",
-        username: "ten.hoten",
-        email: "examlate@gmail.com",
+        username: "Họ và Tên",
+        email: "example@gmail.com",
         phone: "(+84) 2466874606",
         position: "manager",
         company: "NCCPLUS VIETNAM JSC",
         web: "http://ncc.asia",
-        address: "address",
+        address: "address1",
       },
     ];
     worksheet.addRows(data);
@@ -68,11 +68,10 @@ function Update() {
     saveAs(blob, "example.xlsx");
   };
   const router: any = useRouter();
-  //console.log(data? data[0]:null)
+  console.log(data);
 
   return (
     <div className={styles.container}>
-      {/* <CreateProfile email={"fj"} /> */}
       {!open && (
         <div>
           <h1 className={styles.heading}>CREATE YOUR CARD</h1>
