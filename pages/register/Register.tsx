@@ -1,34 +1,32 @@
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
 
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { addAdmin, getAdmin } from '../../api/admin/apiAdmin';
+import { addAdmin } from "../../api/admin/apiAdmin";
 
 interface TypeAdmin {
   // id:number,
-  name:string,
-  email:string,
+  name: string;
+  email: string;
 }
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
@@ -40,21 +38,19 @@ export default function SignUp(): JSX.Element {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      name: data.get('name'),
-      email: data.get('email'),
+      name: data.get("name"),
+      email: data.get("email"),
     });
   };
-    const [admin, setAdmin]=React.useState<TypeAdmin[]>([]);
-    const [name, setName] = React.useState("");
-    const [email, setEmail] = React.useState("");
-    const [nameAdd, setNameAdd] = React.useState("");
-    const [emailAdd, setEmailAdd] = React.useState("");
-    const [openEdit, setOpenEdit] = React.useState<number>(-1);
-    const [openAdd, setOpenAdd] = React.useState<boolean>(false);
-    // React.useEffect(()=>{
-    //   addAdmin().then((data)=>setAdmin(data))
-    // },[]);
-    console.log(nameAdd,  "vvv")
+  const [admin, setAdmin] = React.useState<TypeAdmin[]>([]);
+  const [nameAdd, setNameAdd] = React.useState("");
+  const [emailAdd, setEmailAdd] = React.useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [openAdd, setOpenAdd] = React.useState<boolean>(false);
+  // React.useEffect(()=>{
+  //   addAdmin().then((data)=>setAdmin(data))
+  // },[]);
+  console.log(nameAdd, "vvv");
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -62,12 +58,12 @@ export default function SignUp(): JSX.Element {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -84,7 +80,7 @@ export default function SignUp(): JSX.Element {
                   name="name"
                   autoComplete="family-name"
                   value={nameAdd}
-                  onChange={(e)=>setNameAdd(e.target.value)}
+                  onChange={(e) => setNameAdd(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -96,7 +92,7 @@ export default function SignUp(): JSX.Element {
                   name="email"
                   autoComplete="email"
                   value={emailAdd}
-                 onChange={(e)=>setEmailAdd(e.target.value)}
+                  onChange={(e) => setEmailAdd(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -104,12 +100,12 @@ export default function SignUp(): JSX.Element {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={()=>{
-              addAdmin(nameAdd, emailAdd).then((data:any)=>setAdmin([...admin,data]));
-              setEmailAdd("");
-              setNameAdd("");
-              setOpenAdd(false)
-            }}
+              onClick={() => {
+                addAdmin(nameAdd, emailAdd).then((data: any) => setAdmin([...admin, data]));
+                setEmailAdd("");
+                setNameAdd("");
+                setOpenAdd(false);
+              }}
             >
               Sign Up
             </Button>

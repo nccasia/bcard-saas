@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -14,8 +13,8 @@ function EditProfile({ profile, setUpdate }: any) {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      name: profile?.name ,
-      img: profile?.img ,
+      name: profile?.name,
+      img: profile?.img,
       email: profile?.email || "",
       web: profile?.web || "",
       address: profile?.address || "",
@@ -29,9 +28,7 @@ function EditProfile({ profile, setUpdate }: any) {
     },
   });
 
-  const router = useRouter();
-
-  console.log(profile.slug)
+  // console.log(profile.slug)
   const onFormSubmit = async (values: any) => {
     const config: AxiosRequestConfig = {
       url: `/api/profile/${profile.slug}`,

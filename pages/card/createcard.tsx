@@ -1,33 +1,36 @@
-import React from 'react'
-import  KonvaCard from "../../components/konvacard/KonvaCard";
-import  {updateCard} from "../../api/admin/apiCard"
-import LayoutUser from "../../components/home/LayoutUser";
+import React from "react";
 
-interface Konva{
-    id:string,
-    type:string,
-    style:any,
-    onclick:boolean,
+import { updateCard } from "../../api/admin/apiCard";
+import LayoutUser from "../../components/home/LayoutUser";
+import KonvaCard from "../../components/konvacard/KonvaCard";
+
+interface Konva {
+  id: string;
+  type: string;
+  style: any;
+  onclick: boolean;
 }
 
-function CreateCard(){
+function CreateCard() {
+  const [data, setData] = React.useState<Konva[]>([]);
 
-    const [data, setData] = React.useState<Konva[]>([]);
-
-    return(
-        <LayoutUser>
-            <button
-                className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                onClick={()=>updateCard({
-                    name:"hêlo",
-                    card: data,
-                    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAWJaMK1saVYSIBXjItyjHcx2HD8RH09iGJg&usqp=CAU",
-                })}
-            >
-                Save New
-            </button> 
-           <KonvaCard data={data} setData={setData}/>
-        </LayoutUser>
-    )
+  return (
+    <LayoutUser>
+      <button
+        className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+        onClick={() =>
+          updateCard({
+            name: "hêlo",
+            card: data,
+            image:
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAWJaMK1saVYSIBXjItyjHcx2HD8RH09iGJg&usqp=CAU",
+          })
+        }
+      >
+        Save New
+      </button>
+      <KonvaCard data={data} setData={setData} />
+    </LayoutUser>
+  );
 }
 export default CreateCard;

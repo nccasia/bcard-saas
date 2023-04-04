@@ -1,40 +1,32 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { NextPage } from "next";
 import Head from "next/head";
-import { getSession, GetSessionParams, signIn, signOut } from "next-auth/react";
-import { prisma } from "../lib/prisma";
-import Free from "../components/free/Free";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
+import { getSession, GetSessionParams } from "next-auth/react";
 import React from "react";
-import ExcelJS from 'exceljs';
-import {changeExcel} from "../utils/changeExcel"
-import {updateProfile} from "../api/profile/apiProfile"
-import { Input, InputLabel, Button } from '@mui/material';
 
-const Home: NextPage = ({ session, admin }: any) => {
-  
-  const router:any = useRouter();
-  const [open, setOpen]=React.useState(false);
-  React.useEffect(()=>{
+import { prisma } from "../lib/prisma";
+
+const Home: NextPage = ({ session }: any) => {
+  const router: any = useRouter();
+  React.useEffect(() => {
     // if( admin){
     //   router.push('/admin/admin')
     // }
     // if(!admin){
     //   router.push('/users/card');
     // }
-    if(!session){
-      router.push('/update');
+    if (!session) {
+      router.push("/update");
     }
-  },[])  
-
-  
+  }, []);
 
   return (
-    <div >
+    <div>
       <Head>
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
     </div>
   );
 };
@@ -52,11 +44,11 @@ export const getServerSideProps = async (context: GetSessionParams | undefined) 
   const admin = await prisma.admin.findUnique({
     where: { email: session.user?.email || undefined },
     select: {
-      email:true,
+      email: true,
     },
   });
   console.log(prisma.profile);
   return {
-    props: {session, admin },
+    props: { session, admin },
   };
 };

@@ -70,7 +70,7 @@ function CreateProfile({ email }: any): JSX.Element {
       )}
 
       <form onSubmit={handleSubmit(onFormSubmit)}>
-      <input
+        <input
           type="text"
           placeholder="Enter your name"
           {...register("name", { required: true })}

@@ -1,22 +1,21 @@
-import LayoutUser  from "../../components/home/LayoutUser";
-import React, { useState } from 'react';
-import Card from "../../components/users/Card"
-import  {getCard} from "../../api/admin/apiCard";
-import {imgUrl} from "../../utils/imgUrl";
-import Link from 'next/link';
+import React from "react";
+
+import { getCard } from "../../api/admin/apiCard";
+import LayoutUser from "../../components/home/LayoutUser";
+import Card from "../../components/users/Card";
 
 function CardPage() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [card, setCard] = React.useState<any>([]);
+  React.useEffect(() => {
+    getCard().then((main) => setCard(main));
+  }, []);
 
-    const [card, setCard]=React.useState<any>([])
-    React.useEffect(()=>{
-        getCard().then((main)=>setCard(main))
-    },[]);
-
-    return (
-        <div>
-            <LayoutUser>
-                <Card/>
-                {/* <br></br>
+  return (
+    <div>
+      <LayoutUser>
+        <Card />
+        {/* <br></br>
                 <p>...Test</p>
                 <div
                     style={{
@@ -49,9 +48,9 @@ function CardPage() {
                         )
                     }):null}
                 </div> */}
-            </LayoutUser>   
-        </div>
-    );
+      </LayoutUser>
+    </div>
+  );
 }
 
 export default CardPage;

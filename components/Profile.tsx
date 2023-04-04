@@ -1,19 +1,14 @@
 import Link from "next/link";
-import React, { useState } from "react";
-import styles from "../styles/profile.module.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
 function Profile({ profile }: any) {
-  const [isHidden, setIsHidden] = useState(true);
-
-  const toggle = () => setIsHidden(!isHidden);
   return (
     <div>
       <div className="mb-6">
         <h1 className="text-2xl font-bold">
           <Link href={`/profile/${profile.slug}`}>{profile.name}</Link>
         </h1>
-          <p>{profile.bio}</p>
+        <p>{profile.bio}</p>
         <Link href={`/profile/edit/${profile.slug}`}>
           <button
             type="submit"
@@ -33,20 +28,21 @@ function Profile({ profile }: any) {
         </Link>
       </div>
 
-        <br></br>
-      
+      <br></br>
 
       <p>Name: {profile.name}</p>
-      <p>Avatar:
-        <img src={profile.img} alt="avatar"/>
+      <p>
+        Avatar:
+        <img src={profile.img} alt="avatar" />
       </p>
       <p>Position: {profile.position}</p>
       <p>Email: {profile.email}</p>
       <p>Web: {profile.web}</p>
       <p>Phone: {profile.phone}</p>
       <p>Company: {profile.company}</p>
-      <p>Logo:
-        <img src={profile.logo} alt="logo"/>
+      <p>
+        Logo:
+        <img src={profile.logo} alt="logo" />
       </p>
       <p>Solan: {profile.solgan}</p>
       <p>Address: {profile.address}</p>
@@ -98,8 +94,6 @@ function Profile({ profile }: any) {
       <button className={styles.button} onClick={toggle}>Toggle</button>
 =========
       } */}
-      
-      
     </div>
   );
 }
