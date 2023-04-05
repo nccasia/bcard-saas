@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export function useDebounce(value: any, delay: number) {
   const [debouncedValue, setDebouncedValue] = React.useState<any>(null);
@@ -18,7 +18,5 @@ export function useDebounce(value: any, delay: number) {
 
 export function useDataDebouncer(initialData: any, delay: number) {
   const debouncedData = useDebounce(initialData, delay);
-  
-  
   return debouncedData;
 }
