@@ -11,14 +11,9 @@ function ExcelCard({ profile, params }: any) {
   // const toggle = () => setIsHidden(!isHidden);
   return (
     <>
-      <div style={{ marginBottom: "50px" }}>
+      <div style={{ margin: "25px 0" }}>
         {params?.exampe === "1" && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
+          <div>
             <div id="card">
               <div className={styles.headCard1}>
                 <div className={styles.headContent}>

@@ -20,8 +20,8 @@ function Name({ params }: any) {
       });
     }
   }, [params?.name]);
-
-  const link = "http://localhost:3000/view/";
+  const baseUrl = process.env.BASE_URL || "";
+  const link = baseUrl + "/view/";
   const qrCode = (index: string) => {
     const qr = QRCode(0, "H");
     qr.addData(index);
@@ -36,6 +36,8 @@ function Name({ params }: any) {
       style={{
         height: "100vh",
         textAlign: "center",
+        overflowX: "auto",
+        padding: 10,
       }}
     >
       {profile && (
