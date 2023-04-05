@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import React from "react";
 
-import  from "../../components/konvacard/";
+import ExcelCard from "../../components/konvacard/ExcelCard";
 import KonvaCreate from "../../components/konvacard/KonvaCreate";
 import KonvaEdit from "../../components/konvacard/KonvaEdit";
 import KonvaView from "../../components/konvacard/KonvaView";
@@ -49,7 +49,7 @@ function KonvaCard({ data, setData }: any) {
             {open === "view" && <ViewInput data={data} setData={setData} />}
             {open === "add" && <KonvaCreate data={data} setData={setData} />}
             {open === "edit" && <KonvaEdit data={data} setData={setData} />}
-            {open === "excel" && < data={data} setData={setData} />}
+            {open === "excel" && <ExcelCard data={data} setData={setData} />}
           </div>
         </Grid>
         <Grid item lg={8}>

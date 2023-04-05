@@ -236,6 +236,7 @@
   .iconSwitch{
     position: absolute;
     top: -75px;
+    right: 5px;
   }
   .card{
     display: flex;
