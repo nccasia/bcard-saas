@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import Fab from "@mui/material/Fab";
@@ -5,7 +6,9 @@ import QRCode from "qrcode-generator";
 import React from "react";
 
 import { getNameCard } from "../api/profile/apiProfile";
+import LayoutUser from "../components/home/LayoutUser";
 import ExcelCard from "../components/users/ExcelCard";
+import styles from "../styles/profile.module.css";
 
 function Name({ params }: any) {
   const [profile, setProfile] = React.useState<any>();
@@ -38,23 +41,10 @@ function Name({ params }: any) {
         textAlign: "center",
       }}
     >
+      <LayoutUser children={undefined}></LayoutUser>
       {profile && (
-        <div
-          style={{
-            width: "100%",
-            position: "relative",
-            height: "100vh",
-            display: "flex",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              bottom: 30,
-              right: 30,
-              zIndex: 10,
-            }}
-          >
+        <div className={styles.container}>
+          <div className={styles.iconSwitch}>
             {/* <Switch  
                             color="warning" 
                             onChange={()=>setOpen(!open)}
@@ -70,12 +60,7 @@ function Name({ params }: any) {
               )}
             </Fab>
           </div>
-          <div
-            style={{
-              margin: "auto",
-              textAlign: "center",
-            }}
-          >
+          <div className={styles.divCard}>
             {open && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
             {!open && (
               <img
