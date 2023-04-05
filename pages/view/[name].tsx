@@ -1,7 +1,9 @@
+/* eslint-disable react/no-children-prop */
 import Grid from "@mui/material/Grid";
 import React from "react";
 
 import { getNameCard } from "../../api/profile/apiProfile";
+import LayoutUser from "../../components/home/LayoutUser";
 import ExcelCard from "../../components/users/ExcelCard";
 function Name({ params }: any) {
   const [profile, setProfile] = React.useState<any>();
@@ -20,16 +22,20 @@ function Name({ params }: any) {
   //console.log(profile);
 
   return (
-    <Grid
-      container
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      sx={{ overflowX: "auto", padding: "20px" }}
-    >
-      {profile && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
-      {!profile && <p>No...</p>}
-    </Grid>
+    <>
+      <LayoutUser children={undefined}></LayoutUser>
+
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ marginTop: "50px" }}
+      >
+        {profile && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
+        {!profile && <p>No...</p>}
+      </Grid>
+    </>
   );
 }
 

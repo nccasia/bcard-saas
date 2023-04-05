@@ -4,6 +4,12 @@
   margin-top: 5px;
   border-radius: 8px;
 }
+.container{
+  width: 100%;
+  position: relative;
+  margin-top: 50px;
+  display: flex;
+}
 
 .cardHead {
   width: 500px;
@@ -44,6 +50,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100px;
 }
 .img {
   width: 140px;
@@ -51,8 +58,9 @@
   /* border-radius: 50%; */
 }
 .img1 {
-  width: 120px;
+  width: 220px;
   height: auto;
+  max-width: max-content;
   /* border-radius: 50%; */
 }
 
@@ -67,7 +75,10 @@
   height: auto;
   border-radius: 30%;
 }
-
+.img3{
+  width: 60%;
+  height: 60%;
+}
 .content {
   font-size: 22px;
   margin: auto;
@@ -140,6 +151,10 @@
   color:gray;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.contenCard{
+  flex: 1;
+  margin-top: 15px;
+}
 
 .button {
   display: flex;
@@ -198,4 +213,43 @@
     border-bottom: 1px solid #fff;
     border-top: 1px solid #fff;
     margin-top: 20px
+}
+.divCard{
+  margin: auto;
+  text-align: center;
+}
+.iconSwitch{
+  position: absolute;
+  top: 0;
+  right: 30px;
+}
+@media (max-width: 768px) {
+  .container{
+    margin-top: 80px;
+  }
+  /* Các kiểu dáng riêng cho mobile ở đây */
+  /* Ví dụ: */
+  .divCard {
+    padding: 0 20px;
+  }
+  .iconSwitch{
+    position: absolute;
+    top: -75px;
+    right: 5px;
+  }
+  .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .contenCard{
+    margin-top: 30px;
+  }
+  .headCard1,.mainCard1{
+    width: 360px;
+  }
+  .img1{
+    width: 176px;
+  }
+  
 }

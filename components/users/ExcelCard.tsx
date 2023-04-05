@@ -1,7 +1,8 @@
+/* eslint-disable react/no-children-prop */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 
-import logo_content from "../../public/logo_content.png";
+// import logo_content from "../../public/logo_content.png";
 import logoncc from "../../public/logoncc.png";
 import styles from "../../styles/profile.module.css";
 
@@ -11,10 +12,16 @@ function ExcelCard({ profile, params }: any) {
   // const toggle = () => setIsHidden(!isHidden);
   return (
     <>
-      <div style={{ margin: "25px 0" }}>
+      {/* <LayoutUser children={undefined}></LayoutUser> */}
+      <div style={{ marginBottom: "50px" }}>
         {params?.exampe === "1" && (
-          <div>
-            <div id="card">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <div id="card" className={styles.card}>
               <div className={styles.headCard1}>
                 <div className={styles.headContent}>
                   {/* <img src={profile?.logo} alt="hello" className={styles.img2} /> */}
@@ -31,16 +38,16 @@ function ExcelCard({ profile, params }: any) {
               </div>
               <br />
               <div className={styles.mainCard1}>
-                <div style={{ display: "flex", flex: 1 }}>
+                <div className={styles.contenCard}>
                   <div className={styles.cardImage}>
-                    <Image
+                    {/* <Image
                       src={logo_content}
                       alt="logo"
-                      width={150}
-                      height={50}
+                      width="100%"
+                      height="100%"
                       className={styles.img3}
-                    />
-                    {/* <img src={profile?.img} alt="hello" className={styles.img1} /> */}
+                    /> */}
+                    <img src={profile?.logo} alt="hello" className={styles.img1} />
                     {/* <p style={{ fontSize: 16, color:"#f1626f" }}>{profile?.company}</p> */}
                     {/* <p style={{ fontSize: 13, color:"gray" }}>{profile?.slogan}</p> */}
                   </div>

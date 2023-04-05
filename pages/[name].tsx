@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import Fab from "@mui/material/Fab";
@@ -5,7 +6,9 @@ import QRCode from "qrcode-generator";
 import React from "react";
 
 import { getNameCard } from "../api/profile/apiProfile";
+import LayoutUser from "../components/home/LayoutUser";
 import ExcelCard from "../components/users/ExcelCard";
+import styles from "../styles/profile.module.css";
 
 function Name({ params }: any) {
   const [profile, setProfile] = React.useState<any>();
@@ -32,66 +35,50 @@ function Name({ params }: any) {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        textAlign: "center",
-        overflowX: "auto",
-        padding: 10,
-      }}
-    >
-      {profile && (
-        <div
-          style={{
-            width: "100%",
-            position: "relative",
-            height: "100vh",
-            display: "flex",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              bottom: 30,
-              right: 30,
-              zIndex: 10,
-            }}
-          >
-            {/* <Switch  
+    <>
+      <LayoutUser children={undefined}></LayoutUser>
+      <div
+        style={{
+          // height: "100vh",
+          textAlign: "center",
+          overflowX: "auto",
+          padding: 10,
+        }}
+      >
+        {profile && (
+          <div className={styles.container}>
+            <div className={styles.iconSwitch}>
+              {/* <Switch  
                             color="warning" 
                             onChange={()=>setOpen(!open)}
 
                         /> */}
-            <Fab onClick={() => setOpen(!open)}>
-              {open && <QrCodeScannerIcon />}
+              <Fab onClick={() => setOpen(!open)}>
+                {open && <QrCodeScannerIcon />}
+                {!open && (
+                  <FontAwesomeIcon
+                    icon="address-card"
+                    style={{ fontSize: "25px", color: "#ff0d00a8" }}
+                  />
+                )}
+              </Fab>
+            </div>
+            <div className={styles.divCard}>
+              {open && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
               {!open && (
-                <FontAwesomeIcon
-                  icon="address-card"
-                  style={{ fontSize: "25px", color: "#ff0d00a8" }}
+                <img
+                  src={qrCode(link + params?.name).createDataURL()}
+                  alt="QR code"
+                  width="250px"
+                  height="250px"
                 />
               )}
-            </Fab>
+            </div>
           </div>
-          <div
-            style={{
-              margin: "auto",
-              textAlign: "center",
-            }}
-          >
-            {open && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
-            {!open && (
-              <img
-                src={qrCode(link + params?.name).createDataURL()}
-                alt="QR code"
-                width="250px"
-                height="250px"
-              />
-            )}
-          </div>
-        </div>
-      )}
-      {!profile && <p>No...</p>}
-    </div>
+        )}
+        {!profile && <p>No...</p>}
+      </div>
+    </>
   );
 }
 
