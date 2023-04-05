@@ -1,8 +1,8 @@
+import Grid from "@mui/material/Grid";
 import React from "react";
 
 import { getNameCard } from "../../api/profile/apiProfile";
 import ExcelCard from "../../components/users/ExcelCard";
-
 function Name({ params }: any) {
   const [profile, setProfile] = React.useState<any>();
   React.useEffect(() => {
@@ -20,16 +20,16 @@ function Name({ params }: any) {
   //console.log(profile);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        padding: "50px",
-      }}
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      sx={{ overflowX: "auto", padding: "20px" }}
     >
       {profile && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
       {!profile && <p>No...</p>}
-    </div>
+    </Grid>
   );
 }
 
