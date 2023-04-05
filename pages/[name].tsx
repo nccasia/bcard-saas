@@ -20,7 +20,7 @@ function Name({ params }: any) {
       });
     }
   }, [params?.name]);
-  const baseUrl = process.env.BASE_URL || "";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
   const link = baseUrl + "/view/";
   const qrCode = (index: string) => {
     const qr = QRCode(0, "H");
