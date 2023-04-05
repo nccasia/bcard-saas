@@ -40,7 +40,7 @@ function Name({ params }: any) {
       <LayoutUser children={undefined}></LayoutUser>
       <div
         style={{
-          height: "100vh",
+          // height: "100vh",
           textAlign: "center",
           overflowX: "auto",
           padding: 10,
