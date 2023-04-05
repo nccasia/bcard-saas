@@ -6,11 +6,7 @@ function EditProfile({ profile, setUpdate }: any) {
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState("");
 
-  const {
-    handleSubmit,
-    formState: { errors },
-    register,
-  } = useForm({
+  const { handleSubmit, register } = useForm({
     mode: "onChange",
     defaultValues: {
       name: profile?.name,
@@ -90,8 +86,6 @@ function EditProfile({ profile, setUpdate }: any) {
           {...register("name", { required: true })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        <span className="text-red-700 my-1">{errors.name && errors.name.message}</span>
-        {/* <span className="text-red-700 my-1">{errors.bio && errors.bio.message}</span> */}
         <p>Image:</p>
         <input
           type="tel"

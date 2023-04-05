@@ -23,8 +23,9 @@ function Name({ params }: any) {
       });
     }
   }, [params?.name]);
-
-  const link = "http://localhost:3000/view/";
+  const baseUrl = process.env.BASE_URL || "";
+  console.log(process.env.BASE_URL);
+  const link = baseUrl + "/view/";
   const qrCode = (index: string) => {
     const qr = QRCode(0, "H");
     qr.addData(index);
@@ -35,46 +36,50 @@ function Name({ params }: any) {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        textAlign: "center",
-      }}
-    >
+    <>
       <LayoutUser children={undefined}></LayoutUser>
-      {profile && (
-        <div className={styles.container}>
-          <div className={styles.iconSwitch}>
-            {/* <Switch  
+      <div
+        style={{
+          height: "100vh",
+          textAlign: "center",
+          overflowX: "auto",
+          padding: 10,
+        }}
+      >
+        {profile && (
+          <div className={styles.container}>
+            <div className={styles.iconSwitch}>
+              {/* <Switch  
                             color="warning" 
                             onChange={()=>setOpen(!open)}
 
                         /> */}
-            <Fab onClick={() => setOpen(!open)}>
-              {open && <QrCodeScannerIcon />}
+              <Fab onClick={() => setOpen(!open)}>
+                {open && <QrCodeScannerIcon />}
+                {!open && (
+                  <FontAwesomeIcon
+                    icon="address-card"
+                    style={{ fontSize: "25px", color: "#ff0d00a8" }}
+                  />
+                )}
+              </Fab>
+            </div>
+            <div className={styles.divCard}>
+              {open && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
               {!open && (
-                <FontAwesomeIcon
-                  icon="address-card"
-                  style={{ fontSize: "25px", color: "#ff0d00a8" }}
+                <img
+                  src={qrCode(link + params?.name).createDataURL()}
+                  alt="QR code"
+                  width="250px"
+                  height="250px"
                 />
               )}
-            </Fab>
+            </div>
           </div>
-          <div className={styles.divCard}>
-            {open && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
-            {!open && (
-              <img
-                src={qrCode(link + params?.name).createDataURL()}
-                alt="QR code"
-                width="250px"
-                height="250px"
-              />
-            )}
-          </div>
-        </div>
-      )}
-      {!profile && <p>No...</p>}
-    </div>
+        )}
+        {!profile && <p>No...</p>}
+      </div>
+    </>
   );
 }
 

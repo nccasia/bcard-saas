@@ -19,7 +19,6 @@ function SelectAdmin(): JSX.Element {
   React.useEffect(() => {
     getAdmin().then((data) => setAdmin(data));
   }, []);
-
   return (
     <div
       style={{
@@ -167,5 +166,4 @@ function SelectAdmin(): JSX.Element {
     </div>
   );
 }
-
 export default SelectAdmin;
