@@ -1,18 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Image from "next/image";
 import { getSession } from "next-auth/react";
 import React from "react";
-import styled from "styled-components";
 
 import logo from "../../public/logo.png";
 import styles from "../../styles/header.module.css";
-import Login from "../login/Login";
-import Logout from "../login/Logout";
-import Signup from "../login/Signup";
+// import styled from "styled-components";
 
-const SelectBackgroundColorNav = styled.div`
-  color: white;
-  cursor: pointer;
-`;
+// import Login from "../login/Login";
+// import Logout from "../login/Logout";
+// import Signup from "../login/Signup";
+
+// const SelectBackgroundColorNav = styled.div`
+//   color: white;
+//   cursor: pointer;
+// `;
 
 const Header = () => {
   const [session, setSession] = React.useState<any>();
@@ -28,13 +30,13 @@ const Header = () => {
         <div className={styles.title}>Card-visit</div>
       </div>
       <div className={styles.headeRight}>
-        <SelectBackgroundColorNav>
+        {/* <SelectBackgroundColorNav>
           <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
             {!session && <Login />}
             {!session && <Signup />}
           </div>
           {session && <Logout />}
-        </SelectBackgroundColorNav>
+        </SelectBackgroundColorNav> */}
       </div>
     </div>
   );

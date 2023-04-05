@@ -44,20 +44,24 @@ function Update() {
       { header: "email", key: "email", width: 30 },
       { header: "phone", key: "phone", width: 30 },
       { header: "position", key: "position", width: 30 },
-      { header: "company", key: "company", width: 40 },
+      { header: "company", key: "company", width: 30 },
+      { header: "logo", key: "logo", width: 30 },
+      //   { header: 'slogan', key: 'slogan', width: 30 },
       { header: "web", key: "web", width: 30 },
       { header: "address", key: "address", width: 40 },
     ];
     const data = [
       {
-        name: "ten.hoten",
-        username: "Họ Và Tên",
-        email: "example@gmail.com",
+        name: "dai.trinhduc",
+        username: "Trịnh Đức Đại",
+        email: "dai.trinhduc@ncc.asia",
         phone: "(+84) 2466874606",
         position: "manager",
         company: "NCCPLUS VIETNAM JSC",
+        logo: "https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg",
+        // slogan:"We do it with passion",
         web: "http://ncc.asia",
-        address: "address1",
+        address: "4th Floor, 138 Ha Huy Tap St., Vinh City",
       },
     ];
     worksheet.addRows(data);
