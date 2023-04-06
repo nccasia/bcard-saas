@@ -1,11 +1,11 @@
 import React from "react";
 
 import { imgUrl } from "../../utils/imgUrl";
-import { editTextCard } from "../../utils/konvaCard";
+import { editTextCard1 } from "../../utils/konvaCard";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useDataDebouncer } from "../../utils/useDeboune";
 
-function KonvaView({ data, setData }: any) {
+function KonvaCardView({ data, setData }: any) {
   const [Konva, setKonva] = React.useState<any>(null);
   const [stageSize, setStageSize] = React.useState<any>({ width: 0, height: 0 });
   React.useEffect(() => {
@@ -23,29 +23,16 @@ function KonvaView({ data, setData }: any) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   const handleNodeClick = (e: any, index: number) => {
-    const nodeId = e.target.attrs.id;
-    const list = data.map((main: any) => {
-      if (main.id === nodeId) {
-        return {
-          ...main,
-          onclick: !main.onclick,
-          style: { ...main.style, draggable: !main.style?.draggable },
-        };
-      } else {
-        return { ...main, onclick: false, style: { ...main.style, draggable: false } };
-      }
-    });
-    const newData = [...list];
+    const newData = [...data];
     if (newData[index]?.style?.text) {
-      editTextCard(e).then((main) => {
+      editTextCard1(e).then((main) => {
         newData[index].style.text = main;
         setData(newData);
       });
     }
     setData(newData);
   };
-
-  //console.log(data);
+  console.log(data);
 
   return (
     <div
@@ -57,6 +44,8 @@ function KonvaView({ data, setData }: any) {
     >
       {Konva && (
         <Konva.Stage
+          x={0}
+          y={0}
           width={350}
           height={200}
           scaleX={stageSize.width < 350 ? stageSize.width / 350 : 1}
@@ -80,13 +69,6 @@ function KonvaView({ data, setData }: any) {
                           draggable={node.style?.draggable}
                           rotation={node.style?.rotation}
                           onClick={(e: any) => handleNodeClick(e, index)}
-                          onDblClick={() => {
-                            // editTextCard(e).then((main)=>{
-                            //    const newData = [...data];
-                            //     newData[index].style.text =main;
-                            //     setData(newData);
-                            // });
-                          }}
                         />
                       )}
                       {node.type === "image" && (
@@ -165,4 +147,4 @@ function KonvaView({ data, setData }: any) {
   );
 }
 
-export default KonvaView;
+export default KonvaCardView;

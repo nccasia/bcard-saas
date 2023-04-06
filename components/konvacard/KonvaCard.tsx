@@ -53,7 +53,14 @@ function KonvaCard({ data, setData }: any) {
           </div>
         </Grid>
         <Grid item lg={8}>
-          <KonvaView data={data} setData={setData} />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <KonvaView data={data} setData={setData} />
+          </div>
         </Grid>
       </Grid>
     </div>
