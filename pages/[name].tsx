@@ -41,8 +41,8 @@ function Name({ params }: any) {
         style={{
           // height: "100vh",
           textAlign: "center",
-          overflowX: "auto",
-          padding: 10,
+          // overflowX: "auto",
+          // padding: 10,
         }}
       >
         {profile && (

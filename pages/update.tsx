@@ -56,7 +56,7 @@ function Update() {
         username: "Trịnh Đức Đại",
         email: "dai.trinhduc@ncc.asia",
         phone: "(+84) 2466874606",
-        position: "manager",
+        position: "Manager",
         company: "NCCPLUS VIETNAM JSC",
         logo: "https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg",
         // slogan:"We do it with passion",
