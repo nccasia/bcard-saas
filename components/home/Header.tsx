@@ -35,7 +35,7 @@ function Header({ open, setOpen }: any) {
       </div>
       <div className={styles.headeRight}>
         <SelectBackgroundColorNav>
-          <Fab onClick={() => setOpen(!open)}>
+          <Fab onClick={() => setOpen(!open)} sx={{ width: "45px", height: "45px" }}>
             {open && <QrCodeScannerIcon sx={{ color: "#f44336" }} />}
             {!open && <ContactEmergencyIcon sx={{ color: "#f44336" }} />}
           </Fab>
