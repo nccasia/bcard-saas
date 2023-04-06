@@ -4,10 +4,10 @@
   margin-top: 5px;
   border-radius: 8px;
 }
-.container{
+.container {
   width: 100%;
   position: relative;
-  margin-top: 50px;
+  margin-top: 100px;
   display: flex;
 }
 
@@ -75,7 +75,7 @@
   height: auto;
   border-radius: 30%;
 }
-.img3{
+.img3 {
   width: 60%;
   height: 60%;
 }
@@ -90,15 +90,16 @@
 .itemContent {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 }
-.title, .title1 {
+.title,
+.title1 {
   line-height: 1;
   margin-left: 4px;
 }
 
 .title1 {
-  line-height: 1.2;
+  line-height: 1.4;
   /* border-left: 5px solid #da2325; */
   /* margin-left: 4px; */
   margin-bottom: 15px;
@@ -111,10 +112,10 @@
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.headCard{
+.headCard {
   background-color: #ff370096;
 }
-.headCard1{
+.headCard1 {
   background-color: #26506296;
 }
 .headContent {
@@ -126,10 +127,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap:10px;
+  gap: 10px;
 }
 
-.mainCard, .mainCard1{
+.mainCard,
+.mainCard1 {
   width: 500px;
   height: 300px;
   border-radius: 8px;
@@ -141,27 +143,27 @@
 }
 
 .mainCard1 {
-  width: 450px;
-  padding:5px;
+  width: 425px;
+  padding: 5px;
   height: 250px;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.649);
   display: flex;
   justify-content: space-between;
   font-size: 12px;
-  color:gray;
+  color: gray;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 40px 5px;
 }
-.contenCard{
-  flex: 1;
+.contenCard {
+  flex: 0.7;
   display: flex;
   border-right: 1.5px solid #777373;
 }
 
 .button {
   display: flex;
- justify-content: center;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -173,7 +175,6 @@
   color: #fff;
   flex: 1;
   line-height: 40px;
-  
 }
 .contentCard1 {
   /* style={{ margin: "auto", textAlign: "left", color: "white", flex: 1 }} */
@@ -195,54 +196,56 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-
-.content{
+.content {
   text-align: center;
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.home{
-      background-color: #eeecec;
-    width: 60px;
-    display: flex;
-    justify-content: center;
-    padding: 5px 0;
-    border-radius: 8px;
+.home {
+  background-color: #eeecec;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+  border-radius: 8px;
 }
-.text{
+.text {
   width: 300px;
-    font-size: 22px;
-    border-bottom: 1px solid #fff;
-    border-top: 1px solid #fff;
-    margin-top: 20px
+  font-size: 22px;
+  border-bottom: 1px solid #fff;
+  border-top: 1px solid #fff;
+  margin-top: 20px;
 }
-.divCard{
+.divCard {
   margin: auto;
   text-align: center;
 }
-.iconSwitch{
+.iconSwitch {
   position: absolute;
-  top: 0;
+  top: -50px;
   right: 30px;
 }
-.headingText{
+.headingText {
   font-size: 25px;
   color: #606060;
   font-weight: 500;
 }
-.text1{
+.image {
+  width: 120px;
+}
+.text1 {
   font-size: 16px;
   color: #767676;
 }
-.icon{
+.icon {
   font-size: 16px;
   color: #7e7b7b;
 }
 @media (max-width: 768px) {
-  .container{
+  .container {
     margin-top: 80px;
   }
   /* Các kiểu dáng riêng cho mobile ở đây */
@@ -250,12 +253,12 @@
   .divCard {
     padding: 0 20px;
   }
-  .iconSwitch{
+  .iconSwitch {
     position: absolute;
     top: -75px;
     right: 5px;
   }
-  .card{
+  .card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -263,23 +266,27 @@
   /* .contenCard{
     margin-top: 30px;
   } */
-  .headCard1,.mainCard1{
+  .headCard1,
+  .mainCard1 {
     width: 360px;
     height: 230px;
   }
-  .img1{
+  .image {
+    width: 100px;
+  }
+  .img1 {
     width: 150px;
   }
-  .itemContent{
+  .itemContent {
     gap: 5px;
   }
-  .headingText{
-    font-size: 22px;
+  .headingText {
+    font-size: 24px;
   }
-  .text1{
+  .text1 {
     font-size: 14px;
   }
-  .icon{
+  .icon {
     font-size: 13px;
   }
 }
