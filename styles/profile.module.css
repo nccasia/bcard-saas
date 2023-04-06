@@ -58,7 +58,7 @@
   /* border-radius: 50%; */
 }
 .img1 {
-  width: 220px;
+  width: 205px;
   height: auto;
   max-width: max-content;
   /* border-radius: 50%; */
@@ -99,8 +99,9 @@
 
 .title1 {
   line-height: 1.2;
-  border-left: 5px solid #da2325;
-  margin-left: 4px;
+  /* border-left: 5px solid #da2325; */
+  /* margin-left: 4px; */
+  margin-bottom: 15px;
 }
 .headCard {
   width: 500px;
@@ -150,10 +151,12 @@
   font-size: 12px;
   color:gray;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 40px 5px;
 }
 .contenCard{
   flex: 1;
-  margin-top: 15px;
+  display: flex;
+  border-right: 1.5px solid #777373;
 }
 
 .button {
@@ -170,6 +173,7 @@
   color: #fff;
   flex: 1;
   line-height: 40px;
+  
 }
 .contentCard1 {
   /* style={{ margin: "auto", textAlign: "left", color: "white", flex: 1 }} */
@@ -178,7 +182,8 @@
   text-align: left;
   color: gray;
   flex: 1;
-  line-height: 35px;
+  line-height: 30px;
+  margin-left: 20px;
 }
 
 .headCard1 {
@@ -223,6 +228,19 @@
   top: 0;
   right: 30px;
 }
+.headingText{
+  font-size: 25px;
+  color: #606060;
+  font-weight: 500;
+}
+.text1{
+  font-size: 16px;
+  color: #767676;
+}
+.icon{
+  font-size: 16px;
+  color: #7e7b7b;
+}
 @media (max-width: 768px) {
   .container{
     margin-top: 80px;
@@ -242,14 +260,26 @@
     flex-direction: column;
     align-items: center;
   }
-  .contenCard{
+  /* .contenCard{
     margin-top: 30px;
-  }
+  } */
   .headCard1,.mainCard1{
     width: 360px;
+    height: 230px;
   }
   .img1{
-    width: 176px;
+    width: 145px;
   }
-  
+  .itemContent{
+    gap: 5px;
+  }
+  .headingText{
+    font-size: 22px;
+  }
+  .text1{
+    font-size: 14px;
+  }
+  .icon{
+    font-size: 13px;
+  }
 }
