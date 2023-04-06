@@ -1,20 +1,23 @@
-/* eslint-disable react/no-children-prop */
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
-import Fab from "@mui/material/Fab";
+// /* eslint-disable react/no-children-prop */
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
+// import Fab from "@mui/material/Fab";
+import { useRouter } from "next/router";
 import QRCode from "qrcode-generator";
 import React from "react";
 
 import { getNameCard } from "../api/profile/apiProfile";
-import LayoutUser from "../components/home/LayoutUser";
+import Header from "../components/home/Header";
 import ExcelCard from "../components/users/ExcelCard";
 import styles from "../styles/profile.module.css";
 
-function Name({ params }: any) {
+function Name() {
   const [profile, setProfile] = React.useState<any>();
+  const router = useRouter();
+  const { name } = router.query;
   React.useEffect(() => {
-    if (params?.name) {
-      getNameCard("/api/test/" + params?.name).then((main) => {
+    if (name) {
+      getNameCard("/api/test/" + name).then((main) => {
         if (main.length === 1) {
           main.map((item: any) => {
             setProfile({ ...item });
@@ -22,7 +25,7 @@ function Name({ params }: any) {
         }
       });
     }
-  }, [params?.name]);
+  }, [name]);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
   const link = baseUrl + "/view/";
   const qrCode = (index: string) => {
@@ -36,7 +39,7 @@ function Name({ params }: any) {
 
   return (
     <>
-      <LayoutUser children={undefined}></LayoutUser>
+      <Header open={open} setOpen={setOpen} />
       <div
         style={{
           // height: "100vh",
@@ -47,13 +50,13 @@ function Name({ params }: any) {
       >
         {profile && (
           <div className={styles.container}>
-            <div className={styles.iconSwitch}>
-              {/* <Switch  
+            {/* <div className={styles.iconSwitch}> */}
+            {/* <Switch  
                             color="warning" 
                             onChange={()=>setOpen(!open)}
 
                         /> */}
-              <Fab onClick={() => setOpen(!open)}>
+            {/* <Fab onClick={() => setOpen(!open)}>
                 {open && <QrCodeScannerIcon />}
                 {!open && (
                   <FontAwesomeIcon
@@ -61,13 +64,13 @@ function Name({ params }: any) {
                     style={{ fontSize: "25px", color: "#ff0d00a8" }}
                   />
                 )}
-              </Fab>
-            </div>
+              </Fab> */}
+            {/* </div> */}
             <div className={styles.divCard}>
               {open && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
               {!open && (
                 <img
-                  src={qrCode(link + params?.name).createDataURL()}
+                  src={qrCode(link + name).createDataURL()}
                   alt="QR code"
                   width="250px"
                   height="250px"
@@ -83,16 +86,3 @@ function Name({ params }: any) {
 }
 
 export default Name;
-
-export async function getStaticProps({ params }: any) {
-  return {
-    props: { params },
-  };
-}
-
-export const getStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: true,
-  };
-};

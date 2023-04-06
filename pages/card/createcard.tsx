@@ -1,7 +1,7 @@
 import React from "react";
 
 import { updateCard } from "../../api/admin/apiCard";
-import LayoutUser from "../../components/home/LayoutUser";
+//import LayoutUser from "../../components/home/LayoutUser";
 import KonvaCard from "../../components/konvacard/KonvaCard";
 
 interface Konva {
@@ -15,7 +15,7 @@ function CreateCard() {
   const [data, setData] = React.useState<Konva[]>([]);
 
   return (
-    <LayoutUser>
+    <div>
       <button
         className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
         onClick={() =>
@@ -30,7 +30,7 @@ function CreateCard() {
         Save New
       </button>
       <KonvaCard data={data} setData={setData} />
-    </LayoutUser>
+    </div>
   );
 }
 export default CreateCard;
