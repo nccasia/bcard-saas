@@ -1,8 +1,8 @@
 /* eslint-disable react/no-children-prop */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 
-// import Image from "next/image";
-// import logo from "../../public/logo.png";
+import logo_content from "../../public/logo_content.png";
 // import Image from "next/image";
 // import logo_content from "../../public/logo_content.png";
 // import logoncc from "../../public/logoncc.png";
@@ -40,11 +40,21 @@ function ExcelCard({ profile, params }: any) {
               <div className={styles.mainCard1}>
                 <div className={styles.contenCard}>
                   <div className={styles.cardImage}>
+                    <div className={styles.image}>
+                      <Image
+                        src={logo_content}
+                        alt="logo"
+                        width="100%"
+                        height="35.7%"
+                        layout="responsive"
+                        style={{ objectFit: "contain" }}
+                      />
+                      {/* <img src={require("../../public/logo_content.png")} alt="" /> */}
+                    </div>
                     {/* <div style={{ display: "flex", alignItems: "center" }}>
-                      <Image src={logo} alt="logo" width={30} height={30} />
                       <p style={{ color: "red", fontSize: "30px" }}>ncc</p>
                     </div> */}
-                    <img src={profile?.logo} alt="hello" className={styles.img1} />
+                    {/* <img src={profile?.logo} alt="hello" className={styles.img1} /> */}
                   </div>
                 </div>
                 <div className={styles.contentCard1}>
