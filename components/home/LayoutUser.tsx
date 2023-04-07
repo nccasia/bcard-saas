@@ -1,10 +1,10 @@
 import React from "react";
 
-//import Header from "../../components/home/Header";
-const LayoutUser = ({ children }: { children: React.ReactNode }) => {
+import Header from "../../components/home/Header";
+const LayoutUser = ({ children, open, setOpen }: any) => {
   return (
     <div>
-      {/* <Header open={open} setOpen={setOpen}/> */}
+      <Header open={open} setOpen={setOpen} />
       <div
         style={{
           padding: "5vh 0",
