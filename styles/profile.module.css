@@ -225,8 +225,8 @@
 }
 .iconSwitch {
   position: absolute;
-  top: -50px;
-  right: 30px;
+  top: -160px;
+  right: 15px;
 }
 .headingText {
   font-size: 25px;
@@ -251,12 +251,12 @@
   /* Các kiểu dáng riêng cho mobile ở đây */
   /* Ví dụ: */
   .divCard {
-    padding: 0 20px;
+    padding: 0 15px;
   }
   .iconSwitch {
     position: absolute;
-    top: -75px;
-    right: 5px;
+    top: -150px;
+    right: 10px;
   }
   .card {
     display: flex;
@@ -269,7 +269,10 @@
   .headCard1,
   .mainCard1 {
     width: 360px;
-    height: 230px;
+    height: 200px;
+  }
+  .mainCard1{
+    padding: 22px 5px;
   }
   .image {
     width: 100px;

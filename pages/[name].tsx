@@ -8,6 +8,7 @@ import React from "react";
 
 import { getNameCard } from "../api/profile/apiProfile";
 import Header from "../components/home/Header";
+//import LayoutUser from "../components/home/LayoutUser";
 import ExcelCard from "../components/users/ExcelCard";
 import styles from "../styles/profile.module.css";
 
@@ -42,10 +43,8 @@ function Name() {
       <Header open={open} setOpen={setOpen} />
       <div
         style={{
-          // height: "100vh",
           textAlign: "center",
-          // overflowX: "auto",
-          // padding: 10,
+          padding: "5vh 0",
         }}
       >
         {profile && (
@@ -61,7 +60,7 @@ function Name() {
                 {!open && (
                   <FontAwesomeIcon
                     icon="address-card"
-                    style={{ fontSize: "25px", color: "#ff0d00a8" }}
+                    style={{ fontSize: "20px", color: "#ff0d00a8" }}
                   />
                 )}
               </Fab> */}

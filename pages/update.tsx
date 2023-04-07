@@ -61,7 +61,7 @@ function Update() {
         // logo: "https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg",
         // slogan:"We do it with passion",
         web: "http://ncc.asia",
-        address: "4th Floor, 138 Ha Huy Tap St., Vinh City",
+        address: "4th Floor, 138 Ha Huy Tap St., Vinh City, Nghe An Province, Vietnam",
       },
     ];
     worksheet.addRows(data);
@@ -159,7 +159,7 @@ function Update() {
               />
               <Button component="span">
                 <div className={styles.content}>
-                  <Image src={excel} width="50px" height="50px" alt="excel" />
+                  <Image src={excel} width={50} height={50} alt="excel" />
                   <div>
                     <p>{nameFile}</p>
                     <p>{fileSize(sizeFile)}</p>

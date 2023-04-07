@@ -44,8 +44,8 @@ function ExcelCard({ profile, params }: any) {
                       <Image
                         src={logo_content}
                         alt="logo"
-                        width="100%"
-                        height="35.7%"
+                        // width="100%"
+                        // height="35.7%"
                         layout="responsive"
                         style={{ objectFit: "contain" }}
                       />
@@ -65,13 +65,6 @@ function ExcelCard({ profile, params }: any) {
                     </p>
                   </div>
                   {/* <p>{profile.position}</p> */}
-                  {/* <div className={styles.itemContent} style={{ marginTop: "15px" }}>
-                    <FontAwesomeIcon
-                      icon="location-dot"
-                      style={{ fontSize: "16px", color: "#da2325" }}
-                    />
-                    <p style={{ fontSize: "16px", lineHeight: 1.3 }}>{profile?.address}</p>
-                  </div> */}
                   <div className={styles.itemContent}>
                     <FontAwesomeIcon
                       icon="envelope"
@@ -88,6 +81,12 @@ function ExcelCard({ profile, params }: any) {
                     <FontAwesomeIcon icon="globe" className={styles.icon} />
                     <p className={styles.text1}>{profile?.web}</p>
                   </div>
+                  {/* <div className={styles.itemContent}>
+                    <FontAwesomeIcon icon="location-dot" className={styles.icon} />
+                    <p className={styles.text1} style={{ lineHeight: "20px" }}>
+                      {profile?.address}
+                    </p>
+                  </div> */}
                 </div>
               </div>
             </div>
