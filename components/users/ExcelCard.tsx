@@ -59,9 +59,9 @@ function ExcelCard({ profile, params }: any) {
                 </div>
                 <div className={styles.contentCard1}>
                   <div className={styles.title1}>
-                    <h1 className={styles.headingText}>{profile?.username}</h1>
+                    <h1 className={styles.headingText}>{profile?.Name}</h1>
                     <p style={{ color: "#646464", fontSize: "16px", fontWeight: 400 }}>
-                      {profile?.position}
+                      {profile?.Title}
                     </p>
                   </div>
                   {/* <p>{profile.position}</p> */}
@@ -78,15 +78,15 @@ function ExcelCard({ profile, params }: any) {
                       className={styles.icon}
                       // style={{ fontSize: "16px", color: "rgb(157 155 155)" }}
                     />
-                    <p className={styles.text1}>{profile?.email}</p>
+                    <p className={styles.text1}>{profile?.Email}</p>
                   </div>
                   <div className={styles.itemContent}>
                     <FontAwesomeIcon icon="phone" className={styles.icon} />
-                    <p className={styles.text1}>{profile?.phone}</p>
+                    <p className={styles.text1}>{profile?.Phone}</p>
                   </div>
                   <div className={styles.itemContent}>
                     <FontAwesomeIcon icon="globe" className={styles.icon} />
-                    <p className={styles.text1}>{profile?.web}</p>
+                    <p className={styles.text1}>{profile?.Web}</p>
                   </div>
                 </div>
               </div>

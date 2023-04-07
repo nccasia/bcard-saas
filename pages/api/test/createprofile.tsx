@@ -10,11 +10,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const { data } = req.body;
       await prisma.excel.deleteMany();
-      const excel = await prisma.excel.createMany({
+      await prisma.excel.createMany({
         data: data,
         skipDuplicates: true,
       });
-      res.status(200).json(excel);
+      const excel1 = await prisma.excel.findMany({
+        select: {
+          NameId: true,
+        },
+      });
+      res.status(200).json(excel1);
     } catch (error) {
       console.log(error);
       res.status(500).json({

@@ -18,6 +18,8 @@ const SelectBackgroundColorNav = styled.div`
   color: white;
   cursor: pointer;
   border-radius: 50%;
+  width: 45px;
+  height: 45px;
 `;
 
 function Header({ open, setOpen }: any) {

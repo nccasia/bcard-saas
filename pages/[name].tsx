@@ -15,6 +15,7 @@ function Name() {
   const [profile, setProfile] = React.useState<any>();
   const router = useRouter();
   const { name } = router.query;
+  console.log(name);
   React.useEffect(() => {
     if (name) {
       getNameCard("/api/test/" + name).then((main) => {
@@ -50,22 +51,6 @@ function Name() {
       >
         {profile && (
           <div className={styles.container}>
-            {/* <div className={styles.iconSwitch}> */}
-            {/* <Switch  
-                            color="warning" 
-                            onChange={()=>setOpen(!open)}
-
-                        /> */}
-            {/* <Fab onClick={() => setOpen(!open)}>
-                {open && <QrCodeScannerIcon />}
-                {!open && (
-                  <FontAwesomeIcon
-                    icon="address-card"
-                    style={{ fontSize: "25px", color: "#ff0d00a8" }}
-                  />
-                )}
-              </Fab> */}
-            {/* </div> */}
             <div className={styles.divCard}>
               {open && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
               {!open && (

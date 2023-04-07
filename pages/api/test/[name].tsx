@@ -11,7 +11,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     try {
       const data = await prisma.excel.findMany({
-        where: { name: String(name) },
+        where: { NameId: String(name) },
       });
       res.status(200).json(data);
     } catch (error) {
