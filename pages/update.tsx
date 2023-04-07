@@ -4,7 +4,8 @@ import { Button, Input, InputLabel } from "@mui/material";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import Link from "next/link";
+//import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 import { updateProfile } from "../api/profile/apiProfile";
@@ -12,10 +13,9 @@ import excel from "../public/excel.png";
 import styles from "../styles/update.module.css";
 import { changeExcel } from "../utils/changeExcel";
 import { fileSize } from "../utils/fileSize";
-
 function Update() {
   const [data, setData] = useState<any>([]);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState("");
   const [nameFile, setNameFile] = useState("");
   const [sizeFile, setSizeFile] = useState(0);
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,37 +31,33 @@ function Update() {
     //const fileName = file ? file.name : "";
     setNameFile(file ? file.name : "");
     setSizeFile(file ? file.size : "");
-    setOpen(true);
+    setOpen("upload");
   };
-  //console.log(data)
+  console.log(data);
 
   const exampleExcel = async () => {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Sheet1");
     worksheet.columns = [
-      { header: "name", key: "name", width: 30 },
-      { header: "username", key: "username", width: 30 },
-      { header: "email", key: "email", width: 30 },
-      { header: "phone", key: "phone", width: 30 },
-      { header: "position", key: "position", width: 30 },
-      { header: "company", key: "company", width: 30 },
-      // { header: "logo", key: "logo", width: 30 },
-      //   { header: 'slogan', key: 'slogan', width: 30 },
-      { header: "web", key: "web", width: 30 },
-      { header: "address", key: "address", width: 40 },
+      { header: "NameId", key: "NameId", width: 30 },
+      { header: "Name", key: "Name", width: 30 },
+      { header: "Title", key: "Title", width: 30 },
+      { header: "Email", key: "Email", width: 30 },
+      { header: "Phone", key: "Phone", width: 30 },
+      // { header: "Address", key: "Address", width: 40 },
+      // { header: "Company", key: "Company", width: 30 },
+      // { header: "Web", key: "Web", width: 30 },
     ];
     const data = [
       {
-        name: "dai.trinhduc",
-        username: "Trịnh Đức Đại",
-        email: "dai.trinhduc@ncc.asia",
-        phone: "(+84) 2466874606",
-        position: "Vinh Branch Manager",
-        company: "NCCPLUS VIETNAM JSC",
-        // logo: "https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg",
-        // slogan:"We do it with passion",
-        web: "http://ncc.asia",
-        address: "4th Floor, 138 Ha Huy Tap St., Vinh City, Nghe An Province, Vietnam",
+        NameId: "dai.trinhduc",
+        Name: "Trịnh Đức Đại",
+        Title: "Vinh Branch Manager",
+        Email: "dai.trinhduc@ncc.asia",
+        Phone: "(+84) 2466874606",
+        // Address: "4th Floor, 138 Ha Huy Tap St., Vinh City",
+        // Company: "NCCPLUS VIETNAM JSC",
+        // Web: "http://ncc.asia",
       },
     ];
     worksheet.addRows(data);
@@ -71,12 +67,12 @@ function Update() {
     });
     saveAs(blob, "example.xlsx");
   };
-  const router: any = useRouter();
-  console.log(data);
+  const [datalink, setDataLink] = useState<any>([]);
+  //const router: any = useRouter();
 
   return (
-    <div className={styles.container}>
-      {!open && (
+    <div>
+      {open === "" && (
         <div>
           <h1 className={styles.heading}>CREATE YOUR CARD</h1>
           <InputLabel htmlFor="file-upload">
@@ -139,7 +135,7 @@ function Update() {
           </div>
         </div>
       )}
-      {open && (
+      {open === "upload" && (
         <div>
           <h1 className={styles.heading}>CREATE YOUR CARD</h1>
           <div className={styles.boxcontent}>
@@ -170,8 +166,8 @@ function Update() {
             <button
               onClick={() => {
                 if (data) {
-                  router.push("/" + data[0]?.name);
-                  updateProfile(data);
+                  setOpen("link");
+                  updateProfile(data).then((main: any) => setDataLink(main));
                 }
               }}
               style={{
@@ -186,6 +182,19 @@ function Update() {
           </div>
         </div>
       )}
+      {open === "link" && datalink
+        ? datalink.map((main: any, index: number) => {
+            return (
+              <div key={index}>
+                <p>{index}</p>
+                <p>{main.NameId}</p>
+                <Link href={"/" + main.NameId}>
+                  {process.env.NEXT_PUBLIC_BASE_URL + "/" + main.NameId}
+                </Link>
+              </div>
+            );
+          })
+        : null}
     </div>
   );
 }

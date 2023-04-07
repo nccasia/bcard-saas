@@ -85,18 +85,22 @@ model Profile {
 }
 
 model Excel {
-  id        Int   @id @default(autoincrement())
-  name      String? @unique
-  email     String? @unique
-  username  String?
-  web       String?
-  phone     String?
-  address   String?
-  logo      String?
-  slogan    String?
-  position  String?
-  action    String?
-  img       String?
-  company   String?
+  Id        Int   @id @default(autoincrement())
+  Email     String @unique
+  Name      String?
+  Web       String?
+  Phone     String?
+  Address   String?
+  Logo      String?
+  Slogan    String?
+  Title     String?
+  Action    String?
+  Avatar    String?
+  Company   String?
+  NameId    String @unique 
 }
+
+
+
+
 
