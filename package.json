@@ -44,6 +44,7 @@
     "react-dom": "^18.1.0",
     "react-hook-form": "^7.32.2",
     "react-konva": "^18.2.5",
+    "react-toastify": "^9.1.2",
     "react-transition-group": "^4.4.5",
     "tesseract.js": "^4.0.2"
   },

@@ -2,6 +2,8 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 // import Fab from "@mui/material/Fab";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useRouter } from "next/router";
 import QRCode from "qrcode-generator";
 import React from "react";
@@ -23,6 +25,7 @@ function Name() {
           main.map((item: any) => {
             setProfile({ ...item });
           });
+          // alert("Success!");
         }
       });
     }
@@ -78,7 +81,7 @@ function Name() {
             </div>
           </div>
         )}
-        {!profile && <p>No...</p>}
+        {/* {!profile && <p>No...</p>} */}
       </div>
     </>
   );
