@@ -1,12 +1,13 @@
 /* eslint-disable react/no-children-prop */
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
-import Fab from "@mui/material/Fab";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
+//import Fab from "@mui/material/Fab";
 import QRCode from "qrcode-generator";
 import React from "react";
 
 import { getNameCard } from "../api/profile/apiProfile";
-import LayoutUser from "../components/home/LayoutUser";
+import Header from "../components/home/Header";
+//import LayoutUser from "../components/home/LayoutUser";
 import ExcelCard from "../components/users/ExcelCard";
 import styles from "../styles/profile.module.css";
 
@@ -35,34 +36,27 @@ function Name({ params }: any) {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <>
-      <LayoutUser children={undefined}></LayoutUser>
+    <div>
+      <Header open={open} setOpen={setOpen} />
       <div
         style={{
-          // height: "100vh",
           textAlign: "center",
-          // overflowX: "auto",
-          // padding: 10,
+          padding: "5vh 0",
         }}
       >
         {profile && (
           <div className={styles.container}>
-            <div className={styles.iconSwitch}>
-              {/* <Switch  
-                            color="warning" 
-                            onChange={()=>setOpen(!open)}
-
-                        /> */}
-              <Fab onClick={() => setOpen(!open)}>
-                {open && <QrCodeScannerIcon />}
+            {/* <div className={styles.iconSwitch}> */}
+            {/* <Fab onClick={() => setOpen(!open)}>
+                {open && <QrCodeScannerIcon style={{ width: "50px" }} />}
                 {!open && (
                   <FontAwesomeIcon
                     icon="address-card"
-                    style={{ fontSize: "25px", color: "#ff0d00a8" }}
+                    style={{ fontSize: "20px", color: "#ff0d00a8" }}
                   />
                 )}
-              </Fab>
-            </div>
+              </Fab> */}
+            {/* </div> */}
             <div className={styles.divCard}>
               {open && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
               {!open && (
@@ -78,7 +72,7 @@ function Name({ params }: any) {
         )}
         {!profile && <p>No...</p>}
       </div>
-    </>
+    </div>
   );
 }
 
