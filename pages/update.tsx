@@ -15,7 +15,7 @@ import { changeExcel } from "../utils/changeExcel";
 import { fileSize } from "../utils/fileSize";
 function Update() {
   const [data, setData] = useState<any>([]);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState("");
   const [nameFile, setNameFile] = useState("");
   const [sizeFile, setSizeFile] = useState(0);
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,9 +31,9 @@ function Update() {
     //const fileName = file ? file.name : "";
     setNameFile(file ? file.name : "");
     setSizeFile(file ? file.size : "");
-    setOpen(true);
+    setOpen("upload");
   };
-  //console.log(data)
+  console.log(data);
 
   const exampleExcel = async () => {
     const workbook = new ExcelJS.Workbook();
@@ -69,11 +69,10 @@ function Update() {
   };
   const [datalink, setDataLink] = useState<any>([]);
   //const router: any = useRouter();
-  //console.log(data);
 
   return (
-    <div className={styles.container}>
-      {!open && (
+    <div>
+      {open === "" && (
         <div>
           <h1 className={styles.heading}>CREATE YOUR CARD</h1>
           <InputLabel htmlFor="file-upload">
@@ -136,7 +135,7 @@ function Update() {
           </div>
         </div>
       )}
-      {open && (
+      {open === "upload" && (
         <div>
           <h1 className={styles.heading}>CREATE YOUR CARD</h1>
           <div className={styles.boxcontent}>
@@ -156,7 +155,7 @@ function Update() {
               />
               <Button component="span">
                 <div className={styles.content}>
-                  <Image src={excel} width="50px" height="50px" alt="excel" />
+                  <Image src={excel} width={50} height={50} alt="excel" />
                   <div>
                     <p>{nameFile}</p>
                     <p>{fileSize(sizeFile)}</p>
@@ -167,6 +166,7 @@ function Update() {
             <button
               onClick={() => {
                 if (data) {
+                  setOpen("link");
                   updateProfile(data).then((main: any) => setDataLink(main));
                 }
               }}
@@ -182,7 +182,7 @@ function Update() {
           </div>
         </div>
       )}
-      {datalink
+      {open === "link" && datalink
         ? datalink.map((main: any, index: number) => {
             return (
               <div key={index}>
