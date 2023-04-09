@@ -6,12 +6,32 @@ import { prisma } from "../../../lib/prisma";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   //const session = await getSession({ req });
   //if (session) {
+  const { data } = req.body;
+  if (!data) {
+    res.status(400).json({ errorMessage: "Not data" });
+  }
+  let hasValidData = false;
+  data.forEach((item: any) => {
+    if ("Email" in item && item.Email) {
+      hasValidData = true;
+    } else {
+      res.status(400).json({ errorMessage: "Not Email" });
+      return;
+    }
+  });
+
+  if (!hasValidData) {
+    res.status(400).json({ errorMessage: "No valid data" });
+    return;
+  }
   if (req.method === "POST") {
     try {
-      const { data } = req.body;
+      const list = data.map((main: any) => {
+        return { ...main, ...{ NameId: main.Email.split("@")[0] } };
+      });
       await prisma.excel.deleteMany();
       await prisma.excel.createMany({
-        data: data,
+        data: list,
         skipDuplicates: true,
       });
       const excel1 = await prisma.excel.findMany({
@@ -28,10 +48,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     }
   }
-  // else {
-  //   res.status(405).end({ errorMessage: "Request method not allowed." });
-  //}
-  // } else {
-  //   res.status(401).json({ errorMessage: "Access Denied." });
-  // }
 }
