@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const updateProfile = async (props: any) => {
   try {
@@ -10,9 +11,10 @@ export const updateProfile = async (props: any) => {
         "Content-Type": "application/json",
       },
     });
+    toast.success("Success!");
     return res.data;
   } catch (error: any) {
-    console.log(error.message);
+    toast.error(error?.response?.data?.errorMessage);
   }
 };
 
@@ -28,6 +30,6 @@ export const getNameCard = async (index: string) => {
     return res.data;
   } catch (error: any) {
     console.log(error);
-    return [];
+    //return [];
   }
 };

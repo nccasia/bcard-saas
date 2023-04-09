@@ -1,3 +1,5 @@
+import "react-toastify/dist/ReactToastify.css";
+
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import { Button, Input, InputLabel } from "@mui/material";
@@ -7,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 //import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 import { updateProfile } from "../api/profile/apiProfile";
 import excel from "../public/excel.png";
@@ -33,13 +36,13 @@ function Update() {
     setSizeFile(file ? file.size : "");
     setOpen("upload");
   };
-  console.log(data);
+  //console.log(data);
 
   const exampleExcel = async () => {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Sheet1");
     worksheet.columns = [
-      { header: "NameId", key: "NameId", width: 30 },
+      //{ header: "NameId", key: "NameId", width: 30 },
       { header: "Name", key: "Name", width: 30 },
       { header: "Title", key: "Title", width: 30 },
       { header: "Email", key: "Email", width: 30 },
@@ -50,7 +53,7 @@ function Update() {
     ];
     const data = [
       {
-        NameId: "dai.trinhduc",
+        //NameId: "dai.trinhduc",
         Name: "Trịnh Đức Đại",
         Title: "Vinh Branch Manager",
         Email: "dai.trinhduc@ncc.asia",
@@ -182,6 +185,7 @@ function Update() {
           </div>
         </div>
       )}
+      <ToastContainer />
       {open === "link" && datalink
         ? datalink.map((main: any, index: number) => {
             return (
