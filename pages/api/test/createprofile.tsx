@@ -24,6 +24,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(400).json({ errorMessage: "No valid data" });
     return;
   }
+  let duplicates = 0;
+  for (let i = 0; i < data.length; i++) {
+    for (let j = i + 1; j < data.length; j++) {
+      if (data[i].Email === data[j].Email) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        duplicates++;
+      }
+    }
+  }
+  if (duplicates !== 0) {
+    res.status(400).json({ errorMessage: "There are duplicate emails." });
+  }
+
   if (req.method === "POST") {
     try {
       const list = data.map((main: any) => {
