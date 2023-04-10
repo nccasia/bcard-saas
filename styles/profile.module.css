@@ -252,6 +252,9 @@
   font-size: 25px;
   color: #606060;
   font-weight: 500;
+  white-space: nowrap;
+  /* overflow: hidden; */
+  text-overflow: ellipsis;
 }
 
 .image {
@@ -323,9 +326,11 @@
   }
 
   .headingText {
-    font-size: 24px;
+    font-size: 20px;
   }
-
+  .title1{
+    margin-bottom: 10px;
+  }
   .text1 {
     font-size: 14px;
   }
