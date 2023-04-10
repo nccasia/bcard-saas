@@ -294,8 +294,8 @@ function Update() {
                       {data.NameId}
                     </StyledTableCell>
                     <StyledTableCell className={styles.td}>
-                      <Link href={`/api/test/${data.NameId}`}>
-                        {`${process.env.NEXT_PUBLIC_BASE_URL}/api/test/${data.NameId}`}
+                      <Link href={`${data.NameId}`}>
+                        {`${process.env.NEXT_PUBLIC_BASE_URL}/${data.NameId}`}
                       </Link>
                     </StyledTableCell>
                   </StyledTableRow>
