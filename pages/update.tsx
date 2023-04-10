@@ -3,12 +3,10 @@ import "react-toastify/dist/ReactToastify.css";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import {
-  Alert,
   Button,
   Input,
   InputLabel,
   Paper,
-  Snackbar,
   styled,
   Table,
   TableBody,
@@ -23,6 +21,7 @@ import Image from "next/image";
 import Link from "next/link";
 //import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 import { updateProfile } from "../api/profile/apiProfile";
 // import Sidebar from "../components/home/Sidebar";
@@ -57,11 +56,6 @@ function Update() {
   const [open, setOpen] = useState("");
   const [nameFile, setNameFile] = useState("");
   const [sizeFile, setSizeFile] = useState(0);
-  const [openSnak, setOpenSnak] = useState(false);
-
-  const handleClose = () => {
-    setOpenSnak(false);
-  };
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file: any = event.target.files ? event.target.files[0] : null;
     const workbook = new ExcelJS.Workbook();
@@ -224,12 +218,6 @@ function Update() {
                       setOpen("link");
                       updateProfile(data).then((main: any) => setDataLink(main));
                     }
-                    // toast.success("Thành công!", {
-                    //   position: toast.POSITION.TOP_CENTER,
-                    //   // style: { right: "-600px", bottom: "-65px" },
-                    // });
-                    // console.log(toast, "hhh");
-                    setOpenSnak(true);
                   }}
                   style={{
                     marginTop: "10px",
@@ -245,7 +233,7 @@ function Update() {
           )}
         </div>
       </div>
-      {open === "link" && datalink.length > 0 ? (
+      {open === "link" && datalink ? (
         // <table style={{ border: "1px solid #000", width: "50%", textAlign: "center" }}>
         //   <thead>
         //     <tr>
@@ -305,18 +293,9 @@ function Update() {
               </TableBody>
             </Table>
           </TableContainer>
-          <Snackbar
-            open={openSnak}
-            autoHideDuration={6000}
-            onClose={handleClose}
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          >
-            <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-              Thành công!
-            </Alert>
-          </Snackbar>
         </div>
       ) : null}
+      <ToastContainer />
     </>
   );
 }
