@@ -60,9 +60,7 @@ function ExcelCard({ profile, params }: any) {
                 <div className={styles.contentCard1}>
                   <div className={styles.title1}>
                     <h1 className={styles.headingText}>{profile?.Name}</h1>
-                    <p style={{ color: "#646464", fontSize: "16px", fontWeight: 400 }}>
-                      {profile?.Title}
-                    </p>
+                    <p className={styles.position}>{profile?.Title}</p>
                   </div>
                   {/* <p>{profile.position}</p> */}
                   <div className={styles.itemContent}>
