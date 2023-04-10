@@ -7,46 +7,62 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   //const session = await getSession({ req });
   //if (session) {
   const { data } = req.body;
-  if (!data) {
-    res.status(400).json({ errorMessage: "Not data" });
-  }
-  let hasValidData = false;
-  data.forEach((item: any) => {
-    if ("Email" in item && item.Email) {
-      hasValidData = true;
-    } else {
-      res.status(400).json({ errorMessage: "Not Email" });
-      return;
-    }
-  });
-
-  if (!hasValidData) {
-    res.status(400).json({ errorMessage: "No valid data" });
+  if (!data || data.length === 0) {
+    res.status(400).json({ errorMessage: "Empty data" });
     return;
-  }
-  let duplicates = 0;
-  for (let i = 0; i < data.length; i++) {
-    for (let j = i + 1; j < data.length; j++) {
-      if (data[i].Email === data[j].Email) {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        duplicates++;
+  } else {
+    data.forEach((item: any) => {
+      if (!("Email" in item && item.Email)) {
+        res.status(400).json({ errorMessage: "No valid data(Email,...)" });
+      }
+    });
+    const duplicateEmails: any = [];
+    for (let i = 0; i < data.length; i++) {
+      for (let j = i + 1; j < data.length; j++) {
+        if (data[i].Email === data[j].Email) {
+          if (!duplicateEmails.includes(data[i].Email)) {
+            duplicateEmails.push(data[i].Email);
+          }
+        }
       }
     }
-  }
-  if (duplicates !== 0) {
-    res.status(400).json({ errorMessage: "There are duplicate emails." });
+    if (duplicateEmails.length > 0) {
+      res.status(400).json({ errorMessage: "Duplicate Emails: \n" + duplicateEmails.join(", ") });
+    }
   }
 
   if (req.method === "POST") {
     try {
+      const excel = await prisma.excel.findMany();
       const list = data.map((main: any) => {
         return { ...main, ...{ NameId: main.Email.split("@")[0] } };
       });
-      await prisma.excel.deleteMany();
-      await prisma.excel.createMany({
-        data: list,
-        skipDuplicates: true,
+      const differentElements = list.filter((listElement: any) => {
+        return !excel.some((excelElement: any) => {
+          return listElement.Email === excelElement.Email;
+        });
       });
+      const sameElements = list.filter((listElement: any) => {
+        return excel.some((excelElement: any) => {
+          return listElement.Email === excelElement.Email;
+        });
+      });
+      if (differentElements.length > 0) {
+        await prisma.excel.createMany({
+          data: differentElements,
+          skipDuplicates: true,
+        });
+      }
+      if (sameElements.length > 0) {
+        for (const element of sameElements) {
+          await prisma.excel.update({
+            where: {
+              Email: element.Email,
+            },
+            data: element,
+          });
+        }
+      }
       const excel1 = await prisma.excel.findMany({
         select: {
           NameId: true,
@@ -57,7 +73,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.log(error);
       res.status(500).json({
         error: error,
-        errorMessage: "An error occurred while creating your profile.",
+        errorMessage: "Error Server",
       });
     }
   }
