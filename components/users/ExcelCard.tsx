@@ -79,7 +79,7 @@ function ExcelCard({ profile, params }: any) {
                   </div>
                   <div className={styles.itemContent}>
                     <FontAwesomeIcon icon="globe" className={styles.icon} />
-                    <p className={styles.text1}>{profile?.Web}</p>
+                    <p className={styles.text1}>{profile?.Web || "http://www.ncc.asia"}</p>
                   </div>
                   {/* <div className={styles.itemContent}>
                     <FontAwesomeIcon icon="location-dot" className={styles.icon} />
