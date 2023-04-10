@@ -12,21 +12,15 @@ function Name() {
   const { name } = router.query;
   React.useEffect(() => {
     if (name) {
-      getNameCard("/api/test/" + name).then((main) => {
-        if (main.length === 1) {
-          main.map((item: any) => {
-            setProfile({ ...item });
-          });
-        }
-      });
+      getNameCard("/api/test/" + name).then((main) => setProfile(main));
     }
   }, [name]);
-
+  const [open, setOpen] = React.useState(false);
   //console.log(profile);
 
   return (
     <>
-      <LayoutUser children={undefined}></LayoutUser>
+      <LayoutUser children={undefined} open={open} setOpen={setOpen}></LayoutUser>
 
       <Grid
         container

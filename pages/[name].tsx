@@ -21,14 +21,7 @@ function Name() {
   console.log(name);
   React.useEffect(() => {
     if (name) {
-      getNameCard("/api/test/" + name).then((main) => {
-        if (main.length === 1) {
-          main.map((item: any) => {
-            setProfile({ ...item });
-          });
-          // alert("Success!");
-        }
-      });
+      getNameCard("/api/test/" + name).then((main) => setProfile(main));
     }
   }, [name]);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
@@ -41,6 +34,7 @@ function Name() {
   };
 
   const [open, setOpen] = React.useState(false);
+  // console.log(profile);
 
   return (
     <>

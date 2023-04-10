@@ -1,3 +1,5 @@
+import "react-toastify/dist/ReactToastify.css";
+
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import {
@@ -75,13 +77,13 @@ function Update() {
     setSizeFile(file ? file.size : "");
     setOpen("upload");
   };
-  console.log(data);
+  //console.log(data);
 
   const exampleExcel = async () => {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Sheet1");
     worksheet.columns = [
-      { header: "NameId", key: "NameId", width: 30 },
+      //{ header: "NameId", key: "NameId", width: 30 },
       { header: "Name", key: "Name", width: 30 },
       { header: "Title", key: "Title", width: 30 },
       { header: "Email", key: "Email", width: 30 },
@@ -92,7 +94,7 @@ function Update() {
     ];
     const data = [
       {
-        NameId: "dai.trinhduc",
+        //NameId: "dai.trinhduc",
         Name: "Trịnh Đức Đại",
         Title: "Vinh Branch Manager",
         Email: "dai.trinhduc@ncc.asia",
