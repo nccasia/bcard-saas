@@ -4,6 +4,7 @@
   margin-top: 5px;
   border-radius: 8px;
 }
+
 .container {
   width: 100%;
   position: relative;
@@ -42,6 +43,7 @@
   color: white;
   border-radius: 8px;
 }
+
 .cardImage {
   margin: auto;
   text-align: center;
@@ -52,11 +54,13 @@
   align-items: center;
   width: 100px;
 }
+
 .img {
   width: 140px;
   height: auto;
   /* border-radius: 50%; */
 }
+
 .img1 {
   width: 205px;
   height: auto;
@@ -70,15 +74,18 @@
   border-radius: 10px;
   filter: grayscale(100%) brightness(1000%);
 }
+
 .imageCard {
   width: 100px;
   height: auto;
   border-radius: 30%;
 }
+
 .img3 {
   width: 60%;
   height: 60%;
 }
+
 .content {
   font-size: 22px;
   margin: auto;
@@ -87,11 +94,13 @@
   flex: 1;
   line-height: 45px;
 }
+
 .itemContent {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
 .title,
 .title1 {
   line-height: 1;
@@ -104,6 +113,7 @@
   /* margin-left: 4px; */
   margin-bottom: 15px;
 }
+
 .headCard {
   width: 500px;
   height: 300px;
@@ -112,12 +122,15 @@
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
 .headCard {
   background-color: #ff370096;
 }
+
 .headCard1 {
   background-color: #26506296;
 }
+
 .headContent {
   margin: auto;
   text-align: center;
@@ -155,6 +168,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 40px 5px;
 }
+
 .contenCard {
   flex: 0.7;
   display: flex;
@@ -176,6 +190,7 @@
   flex: 1;
   line-height: 40px;
 }
+
 .contentCard1 {
   /* style={{ margin: "auto", textAlign: "left", color: "white", flex: 1 }} */
   font-size: 22px;
@@ -204,6 +219,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .home {
   background-color: #eeecec;
   width: 60px;
@@ -212,6 +228,7 @@
   padding: 5px 0;
   border-radius: 8px;
 }
+
 .text {
   width: 300px;
   font-size: 22px;
@@ -219,50 +236,67 @@
   border-top: 1px solid #fff;
   margin-top: 20px;
 }
+
 .divCard {
   margin: auto;
   text-align: center;
 }
+
 .iconSwitch {
   position: absolute;
   top: -160px;
   right: 15px;
 }
+
 .headingText {
   font-size: 25px;
   color: #606060;
   font-weight: 500;
 }
+
 .image {
   width: 120px;
 }
+
 .text1 {
   font-size: 16px;
   color: #767676;
 }
+
 .icon {
   font-size: 16px;
   color: #7e7b7b;
 }
+
+.position {
+  font-size: 16px;
+  color: #646464;
+  font-weight: 400;
+}
+
 @media (max-width: 768px) {
   .container {
     margin-top: 80px;
   }
+
   /* Các kiểu dáng riêng cho mobile ở đây */
   /* Ví dụ: */
   .divCard {
     padding: 0 15px;
   }
+
   .iconSwitch {
     position: absolute;
     top: -150px;
     right: 10px;
   }
+
   .card {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
   /* .contenCard{
     margin-top: 30px;
   } */
@@ -271,25 +305,36 @@
     width: 360px;
     height: 200px;
   }
-  .mainCard1{
+
+  .mainCard1 {
     padding: 22px 5px;
   }
+
   .image {
     width: 100px;
   }
+
   .img1 {
     width: 150px;
   }
+
   .itemContent {
     gap: 5px;
   }
+
   .headingText {
     font-size: 24px;
   }
+
   .text1 {
     font-size: 14px;
   }
+
   .icon {
     font-size: 13px;
+  }
+
+  .position {
+    font-size: 14px;
   }
 }

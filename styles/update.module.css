@@ -70,13 +70,10 @@
 .th {
   text-align: center;
   font-weight: bold;
-  background: #000;
+  background: #b86615;
   color: #fff;
   font-size: 20px;
 }
-/* .td{
-  text-align: center;
-} */
 .td:hover {
   background-color: #fff;
   color: blue;
