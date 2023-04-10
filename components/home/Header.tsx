@@ -34,7 +34,7 @@ function Header({ open, setOpen }: any) {
       </div>
       <div className={styles.headeRight}>
         <div style={{ background: "#fff", borderRadius: "50%" }}>
-          <Fab onClick={() => setOpen(!open)} sx={{ width: "45px", height: "45px" }}>
+          <Fab onClick={() => setOpen(!open)} sx={{ width: "40px", height: "40px" }}>
             {open && <QrCodeScannerIcon sx={{ color: "#f44336" }} />}
             {!open && <ContactEmergencyIcon sx={{ color: "#f44336" }} />}
           </Fab>

@@ -1,0 +1,26 @@
+export const data = [
+  {
+    name: "dai.trinhduc",
+    username: "Trịnh Đức Đại",
+    email: "dai.trinhduc@ncc.asia",
+    phone: "(+84) 2466874606",
+    position: "Vinh Branch Manager",
+    company: "NCCPLUS VIETNAM JSC",
+    // logo: "https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg",
+    // slogan:"We do it with passion",
+    web: "http://ncc.asia",
+    address: "4th Floor, 138 Ha Huy Tap St., Vinh City, Nghe An Province, Vietnam",
+  },
+  {
+    name: "dat.lethanh2",
+    username: "Lê Thành Đạt",
+    email: "dai.trinhduc@ncc.asia",
+    phone: "(+84) 2466874606",
+    position: "Vinh Branch Manager",
+    company: "NCCPLUS VIETNAM JSC",
+    // logo: "https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg",
+    // slogan:"We do it with passion",
+    web: "http://ncc.asia",
+    address: "4th Floor, 138 Ha Huy Tap St., Vinh City, Nghe An Province, Vietnam",
+  },
+];

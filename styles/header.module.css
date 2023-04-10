@@ -25,3 +25,9 @@
   display: flex;
   margin-right: 15px;
 }
+
+@media (max-width: 768px) {
+  .title{
+    display: none;
+  }
+}
