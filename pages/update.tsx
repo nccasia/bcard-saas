@@ -19,7 +19,7 @@ import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import Image from "next/image";
 import Link from "next/link";
-//import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
@@ -72,7 +72,7 @@ function Update() {
     setOpen("upload");
   };
   //console.log(data);
-
+  // const router = useRouter();
   const exampleExcel = async () => {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Sheet1");
@@ -106,7 +106,7 @@ function Update() {
     saveAs(blob, "example.xlsx");
   };
   const [datalink, setDataLink] = useState<any>([]);
-  //const router: any = useRouter();
+  // const router: any = useRouter();
 
   return (
     <>
@@ -217,6 +217,7 @@ function Update() {
                     if (data) {
                       setOpen("link");
                       updateProfile(data).then((main: any) => setDataLink(main));
+                      // router.push(`/$`);
                     }
                   }}
                   style={{
@@ -234,28 +235,6 @@ function Update() {
         </div>
       </div>
       {open === "link" && datalink ? (
-        // <table style={{ border: "1px solid #000", width: "50%", textAlign: "center" }}>
-        //   <thead>
-        //     <tr>
-        //       <th>STT</th>
-        //       <th>Tên</th>
-        //       <th>Link</th>
-        //     </tr>
-        //   </thead>
-        //   <tbody>
-        //     {datalink.map((data: any, index: number) => (
-        //       <tr key={index}>
-        //         <td>{index + 1}</td>
-        //         <td>{data.NameId}</td>
-        //         <td>
-        //           <Link href={`/api/test/${data.NameId}`}>
-        //             {`${process.env.NEXT_PUBLIC_BASE_URL}/api/test/${data.NameId}`}
-        //           </Link>
-        //         </td>
-        //       </tr>
-        //     ))}
-        //   </tbody>
-        // </table>
         <div style={{ border: "5px solid #ffff" }}>
           {/* <Sidebar /> */}
           <TableContainer component={Paper}>
