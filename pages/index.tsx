@@ -17,8 +17,9 @@ const Home: NextPage = ({ session }: any) => {
     //   router.push('/users/card');
     // }
     if (!session) {
-      router.push("/update");
+      router.push("/login");
     }
+    console.log("hhh");
   }, []);
 
   return (
@@ -27,6 +28,7 @@ const Home: NextPage = ({ session }: any) => {
         <title>Business Card App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/* <Login /> */}
     </div>
   );
 };

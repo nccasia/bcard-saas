@@ -19,15 +19,13 @@ import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import Image from "next/image";
 import Link from "next/link";
-// import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import { updateProfile } from "../api/profile/apiProfile";
-// import Sidebar from "../components/home/Sidebar";
+import Sidebar from "../components/home/Sidebar";
 import excel from "../public/excel.png";
 import logo from "../public/logo.png";
-// import styles from "../styles/admin.module.css";
 import styles from "../styles/update.module.css";
 import { changeExcel } from "../utils/changeExcel";
 import { fileSize } from "../utils/fileSize";
@@ -107,6 +105,10 @@ function Update() {
   };
   const [datalink, setDataLink] = useState<any>([]);
   // const router: any = useRouter();
+  // const [session, setSession] = React.useState<any>();
+  // React.useEffect(() => {
+  //   getSession().then((data) => setSession(data));
+  // }, []);
 
   return (
     <>
@@ -115,10 +117,11 @@ function Update() {
           <div>
             <Image src={logo} alt="logo" width={30} height={30} />
           </div>
-          <div className={styles.title}>Card-visit</div>
+          <div className={styles.title}>Business Card</div>
         </div>
         <div className={styles.headeRight}></div>
       </div>
+      <Sidebar />
       <div className={styles.container}>
         <div style={{ marginTop: "110px" }}>
           {open === "" && (

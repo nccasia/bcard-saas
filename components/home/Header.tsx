@@ -30,7 +30,7 @@ function Header({ open, setOpen }: any) {
         <div>
           <Image src={logo} alt="logo" width={30} height={30} />
         </div>
-        <div className={styles.title}>Card-visit</div>
+        <div className={styles.title}>Business Card</div>
       </div>
       <div className={styles.headeRight}>
         <div style={{ background: "#fff", borderRadius: "50%" }}>
