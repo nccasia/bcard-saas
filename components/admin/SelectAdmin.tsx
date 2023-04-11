@@ -78,7 +78,7 @@ function SelectAdmin(): JSX.Element {
               backgroundColor: "#9ca3af94",
             }}
           >
-            <th>Name</th>
+            <th>Id</th>
             <th>Email</th>
             <th>Action</th>
           </tr>
@@ -95,7 +95,8 @@ function SelectAdmin(): JSX.Element {
                     }}
                   >
                     <td>
-                      {openEdit !== item.id && item.name}
+                      {openEdit !== item.id}
+                      {item.id}
                       <input
                         type="text"
                         placeholder={item.name}

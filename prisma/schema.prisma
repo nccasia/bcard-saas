@@ -33,6 +33,11 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model Admin {
+  id            String    @id @default(cuid())
+  email         String?   @unique
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -42,12 +47,6 @@ model User {
   accounts      Account[]
   profile       Profile?
   sessions      Session[]
-}
-
-model Admin {
-  id            Int   @id @default(autoincrement())
-  name          String?
-  email         String?   @unique
 }
 
 model Card {

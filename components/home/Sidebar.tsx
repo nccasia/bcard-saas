@@ -25,10 +25,8 @@ const Sidebar = () => {
     setCheck(true);
     setBtn((prev) => !prev);
   };
-
-  //const [session, setSession]=React.useState<any>();
   const { data: session } = useSession();
-  console.log(session);
+  console.log(session?.user?.image);
   return (
     <div className={styles.container}>
       <div className={styles.user}>
@@ -36,7 +34,7 @@ const Sidebar = () => {
           <div className={styles.info}>
             {session?.user?.image && (
               <img
-                src={session.user.image}
+                src={session?.user?.image}
                 alt="avatar"
                 width="50px"
                 height="50px"
@@ -49,15 +47,11 @@ const Sidebar = () => {
             </div>
           </div>
         </div>
-        // eslint-disable-next-line react/jsx-no-comment-textnodes, react/jsx-no-comment-textnodes
         <div>
-          // eslint-disable-next-line jsx-a11y/no-static-element-interactions,
-          jsx-a11y/no-static-element-interactions
           <div className={styles.logout} onClick={handleClickBtn}>
             <KeyboardArrowDownIcon />
           </div>
           {btn ? (
-            // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
             <div className={styles.buttonLogout} onClick={() => signOut()}>
               <div>
                 <StartIcon />

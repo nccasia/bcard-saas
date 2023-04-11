@@ -33,3 +33,18 @@ export const getNameCard = async (index: string) => {
     //return [];
   }
 };
+
+export const getProfile = async () => {
+  try {
+    const res = await axios({
+      url: "/api/test/getprofile",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res.data;
+  } catch (error: any) {
+    toast.error(error?.response?.data?.errorMessage);
+  }
+};

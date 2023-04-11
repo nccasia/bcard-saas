@@ -22,10 +22,9 @@ const adminAll: NextApiHandler = async (req: NextApiRequest, res: NextApiRespons
   }
   if (req.method === "POST") {
     try {
-      const { name, email } = req.body;
+      const { email } = req.body;
       const admin = await prisma.admin.create({
         data: {
-          name: name,
           email: email,
         },
       });
@@ -55,13 +54,12 @@ const adminAll: NextApiHandler = async (req: NextApiRequest, res: NextApiRespons
   }
   if (req.method === "PUT") {
     try {
-      const { id, name, email } = req.body;
+      const { id, email } = req.body;
       const admin = await prisma.admin.update({
         where: {
           id: id,
         },
         data: {
-          name: name,
           email: email,
         },
       });
