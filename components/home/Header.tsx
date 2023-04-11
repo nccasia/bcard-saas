@@ -8,6 +8,7 @@ import React from "react";
 // import styled from "styled-components";
 import logo from "../../public/logo.png";
 import styles from "../../styles/header.module.css";
+import Logout from "../login/Logout";
 // import Login from "../login/Login";
 // import Logout from "../login/Logout";
 // import Signup from "../login/Signup";
@@ -33,6 +34,7 @@ function Header({ open, setOpen }: any) {
         <div className={styles.title}>Card-visit</div>
       </div>
       <div className={styles.headeRight}>
+        <Logout />
         <div style={{ background: "#fff", borderRadius: "50%" }}>
           <Fab onClick={() => setOpen(!open)} sx={{ width: "40px", height: "40px" }}>
             {open && <QrCodeScannerIcon sx={{ color: "#f44336" }} />}

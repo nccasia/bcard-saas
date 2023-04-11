@@ -23,14 +23,15 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
-import { updateProfile } from "../api/profile/apiProfile";
+import { getProfile, updateProfile } from "../../api/profile/apiProfile";
+import Logout from "../../components/login/Logout";
 // import Sidebar from "../components/home/Sidebar";
-import excel from "../public/excel.png";
-import logo from "../public/logo.png";
+import excel from "../../public/excel.png";
+import logo from "../../public/logo.png";
 // import styles from "../styles/admin.module.css";
-import styles from "../styles/update.module.css";
-import { changeExcel } from "../utils/changeExcel";
-import { fileSize } from "../utils/fileSize";
+import styles from "../../styles/update.module.css";
+import { changeExcel } from "../../utils/changeExcel";
+import { fileSize } from "../../utils/fileSize";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -106,6 +107,9 @@ function Update() {
     saveAs(blob, "example.xlsx");
   };
   const [datalink, setDataLink] = useState<any>([]);
+  React.useEffect(() => {
+    getProfile().then((main: any) => setDataLink(main));
+  }, []);
   // const router: any = useRouter();
 
   return (
@@ -117,7 +121,9 @@ function Update() {
           </div>
           <div className={styles.title}>Card-visit</div>
         </div>
-        <div className={styles.headeRight}></div>
+        <div className={styles.headeRight}>
+          <Logout />
+        </div>
       </div>
       <div className={styles.container}>
         <div style={{ marginTop: "110px" }}>
@@ -234,7 +240,7 @@ function Update() {
           )}
         </div>
       </div>
-      {open === "link" && datalink ? (
+      {datalink ? (
         <div style={{ border: "5px solid #ffff" }}>
           {/* <Sidebar /> */}
           <TableContainer component={Paper}>

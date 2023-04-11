@@ -67,7 +67,7 @@ export default function SignUp(): JSX.Element {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Login up
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -87,8 +87,9 @@ export default function SignUp(): JSX.Element {
                 <TextField
                   required
                   fullWidth
+                  type="password"
                   id="email"
-                  label="Email Address"
+                  label="Password"
                   name="email"
                   autoComplete="email"
                   value={emailAdd}
@@ -107,15 +108,8 @@ export default function SignUp(): JSX.Element {
                 setOpenAdd(false);
               }}
             >
-              Sign Up
+              Login Up
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />
