@@ -9,7 +9,7 @@ import QRCode from "qrcode-generator";
 import React from "react";
 
 import { getNameCard } from "../api/profile/apiProfile";
-import Header from "../components/home/Header";
+import HeaderCard from "../components/home/HeaderCard";
 //import LayoutUser from "../components/home/LayoutUser";
 import ExcelCard from "../components/users/ExcelCard";
 import styles from "../styles/profile.module.css";
@@ -38,7 +38,7 @@ function Name() {
 
   return (
     <>
-      <Header open={open} setOpen={setOpen} />
+      <HeaderCard open={open} setOpen={setOpen} />
       <div
         style={{
           textAlign: "center",

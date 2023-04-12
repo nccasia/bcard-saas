@@ -1,16 +1,16 @@
-// import { signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
+import React from "react";
 
 const Login = () => {
   return (
     <div>
-      {/* <button
-        className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+      <button
         onClick={() => {
           signIn("google", { callbackUrl: "/" });
         }}
       >
-        Log in
-      </button> */}
+        Sign in with Google
+      </button>
     </div>
   );
 };

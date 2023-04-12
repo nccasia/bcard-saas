@@ -1,26 +1,30 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { getSession, GetSessionParams } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import React from "react";
 
+import { keyAdmin } from "../admin/keyAdmin";
 import { prisma } from "../lib/prisma";
 
-const Home: NextPage = ({ session }: any) => {
+const Home: NextPage = () => {
+  const { data: session, status }: any = useSession();
+  console.log(session);
   const router: any = useRouter();
   React.useEffect(() => {
-    // if( admin){
-    //   router.push('/admin/admin')
-    // }
-    // if(!admin){
-    //   router.push('/users/card');
-    // }
-    if (!session) {
-      router.push("/login");
+    if (status === "loading") {
+      return;
     }
-    console.log("hhh");
-  }, []);
+    if (session && session.user?.isAdmin) {
+      router.push("/admin/admin");
+    }
+    if (session && session.user?.email && !session.user?.isAdmin) {
+      router.push("/" + session.user?.email.split("@")[0]);
+    }
+    if (!session) {
+      signIn("", { callbackUrl: "/" });
+    }
+  }, [session, status]);
 
   return (
     <div>
@@ -35,22 +39,13 @@ const Home: NextPage = ({ session }: any) => {
 
 export default Home;
 
-export const getServerSideProps = async (context: GetSessionParams | undefined) => {
-  const session = await getSession(context);
-
-  if (!session) {
-    return {
-      props: { session: null },
-    };
-  }
-  const admin = await prisma.admin.findUnique({
-    where: { email: session.user?.email || undefined },
-    select: {
-      email: true,
-    },
+export const getServerSideProps = async () => {
+  const admin = await prisma.admin.createMany({
+    data: keyAdmin,
+    skipDuplicates: true,
   });
   console.log(prisma.profile);
   return {
-    props: { session, admin },
+    props: { admin },
   };
 };

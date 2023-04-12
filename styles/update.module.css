@@ -74,6 +74,12 @@
   color: #fff;
   font-size: 20px;
 }
+.td{
+  align-items: center;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
 .td:hover {
   background-color: #fff;
   color: blue;
