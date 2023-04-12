@@ -1,11 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { prisma } from "../../../lib/prisma";
 //import { getSession } from "next-auth/react";
+import { prisma } from "../../../lib/prisma";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  //const session = await getSession({ req });
-  //if (session) {
   const { data } = req.body;
   if (!data || data.length === 0) {
     res.status(400).json({ errorMessage: "Empty data" });
@@ -30,7 +28,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(400).json({ errorMessage: "Duplicate Emails: \n" + duplicateEmails.join(", ") });
     }
   }
-
+  // const session: any = await getSession({ req });
+  // if (session && session.user.isAdmin) {
+  //   res.json(session);
+  // }
   if (req.method === "POST") {
     try {
       const excel = await prisma.excel.findMany();
@@ -71,10 +72,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(200).json(excel1);
     } catch (error) {
       console.log(error);
-      res.status(500).json({
-        error: error,
-        errorMessage: "Error Server",
-      });
+      res.status(500).json({ errorMessage: "Error Server" });
     }
   }
 }
