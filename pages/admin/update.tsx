@@ -8,20 +8,19 @@ import {
   DialogContent,
   Input,
   InputLabel,
-  // Paper,
-  // styled,
-  // Table,
-  // TableBody,
-  // TableCell,
-  // tableCellClasses,
-  // TableContainer,
-  // TableRow,
+  Paper,
+  styled,
+  Table,
+  TableBody,
+  TableCell,
+  tableCellClasses,
+  TableContainer,
+  TableRow,
 } from "@mui/material";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import Image from "next/image";
 import Link from "next/link";
-// import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
@@ -36,25 +35,25 @@ import styles from "../../styles/update.module.css";
 import { changeExcel } from "../../utils/changeExcel";
 import { fileSize } from "../../utils/fileSize";
 
-// const StyledTableCell = styled(TableCell)(({ theme }) => ({
-//   [`&.${tableCellClasses.head}`]: {
-//     backgroundColor: theme.palette.common.black,
-//     color: theme.palette.common.white,
-//   },
-//   [`&.${tableCellClasses.body}`]: {
-//     fontSize: 14,
-//   },
-// }));
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
 
-// const StyledTableRow = styled(TableRow)(({ theme }) => ({
-//   "&:nth-of-type(odd)": {
-//     backgroundColor: theme.palette.action.hover,
-//   },
-//   // hide last border
-//   "&:last-child td, &:last-child th": {
-//     border: 0,
-//   },
-// }));
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 function Update() {
   const [data, setData] = useState<any>([]);
   const [open, setOpen] = useState("");
@@ -115,16 +114,20 @@ function Update() {
     getProfile().then((main: any) => setDataLink(main));
   }, []);
   // const router: any = useRouter();
+  // const [session, setSession] = React.useState<any>();
+  // React.useEffect(() => {
+  //   getSession().then((data) => setSession(data));
+  // }, []);
 
   return (
     <HomeLayout>
       <Dialog open={openDia} onClose={() => setOpenDia(false)}>
         <DialogContent>
           {/* <div className={styles.container}> */}
-          <div style={{ marginTop: "110px" }}>
+          <div>
             {open === "" && (
               <div>
-                <h1 className={styles.heading}>CREATE YOUR CARD</h1>
+                {/* <h1 className={styles.heading}>CREATE YOUR CARD</h1> */}
                 <InputLabel htmlFor="file-upload">
                   <Input
                     id="file-upload"
@@ -137,6 +140,7 @@ function Update() {
                   />
                   <Button
                     component="span"
+                    className={styles.fileUp}
                     sx={{
                       display: "flex",
                       flexDirection: "column",
@@ -187,7 +191,7 @@ function Update() {
             )}
             {open === "upload" && (
               <div>
-                <h1 className={styles.heading}>CREATE YOUR CARD</h1>
+                {/* <h1 className={styles.heading}>CREATE YOUR CARD</h1> */}
                 <div className={styles.boxcontent}>
                   <div>
                     <FileUploadOutlinedIcon sx={{ fontSize: "80px" }} />
@@ -203,7 +207,7 @@ function Update() {
                         onChange: handleUpload,
                       }}
                     />
-                    <Button component="span">
+                    <Button component="span" className={styles.fileUp}>
                       <div className={styles.content}>
                         <Image src={excel} width={50} height={50} alt="excel" />
                         <div>
@@ -255,51 +259,53 @@ function Update() {
         >
           Upload Excel
         </button>
-        <table
-          style={{
-            width: "100%",
-          }}
-        >
-          <thead>
-            <tr
-              style={{
-                textAlign: "left",
-                border: "1px dotted #8080802e",
-                backgroundColor: "#9ca3af94",
-              }}
-            >
-              <th style={{ paddingLeft: "10px" }}>Id</th>
-              <th style={{ paddingLeft: "30px" }}>Name</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            {datalink
-              ? datalink.map((item: any, index: number) => {
-                  return (
-                    <tr
-                      key={index}
-                      style={{
-                        border: "1px dotted #80808059",
-                      }}
-                    >
-                      <td style={{ paddingLeft: "10px" }}>
-                        <p>{index + 1}</p>
-                      </td>
-                      <td style={{ paddingLeft: "30px" }}>
-                        <p>{item.NameId}</p>
-                      </td>
-                      <td>
-                        <Link href={"/" + item?.NameId}>
-                          {`${process.env.NEXT_PUBLIC_BASE_URL}/${item.NameId}`}
-                        </Link>
-                      </td>
-                    </tr>
-                  );
-                })
-              : null}
-          </tbody>
-        </table>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 500 }} aria-label="customized table">
+            <TableBody>
+              <StyledTableRow>
+                <StyledTableCell
+                  className={styles.th}
+                  style={{ fontSize: "18px", textAlign: "center" }}
+                >
+                  ID
+                </StyledTableCell>
+                <StyledTableCell
+                  className={styles.th}
+                  style={{ fontSize: "18px", textAlign: "center" }}
+                >
+                  Name
+                </StyledTableCell>
+                <StyledTableCell
+                  className={styles.th}
+                  style={{ fontSize: "18px", textAlign: "center" }}
+                >
+                  Link
+                </StyledTableCell>
+              </StyledTableRow>
+            </TableBody>
+            <TableBody>
+              {datalink
+                ? datalink.map((item: any, index: number) => {
+                    return (
+                      <StyledTableRow key={index}>
+                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
+                          <p>{index + 1}</p>
+                        </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
+                          <p>{item?.NameId}</p>
+                        </StyledTableCell>
+                        <StyledTableCell className={styles.td}>
+                          <Link href={"/" + item?.NameId}>
+                            {`${process.env.NEXT_PUBLIC_BASE_URL}/${item.NameId}`}
+                          </Link>
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    );
+                  })
+                : null}
+            </TableBody>
+          </Table>
+        </TableContainer>
         <ToastContainer />
       </div>
     </HomeLayout>

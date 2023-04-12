@@ -1,0 +1,27 @@
+
+.sidebar{
+    width: 20%;
+}
+.sidebarMobile{
+    display: none;
+    /* margin-top: 90px; */
+}
+
+.main{
+    width: 80%;
+    padding: 90px 20px;
+}
+
+
+@media (max-width: 768px) {
+    .sidebar{
+        display: none;
+    }
+    .sidebarMobile{
+        display: block;
+    }
+    .main{
+        width: 100%;
+        padding: 130px 5px;
+    }
+  }

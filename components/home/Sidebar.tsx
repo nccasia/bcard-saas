@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react/jsx-no-comment-textnodes */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 // import bgrSidebar from "../../asset/images/bgrSidebar.jpg";
 //import DateRangeIcon from "@mui/icons-material/DateRange";
@@ -8,23 +5,28 @@ import GroupWorkIcon from "@mui/icons-material/GroupWork";
 import HomeIcon from "@mui/icons-material/Home";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { List, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from "@mui/material";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 
 import styles from "../../styles/sidebar.module.css";
-import Logout from "../login/Logout";
+// import Logout from "../login/Logout";
 
 const Sidebar = () => {
   const [btn, setBtn] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [check, setCheck] = useState(false);
+  // const router = useRouter();
   const handleClickBtn = () => {
     setCheck(true);
     setBtn((prev) => !prev);
   };
+  // const handleLogout = () => {
+  //   router.push("/login");
+  // };
+
+  // const [session, setSession] = React.useState<any>();
   const { data: session } = useSession();
   console.log(session?.user?.image);
   return (
@@ -48,10 +50,10 @@ const Sidebar = () => {
           </div>
         </div>
         <div>
-          <div className={styles.logout} onClick={handleClickBtn}>
+          <div className={styles.logout} onClick={handleClickBtn} aria-hidden="true">
             <KeyboardArrowDownIcon />
           </div>
-          {btn ? <Logout /> : null}
+          {btn ? null : null}
         </div>
       </div>
       <div className={styles.lists}>

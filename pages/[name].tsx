@@ -10,6 +10,7 @@ import React from "react";
 
 import { getNameCard } from "../api/profile/apiProfile";
 import Header from "../components/home/Header";
+// import HeaderCard from "../components/home/HeaderCard";
 //import LayoutUser from "../components/home/LayoutUser";
 import ExcelCard from "../components/users/ExcelCard";
 import styles from "../styles/profile.module.css";
