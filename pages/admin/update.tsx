@@ -294,7 +294,7 @@ function Update() {
                         <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
                           <p>{item?.NameId}</p>
                         </StyledTableCell>
-                        <StyledTableCell className={styles.td}>
+                        <StyledTableCell className={styles.td} style={{ textAlign: "center" }}>
                           <Link href={"/" + item?.NameId}>
                             {`${process.env.NEXT_PUBLIC_BASE_URL}/${item.NameId}`}
                           </Link>
