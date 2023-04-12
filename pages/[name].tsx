@@ -1,15 +1,16 @@
-// /* eslint-disable react/no-children-prop */
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
-// import Fab from "@mui/material/Fab";
 import "react-toastify/dist/ReactToastify.css";
 
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ContactEmergencyIcon from "@mui/icons-material/ContactEmergency";
+import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
+import Fab from "@mui/material/Fab";
 import { useRouter } from "next/router";
 import QRCode from "qrcode-generator";
 import React from "react";
 
 import { getNameCard } from "../api/profile/apiProfile";
-import HeaderCard from "../components/home/HeaderCard";
+import Header from "../components/home/Header";
+// import HeaderCard from "../components/home/HeaderCard";
 //import LayoutUser from "../components/home/LayoutUser";
 import ExcelCard from "../components/users/ExcelCard";
 import styles from "../styles/profile.module.css";
@@ -37,8 +38,14 @@ function Name() {
   // console.log(profile);
 
   return (
-    <>
-      <HeaderCard open={open} setOpen={setOpen} />
+    <div
+      style={{
+        position: "relative",
+        height: "100vh",
+        width: "100%",
+      }}
+    >
+      <Header />
       <div
         style={{
           textAlign: "center",
@@ -60,9 +67,23 @@ function Name() {
             </div>
           </div>
         )}
-        {/* {!profile && <p>No...</p>} */}
+        {!profile && <p>No...</p>}
       </div>
-    </>
+      <div
+        style={{
+          background: "#fff",
+          borderRadius: "50%",
+          position: "absolute",
+          bottom: 30,
+          right: 10,
+        }}
+      >
+        <Fab onClick={() => setOpen(!open)} sx={{ width: "45px", height: "45px" }}>
+          {open && <QrCodeScannerIcon sx={{ color: "#f44336" }} />}
+          {!open && <ContactEmergencyIcon sx={{ color: "#f44336" }} />}
+        </Fab>
+      </div>
+    </div>
   );
 }
 

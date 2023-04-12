@@ -5,6 +5,7 @@
   position: fixed;
   background-color: white;
   margin-top:80px;
+  border: 0.5px dotted rgba(199, 196, 196, 0.844);
 }
 
 .user {
@@ -81,4 +82,9 @@
 .contentFooter {
   margin-top: 30px;
   width: 300px;
+}
+@media (max-width: 768px) {
+  .container{
+    width: 70%;
+  }
 }

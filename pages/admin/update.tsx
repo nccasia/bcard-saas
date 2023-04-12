@@ -4,6 +4,8 @@ import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import {
   Button,
+  Dialog,
+  DialogContent,
   Input,
   InputLabel,
   Paper,
@@ -23,10 +25,11 @@ import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import { getProfile, updateProfile } from "../../api/profile/apiProfile";
-import Logout from "../../components/login/Logout";
+import HomeLayout from "../../components/home/HomeLayout";
+//import Logout from "../../components/login/Logout";
 // import Sidebar from "../components/home/Sidebar";
 import excel from "../../public/excel.png";
-import logo from "../../public/logo.png";
+//import logo from "../../public/logo.png";
 // import styles from "../styles/admin.module.css";
 import styles from "../../styles/update.module.css";
 import { changeExcel } from "../../utils/changeExcel";
@@ -54,6 +57,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 function Update() {
   const [data, setData] = useState<any>([]);
   const [open, setOpen] = useState("");
+  const [openDia, setOpenDia] = useState(false);
   const [nameFile, setNameFile] = useState("");
   const [sizeFile, setSizeFile] = useState(0);
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -116,92 +120,14 @@ function Update() {
   // }, []);
 
   return (
-    <>
-      <div className={styles.header}>
-        <div className={styles.headerLetf}>
+    <HomeLayout>
+      <Dialog open={openDia} onClose={() => setOpenDia(false)}>
+        <DialogContent>
+          {/* <div className={styles.container}> */}
           <div>
-            <Image src={logo} alt="logo" width={30} height={30} />
-          </div>
-          <div className={styles.title}>Business Card</div>
-        </div>
-        <div className={styles.headeRight}>
-          <Logout />
-        </div>
-      </div>
-      {/* <Sidebar /> */}
-      <div className={styles.container}>
-        <div style={{ marginTop: "110px" }}>
-          {open === "" && (
-            <div>
-              <h1 className={styles.heading}>CREATE YOUR CARD</h1>
-              <InputLabel htmlFor="file-upload">
-                <Input
-                  id="file-upload"
-                  type="file"
-                  inputProps={{
-                    style: { display: "none", margin: 0 },
-                    accept: ".xlsx, .xls",
-                    onChange: handleUpload,
-                  }}
-                />
-                <Button
-                  component="span"
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    color: "black",
-                    margin: 0,
-                    fontSize: "14px",
-                    border: "1px dotted gray",
-                    borderRadius: "10px",
-                    padding: "0 20px",
-                    textAlign: "center",
-                    width: "360px",
-                    height: "250px",
-                    //backgroundColor:"#D9D9D9",
-                  }}
-                >
-                  <FileUploadOutlinedIcon sx={{ fontSize: "100px" }} />
-                  <div style={{ marginTop: "30px" }}>
-                    <p>Select a file or drop it here</p>
-                    <p style={{ fontSize: "12px" }}>Support: .xlsx</p>
-                  </div>
-                </Button>
-              </InputLabel>
-              <div className={styles.template}>
-                <div
-                  style={{
-                    float: "right",
-                    marginTop: "10px",
-                  }}
-                >
-                  <button
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      marginRight: "5px",
-                      fontSize: "14px",
-                      gap: 5,
-                      padding: "5px 10px",
-                    }}
-                    className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
-                    onClick={exampleExcel}
-                  >
-                    <p>Download Template</p>
-                    <SaveAltIcon sx={{ fontSize: "18px" }} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-          {open === "upload" && (
-            <div>
-              <h1 className={styles.heading}>CREATE YOUR CARD</h1>
-              <div className={styles.boxcontent}>
-                <div>
-                  <FileUploadOutlinedIcon sx={{ fontSize: "80px" }} />
-                  <p>1 file selected</p>
-                </div>
+            {open === "" && (
+              <div>
+                {/* <h1 className={styles.heading}>CREATE YOUR CARD</h1> */}
                 <InputLabel htmlFor="file-upload">
                   <Input
                     id="file-upload"
@@ -212,80 +138,177 @@ function Update() {
                       onChange: handleUpload,
                     }}
                   />
-                  <Button component="span">
-                    <div className={styles.content}>
-                      <Image src={excel} width={50} height={50} alt="excel" />
-                      <div>
-                        <p>{nameFile}</p>
-                        <p>{fileSize(sizeFile)}</p>
-                      </div>
+                  <Button
+                    component="span"
+                    className={styles.fileUp}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      color: "black",
+                      margin: 0,
+                      fontSize: "14px",
+                      border: "1px dotted gray",
+                      borderRadius: "10px",
+                      padding: "0 20px",
+                      textAlign: "center",
+                      width: "360px",
+                      height: "250px",
+                      //backgroundColor:"#D9D9D9",
+                    }}
+                  >
+                    <FileUploadOutlinedIcon sx={{ fontSize: "100px" }} />
+                    <div style={{ marginTop: "30px" }}>
+                      <p>Select a file</p>
+                      <p style={{ fontSize: "12px" }}>Support: .xlsx</p>
                     </div>
                   </Button>
                 </InputLabel>
-                <button
-                  onClick={() => {
-                    if (data) {
-                      setOpen("link");
-                      updateProfile(data).then((main: any) => setDataLink(main));
-                      // router.push(`/$`);
-                    }
-                  }}
-                  style={{
-                    marginTop: "10px",
-                    padding: "5px 20px",
-                    width: 110,
-                  }}
-                  className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
-                >
-                  Upload
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-      {datalink ? (
-        <div style={{ border: "5px solid #ffff" }}>
-          {/* <Sidebar /> */}
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 500 }} aria-label="customized table">
-              <TableBody>
-                <StyledTableRow>
-                  <StyledTableCell className={styles.th} style={{ fontSize: "18px" }}>
-                    Name
-                  </StyledTableCell>
-                  <StyledTableCell
-                    className={styles.th}
-                    style={{ fontSize: "18px", textAlign: "left" }}
+                <div className={styles.template}>
+                  <div
+                    style={{
+                      float: "right",
+                      marginTop: "10px",
+                    }}
                   >
-                    Link
-                  </StyledTableCell>
-                </StyledTableRow>
-              </TableBody>
-              <TableBody>
-                {datalink.map((data: any, index: number) => (
-                  <StyledTableRow key={index + 1}>
-                    <StyledTableCell
-                      style={{ width: "50%", textAlign: "center" }}
-                      component="th"
-                      scope="row"
+                    <button
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginRight: "5px",
+                        fontSize: "14px",
+                        gap: 5,
+                        padding: "5px 10px",
+                      }}
+                      className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
+                      onClick={exampleExcel}
                     >
-                      {data.NameId}
-                    </StyledTableCell>
-                    <StyledTableCell className={styles.td}>
-                      <Link href={`${data.NameId}`}>
-                        {`${process.env.NEXT_PUBLIC_BASE_URL}/${data.NameId}`}
-                      </Link>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
-      ) : null}
-      <ToastContainer />
-    </>
+                      <p>Download Template</p>
+                      <SaveAltIcon sx={{ fontSize: "18px" }} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {open === "upload" && (
+              <div>
+                {/* <h1 className={styles.heading}>CREATE YOUR CARD</h1> */}
+                <div className={styles.boxcontent}>
+                  <div>
+                    <FileUploadOutlinedIcon sx={{ fontSize: "80px" }} />
+                    <p>1 file selected</p>
+                  </div>
+                  <InputLabel htmlFor="file-upload">
+                    <Input
+                      id="file-upload"
+                      type="file"
+                      inputProps={{
+                        style: { display: "none", margin: 0 },
+                        accept: ".xlsx, .xls",
+                        onChange: handleUpload,
+                      }}
+                    />
+                    <Button component="span" className={styles.fileUp}>
+                      <div className={styles.content}>
+                        <Image src={excel} width={50} height={50} alt="excel" />
+                        <div>
+                          <p>{nameFile}</p>
+                          <p>{fileSize(sizeFile)}</p>
+                        </div>
+                      </div>
+                    </Button>
+                  </InputLabel>
+                  <button
+                    onClick={() => {
+                      if (data) {
+                        setOpenDia(false);
+                        updateProfile(data).then((main: any) => {
+                          if (main) {
+                            setDataLink(main);
+                          }
+                        });
+                        // router.push(`/$`);
+                      }
+                    }}
+                    style={{
+                      marginTop: "10px",
+                      padding: "5px 20px",
+                      width: 110,
+                    }}
+                    className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
+                  >
+                    Upload
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+          {/* </div> */}
+        </DialogContent>
+      </Dialog>
+      <div
+        style={{
+          padding: "30px 0 30px 0",
+          border: "1px dotted #80808059",
+          borderRadius: "10px",
+        }}
+      >
+        <button
+          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+          style={{ float: "right", marginRight: "10px" }}
+          onClick={() => setOpenDia(true)}
+        >
+          Upload Excel
+        </button>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 500 }} aria-label="customized table">
+            <TableBody>
+              <StyledTableRow>
+                <StyledTableCell
+                  className={styles.th}
+                  style={{ fontSize: "18px", textAlign: "center" }}
+                >
+                  ID
+                </StyledTableCell>
+                <StyledTableCell
+                  className={styles.th}
+                  style={{ fontSize: "18px", textAlign: "center" }}
+                >
+                  Name
+                </StyledTableCell>
+                <StyledTableCell
+                  className={styles.th}
+                  style={{ fontSize: "18px", textAlign: "center" }}
+                >
+                  Link
+                </StyledTableCell>
+              </StyledTableRow>
+            </TableBody>
+            <TableBody>
+              {datalink
+                ? datalink.map((item: any, index: number) => {
+                    return (
+                      <StyledTableRow key={index}>
+                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
+                          <p>{index + 1}</p>
+                        </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
+                          <p>{item?.NameId}</p>
+                        </StyledTableCell>
+                        <StyledTableCell className={styles.td}>
+                          <Link href={"/" + item?.NameId}>
+                            {`${process.env.NEXT_PUBLIC_BASE_URL}/${item.NameId}`}
+                          </Link>
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    );
+                  })
+                : null}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <ToastContainer />
+      </div>
+    </HomeLayout>
   );
 }
 

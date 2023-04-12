@@ -1,30 +1,30 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
-import DateRangeIcon from "@mui/icons-material/DateRange";
+// import bgrSidebar from "../../asset/images/bgrSidebar.jpg";
+//import DateRangeIcon from "@mui/icons-material/DateRange";
 import GroupWorkIcon from "@mui/icons-material/GroupWork";
 import HomeIcon from "@mui/icons-material/Home";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import StartIcon from "@mui/icons-material/Start";
 import { List, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from "@mui/material";
 // import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 
 import styles from "../../styles/sidebar.module.css";
+// import Logout from "../login/Logout";
 
 const Sidebar = () => {
   const [btn, setBtn] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [check, setCheck] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
   const handleClickBtn = () => {
     setCheck(true);
     setBtn((prev) => !prev);
   };
-  const handleLogout = () => {
-    router.push("/login");
-  };
+  // const handleLogout = () => {
+  //   router.push("/login");
+  // };
 
   // const [session, setSession] = React.useState<any>();
   const { data: session } = useSession();
@@ -53,14 +53,7 @@ const Sidebar = () => {
           <div className={styles.logout} onClick={handleClickBtn} aria-hidden="true">
             <KeyboardArrowDownIcon />
           </div>
-          {btn ? (
-            <div className={styles.buttonLogout} onClick={handleLogout} aria-hidden="true">
-              <div>
-                <StartIcon />
-                Logout
-              </div>
-            </div>
-          ) : null}
+          {btn ? null : null}
         </div>
       </div>
       <div className={styles.lists}>
@@ -76,30 +69,30 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText primary="Home Page" />
           </ListItemButton>
-          <Link href="/admin/admin">
+          <Link href="/admin/update">
             <ListItemButton>
               <ListItemIcon>
                 <GroupWorkIcon />
               </ListItemIcon>
-              <ListItemText primary="Admin" />
+              <ListItemText primary="Card" />
             </ListItemButton>
           </Link>
-          <Link href="/admin/users">
+          <Link href="/admin/admin">
             <ListItemButton>
               <ListItemIcon>
                 <AccessAlarmIcon />
               </ListItemIcon>
-              <ListItemText primary="Users" />
+              <ListItemText primary="Admin" />
             </ListItemButton>
           </Link>
-          <Link href="/admin/card">
+          {/* <Link href="/admin/card">
             <ListItemButton>
               <ListItemIcon>
                 <DateRangeIcon />
               </ListItemIcon>
               <ListItemText primary="Card" />
             </ListItemButton>
-          </Link>
+          </Link> */}
         </List>
       </div>
     </div>

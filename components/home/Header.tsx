@@ -1,7 +1,10 @@
 // import ContactEmergencyIcon from "@mui/icons-material/ContactEmergency";
 // import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 // import Fab from "@mui/material/Fab";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 // import { getSession } from "next-auth/react";
 import React from "react";
 
@@ -21,10 +24,17 @@ import Logout from "../login/Logout";
 // `;
 
 function Header() {
-  // const [session, setSession] = React.useState<any>();
-  // React.useEffect(() => {
-  //   getSession().then((data) => setSession(data));
-  // }, []);
+  const { data: session, status }: any = useSession();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  console.log(status);
+
   return (
     <div className={styles.container}>
       <div className={styles.headerLetf}>
@@ -34,13 +44,41 @@ function Header() {
         <div className={styles.title}>Business Card</div>
       </div>
       <div className={styles.headeRight}>
-        <Logout />
-        {/* <div style={{ background: "#fff", borderRadius: "50%" }}>
-          <Fab onClick={() => setOpen(!open)} sx={{ width: "40px", height: "40px" }}>
-            {open && <QrCodeScannerIcon sx={{ color: "#f44336" }} />}
-            {!open && <ContactEmergencyIcon sx={{ color: "#f44336" }} />}
-          </Fab>
-        </div> */}
+        {session?.user?.image && status !== "loading" && (
+          <div>
+            <button onClick={handleMenu}>
+              <img
+                src={session.user.image}
+                alt="avatar"
+                width={40}
+                height={40}
+                style={{ borderRadius: "50%" }}
+              />
+            </button>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem>{session?.user?.name}</MenuItem>
+              <MenuItem>{session?.user?.email}</MenuItem>
+              <MenuItem>
+                <Logout />
+              </MenuItem>
+            </Menu>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   Paper,
   styled,
@@ -8,7 +10,9 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import React from "react";
+import { ToastContainer } from "react-toastify";
 
 import { addAdmin, deleteAdmin, getAdmin, updateAdmin } from "../../api/admin/apiAdmin";
 import styles from "../../styles/update.module.css";
@@ -57,42 +61,132 @@ function SelectAdmin(): JSX.Element {
     >
       <button
         className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-        style={{ display: openAdd ? "none" : "block", float: "right", marginRight: "10px" }}
+        style={{ float: "right", marginRight: "10px" }}
         onClick={() => setOpenAdd(true)}
       >
-        Add
+        New Admin
       </button>
-
-      <div style={{ display: openAdd ? "block" : "none" }}>
-        <input
-          type="text"
-          placeholder="Enter your name"
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-          value={nameAdd}
-          onChange={(e) => setNameAdd(e.target.value)}
-        />
-        <br />
-        <input
-          type="text"
-          placeholder="Enter your email"
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-          value={emailAdd}
-          onChange={(e) => setEmailAdd(e.target.value)}
-        />
-        <br />
-        <button
-          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-          style={{ display: openAdd ? "block" : "none" }}
-          onClick={() => {
-            addAdmin(nameAdd, emailAdd).then((data: any) => setAdmin([...admin, data]));
-            setEmailAdd("");
-            setNameAdd("");
-            setOpenAdd(false);
-          }}
-        >
-          Add
-        </button>
-      </div>
+      <Dialog open={openAdd} onClose={() => setOpenAdd(false)}>
+        <DialogTitle sx={{ textAlign: "center" }}>New Admin</DialogTitle>
+        <DialogContent>
+          <p>Email:</p>
+          <input
+            type="text"
+            placeholder="Enter your email"
+            className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+            value={emailAdd}
+            onChange={(e) => setEmailAdd(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <button
+            onClick={() => setOpenAdd(false)}
+            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+          >
+            Cancel
+          </button>
+          <button
+            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+            style={{ display: openAdd ? "block" : "none" }}
+            onClick={() => {
+              addAdmin(nameAdd, emailAdd).then((data: any) => setAdmin([...admin, data]));
+              setEmailAdd("");
+              setNameAdd("");
+              setOpenAdd(false);
+            }}
+          >
+            Save
+          </button>
+        </DialogActions>
+      </Dialog>
+      {/* <table
+        style={{
+          width: "100%",
+        }}
+      >
+        <thead>
+          <tr
+            style={{
+              textAlign: "left",
+              border: "1px dotted #8080802e",
+              backgroundColor: "#9ca3af94",
+            }}
+          >
+            <th style={{ paddingLeft: "10px" }}>Id</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {admin
+            ? admin.map((item: any) => {
+                return (
+                  <tr
+                    key={item.id}
+                    style={{
+                      border: "1px dotted #80808059",
+                      textAlign: "left",
+                    }}
+                  >
+                    <td style={{ paddingLeft: "10px" }}>{item.id}</td>
+                    <td>
+                      <p style={{ display: openEdit === item.id ? "none" : "block" }}>
+                        {item.email}
+                      </p>
+                      <input
+                        type="text"
+                        placeholder={item.email}
+                        className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        style={{ display: openEdit === item.id ? "block" : "none" }}
+                      />
+                    </td>
+                    <td style={{ display: "flex", justifyContent: "flex-start", gap: 5 }}>
+                      <button
+                        className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                        onClick={() => setOpenEdit(item.id)}
+                        style={{ display: openEdit === item.id ? "none" : "block" }}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => {
+                          updateAdmin(item.id, name, email);
+                          setEmail("");
+                          setName("");
+                          setOpenEdit(-1);
+                          const list = admin.map((main: any) => {
+                            if (main.id === item.id) {
+                              return { ...main, id: item.id, name: name, email: email };
+                            } else {
+                              return main;
+                            }
+                          });
+                          setAdmin(list);
+                        }}
+                        style={{ display: openEdit === item.id ? "block" : "none" }}
+                        className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                      >
+                        EDIT
+                      </button>
+                      <button
+                        className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                        onClick={() => {
+                          deleteAdmin(item.id);
+                          const list = admin.filter((main: any) => main.id !== item.id);
+                          setAdmin(list);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })
+            : null}
+        </tbody>
+      </table> */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="customized table">
           <TableBody>
@@ -193,6 +287,7 @@ function SelectAdmin(): JSX.Element {
           </TableBody>
         </Table>
       </TableContainer>
+      <ToastContainer />
     </div>
   );
 }
