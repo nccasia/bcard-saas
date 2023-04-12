@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const addAdmin = async (name: string, email: string) => {
   try {
@@ -11,9 +11,10 @@ export const addAdmin = async (name: string, email: string) => {
         "Content-Type": "application/json",
       },
     });
+    toast.success("Success!");
     return response.data;
   } catch (error: any) {
-    console.log(error.message);
+    toast.error(error?.response?.data?.errorMessage);
   }
 };
 
@@ -28,14 +29,14 @@ export const getAdmin = async () => {
     });
     return res.data;
   } catch (error: any) {
-    console.log(error);
+    toast.error(error?.response?.data?.errorMessage);
     return [];
   }
 };
 
-export const deleteAdmin = async (id: number) => {
+export const deleteAdmin = async (id: string) => {
   try {
-    const response = await axios({
+    await axios({
       url: "/api/admin/admin/adminAll",
       data: JSON.stringify({ id: id }),
       method: "DELETE",
@@ -43,14 +44,15 @@ export const deleteAdmin = async (id: number) => {
         "Content-Type": "application/json",
       },
     });
+    toast.success("Success!");
   } catch (error: any) {
-    console.log(error.message);
+    toast.error(error?.response?.data?.errorMessage);
   }
 };
 
-export const updateAdmin = async (id: number, name: string, email: string) => {
+export const updateAdmin = async (id: string, name: string, email: string) => {
   try {
-    const response = await axios({
+    await axios({
       url: "/api/admin/admin/adminAll",
       data: JSON.stringify({ id: id, name: name, email: email }),
       method: "PUT",
@@ -58,7 +60,8 @@ export const updateAdmin = async (id: number, name: string, email: string) => {
         "Content-Type": "application/json",
       },
     });
+    toast.success("Success!");
   } catch (error: any) {
-    console.log(error.message);
+    toast.error(error?.response?.data?.errorMessage);
   }
 };

@@ -1,7 +1,10 @@
+import "react-toastify/dist/ReactToastify.css";
+
+import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import React from "react";
+import { ToastContainer } from "react-toastify";
 
 import { addAdmin, deleteAdmin, getAdmin, updateAdmin } from "../../api/admin/apiAdmin";
-
 interface TypeAdmin {
   id: number;
   name: string;
@@ -29,42 +32,44 @@ function SelectAdmin(): JSX.Element {
     >
       <button
         className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-        style={{ display: openAdd ? "none" : "block", float: "right", marginRight: "10px" }}
+        style={{ float: "right", marginRight: "10px" }}
         onClick={() => setOpenAdd(true)}
       >
-        Add
+        New Admin
       </button>
-
-      <div style={{ display: openAdd ? "block" : "none" }}>
-        <input
-          type="text"
-          placeholder="Enter your name"
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-          value={nameAdd}
-          onChange={(e) => setNameAdd(e.target.value)}
-        />
-        <br />
-        <input
-          type="text"
-          placeholder="Enter your email"
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-          value={emailAdd}
-          onChange={(e) => setEmailAdd(e.target.value)}
-        />
-        <br />
-        <button
-          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-          style={{ display: openAdd ? "block" : "none" }}
-          onClick={() => {
-            addAdmin(nameAdd, emailAdd).then((data: any) => setAdmin([...admin, data]));
-            setEmailAdd("");
-            setNameAdd("");
-            setOpenAdd(false);
-          }}
-        >
-          Add
-        </button>
-      </div>
+      <Dialog open={openAdd} onClose={() => setOpenAdd(false)}>
+        <DialogTitle sx={{ textAlign: "center" }}>New Admin</DialogTitle>
+        <DialogContent>
+          <p>Email:</p>
+          <input
+            type="text"
+            placeholder="Enter your email"
+            className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+            value={emailAdd}
+            onChange={(e) => setEmailAdd(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <button
+            onClick={() => setOpenAdd(false)}
+            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+          >
+            Cancel
+          </button>
+          <button
+            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+            style={{ display: openAdd ? "block" : "none" }}
+            onClick={() => {
+              addAdmin(nameAdd, emailAdd).then((data: any) => setAdmin([...admin, data]));
+              setEmailAdd("");
+              setNameAdd("");
+              setOpenAdd(false);
+            }}
+          >
+            Save
+          </button>
+        </DialogActions>
+      </Dialog>
       <table
         style={{
           width: "100%",
@@ -73,12 +78,12 @@ function SelectAdmin(): JSX.Element {
         <thead>
           <tr
             style={{
-              textAlign: "center",
+              textAlign: "left",
               border: "1px dotted #8080802e",
               backgroundColor: "#9ca3af94",
             }}
           >
-            <th>Id</th>
+            <th style={{ paddingLeft: "10px" }}>Id</th>
             <th>Email</th>
             <th>Action</th>
           </tr>
@@ -91,21 +96,10 @@ function SelectAdmin(): JSX.Element {
                     key={item.id}
                     style={{
                       border: "1px dotted #80808059",
-                      textAlign: "center",
+                      textAlign: "left",
                     }}
                   >
-                    <td>
-                      {openEdit !== item.id}
-                      {item.id}
-                      <input
-                        type="text"
-                        placeholder={item.name}
-                        className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        style={{ display: openEdit === item.id ? "block" : "none" }}
-                      />
-                    </td>
+                    <td style={{ paddingLeft: "10px" }}>{item.id}</td>
                     <td>
                       <p style={{ display: openEdit === item.id ? "none" : "block" }}>
                         {item.email}
@@ -119,7 +113,7 @@ function SelectAdmin(): JSX.Element {
                         style={{ display: openEdit === item.id ? "block" : "none" }}
                       />
                     </td>
-                    <td style={{ display: "flex", justifyContent: "center" }}>
+                    <td style={{ display: "flex", justifyContent: "flex-start", gap: 5 }}>
                       <button
                         className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
                         onClick={() => setOpenEdit(item.id)}
@@ -164,6 +158,7 @@ function SelectAdmin(): JSX.Element {
             : null}
         </tbody>
       </table>
+      <ToastContainer />
     </div>
   );
 }

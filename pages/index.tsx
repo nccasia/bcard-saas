@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       return;
     }
     if (session && session.user?.isAdmin) {
-      router.push("/admin/admin");
+      router.push("/admin/update");
     }
     if (session && session.user?.email && !session.user?.isAdmin) {
       router.push("/" + session.user?.email.split("@")[0]);

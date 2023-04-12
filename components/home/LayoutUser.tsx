@@ -1,10 +1,10 @@
 import React from "react";
 
 import Header from "../../components/home/Header";
-const LayoutUser = ({ children, open, setOpen }: any) => {
+const LayoutUser = ({ children }: any) => {
   return (
     <div>
-      <Header open={open} setOpen={setOpen} />
+      <Header />
       <div
         style={{
           padding: "5vh 0",
