@@ -199,7 +199,7 @@
   color: gray;
   flex: 1;
   line-height: 30px;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 .headCard1 {
@@ -244,8 +244,10 @@
 
 .iconSwitch {
   position: absolute;
-  top: -160px;
-  right: 15px;
+  bottom: 30px;
+  right: 10px;
+  background-color: "#fff";
+  border-radius: 50%;
 }
 
 .headingText {
@@ -290,7 +292,7 @@
 
   .iconSwitch {
     position: absolute;
-    top: -150px;
+    bottom: 55px;
     right: 10px;
   }
 
@@ -326,17 +328,17 @@
   }
 
   .headingText {
-    font-size: 20px;
+    font-size: 18px;
   }
   .title1{
     margin-bottom: 10px;
   }
   .text1 {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .icon {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .position {
