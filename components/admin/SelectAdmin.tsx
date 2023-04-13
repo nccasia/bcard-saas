@@ -241,45 +241,47 @@ function SelectAdmin(): JSX.Element {
                           style={{ display: item && openEdit === item.id ? "block" : "none" }}
                         />
                       </StyledTableCell>
-                      <StyledTableCell className={styles.td}>
-                        <button
-                          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                          onClick={() => setOpenEdit(item.id)}
-                          style={{ display: item && openEdit === item.id ? "none" : "block" }}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => {
-                            updateAdmin(item.id, name, email);
-                            setEmail("");
-                            setName("");
-                            setOpenEdit(-1);
-                            const list = admin.map((main: any) => {
-                              if (main.id === item.id) {
-                                return { ...main, id: item.id, name: name, email: email };
-                              } else {
-                                return main;
-                              }
-                            });
-                            setAdmin(list);
-                          }}
-                          style={{ display: item && openEdit === item.id ? "block" : "none" }}
-                          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                        >
-                          EDIT
-                        </button>
-                        <button
-                          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                          onClick={() => {
-                            deleteAdmin(item.id);
-                            const list = admin.filter((main: any) => main.id !== item.id);
-                            setAdmin(list);
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </StyledTableCell>
+                      <div style={{ display: "flex", justifyContent: "center", gap: "5px" }}>
+                        <StyledTableCell className={styles.td}>
+                          <button
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                            onClick={() => setOpenEdit(item.id)}
+                            style={{ display: item && openEdit === item.id ? "none" : "block" }}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => {
+                              updateAdmin(item.id, name, email);
+                              setEmail("");
+                              setName("");
+                              setOpenEdit(-1);
+                              const list = admin.map((main: any) => {
+                                if (main.id === item.id) {
+                                  return { ...main, id: item.id, name: name, email: email };
+                                } else {
+                                  return main;
+                                }
+                              });
+                              setAdmin(list);
+                            }}
+                            style={{ display: item && openEdit === item.id ? "block" : "none" }}
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                          >
+                            EDIT
+                          </button>
+                          <button
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                            onClick={() => {
+                              deleteAdmin(item.id);
+                              const list = admin.filter((main: any) => main.id !== item.id);
+                              setAdmin(list);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </StyledTableCell>
+                      </div>
                     </StyledTableRow>
                   );
                 })
