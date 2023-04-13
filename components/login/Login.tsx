@@ -6,7 +6,7 @@ const Login = () => {
     <div>
       <button
         onClick={() => {
-          signIn("google", { callbackUrl: "/" });
+          signIn("google", { callbackUrl: "/login/login" });
         }}
       >
         Sign in with Google
