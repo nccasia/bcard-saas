@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 export const addAdmin = async (name: string, email: string) => {
   try {
     const response = await axios({
-      url: "/api/admin/admin/adminAll",
+      url: "/api/admin/admin/postadmin",
       data: JSON.stringify({ name: name, email: email }),
       method: "POST",
       headers: {
@@ -21,7 +21,7 @@ export const addAdmin = async (name: string, email: string) => {
 export const getAdmin = async () => {
   try {
     const res = await axios({
-      url: "/api/admin/admin/adminAll",
+      url: "/api/admin/admin/getadmin",
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export const getAdmin = async () => {
 export const deleteAdmin = async (id: string) => {
   try {
     await axios({
-      url: "/api/admin/admin/adminAll",
+      url: "/api/admin/admin/deleteadmin",
       data: JSON.stringify({ id: id }),
       method: "DELETE",
       headers: {
@@ -53,7 +53,7 @@ export const deleteAdmin = async (id: string) => {
 export const updateAdmin = async (id: string, name: string, email: string) => {
   try {
     await axios({
-      url: "/api/admin/admin/adminAll",
+      url: "/api/admin/admin/putadmin",
       data: JSON.stringify({ id: id, name: name, email: email }),
       method: "PUT",
       headers: {

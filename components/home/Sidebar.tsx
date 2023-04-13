@@ -7,6 +7,7 @@ import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import GroupWorkIcon from "@mui/icons-material/GroupWork";
 import HomeIcon from "@mui/icons-material/Home";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import StartIcon from "@mui/icons-material/Start";
 import { List, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from "@mui/material";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Image from "next/image";
@@ -51,7 +52,12 @@ const Sidebar = () => {
           <div className={styles.logout} onClick={handleClickBtn}>
             <KeyboardArrowDownIcon />
           </div>
-          {btn ? <Logout /> : null}
+          {btn ? (
+            <div className={styles.buttonLogout}>
+              <StartIcon />
+              <Logout />
+            </div>
+          ) : null}
         </div>
       </div>
       <div className={styles.lists}>
