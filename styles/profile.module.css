@@ -199,7 +199,7 @@
   color: gray;
   flex: 1;
   line-height: 30px;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 .headCard1 {
@@ -244,12 +244,14 @@
 
 .iconSwitch {
   position: absolute;
-  top: -160px;
-  right: 15px;
+  bottom: 30px;
+  right: 10px;
+  background-color: "#fff";
+  border-radius: 50%;
 }
 
 .headingText {
-  font-size: 25px;
+  font-size: 21px;
   color: #606060;
   font-weight: 500;
   white-space: nowrap;
@@ -290,7 +292,7 @@
 
   .iconSwitch {
     position: absolute;
-    top: -150px;
+    bottom: 55px;
     right: 10px;
   }
 
@@ -310,7 +312,7 @@
   }
 
   .mainCard1 {
-    padding: 22px 5px;
+    padding: 27px 5px;
   }
 
   .image {
@@ -326,17 +328,17 @@
   }
 
   .headingText {
-    font-size: 20px;
+    font-size: 18px;
   }
   .title1{
     margin-bottom: 10px;
   }
   .text1 {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .icon {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .position {

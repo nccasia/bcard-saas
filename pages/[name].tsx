@@ -10,6 +10,7 @@ import React from "react";
 
 import { getNameCard } from "../api/profile/apiProfile";
 import Header from "../components/home/Header";
+// import HeaderCard from "../components/home/HeaderCard";
 //import LayoutUser from "../components/home/LayoutUser";
 import ExcelCard from "../components/users/ExcelCard";
 import styles from "../styles/profile.module.css";
@@ -68,15 +69,7 @@ function Name() {
         )}
         {!profile && <p>No...</p>}
       </div>
-      <div
-        style={{
-          background: "#fff",
-          borderRadius: "50%",
-          position: "absolute",
-          bottom: 30,
-          right: 10,
-        }}
-      >
+      <div className={styles.iconSwitch}>
         <Fab onClick={() => setOpen(!open)} sx={{ width: "45px", height: "45px" }}>
           {open && <QrCodeScannerIcon sx={{ color: "#f44336" }} />}
           {!open && <ContactEmergencyIcon sx={{ color: "#f44336" }} />}
