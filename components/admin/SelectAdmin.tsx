@@ -241,7 +241,7 @@ function SelectAdmin(): JSX.Element {
                           style={{ display: item && openEdit === item.id ? "block" : "none" }}
                         />
                       </StyledTableCell>
-                      <StyledTableCell className={styles.td}>
+                      <StyledTableCell className={styles.td} style={{ display: "flex" }}>
                         <button
                           className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
                           onClick={() => setOpenEdit(item.id)}

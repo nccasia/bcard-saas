@@ -1,5 +1,6 @@
 /* eslint-disable react/no-children-prop */
 import Grid from "@mui/material/Grid";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -19,9 +20,11 @@ function Name() {
   //console.log(profile);
 
   return (
-    <>
+    <div>
+      <Head>
+        <title>Business Card App</title>
+      </Head>
       <LayoutUser children={undefined} open={open} setOpen={setOpen}></LayoutUser>
-
       <Grid
         container
         direction="column"
@@ -32,7 +35,7 @@ function Name() {
         {profile && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
         {!profile && <p>No...</p>}
       </Grid>
-    </>
+    </div>
   );
 }
 
