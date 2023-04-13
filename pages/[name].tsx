@@ -69,15 +69,7 @@ function Name() {
         )}
         {!profile && <p>No...</p>}
       </div>
-      <div
-        style={{
-          background: "#fff",
-          borderRadius: "50%",
-          position: "absolute",
-          bottom: 30,
-          right: 10,
-        }}
-      >
+      <div className={styles.iconSwitch}>
         <Fab onClick={() => setOpen(!open)} sx={{ width: "45px", height: "45px" }}>
           {open && <QrCodeScannerIcon sx={{ color: "#f44336" }} />}
           {!open && <ContactEmergencyIcon sx={{ color: "#f44336" }} />}
