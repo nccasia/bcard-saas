@@ -72,7 +72,6 @@ function Header() {
               onClose={handleClose}
             >
               <MenuItem>{session?.user?.name}</MenuItem>
-              <MenuItem>{session?.user?.email}</MenuItem>
               <MenuItem>
                 <Logout />
               </MenuItem>
