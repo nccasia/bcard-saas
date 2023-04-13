@@ -4,6 +4,7 @@ import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import GroupWorkIcon from "@mui/icons-material/GroupWork";
 import HomeIcon from "@mui/icons-material/Home";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import StartIcon from "@mui/icons-material/Start";
 import { List, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from "@mui/material";
 // import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +12,7 @@ import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 
 import styles from "../../styles/sidebar.module.css";
-// import Logout from "../login/Logout";
+import Logout from "../login/Logout";
 
 const Sidebar = () => {
   const [btn, setBtn] = useState(false);
@@ -53,7 +54,12 @@ const Sidebar = () => {
           <div className={styles.logout} onClick={handleClickBtn} aria-hidden="true">
             <KeyboardArrowDownIcon />
           </div>
-          {btn ? null : null}
+          {btn ? (
+            <div className={styles.buttonLogout}>
+              <StartIcon />
+              <Logout />
+            </div>
+          ) : null}
         </div>
       </div>
       <div className={styles.lists}>

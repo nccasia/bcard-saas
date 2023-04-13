@@ -28,10 +28,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(400).json({ errorMessage: "Duplicate Emails: \n" + duplicateEmails.join(", ") });
     }
   }
-  // const session: any = await getSession({ req });
-  // if (session && session.user.isAdmin) {
-  //   res.json(session);
-  // }
   if (req.method === "POST") {
     try {
       const excel = await prisma.excel.findMany();
