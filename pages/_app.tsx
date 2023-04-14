@@ -58,6 +58,7 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
   //console.log(router);
   React.useEffect(() => {
     Router();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session, router.pathname]);
 
   return open ? <>{children}</> : null;
