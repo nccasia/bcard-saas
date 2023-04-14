@@ -12,7 +12,6 @@ export const addAdmin = async (email: string) => {
       },
     });
     toast.success("Success!");
-    return true;
     return response.data;
   } catch (error: any) {
     toast.error(error?.response?.data?.errorMessage);
@@ -54,7 +53,7 @@ export const deleteAdmin = async (id: string) => {
 export const updateAdmin = async (id: string, email: string) => {
   try {
     await axios({
-      url: "/api/admin/admin/save",
+      url: "/api/admin/admin/putadmin/new",
       data: JSON.stringify({ id: id, email: email }),
       method: "PUT",
       headers: {
