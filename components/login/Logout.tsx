@@ -1,3 +1,4 @@
+// import Link from "next/link";
 import { signOut } from "next-auth/react";
 
 const Logout = () => {
@@ -9,6 +10,7 @@ const Logout = () => {
         }}
       >
         Log out
+        {/* <Link href={"/login"}>Log out</Link> */}
       </button>
     </div>
   );
