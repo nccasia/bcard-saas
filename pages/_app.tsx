@@ -24,36 +24,43 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const Router = async () => {
-    console.log(status);
+    //console.log(status);
     if (status === "loading") return;
     else {
       if (!session || router.pathname === "/") {
-        console.log(`!session || router.pathname === "/"`);
-        await router.push("/login/login");
-        setOpen(false);
-        if (router.pathname === "/login/login") {
+        if (router.pathname.startsWith("/view/")) {
           setOpen(true);
+        } else {
+          await router.push("/login");
+          setOpen(false);
+          if (router.pathname === "/login") {
+            setOpen(true);
+          }
         }
         return;
       }
       if (session && !session?.user?.isAdmin) {
-        console.log(`session && !session?.user?.isAdmin`);
+        //console.log(`session && !session?.user?.isAdmin`);
         setOpen(true);
-        if (router.pathname.startsWith("/login/login")) {
-          router.push("/" + session.user?.email.split("@")[0]);
+        if (router.asPath === "/login") {
+          router.push("/card/" + session.user?.email.split("@")[0]);
         }
-        if (router.asPath === "/" + session.user?.email.split("@")[0]) {
+        if (router.asPath === "/card/" + session.user?.email.split("@")[0]) {
           setOpen(true);
         } else {
-          setOpen(false);
-          router.push("/" + session.user?.email.split("@")[0]);
+          if (router.pathname.startsWith("/view/")) {
+            setOpen(true);
+          } else {
+            setOpen(false);
+            await router.push("/card/" + session.user?.email.split("@")[0]);
+            setOpen(true);
+          }
         }
         return;
       } else {
         setOpen(true);
-        if (router.pathname.startsWith("/login/login")) {
+        if (router.pathname.startsWith("/login")) {
           router.push("/admin/update");
-          console.log("bbbb");
         }
         return;
       }

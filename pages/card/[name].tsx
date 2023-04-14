@@ -8,11 +8,11 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 
-import { getNameCard } from "../api/profile/apiProfile";
-import Header from "../components/home/Header";
-import QrCode from "../components/QrCode";
-import ExcelCard from "../components/users/ExcelCard";
-import styles from "../styles/profile.module.css";
+import { getNameCard } from "../../api/profile/apiProfile";
+import Header from "../../components/home/Header";
+import QrCode from "../../components/QrCode";
+import ExcelCard from "../../components/users/ExcelCard";
+import styles from "../../styles/profile.module.css";
 
 function Name() {
   const [profile, setProfile] = React.useState<any>();
