@@ -13,7 +13,7 @@ const QRCode = ({ url }: any) => {
             data: url,
             image: "/logo.png",
             dotsOptions: {
-              color: "black",
+              color: "#000000c9",
               type: "rounded",
             },
             imageOptions: {

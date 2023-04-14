@@ -52,7 +52,7 @@ function Header() {
                 alt="avatar"
                 width={40}
                 height={40}
-                style={{ borderRadius: "50%" }}
+                style={{ borderRadius: "50%", opacity: anchorEl ? 0.7 : 1 }}
               />
             </button>
             <Menu
