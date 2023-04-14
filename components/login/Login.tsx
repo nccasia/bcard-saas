@@ -69,7 +69,7 @@ export default function Login() {
                 </button>
               </div>
               <p style={{ fontSize: "13px" }}>
-                By sign in you agree to the <b>Terms</b> and the <b>Condtions</b>
+                By sign in you agree to the <b>Terms</b> and the <b>Conditions</b>
               </p>
             </div>
           )}
@@ -122,7 +122,7 @@ export default function Login() {
                       >
                         Sign In
                       </Button>
-                      <p>0r connect using locial media</p>
+                      <p>Or connect using locial media</p>
                       <div className={styles.icon}>
                         <button
                           onClick={() => {

@@ -15,7 +15,8 @@ export default NextAuth({
           where: { email: email },
           select: { email: true },
         });
-        const isAdmin = admin ? true : false;
+        const isAdmin = !!admin;
+
         session.user = { ...session.user, ...{ isAdmin: isAdmin } };
       }
       return session;
