@@ -27,28 +27,35 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
     if (status === "loading") return;
     else {
       if (!session || router.pathname === "/") {
-        await router.push("/login/login");
-        setOpen(false);
-        if (router.pathname === "/login/login") {
+        if (router.pathname.startsWith("/view")) {
           setOpen(true);
+        } else {
+          await router.push("/login");
+          setOpen(false);
+          if (router.pathname === "/login") {
+            setOpen(true);
+          }
         }
         return;
       }
       if (session && !session?.user?.isAdmin) {
         setOpen(true);
-        if (router.pathname.startsWith("/login/login")) {
-          router.push("/" + session.user?.email.split("@")[0]);
+        if (router.asPath === "/login") {
+          router.push("/card/" + session.user?.email.split("@")[0]);
         }
-        if (router.asPath === "/" + session.user?.email.split("@")[0]) {
+        if (
+          router.asPath === "/card/" + session.user?.email.split("@")[0] ||
+          router.pathname.startsWith("/view")
+        ) {
           setOpen(true);
         } else {
           setOpen(false);
-          router.push("/" + session.user?.email.split("@")[0]);
+          router.push("/card/" + session.user?.email.split("@")[0]);
         }
         return;
       } else {
         setOpen(true);
-        if (router.pathname.startsWith("/login/login")) {
+        if (router.pathname.startsWith("/login")) {
           router.push("/admin/update");
         }
         return;
@@ -58,6 +65,7 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
   //console.log(router);
   React.useEffect(() => {
     Router();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session, router.pathname]);
 
   return open ? <>{children}</> : null;
