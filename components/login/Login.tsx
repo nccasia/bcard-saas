@@ -1,17 +1,18 @@
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Avatar from "@mui/material/Avatar";
+import { Checkbox, FormControlLabel } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+import Image from "next/image";
 import { signIn } from "next-auth/react";
 import * as React from "react";
 
+import facebook from "../../public/facebook.png";
+import google from "../../public/google.png";
 import styles from "../../styles/login.module.css";
 const theme = createTheme();
 
@@ -29,13 +30,13 @@ export default function Login() {
   return (
     <div
       className={styles.container}
-      style={{ backgroundPosition: open === "email" ? "0 -30px" : 0 }}
+      // style={{ backgroundPosition: open === "email" ? "0 -115px" : 0 }}
     >
       <div className={styles.form}>
-        <h1 className={styles.heading}>Business Card</h1>
         <div className={styles.boxContent}>
           {open === "" && (
             <div className={styles.content}>
+              <h1 className={styles.heading}>Business Card</h1>
               <button
                 onClick={() => {
                   SetOpen("email");
@@ -44,13 +45,13 @@ export default function Login() {
               >
                 SIGN IN WITH EMAIL
               </button>
-              <h1>Sign in with Social Networks</h1>
+              <h1 style={{ fontSize: "18px" }}>Sign in with Social Networks</h1>
               <div style={{ display: "flex", gap: "10px" }}>
                 <button
                   style={{ width: "100%" }}
                   className={styles.btNetwork}
                   onClick={() => {
-                    signIn("google", { callbackUrl: "/" });
+                    signIn("google", { callbackUrl: "/login/login" });
                   }}
                 >
                   <GoogleIcon sx={{ color: "white" }} />
@@ -60,75 +61,89 @@ export default function Login() {
                   style={{ width: "100%", backgroundColor: "#2a588a" }}
                   className={styles.btNetwork}
                   onClick={() => {
-                    signIn("google", { callbackUrl: "/" });
+                    signIn("google", { callbackUrl: "/login/login" });
                   }}
                 >
                   <FacebookIcon sx={{ color: "white" }} />
                   <p>FACEBOOK</p>
                 </button>
               </div>
-              <p style={{ fontSize: "12px" }}>
+              <p style={{ fontSize: "13px" }}>
                 By sign in you agree to the <b>Terms</b> and the <b>Condtions</b>
               </p>
             </div>
           )}
           {open === "email" && (
-            <ThemeProvider theme={theme}>
-              <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                  fontStyle={{ background: "#e9ecef", padding: "10px 20px", borderRadius: "10px" }}
-                  sx={{
-                    marginTop: 8,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                    <TextField
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="email"
-                      label="Email Address"
-                      name="email"
-                      autoComplete="email"
-                    />
-                    <TextField
-                      margin="normal"
-                      required
-                      fullWidth
-                      name="password"
-                      label="Password"
-                      type="password"
-                      id="password"
-                      autoComplete="current-password"
-                    />
-                    <Button
-                      type="submit"
-                      fullWidth
-                      variant="contained"
-                      sx={{ mt: 3, mb: 2 }}
-                      style={{ background: "#1976d2", width: "150px", float: "right" }}
-                    >
-                      Sign In
-                    </Button>
-                    <div style={{ marginTop: "70px" }}>
-                      <button
-                        style={{ width: "100%" }}
-                        className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                        onClick={() => {
-                          signIn("google", { callbackUrl: "/" });
-                        }}
+            <>
+              <ThemeProvider theme={theme}>
+                <Container component="main" maxWidth="xs">
+                  <CssBaseline />
+                  <h1 className={styles.heading}>Business Card</h1>
+                  <Box
+                    // fontStyle={{ background: "#e9ecef", padding: "10px 20px", borderRadius: "10px" }}
+                    sx={{
+                      // marginTop: 8,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                      <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                      />
+                      <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                      />
+                      <FormControlLabel
+                        style={{ float: "left" }}
+                        control={<Checkbox value="remember" color="primary" />}
+                        label="Remember me"
+                      />
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                        style={{ background: "#1976d2" }}
                       >
-                        Log in with google
-                      </button>
-                    </div>
+                        Sign In
+                      </Button>
+                      <p>0r connect using locial media</p>
+                      <div className={styles.icon}>
+                        <button
+                          onClick={() => {
+                            signIn("google", { callbackUrl: "/" });
+                          }}
+                        >
+                          <Image src={google} alt="google" width={20} height={20} />
+                        </button>
+                        <button
+                          onClick={() => {
+                            signIn("google", { callbackUrl: "/login/login" });
+                          }}
+                        >
+                          <Image src={facebook} alt="google" width={20} height={20} />
+                        </button>
+                      </div>
+                    </Box>
                   </Box>
-                </Box>
-              </Container>
-            </ThemeProvider>
+                </Container>
+              </ThemeProvider>
+            </>
           )}
         </div>
       </div>
