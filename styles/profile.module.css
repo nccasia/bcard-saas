@@ -98,7 +98,7 @@
 .itemContent {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .title,
@@ -269,7 +269,8 @@
 }
 
 .icon {
-  font-size: 16px;
+  font-size: 13px;
+  margin-top: 3px;
   color: #7e7b7b;
 }
 
@@ -338,7 +339,7 @@
   }
 
   .icon {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .position {
