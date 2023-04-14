@@ -24,10 +24,11 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const Router = async () => {
+    //console.log(status);
     if (status === "loading") return;
     else {
       if (!session || router.pathname === "/") {
-        if (router.pathname.startsWith("/view")) {
+        if (router.pathname.startsWith("/view/")) {
           setOpen(true);
         } else {
           await router.push("/login");
@@ -39,18 +40,21 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
         return;
       }
       if (session && !session?.user?.isAdmin) {
+        //console.log(`session && !session?.user?.isAdmin`);
         setOpen(true);
         if (router.asPath === "/login") {
           router.push("/card/" + session.user?.email.split("@")[0]);
         }
-        if (
-          router.asPath === "/card/" + session.user?.email.split("@")[0] ||
-          router.pathname.startsWith("/view")
-        ) {
+        if (router.asPath === "/card/" + session.user?.email.split("@")[0]) {
           setOpen(true);
         } else {
-          setOpen(false);
-          router.push("/card/" + session.user?.email.split("@")[0]);
+          if (router.pathname.startsWith("/view/")) {
+            setOpen(true);
+          } else {
+            setOpen(false);
+            await router.push("/card/" + session.user?.email.split("@")[0]);
+            setOpen(true);
+          }
         }
         return;
       } else {
@@ -62,7 +66,6 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
       }
     }
   };
-  //console.log(router);
   React.useEffect(() => {
     Router();
     // eslint-disable-next-line react-hooks/exhaustive-deps
