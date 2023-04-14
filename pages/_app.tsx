@@ -24,9 +24,11 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const Router = async () => {
+    console.log(status);
     if (status === "loading") return;
     else {
       if (!session || router.pathname === "/") {
+        console.log(`!session || router.pathname === "/"`);
         await router.push("/login/login");
         setOpen(false);
         if (router.pathname === "/login/login") {
@@ -35,6 +37,7 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
         return;
       }
       if (session && !session?.user?.isAdmin) {
+        console.log(`session && !session?.user?.isAdmin`);
         setOpen(true);
         if (router.pathname.startsWith("/login/login")) {
           router.push("/" + session.user?.email.split("@")[0]);
@@ -50,12 +53,12 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
         setOpen(true);
         if (router.pathname.startsWith("/login/login")) {
           router.push("/admin/update");
+          console.log("bbbb");
         }
         return;
       }
     }
   };
-  //console.log(router);
   React.useEffect(() => {
     Router();
     // eslint-disable-next-line react-hooks/exhaustive-deps
