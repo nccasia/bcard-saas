@@ -6,7 +6,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Business Card App</title>
+        <title>Business Card</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
     </div>

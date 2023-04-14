@@ -44,7 +44,6 @@ function SelectAdmin(): JSX.Element {
   const [admin, setAdmin] = React.useState<TypeAdmin[]>([]);
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [nameAdd, setNameAdd] = React.useState("");
   const [emailAdd, setEmailAdd] = React.useState("");
   const [openEdit, setOpenEdit] = React.useState<number>(-1);
   const [openAdd, setOpenAdd] = React.useState<boolean>(false);
@@ -89,9 +88,12 @@ function SelectAdmin(): JSX.Element {
             className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
             style={{ display: openAdd ? "block" : "none" }}
             onClick={() => {
-              addAdmin(nameAdd, emailAdd).then((data: any) => setAdmin([...admin, data]));
+              addAdmin(emailAdd).then((data: any) => {
+                if (data) {
+                  setAdmin([...admin, data]);
+                }
+              });
               setEmailAdd("");
-              setNameAdd("");
               setOpenAdd(false);
             }}
           >
@@ -219,14 +221,6 @@ function SelectAdmin(): JSX.Element {
                       <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
                         {item?.id && openEdit !== item.id}
                         {item?.id}
-                        <input
-                          type="text"
-                          placeholder={item?.name}
-                          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          style={{ display: item?.id && openEdit === item.id ? "block" : "none" }}
-                        />
                       </StyledTableCell>
                       <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
                         <p style={{ display: item && openEdit === item.id ? "none" : "block" }}>
@@ -251,18 +245,21 @@ function SelectAdmin(): JSX.Element {
                         </button>
                         <button
                           onClick={() => {
-                            updateAdmin(item.id, name, email);
+                            updateAdmin(item.id, email).then((main: any) => {
+                              if (main) {
+                                const list = admin.map((main: any) => {
+                                  if (main.id === item.id) {
+                                    return { ...main, id: item.id, name: name, email: email };
+                                  } else {
+                                    return main;
+                                  }
+                                });
+                                setAdmin(list);
+                              }
+                            });
                             setEmail("");
                             setName("");
                             setOpenEdit(-1);
-                            const list = admin.map((main: any) => {
-                              if (main.id === item.id) {
-                                return { ...main, id: item.id, name: name, email: email };
-                              } else {
-                                return main;
-                              }
-                            });
-                            setAdmin(list);
                           }}
                           style={{ display: item && openEdit === item.id ? "block" : "none" }}
                           className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"

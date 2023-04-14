@@ -25,32 +25,34 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false);
   const Router = async () => {
     if (status === "loading") return;
-    if (!session || router.pathname === "/") {
-      await router.push("/login/login");
-      setOpen(false);
-      if (router.pathname === "/login/login") {
-        setOpen(true);
-      }
-      return;
-    }
-    if (session && !session?.user?.isAdmin) {
-      setOpen(true);
-      if (router.pathname.startsWith("/login/login")) {
-        router.push("/" + session.user?.email.split("@")[0]);
-      }
-      if (router.asPath === "/" + session.user?.email.split("@")[0]) {
-        setOpen(true);
-      } else {
+    else {
+      if (!session || router.pathname === "/") {
+        await router.push("/login/login");
         setOpen(false);
-        router.push("/" + session.user?.email.split("@")[0]);
+        if (router.pathname === "/login/login") {
+          setOpen(true);
+        }
+        return;
       }
-      return;
-    } else {
-      setOpen(true);
-      if (router.pathname.startsWith("/login/login")) {
-        router.push("/admin/update");
+      if (session && !session?.user?.isAdmin) {
+        setOpen(true);
+        if (router.pathname.startsWith("/login/login")) {
+          router.push("/" + session.user?.email.split("@")[0]);
+        }
+        if (router.asPath === "/" + session.user?.email.split("@")[0]) {
+          setOpen(true);
+        } else {
+          setOpen(false);
+          router.push("/" + session.user?.email.split("@")[0]);
+        }
+        return;
+      } else {
+        setOpen(true);
+        if (router.pathname.startsWith("/login/login")) {
+          router.push("/admin/update");
+        }
+        return;
       }
-      return;
     }
   };
   //console.log(router);
