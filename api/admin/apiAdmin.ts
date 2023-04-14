@@ -1,20 +1,22 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const addAdmin = async (name: string, email: string) => {
+export const addAdmin = async (email: string) => {
   try {
     const response = await axios({
-      url: "/api/admin/admin/postadmin",
-      data: JSON.stringify({ name: name, email: email }),
+      url: "/api/admin/admin/postadmin/save",
+      data: JSON.stringify({ email: email }),
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     });
     toast.success("Success!");
+    return true;
     return response.data;
   } catch (error: any) {
     toast.error(error?.response?.data?.errorMessage);
+    return null;
   }
 };
 
@@ -37,8 +39,7 @@ export const getAdmin = async () => {
 export const deleteAdmin = async (id: string) => {
   try {
     await axios({
-      url: "/api/admin/admin/deleteadmin",
-      data: JSON.stringify({ id: id }),
+      url: "/api/admin/admin/deleteadmin/" + id,
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -50,18 +51,20 @@ export const deleteAdmin = async (id: string) => {
   }
 };
 
-export const updateAdmin = async (id: string, name: string, email: string) => {
+export const updateAdmin = async (id: string, email: string) => {
   try {
     await axios({
-      url: "/api/admin/admin/putadmin",
-      data: JSON.stringify({ id: id, name: name, email: email }),
+      url: "/api/admin/admin/save",
+      data: JSON.stringify({ id: id, email: email }),
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
     });
     toast.success("Success!");
+    return true;
   } catch (error: any) {
+    return null;
     toast.error(error?.response?.data?.errorMessage);
   }
 };
