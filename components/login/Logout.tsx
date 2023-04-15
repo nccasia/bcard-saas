@@ -6,7 +6,7 @@ const Logout = () => {
     <div>
       <button
         onClick={() => {
-          signOut({ redirect: true, callbackUrl: "/login/login" });
+          signOut({ redirect: true, callbackUrl: "/login" });
         }}
       >
         Log out
