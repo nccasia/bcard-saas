@@ -60,9 +60,9 @@ export default function Login() {
                 <button
                   style={{ width: "100%", backgroundColor: "#2a588a" }}
                   className={styles.btNetwork}
-                  onClick={() => {
-                    signIn("google", { callbackUrl: "/login/login" });
-                  }}
+                  // onClick={() => {
+                  //   signIn("google", { callbackUrl: "/login/login" });
+                  // }}
                 >
                   <FacebookIcon sx={{ color: "white" }} />
                   <p>FACEBOOK</p>
@@ -132,9 +132,9 @@ export default function Login() {
                           <Image src={google} alt="google" width={20} height={20} />
                         </button>
                         <button
-                          onClick={() => {
-                            signIn("google", { callbackUrl: "/login/login" });
-                          }}
+                        // onClick={() => {
+                        //   signIn("google", { callbackUrl: "/login/login" });
+                        // }}
                         >
                           <Image src={facebook} alt="google" width={20} height={20} />
                         </button>
