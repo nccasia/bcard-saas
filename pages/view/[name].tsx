@@ -33,7 +33,7 @@ function Name() {
         sx={{ marginTop: "50px" }}
       >
         {profile && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
-        {!profile && <p>No...</p>}
+        {!profile && <p>If you don't have a card, please contact the administrator!</p>}
       </Grid>
     </div>
   );

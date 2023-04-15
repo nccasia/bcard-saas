@@ -295,8 +295,8 @@ function Update() {
                           <p>{item?.NameId}</p>
                         </StyledTableCell>
                         <StyledTableCell className={styles.td} style={{ textAlign: "center" }}>
-                          <Link href={"/" + item?.NameId}>
-                            {`${process.env.NEXT_PUBLIC_BASE_URL}/${item.NameId}`}
+                          <Link href={"/card/" + item?.NameId}>
+                            {`${process.env.NEXT_PUBLIC_BASE_URL}/card/${item.NameId}`}
                           </Link>
                         </StyledTableCell>
                       </StyledTableRow>
