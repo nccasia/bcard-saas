@@ -51,7 +51,7 @@ export default function Login() {
                   style={{ width: "100%" }}
                   className={styles.btNetwork}
                   onClick={() => {
-                    signIn("google", { callbackUrl: "/login/login" });
+                    signIn("google", { callbackUrl: "/login" });
                   }}
                 >
                   <GoogleIcon sx={{ color: "white" }} />
@@ -61,7 +61,7 @@ export default function Login() {
                   style={{ width: "100%", backgroundColor: "#2a588a" }}
                   className={styles.btNetwork}
                   onClick={() => {
-                    signIn("google", { callbackUrl: "/login/login" });
+                    signIn("google", { callbackUrl: "/login" });
                   }}
                 >
                   <FacebookIcon sx={{ color: "white" }} />
@@ -126,14 +126,14 @@ export default function Login() {
                       <div className={styles.icon}>
                         <button
                           onClick={() => {
-                            signIn("google", { callbackUrl: "/" });
+                            signIn("google", { callbackUrl: "/login" });
                           }}
                         >
                           <Image src={google} alt="google" width={20} height={20} />
                         </button>
                         <button
                           onClick={() => {
-                            signIn("google", { callbackUrl: "/login/login" });
+                            signIn("google", { callbackUrl: "/login" });
                           }}
                         >
                           <Image src={facebook} alt="google" width={20} height={20} />
