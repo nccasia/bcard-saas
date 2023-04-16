@@ -1,4 +1,3 @@
-// import Link from "next/link";
 import { signOut } from "next-auth/react";
 
 const Logout = () => {
