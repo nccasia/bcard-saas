@@ -48,3 +48,17 @@ export const getProfile = async () => {
     toast.error(error?.response?.data?.errorMessage);
   }
 };
+export const deleteProfile = async (NameId: string) => {
+  try {
+    await axios({
+      url: "/api/test/deleteprofile/" + NameId,
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    toast.success("Success!");
+  } catch (error: any) {
+    toast.error(error?.response?.data?.errorMessage);
+  }
+};

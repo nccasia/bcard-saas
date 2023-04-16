@@ -43,7 +43,7 @@ function Name() {
       <div
         style={{
           textAlign: "center",
-          padding: "5vh 0",
+          padding: "10vh 0",
         }}
       >
         {profile && (

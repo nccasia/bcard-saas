@@ -245,7 +245,7 @@
 .iconSwitch {
   position: absolute;
   bottom: 30px;
-  right: 10px;
+  right: 15px;
   background-color: "#fff";
   border-radius: 50%;
 }
@@ -293,8 +293,8 @@
 
   .iconSwitch {
     position: absolute;
-    bottom: 55px;
-    right: 10px;
+    top: 88px;
+    right: 15px;
   }
 
   .card {

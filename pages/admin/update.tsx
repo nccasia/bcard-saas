@@ -24,7 +24,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
-import { getProfile, updateProfile } from "../../api/profile/apiProfile";
+import { deleteProfile, getProfile, updateProfile } from "../../api/profile/apiProfile";
 import HomeLayout from "../../components/home/HomeLayout";
 //import Logout from "../../components/login/Logout";
 // import Sidebar from "../components/home/Sidebar";
@@ -281,6 +281,12 @@ function Update() {
                 >
                   Link
                 </StyledTableCell>
+                <StyledTableCell
+                  className={styles.th}
+                  style={{ fontSize: "18px", textAlign: "center" }}
+                >
+                  Action
+                </StyledTableCell>
               </StyledTableRow>
             </TableBody>
             <TableBody>
@@ -298,6 +304,20 @@ function Update() {
                           <Link href={"/card/" + item?.NameId}>
                             {`${process.env.NEXT_PUBLIC_BASE_URL}/card/${item.NameId}`}
                           </Link>
+                        </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
+                          <button
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                            onClick={() => {
+                              deleteProfile(item?.NameId);
+                              const profile = datalink.filter(
+                                (main: any) => main.NameId !== item.NameId,
+                              );
+                              setDataLink(profile);
+                            }}
+                          >
+                            Delete
+                          </button>
                         </StyledTableCell>
                       </StyledTableRow>
                     );
