@@ -21,7 +21,7 @@ function EditProfile({ value, setOpen, action, data, setData }: any) {
         setValue("Title", main?.Title || "");
       });
     }
-  }, [value]);
+  }, [value, setValue]);
 
   const onFormSubmit = async (index: any) => {
     if (action === "edit") {

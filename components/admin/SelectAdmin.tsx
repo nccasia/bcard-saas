@@ -80,7 +80,10 @@ function SelectAdmin(): JSX.Element {
         </DialogContent>
         <DialogActions>
           <button
-            onClick={() => setOpenAdd(false)}
+            onClick={() => {
+              setEmailAdd("");
+              setOpenAdd(false);
+            }}
             className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
           >
             Cancel
