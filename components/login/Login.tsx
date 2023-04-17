@@ -18,6 +18,8 @@ const theme = createTheme();
 
 export default function Login() {
   const [open, SetOpen] = React.useState("");
+  const [opendisable, SetOpendisable] = React.useState(false);
+  console.log(opendisable, "hhh");
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -26,6 +28,11 @@ export default function Login() {
       password: data.get("password"),
     });
   };
+  const handleClick = () => {
+    SetOpendisable(true);
+    SetOpen("email");
+  };
+  console.log(opendisable, "kkk");
 
   return (
     <div
@@ -37,12 +44,7 @@ export default function Login() {
           {open === "" && (
             <div className={styles.content}>
               <h1 className={styles.heading}>Business Card</h1>
-              <button
-                onClick={() => {
-                  SetOpen("email");
-                }}
-                className={styles.lgemail}
-              >
+              <button onClick={handleClick} className={styles.lgemail} disabled={true}>
                 SIGN IN WITH EMAIL
               </button>
               <h1 style={{ fontSize: "18px" }}>Sign in with Social Networks</h1>
@@ -63,6 +65,7 @@ export default function Login() {
                   onClick={() => {
                     signIn("google", { callbackUrl: "/login" });
                   }}
+                  disabled={true}
                 >
                   <FacebookIcon sx={{ color: "white" }} />
                   <p>FACEBOOK</p>

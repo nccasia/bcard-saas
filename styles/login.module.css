@@ -1,114 +1,111 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-image: url("/images/background.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/images/background.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
-.login{
-    height: 300px;
-    padding: 0 20px;
-    
+.login {
+  height: 300px;
+  padding: 0 20px;
 }
 
-.form{
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    /* background-color: red; */
-    height: 100vh;
+.form {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* background-color: red; */
+  height: 100vh;
 }
-.span{
-    text-align: center;
+.span {
+  text-align: center;
 }
-.button{
-    background-color: green;
-    height: 40px;
-    width: 300px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    color: #fff;
-}
-
-.signup{
-    background: #a09b9b;
-    height: 39px;
-    display: flex;
-    padding: 10px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-}
-.heading{
-    font-weight: 700;
-    font-size: 40px;
-    /* margin-bottom: 15px; */
-    color: #000;
-}
-.boxContent{
-    width: 100%;
-    padding: 5px 0;
-    border-radius: 10px;
-    text-align: center;
-    background-color: #fff;
+.button {
+  background-color: green;
+  height: 40px;
+  width: 300px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: #fff;
 }
 
-.lgemail{
-    border-radius: 10px;
-    padding: 10px 0;
-    background: green;
-    color: #fff;
-    margin-top: 15px;
-    font-size: 18px;
+.signup {
+  background: #a09b9b;
+  height: 39px;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.heading {
+  font-weight: 700;
+  font-size: 40px;
+  /* margin-bottom: 15px; */
+  color: #000;
+}
+.boxContent {
+  width: 100%;
+  padding: 5px 0;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #fff;
 }
 
-.content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px 45px;
-    gap: 28px;
+.lgemail {
+  border-radius: 10px;
+  padding: 10px 0;
+  background: green;
+  color: #fff;
+  margin-top: 15px;
+  font-size: 18px;
 }
-.btNetwork{
-    gap: 5px;
-    background-color: #d35338;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 5px;
-    border-radius: 25px;
-    color: #fff;
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 45px;
+  gap: 28px;
 }
-.icon{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 5px;
+.btNetwork {
+  gap: 5px;
+  background-color: #d35338;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 5px;
+  border-radius: 25px;
+  color: #fff;
+}
+.icon {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 5px;
 }
 @media (max-width: 768px) {
-    .container{
-      position: relative;
-      background-image: url("/images/backgroundMobile.png");
+  .container {
+    position: relative;
+    background-image: url("/images/backgroundMobile.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position: 0px -20vh;
-      
-    }
-    .boxContent{
-        position: absolute;
-        bottom: 0;
-        height: 52vh;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        
-    }
+    background-position: 0px -27vh;
   }
+  .boxContent {
+    position: absolute;
+    bottom: 0;
+    height: 58vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
