@@ -1,167 +1,104 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
-function EditProfile({ profile, setUpdate }: any) {
-  const [feedback, setFeedback] = useState("");
-  const [error, setError] = useState("");
+import { editProfile, getNameCard, newProfile } from "../../api/profile/apiProfile";
 
-  const { handleSubmit, register } = useForm({
-    mode: "onChange",
-    defaultValues: {
-      name: profile?.name,
-      img: profile?.img,
-      email: profile?.email || "",
-      web: profile?.web || "",
-      address: profile?.address || "",
-      company: profile?.company || "",
-      position: profile?.position || "",
-      logo: profile?.logo || "",
-      slogan: profile?.slogan || "",
-      phone: profile?.phone || "",
-      action: profile?.action || "",
-      slug: profile?.slug || "",
-    },
-  });
-
-  // console.log(profile.slug)
-  const onFormSubmit = async (values: any) => {
-    const config: AxiosRequestConfig = {
-      url: `/api/profile/${profile.slug}`,
-      data: JSON.stringify({ ...values }),
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    try {
-      const response = await axios(config);
-      if (response.status === 200) {
-        setFeedback(response.data.message);
-        setError("");
-        setUpdate(false);
-      } else if (response.status === 401 || response.status === 500) {
-        setFeedback("");
-        setError(response.data.errorMessage);
-      } else {
-        setFeedback("");
-        setError(response.data.errorMessage);
-      }
-    } catch (error: any) {
-      setUpdate(false);
-      setFeedback("");
-      setError("An error occurred processing your request.");
+function EditProfile({ value, setOpen, action, data, setData }: any) {
+  const {
+    handleSubmit,
+    register,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm({ mode: "onChange" });
+  React.useEffect(() => {
+    if (value !== "") {
+      getNameCard(value).then((main: any) => {
+        setValue("NameId", main?.NameId || "");
+        setValue("Name", main?.Name || "");
+        setValue("Email", main?.Email || "");
+        setValue("Phone", main?.Phone || "");
+        setValue("Title", main?.Title || "");
+      });
     }
+  }, [value, setValue]);
+
+  const onFormSubmit = async (index: any) => {
+    if (action === "edit") {
+      editProfile(index);
+    }
+    if (action === "create") {
+      newProfile(index).then((main: any) => {
+        if (main) {
+          setData([...data, { NameId: main }]);
+        }
+      });
+    }
+    setOpen("");
   };
+  const onCancelClick = () => {
+    setOpen("");
+  };
+  //console.log(data);
 
   return (
     <div className="w-full max-w-2xl mx-auto">
-      <h1 className="text-2xl font-semi-bold text-grey-900">Update your profile</h1>
+      <h1 className="text-2xl font-semi-bold text-grey-900">
+        {action === "edit" && "Edit " + watch("NameId")}
+        {action === "create" && "New Card"}
+      </h1>
       <hr className="mt-2 mb-3" />
-
-      {feedback !== "" && error === "" && (
-        <div
-          className="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-          role="alert"
-        >
-          <span className="font-medium">Success:</span> {feedback}
-        </div>
-      )}
-
-      {error !== "" && feedback === "" && (
-        <div
-          className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
-          role="alert"
-        >
-          <span className="font-medium">Error:</span> {error}
-        </div>
-      )}
-
       <form onSubmit={handleSubmit(onFormSubmit)}>
         <p>Name:</p>
         <input
           type="text"
+          style={{ outlineColor: errors.Name ? "red" : "none" }}
           placeholder="Enter your name"
-          {...register("name", { required: true })}
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-        />
-        <p>Image:</p>
-        <input
-          type="tel"
-          placeholder="Enter your Image"
-          {...register("img")}
+          {...register("Name", { required: true })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
         <p>Email:</p>
         <input
-          type="tel"
+          type="email"
+          style={{ outlineColor: errors.Email ? "red" : "none" }}
           placeholder="Enter your email"
-          {...register("email")}
+          {...register("Email", {
+            required: true,
+            pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+          })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        <p>Web:</p>
+        <p>Phone:</p>
         <input
           type="text"
-          placeholder="Enter your web"
-          {...register("web")}
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-        />
-        <p>Contact:</p>
-        <input
-          type="tel"
           placeholder="Enter your phone"
-          {...register("phone")}
+          style={{ outlineColor: errors.Phone ? "red" : "none" }}
+          {...register("Phone", { required: true })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        <p>Position:</p>
-        <input
-          type="tel"
-          placeholder="Enter your position"
-          {...register("position")}
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-        />
-        <p>Company:</p>
-        <input
-          type="tel"
-          placeholder="Enter your company"
-          {...register("company")}
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-        />
-        <p>Logo:</p>
-        <input
-          type="url"
-          placeholder="Enter your logo"
-          {...register("logo")}
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-        />
-        <p>Slogan:</p>
+        <p>Title:</p>
         <input
           type="text"
-          placeholder="Enter your slogan"
-          {...register("slogan")}
+          placeholder="Enter your title"
+          style={{ outlineColor: errors.Title ? "red" : "none" }}
+          {...register("Title", { required: true })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        <p>Address:</p>
-        <input
-          type="text"
-          placeholder="Enter your address"
-          {...register("address")}
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-        />
-        <p>Action:</p>
-        <textarea
-          rows={4}
-          placeholder="Enter your action"
-          {...register("action", { required: true })}
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-        />
-        <button
-          type="submit"
-          className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-green-600 my-2 active:bg-green-900"
-        >
-          Save Changes
-        </button>
+        <div style={{ float: "right", display: "flex", gap: 5, marginTop: "10px" }}>
+          <button
+            type="button"
+            onClick={onCancelClick}
+            className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-green-600 my-2 active:bg-green-900"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-green-600 my-2 active:bg-green-900"
+          >
+            Save
+          </button>
+        </div>
       </form>
     </div>
   );

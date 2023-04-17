@@ -1,21 +1,18 @@
+import { NextApiHandler } from "next";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 
-import { prisma } from "../../../../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 
-async function handlerIdAdmin(req: NextApiRequest, res: NextApiResponse) {
+const viewadmin: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session: any = await getSession({ req });
   if (session && session?.user?.isAdmin) {
-    const { id } = req.query;
-    if (req.method === "DELETE") {
+    if (req.method === "GET") {
       try {
-        const admin = await prisma.admin.delete({
-          where: {
-            id: String(id),
-          },
-        });
+        const admin = await prisma.admin.findMany();
         return res.status(201).json(admin);
       } catch (e) {
+        console.error(e);
         return res.status(500).json({ error: "Internal Server Error" });
       } finally {
         await prisma.$disconnect();
@@ -24,6 +21,6 @@ async function handlerIdAdmin(req: NextApiRequest, res: NextApiResponse) {
   } else {
     res.status(401).json({ errorMessage: "Access Denied." });
   }
-}
+};
 
-export default handlerIdAdmin;
+export default viewadmin;

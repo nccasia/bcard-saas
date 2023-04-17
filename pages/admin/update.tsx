@@ -16,6 +16,8 @@ import {
   tableCellClasses,
   TableContainer,
   TableRow,
+  TextField,
+  Tooltip,
 } from "@mui/material";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
@@ -26,14 +28,12 @@ import { ToastContainer } from "react-toastify";
 
 import { deleteProfile, getProfile, updateProfile } from "../../api/profile/apiProfile";
 import HomeLayout from "../../components/home/HomeLayout";
-//import Logout from "../../components/login/Logout";
-// import Sidebar from "../components/home/Sidebar";
+import EditProfile from "../../components/users/EditProfile";
 import excel from "../../public/excel.png";
-//import logo from "../../public/logo.png";
-// import styles from "../styles/admin.module.css";
 import styles from "../../styles/update.module.css";
 import { changeExcel } from "../../utils/changeExcel";
 import { fileSize } from "../../utils/fileSize";
+import { useDataDebouncer } from "../../utils/useDeboune";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -109,18 +109,22 @@ function Update() {
     });
     saveAs(blob, "example.xlsx");
   };
-  const [datalink, setDataLink] = useState<any>([]);
+  const [dataLink, setDataLink] = useState<any>([]);
+  const [search, setSearch] = useState("");
   React.useEffect(() => {
     getProfile().then((main: any) => setDataLink(main));
   }, []);
-  // const router: any = useRouter();
-  // const [session, setSession] = React.useState<any>();
-  // React.useEffect(() => {
-  //   getSession().then((data) => setSession(data));
-  // }, []);
+  //console.log(dataLink);
 
+  const [openEdit, setOpenEdit] = useState("");
+  const [openNew, setOpenNew] = useState("");
+  const debounce = useDataDebouncer(search.trim(), 800);
+  const list = debounce
+    ? dataLink.filter((main: any) => main.NameId.toLowerCase().includes(debounce))
+    : dataLink;
   return (
     <HomeLayout>
+      <ToastContainer position="bottom-right" />
       <Dialog open={openDia} onClose={() => setOpenDia(false)}>
         <DialogContent>
           {/* <div className={styles.container}> */}
@@ -245,6 +249,17 @@ function Update() {
           {/* </div> */}
         </DialogContent>
       </Dialog>
+      <Dialog open={openNew ? true : false} onClose={() => setOpenNew("")}>
+        <DialogContent>
+          <EditProfile
+            value={""}
+            setOpen={setOpenNew}
+            action="create"
+            data={dataLink}
+            setData={setDataLink}
+          />
+        </DialogContent>
+      </Dialog>
       <div
         style={{
           padding: "30px 0 30px 0",
@@ -252,13 +267,35 @@ function Update() {
           borderRadius: "10px",
         }}
       >
-        <button
-          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-          style={{ float: "right", marginRight: "10px" }}
-          onClick={() => setOpenDia(true)}
+        <div
+          style={{
+            padding: "10px 10px",
+          }}
         >
-          Upload Excel
-        </button>
+          <TextField
+            label="Search Name..."
+            variant="outlined"
+            value={search}
+            onChange={(e: any) => setSearch(e.target.value)}
+          />
+          <div style={{ float: "right" }}>
+            <button
+              style={{ marginRight: "3px" }}
+              className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+              onClick={() => setOpenNew("New Card")}
+            >
+              New Card
+            </button>
+            <Tooltip title="Create, Update">
+              <button
+                className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                onClick={() => setOpenDia(true)}
+              >
+                Upload Excel
+              </button>
+            </Tooltip>
+          </div>
+        </div>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 500 }} aria-label="customized table">
             <TableBody>
@@ -290,8 +327,8 @@ function Update() {
               </StyledTableRow>
             </TableBody>
             <TableBody>
-              {datalink
-                ? datalink.map((item: any, index: number) => {
+              {list
+                ? list.map((item: any, index: number) => {
                     return (
                       <StyledTableRow key={index}>
                         <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
@@ -305,15 +342,28 @@ function Update() {
                             {`${process.env.NEXT_PUBLIC_BASE_URL}/card/${item.NameId}`}
                           </Link>
                         </StyledTableCell>
-                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
+                        <StyledTableCell
+                          style={{ justifyContent: "center", display: "flex", gap: 3 }}
+                          component="th"
+                          scope="row"
+                        >
+                          <button
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                            onClick={() => setOpenEdit(item?.NameId)}
+                          >
+                            Edit
+                          </button>
                           <button
                             className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
                             onClick={() => {
-                              deleteProfile(item?.NameId);
-                              const profile = datalink.filter(
-                                (main: any) => main.NameId !== item.NameId,
-                              );
-                              setDataLink(profile);
+                              deleteProfile(item?.NameId).then((main) => {
+                                if (main) {
+                                  const profile = dataLink.filter(
+                                    (main: any) => main.NameId !== item.NameId,
+                                  );
+                                  setDataLink(profile);
+                                }
+                              });
                             }}
                           >
                             Delete
@@ -326,7 +376,17 @@ function Update() {
             </TableBody>
           </Table>
         </TableContainer>
-        <ToastContainer />
+        <Dialog open={openEdit ? true : false} onClose={() => setOpenEdit("")}>
+          <DialogContent>
+            <EditProfile
+              value={openEdit}
+              setOpen={setOpenEdit}
+              action="edit"
+              data={null}
+              setData={null}
+            />
+          </DialogContent>
+        </Dialog>
       </div>
     </HomeLayout>
   );

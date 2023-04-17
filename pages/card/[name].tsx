@@ -21,7 +21,7 @@ function Name() {
 
   React.useEffect(() => {
     if (name) {
-      getNameCard("/api/test/" + name).then((main) => setProfile(main));
+      getNameCard(String(name)).then((main) => setProfile(main));
     }
   }, [name]);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
