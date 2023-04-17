@@ -279,6 +279,11 @@
   color: #646464;
   font-weight: 400;
 }
+.addIcon{
+  position: absolute;
+  right: 15px;
+  top: calc(100% + 27vh);;
+}
 
 @media (max-width: 768px) {
   .container {
@@ -296,6 +301,9 @@
     bottom: calc(100% - 90.3vh);
     box-sizing: border-box;
     right: 15px;
+  }
+  .addIcon{
+    bottom: calc(100% + 40vh);
   }
 
   .card {
