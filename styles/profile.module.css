@@ -293,7 +293,8 @@
 
   .iconSwitch {
     position: absolute;
-    top: 88px;
+    bottom: calc(100% - 90.3vh);
+    box-sizing: border-box;
     right: 15px;
   }
 

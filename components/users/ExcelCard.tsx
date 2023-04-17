@@ -1,6 +1,7 @@
 /* eslint-disable react/no-children-prop */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import Link from "next/link";
 
 import logo_content from "../../public/logo_content.png";
 // import Image from "next/image";
@@ -77,7 +78,11 @@ function ExcelCard({ profile, params }: any) {
                   </div>
                   <div className={styles.itemContent}>
                     <FontAwesomeIcon icon="globe" className={styles.icon} />
-                    <p className={styles.text1}>{profile?.Web || "http://www.ncc.asia"}</p>
+                    <p className={styles.text1}>
+                      <Link href="https://ncc.asia/" target="_blank">
+                        https://www.ncc.asia
+                      </Link>
+                    </p>
                   </div>
                   {/* <div className={styles.itemContent}>
                     <FontAwesomeIcon icon="location-dot" className={styles.icon} />
