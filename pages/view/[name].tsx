@@ -31,7 +31,7 @@ function Name() {
   const { name } = router.query;
   React.useEffect(() => {
     if (name) {
-      getNameCard("/api/test/" + name).then((main) => setProfile(main));
+      getNameCard(String(name)).then((main) => setProfile(main));
     }
   }, [name]);
   const [open, setOpen] = React.useState(false);
