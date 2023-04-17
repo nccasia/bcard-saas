@@ -50,7 +50,7 @@ function SelectAdmin(): JSX.Element {
   React.useEffect(() => {
     getAdmin().then((data) => setAdmin(data));
   }, []);
-  console.log(admin);
+  //console.log(admin);
   return (
     <div
       style={{
