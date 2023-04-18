@@ -4,15 +4,15 @@ import styles from "../../styles/logout.module.css";
 
 const Logout = () => {
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <button
+        style={{ width: "100%" }}
         onClick={() => {
           signOut({ redirect: true, callbackUrl: "/login" });
         }}
         className={styles.logout}
       >
         Log out
-        {/* <Link href={"/login"}>Log out</Link> */}
       </button>
     </div>
   );

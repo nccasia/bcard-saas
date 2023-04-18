@@ -1,14 +1,5 @@
-/* eslint-disable react/no-children-prop */
-// import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-// import { Fab } from "@mui/material";
-// import Button from "@mui/material/Button";
-// import Dialog from "@mui/material/Dialog";
-// import DialogActions from "@mui/material/DialogActions";
-// import DialogContent from "@mui/material/DialogContent";
-// import DialogContentText from "@mui/material/DialogContentText";
-// import DialogTitle from "@mui/material/DialogTitle";
 import Grid from "@mui/material/Grid";
-// import TextField from "@mui/material/TextField";
+import { saveAs } from "file-saver";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
@@ -16,17 +7,8 @@ import React from "react";
 import { getNameCard } from "../../api/profile/apiProfile";
 import LayoutUser from "../../components/home/LayoutUser";
 import ExcelCard from "../../components/users/ExcelCard";
-// import styles from "../../styles/profile.module.css";
 function Name() {
   const [profile, setProfile] = React.useState<any>();
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
   const router = useRouter();
   const { name } = router.query;
   React.useEffect(() => {
@@ -34,15 +16,32 @@ function Name() {
       getNameCard(String(name)).then((main) => setProfile(main));
     }
   }, [name]);
-  const [open, setOpen] = React.useState(false);
-  //console.log(profile);
+
+  const vcf = () => {
+    const web = "https://www.ncc.asia";
+    //const logo = "/logo.png";
+    const company = "NCCPLUS VIETNAM JSC";
+    const vcardContent = `
+    BEGIN:VCARD
+    VERSION:4.0
+    N:${profile?.Name}
+    TEL;TYPE=CELL:${profile?.Phone}
+    EMAIL;TYPE=INTERNET:${profile?.Email}
+    URL:${web}
+    TITLE: ${profile?.Title}
+    ORG:${company}
+    END:VCARD
+    `;
+    const blob = new Blob([vcardContent], { type: "text/vcard;charset=utf-8" });
+    saveAs(blob, `${profile?.NameId}.vcf`);
+  };
 
   return (
     <div>
       <Head>
         <title>Business Card App</title>
       </Head>
-      <LayoutUser children={undefined} open={open} setOpen={setOpen}></LayoutUser>
+      <LayoutUser></LayoutUser>
       <Grid
         container
         direction="column"
@@ -51,36 +50,16 @@ function Name() {
         sx={{ marginTop: "50px" }}
       >
         {profile && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
+        {profile && (
+          <button
+            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+            onClick={vcf}
+          >
+            Add Contact
+          </button>
+        )}
         {!profile && <p>If you don't have a card, please contact the administrator!</p>}
       </Grid>
-      {/* <div style={{ position: "relative" }}>
-        <div className={styles.addIcon}>
-          <Fab onClick={handleClickOpen} sx={{ width: "50px", height: "50px" }}>
-            <AddCircleOutlineIcon sx={{ color: "#1976d2", fontSize: "30px" }} />
-          </Fab>
-        </div>
-        <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Subscribe</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              To subscribe to this website, please enter your email address here. We will send
-              updates occasionally.
-            </DialogContentText>
-            <TextField
-              margin="dense"
-              id="name"
-              label="Contact"
-              type="email"
-              fullWidth
-              variant="standard"
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleClose}>Subscribe</Button>
-          </DialogActions>
-        </Dialog>
-      </div> */}
     </div>
   );
 }

@@ -10,7 +10,6 @@ const QRCode = ({ url }: any) => {
           const qrCode = new QRCodeStyling.default({
             width: 250,
             height: 250,
-            data: url,
             image: "/logo.png",
             dotsOptions: {
               color: "#000000c9",

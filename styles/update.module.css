@@ -24,6 +24,15 @@
   display: flex;
   margin-right: 15px;
 }
+
+.headerButton {
+  padding: 10px 10px;
+  width: 100%;
+}
+.headerRight {
+  float: right;
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -93,5 +102,14 @@
   }
   .boxcontent{
     width: 280px;
+  }
+  .headerButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .headerRight {
+    float: none;
+    text-align: center;
   }
 }
