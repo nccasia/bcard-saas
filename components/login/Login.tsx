@@ -19,20 +19,19 @@ const theme = createTheme();
 export default function Login() {
   const [open, SetOpen] = React.useState("");
   const [opendisable, SetOpendisable] = React.useState(false);
-  console.log(opendisable, "hhh");
+  console.log(opendisable);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
   };
   const handleClick = () => {
     SetOpendisable(true);
     SetOpen("email");
   };
-  console.log(opendisable, "kkk");
 
   return (
     <div
@@ -62,9 +61,6 @@ export default function Login() {
                 <button
                   style={{ width: "100%", backgroundColor: "#2a588a" }}
                   className={styles.btNetwork}
-                  onClick={() => {
-                    signIn("google", { callbackUrl: "/login" });
-                  }}
                   disabled={true}
                 >
                   <FacebookIcon sx={{ color: "white" }} />
@@ -134,12 +130,8 @@ export default function Login() {
                         >
                           <Image src={google} alt="google" width={20} height={20} />
                         </button>
-                        <button
-                          onClick={() => {
-                            signIn("google", { callbackUrl: "/login" });
-                          }}
-                        >
-                          <Image src={facebook} alt="google" width={20} height={20} />
+                        <button>
+                          <Image src={facebook} alt="facebook" width={20} height={20} />
                         </button>
                       </div>
                     </Box>
