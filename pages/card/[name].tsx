@@ -26,12 +26,10 @@ function Name() {
   }, [name]);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
   const link = baseUrl + "/view/";
-  console.log(profile);
   const [open, setOpen] = React.useState(false);
   return (
     <div
       style={{
-        position: "relative",
         height: "100vh",
         width: "100%",
       }}
@@ -44,6 +42,8 @@ function Name() {
         style={{
           textAlign: "center",
           padding: "10vh 0",
+          position: "relative",
+          height: "calc(100vh - 80px)",
         }}
       >
         {profile && (
@@ -59,12 +59,12 @@ function Name() {
             If you don't have a card, please contact the administrator!
           </p>
         )}
-      </div>
-      <div className={styles.iconSwitch}>
-        <Fab onClick={() => setOpen(!open)} sx={{ width: "45px", height: "45px" }}>
-          {open && <QrCodeScannerIcon sx={{ color: "#f44336" }} />}
-          {!open && <ContactEmergencyIcon sx={{ color: "#f44336" }} />}
-        </Fab>
+        <div className={styles.iconSwitch}>
+          <Fab onClick={() => setOpen(!open)} sx={{ width: "45px", height: "45px" }}>
+            {open && <QrCodeScannerIcon sx={{ color: "#f44336" }} />}
+            {!open && <ContactEmergencyIcon sx={{ color: "#f44336" }} />}
+          </Fab>
+        </div>
       </div>
     </div>
   );
