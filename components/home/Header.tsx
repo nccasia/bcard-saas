@@ -33,7 +33,7 @@ function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  console.log(status);
+  //console.log(status);
 
   return (
     <div className={styles.container}>
@@ -71,8 +71,10 @@ function Header() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem>{session?.user?.name}</MenuItem>
-              <MenuItem>
+              <p style={{ borderBottom: "1px dotted #e5e7eb", height: "38px", padding: "0 5px" }}>
+                {session?.user?.name}
+              </p>
+              <MenuItem sx={{ width: "100%" }}>
                 <Logout />
               </MenuItem>
             </Menu>

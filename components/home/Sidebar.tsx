@@ -29,7 +29,7 @@ const Sidebar = () => {
 
   // const [session, setSession] = React.useState<any>();
   const { data: session } = useSession();
-  console.log(session?.user?.image);
+  //console.log(session?.user?.image);
   return (
     <div className={styles.container}>
       <div className={styles.user}>

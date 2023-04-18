@@ -26,7 +26,7 @@ function Name() {
   }, [name]);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
   const link = baseUrl + "/view/";
-  console.log(profile);
+  //console.log(profile);
   const [open, setOpen] = React.useState(false);
   return (
     <div

@@ -10,7 +10,7 @@ import logo_content from "../../public/logo_content.png";
 import styles from "../../styles/profile.module.css";
 
 function ExcelCard({ profile, params }: any) {
-  console.log(profile);
+  //console.log(profile);
   // const [isHidden, setIsHidden] =React.useState(true);
   // const toggle = () => setIsHidden(!isHidden);
   return (
