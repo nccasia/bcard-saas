@@ -2,7 +2,7 @@
 // import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 // import Fab from "@mui/material/Fab";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+// import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 // import { getSession } from "next-auth/react";
@@ -71,12 +71,20 @@ function Header() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <p style={{ borderBottom: "1px dotted #e5e7eb", height: "38px", padding: "0 5px" }}>
-                {session?.user?.name}
-              </p>
-              <MenuItem sx={{ width: "100%" }}>
-                <Logout />
-              </MenuItem>
+              <div
+                style={{
+                  padding: "0 10px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                  justifyContent: "center",
+                }}
+              >
+                <p>{session?.user?.name}</p>
+                <button style={{ borderTop: "1px solid #d3d3d3" }}>
+                  <Logout />
+                </button>
+              </div>
             </Menu>
           </div>
         )}

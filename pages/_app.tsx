@@ -5,9 +5,11 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { SessionProvider } from "next-auth/react";
+// import { ThemeProvider, useTheme } from "next-themes";
 import React from "react";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+  // const { theme, setTheme } = useTheme();
   return (
     <SessionProvider session={session}>
       <PageWithAuthCheck>

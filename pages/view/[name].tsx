@@ -7,7 +7,6 @@ import React from "react";
 import { getNameCard } from "../../api/profile/apiProfile";
 import LayoutUser from "../../components/home/LayoutUser";
 import ExcelCard from "../../components/users/ExcelCard";
-
 function Name() {
   const [profile, setProfile] = React.useState<any>();
   const router = useRouter();

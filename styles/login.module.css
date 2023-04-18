@@ -85,6 +85,10 @@
   border-radius: 25px;
   color: #fff;
 }
+.lgemail:disabled,.btNetwork:disabled {
+  background-color: #ccc; /* Màu xám */
+  color: #999; /* Màu chữ tương ứng */
+}
 .icon {
   display: flex;
   gap: 10px;
@@ -97,12 +101,12 @@
     background-image: url("/images/backgroundMobile.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position: 0px -27vh;
+    background-position: 0px -33vh;
   }
   .boxContent {
     position: absolute;
     bottom: 0;
-    height: 58vh;
+    height: 64vh;
     align-items: center;
     display: flex;
     justify-content: center;
