@@ -57,6 +57,10 @@
   border-radius: 10px;
   text-align: center;
   background-color: #fff;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .lgemail {
@@ -106,10 +110,7 @@
   .boxContent {
     position: absolute;
     bottom: 0;
-    height: 64vh;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    height: calc(100% - 36vh);
+    display: block;
   }
 }
