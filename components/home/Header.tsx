@@ -33,6 +33,7 @@ function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  //console.log(status);
 
   return (
     <div className={styles.container}>

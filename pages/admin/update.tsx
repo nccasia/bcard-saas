@@ -258,18 +258,14 @@ function Update() {
           borderRadius: "10px",
         }}
       >
-        <div
-          style={{
-            padding: "10px 10px",
-          }}
-        >
+        <div className={styles.headerButton}>
           <TextField
             label="Search Name..."
             variant="outlined"
             value={search}
             onChange={(e: any) => setSearch(e.target.value)}
           />
-          <div style={{ float: "right" }}>
+          <div className={styles.headerRight}>
             <button
               style={{ marginRight: "3px" }}
               className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
