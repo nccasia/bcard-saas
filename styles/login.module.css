@@ -106,7 +106,7 @@
   .boxContent {
     position: absolute;
     bottom: 0;
-    height: 64vh;
+    height: calc(100% - 36vh);
     align-items: center;
     display: flex;
     justify-content: center;

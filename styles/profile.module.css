@@ -288,6 +288,7 @@
 @media (max-width: 768px) {
   .container {
     margin-top: 80px;
+    padding-bottom: 160px;
   }
 
   /* Các kiểu dáng riêng cho mobile ở đây */

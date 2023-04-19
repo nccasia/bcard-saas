@@ -43,7 +43,6 @@ function Name() {
           textAlign: "center",
           padding: "10vh 0",
           position: "relative",
-          height: "calc(100vh - 80px)",
         }}
       >
         {profile && (
