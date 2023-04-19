@@ -55,7 +55,7 @@ function Delete(props: any) {
         aria-describedby="alert-dialog-description"
       >
         <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
-          <RemoveCircleOutlineIcon sx={{ color: "#f8bb86", fontSize: "70px" }} />
+          <RemoveCircleOutlineIcon sx={{ color: "#f8bb86", fontSize: "85px" }} />
         </div>
         <DialogTitle
           sx={{ textAlign: "center", fontWeight: "700", width: "300px" }}

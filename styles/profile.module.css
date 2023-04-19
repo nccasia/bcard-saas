@@ -284,11 +284,19 @@
   right: 15px;
   top: calc(100% + 27vh);;
 }
+.profile{
+  position: relative;
+  padding: 10vh 0;
+  text-align: center;
+  height: calc(100% - 80px);
+}
 
 @media (max-width: 768px) {
+  .profile{
+    height: calc(100% - 200px);
+  }
   .container {
     margin-top: 80px;
-    padding-bottom: 160px;
   }
 
   /* Các kiểu dáng riêng cho mobile ở đây */

@@ -39,13 +39,7 @@ function Name() {
         <title>Business Card App</title>
       </Head>
       <Header />
-      <div
-        style={{
-          textAlign: "center",
-          padding: "10vh 0",
-          position: "relative",
-        }}
-      >
+      <div className={styles.profile}>
         {profile && (
           <div className={styles.container}>
             <div className={styles.divCard}>
