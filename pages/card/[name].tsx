@@ -29,13 +29,7 @@ function Name() {
   //console.log(profile);
   const [open, setOpen] = React.useState(false);
   return (
-    <div
-      style={{
-        height: "100vh",
-        width: "100%",
-        position: "relative",
-      }}
-    >
+    <div className={styles.boxCard}>
       <Head>
         <title>Business Card App</title>
       </Head>
