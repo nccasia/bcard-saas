@@ -247,7 +247,7 @@
 
 .iconSwitch {
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
   right: 15px;
   background-color: "#fff";
   border-radius: 50%;
@@ -289,7 +289,7 @@
   top: calc(100% + 27vh);;
 }
 .profile{
-  position: relative;
+  /* position: relative; */
   padding: 10vh 0;
   text-align: center;
   height: calc(100% - 80px);
@@ -306,12 +306,12 @@
   /* Các kiểu dáng riêng cho mobile ở đây */
   /* Ví dụ: */
   .divCard {
-    padding: 0 15px;
+    padding: 0 10px;
   }
 
   .iconSwitch {
     position: absolute;
-    bottom: 20px;
+    bottom: 160px;
     box-sizing: border-box;
     right: 15px;
   }
@@ -330,7 +330,7 @@
   } */
   .headCard1,
   .mainCard1 {
-    width: 360px;
+    width: 355px;
     height: 200px;
   }
 

@@ -33,6 +33,7 @@ function Name() {
       style={{
         height: "100vh",
         width: "100%",
+        position: "relative",
       }}
     >
       <Head>
