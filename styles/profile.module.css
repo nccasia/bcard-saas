@@ -311,12 +311,9 @@
 
   .iconSwitch {
     position: absolute;
-    bottom: 160px;
+    bottom: 100px;
     box-sizing: border-box;
     right: 15px;
-  }
-  .addIcon{
-    bottom: calc(100% + 40vh);
   }
 
   .card {
@@ -330,7 +327,7 @@
   } */
   .headCard1,
   .mainCard1 {
-    width: 355px;
+    width: 350px;
     height: 200px;
   }
 

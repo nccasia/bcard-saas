@@ -315,40 +315,50 @@ function Update() {
             </TableBody>
             <TableBody>
               {list
-                ? list.map((item: any, index: number) => {
-                    return (
-                      <StyledTableRow key={index}>
-                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
-                          <p>{index + 1}</p>
-                        </StyledTableCell>
-                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
-                          <p>{item?.NameId}</p>
-                        </StyledTableCell>
-                        <StyledTableCell className={styles.td} style={{ textAlign: "center" }}>
-                          <Link href={"/card/" + item?.NameId}>
-                            {`${process.env.NEXT_PUBLIC_BASE_URL}/card/${item.NameId}`}
-                          </Link>
-                        </StyledTableCell>
-                        <StyledTableCell
-                          style={{ justifyContent: "center", display: "flex", gap: 3 }}
-                          component="th"
-                          scope="row"
-                        >
-                          <button
-                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                            onClick={() => setOpenEdit(item?.NameId)}
+                ? list
+                    .sort((a: any, b: any) => a.NameId.localeCompare(b.NameId))
+                    .map((item: any, index: number) => {
+                      return (
+                        <StyledTableRow key={index}>
+                          <StyledTableCell
+                            style={{ textAlign: "center" }}
+                            component="th"
+                            scope="row"
                           >
-                            Edit
-                          </button>
-                          <Delete
-                            NameId={item?.NameId}
-                            dataLink={dataLink}
-                            setDataLink={setDataLink}
-                          />
-                        </StyledTableCell>
-                      </StyledTableRow>
-                    );
-                  })
+                            <p>{index + 1}</p>
+                          </StyledTableCell>
+                          <StyledTableCell
+                            style={{ textAlign: "center" }}
+                            component="th"
+                            scope="row"
+                          >
+                            <p>{item?.NameId}</p>
+                          </StyledTableCell>
+                          <StyledTableCell className={styles.td} style={{ textAlign: "center" }}>
+                            <Link href={"/card/" + item?.NameId}>
+                              {`${process.env.NEXT_PUBLIC_BASE_URL}/card/${item.NameId}`}
+                            </Link>
+                          </StyledTableCell>
+                          <StyledTableCell
+                            style={{ justifyContent: "center", display: "flex", gap: 3 }}
+                            component="th"
+                            scope="row"
+                          >
+                            <button
+                              className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                              onClick={() => setOpenEdit(item?.NameId)}
+                            >
+                              Edit
+                            </button>
+                            <Delete
+                              NameId={item?.NameId}
+                              dataLink={dataLink}
+                              setDataLink={setDataLink}
+                            />
+                          </StyledTableCell>
+                        </StyledTableRow>
+                      );
+                    })
                 : null}
             </TableBody>
           </Table>

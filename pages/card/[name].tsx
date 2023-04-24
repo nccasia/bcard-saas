@@ -54,12 +54,12 @@ function Name() {
             If you don't have a card, please contact the administrator!
           </p>
         )}
-        <div className={styles.iconSwitch}>
-          <Fab onClick={() => setOpen(!open)} sx={{ width: "45px", height: "45px" }}>
-            {open && <QrCodeScannerIcon sx={{ color: "#f44336" }} />}
-            {!open && <ContactEmergencyIcon sx={{ color: "#f44336" }} />}
-          </Fab>
-        </div>
+      </div>
+      <div className={styles.iconSwitch}>
+        <Fab onClick={() => setOpen(!open)} sx={{ width: "45px", height: "45px" }}>
+          {open && <QrCodeScannerIcon sx={{ color: "#f44336" }} />}
+          {!open && <ContactEmergencyIcon sx={{ color: "#f44336" }} />}
+        </Fab>
       </div>
     </div>
   );
