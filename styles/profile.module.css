@@ -239,6 +239,11 @@
   border-top: 1px solid #fff;
   margin-top: 20px;
 }
+.boxCard{
+  width: 100%;
+  height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  position: relative;
+}
 
 .divCard {
   margin: auto;
