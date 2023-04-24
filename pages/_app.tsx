@@ -9,7 +9,6 @@ import { SessionProvider } from "next-auth/react";
 import React from "react";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  // const { theme, setTheme } = useTheme();
   return (
     <SessionProvider session={session}>
       <PageWithAuthCheck>

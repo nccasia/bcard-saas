@@ -173,6 +173,8 @@
   flex: 0.7;
   display: flex;
   border-right: 1.5px solid #777373;
+  width: 40%;
+  
 }
 
 .button {
@@ -194,12 +196,13 @@
 .contentCard1 {
   /* style={{ margin: "auto", textAlign: "left", color: "white", flex: 1 }} */
   font-size: 22px;
-  margin: auto;
+  margin: auto 5px auto 15px;
   text-align: left;
   color: gray;
   flex: 1;
   line-height: 30px;
-  margin-left: 15px;
+  width: 60%;
+  text-overflow: ellipsis;
 }
 
 .headCard1 {
@@ -255,8 +258,7 @@
   color: #606060;
   font-weight: 500;
   white-space: nowrap;
-  /* overflow: hidden; */
-  text-overflow: ellipsis;
+  display: inline-block;
 }
 
 .image {
@@ -266,6 +268,8 @@
 .text1 {
   font-size: 16px;
   color: #767676;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 .icon {
