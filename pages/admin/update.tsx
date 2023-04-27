@@ -112,17 +112,14 @@ function Update() {
   const list = debounce
     ? dataLink.filter((main: any) => main.NameId.toLowerCase().includes(debounce))
     : dataLink;
-  // console.log(dataLink);
   return (
     <HomeLayout>
       <ToastContainer position="bottom-right" />
       <Dialog open={openDia} onClose={() => setOpenDia(false)}>
         <DialogContent>
-          {/* <div className={styles.container}> */}
           <div>
             {open === "" && (
               <div>
-                {/* <h1 className={styles.heading}>CREATE YOUR CARD</h1> */}
                 <InputLabel htmlFor="file-upload">
                   <Input
                     id="file-upload"
@@ -148,7 +145,6 @@ function Update() {
                       textAlign: "center",
                       width: "360px",
                       height: "250px",
-                      //backgroundColor:"#D9D9D9",
                     }}
                   >
                     <FileUploadOutlinedIcon sx={{ fontSize: "100px" }} />
@@ -159,12 +155,7 @@ function Update() {
                   </Button>
                 </InputLabel>
                 <div className={styles.template}>
-                  <div
-                    style={{
-                      float: "right",
-                      marginTop: "10px",
-                    }}
-                  >
+                  <div className={styles.templateDiv}>
                     <button
                       style={{
                         display: "flex",
@@ -186,7 +177,6 @@ function Update() {
             )}
             {open === "upload" && (
               <div>
-                {/* <h1 className={styles.heading}>CREATE YOUR CARD</h1> */}
                 <div className={styles.boxcontent}>
                   <div>
                     <FileUploadOutlinedIcon sx={{ fontSize: "80px" }} />
@@ -221,7 +211,6 @@ function Update() {
                             setDataLink(main);
                           }
                         });
-                        // router.push(`/$`);
                       }
                     }}
                     style={{
@@ -237,7 +226,6 @@ function Update() {
               </div>
             )}
           </div>
-          {/* </div> */}
         </DialogContent>
       </Dialog>
       <Dialog open={openNew ? true : false} onClose={() => setOpenNew("")}>
@@ -251,13 +239,7 @@ function Update() {
           />
         </DialogContent>
       </Dialog>
-      <div
-        style={{
-          padding: "30px 0 30px 0",
-          border: "1px dotted #80808059",
-          borderRadius: "10px",
-        }}
-      >
+      <div className={styles.container}>
         <div className={styles.headerButton}>
           <TextField
             label="Search Name..."

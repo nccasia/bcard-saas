@@ -1,30 +1,3 @@
-.header {
-  background: #f44336;
-  display: flex;
-  height: 80px;
-  width: 100%;
-  align-items: center;
-  padding: 10px 0;
-  justify-content: space-between;
-  position: fixed;
-  z-index: 10;
-}
-.headerLetf {
-  display: flex;
-  padding: 5px;
-}
-.title {
-  color: white;
-  font-size: 20px;
-  font-weight: 500;
-  margin-left: 5px;
-}
-
-.headeRight {
-  display: flex;
-  margin-right: 15px;
-}
-
 .headerButton {
   padding: 10px 10px;
   width: 100%;
@@ -34,11 +7,9 @@
 }
 
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  /* margin-top: 100px; */
+  padding: 30px 0 30px 0;
+  border: 1px dotted #80808059;
+  border-radius: 10px;
 }
 .heading {
   text-align: center;
@@ -52,6 +23,18 @@
   float: right;
   margin-top: 10px;
 }
+.templateDiv{
+  float: right;
+  margin-top: 10px;
+}
+/* .templateButton{
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  font-size: 14px;
+  gap: 5px;
+  padding: 5px 10px;
+} */
 .buttonDown {
   display: flex;
   align-items: center;
@@ -67,7 +50,6 @@
   flex-direction: column;
   align-items: center;
   padding: 15px;
-  /* margin-top: 40px; */
   gap: 10px;
 }
 .content {
@@ -83,24 +65,21 @@
   color: #fff;
   font-size: 20px;
 }
-.td{
-    align-items: center;
-    display: flex;
-    gap: 5px;
-    justify-content: center;
+.td {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
 }
 .td:hover {
   background-color: #fff;
   color: blue;
 }
 @media (max-width: 768px) {
-  .title {
-    display: none;
-  }
-  .fileUp{
+  .fileUp {
     width: 278px;
   }
-  .boxcontent{
+  .boxcontent {
     width: 280px;
   }
   .headerButton {
