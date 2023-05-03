@@ -131,71 +131,73 @@ function SelectAdmin(): JSX.Element {
           </TableBody>
           <TableBody>
             {admin
-              ? admin.map((item: any) => {
-                  return (
-                    <StyledTableRow key={item?.id}>
-                      <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
-                        {item?.id && openEdit !== item.id}
-                        {item?.id}
-                      </StyledTableCell>
-                      <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
-                        <p style={{ display: item && openEdit === item.id ? "none" : "block" }}>
-                          {item?.email}
-                        </p>
-                        <input
-                          type="text"
-                          placeholder={item?.email}
-                          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          style={{ display: item && openEdit === item.id ? "block" : "none" }}
-                        />
-                      </StyledTableCell>
-                      <StyledTableCell className={styles.td} style={{ display: "flex" }}>
-                        <button
-                          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                          onClick={() => setOpenEdit(item.id)}
-                          style={{ display: item && openEdit === item.id ? "none" : "block" }}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => {
-                            updateAdmin(item.id, email).then((main: any) => {
-                              if (main) {
-                                const list = admin.map((main: any) => {
-                                  if (main.id === item.id) {
-                                    return { ...main, id: item.id, name: name, email: email };
-                                  } else {
-                                    return main;
-                                  }
-                                });
-                                setAdmin(list);
-                              }
-                            });
-                            setEmail("");
-                            setName("");
-                            setOpenEdit(-1);
-                          }}
-                          style={{ display: item && openEdit === item.id ? "block" : "none" }}
-                          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                        >
-                          EDIT
-                        </button>
-                        <button
-                          className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                          onClick={() => {
-                            deleteAdmin(item.id);
-                            const list = admin.filter((main: any) => main.id !== item.id);
-                            setAdmin(list);
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  );
-                })
+              ? admin
+                  .sort((a: any, b: any) => a.email.localeCompare(b.email))
+                  .map((item: any) => {
+                    return (
+                      <StyledTableRow key={item?.id}>
+                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
+                          {item?.id && openEdit !== item.id}
+                          {item?.id}
+                        </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
+                          <p style={{ display: item && openEdit === item.id ? "none" : "block" }}>
+                            {item?.email}
+                          </p>
+                          <input
+                            type="text"
+                            placeholder={item?.email}
+                            className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            style={{ display: item && openEdit === item.id ? "block" : "none" }}
+                          />
+                        </StyledTableCell>
+                        <StyledTableCell className={styles.td} style={{ display: "flex" }}>
+                          <button
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                            onClick={() => setOpenEdit(item.id)}
+                            style={{ display: item && openEdit === item.id ? "none" : "block" }}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => {
+                              updateAdmin(item.id, email).then((main: any) => {
+                                if (main) {
+                                  const list = admin.map((main: any) => {
+                                    if (main.id === item.id) {
+                                      return { ...main, id: item.id, name: name, email: email };
+                                    } else {
+                                      return main;
+                                    }
+                                  });
+                                  setAdmin(list);
+                                }
+                              });
+                              setEmail("");
+                              setName("");
+                              setOpenEdit(-1);
+                            }}
+                            style={{ display: item && openEdit === item.id ? "block" : "none" }}
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                          >
+                            EDIT
+                          </button>
+                          <button
+                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                            onClick={() => {
+                              deleteAdmin(item.id);
+                              const list = admin.filter((main: any) => main.id !== item.id);
+                              setAdmin(list);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    );
+                  })
               : null}
           </TableBody>
         </Table>

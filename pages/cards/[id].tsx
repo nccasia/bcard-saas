@@ -22,12 +22,14 @@ function Id() {
   const exampleExcel = async () => {
     const columns = [] as any;
     const rows = {} as any;
-    data
-      .filter((main: any) => main.type === "text")
-      .map((main1: any) => {
-        columns.push({ header: main1.id, key: main1.id, width: 30 });
-        rows[main1.id] = main1.style?.text;
-      });
+    if (data) {
+      data
+        .filter((main: any) => main.type === "text")
+        .map((main1: any) => {
+          columns.push({ header: main1.id, key: main1.id, width: 30 });
+          rows[main1.id] = main1.style?.text;
+        });
+    }
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Sheet1");
     worksheet.columns = columns;
@@ -68,14 +70,16 @@ function Id() {
   };
 
   const testButton = () => {
-    const list = data.map((main: any) => {
-      if (test[main.id] && main.type === "text") {
-        return { ...main, style: { ...main.style, text: test[main.id] } };
-      } else {
-        return main;
-      }
-    });
-    setData(list);
+    if (data) {
+      const list = data.map((main: any) => {
+        if (test[main.id] && main.type === "text") {
+          return { ...main, style: { ...main.style, text: test[main.id] } };
+        } else {
+          return main;
+        }
+      });
+      setData(list);
+    }
   };
 
   return (

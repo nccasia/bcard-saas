@@ -73,9 +73,16 @@ function EditProfile({ value, setOpen, action, data, setData }: any) {
           type="text"
           placeholder="Enter your phone"
           style={{ outlineColor: errors.Phone ? "red" : "none" }}
-          {...register("Phone", { required: true })}
+          {...register("Phone", {
+            required: true,
+            // pattern: {
+            //   value: /^\s*(\+\d{1,3})?[-. (]*(\d{3})[-. )]*(\d{3})[-.]*(\d{4})(?: *x(\d+))?\s*$/,
+            //   message: "Please enter a valid phone number",
+            // },
+          })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
+        {/* {errors.Phone && <p style={{ color: "red" }}>{errors.Phone.message}</p>} */}
         <p>Title:</p>
         <input
           type="text"

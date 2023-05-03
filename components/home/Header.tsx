@@ -23,7 +23,7 @@ import Logout from "../login/Logout";
 //   border-radius: 50%;
 // `;
 
-function Header() {
+function Header({ isDarkMode }: any) {
   const { data: session, status }: any = useSession();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -36,7 +36,7 @@ function Header() {
   //console.log(status);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ background: isDarkMode ? "#f44336" : "" }}>
       <div className={styles.headerLetf}>
         <div>
           <Image src={logo} alt="logo" width={30} height={30} />
