@@ -1,37 +1,44 @@
 import Grid from "@mui/material/Grid";
+import axios from "axios";
 import { saveAs } from "file-saver";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 
-import { getNameCard } from "../../api/profile/apiProfile";
+import { getAvatar, getNameCard } from "../../api/admin/apiProfile";
 import LayoutUser from "../../components/home/LayoutUser";
 import ExcelCard from "../../components/users/ExcelCard";
 function Name() {
   const [profile, setProfile] = React.useState<any>();
   const router = useRouter();
   const { name } = router.query;
+  const [image, setImage] = React.useState<any>();
   React.useEffect(() => {
     if (name) {
       getNameCard(String(name)).then((main) => setProfile(main));
+      getAvatar(String(name)).then((main) => setImage(main));
     }
   }, [name]);
-
-  const vcf = () => {
+  const imageToBase64 = async (url: string) => {
+    const response = await axios.get(url, { responseType: "arraybuffer" });
+    const base64Data = Buffer.from(response.data, "binary").toString("base64");
+    return base64Data;
+  };
+  const vcf = async () => {
     const web = "https://www.ncc.asia";
-    //const logo = "/logo.png";
     const company = "NCCPLUS VIETNAM JSC";
+    const imageBase64 = await imageToBase64(image);
     const vcardContent = `
-    BEGIN:VCARD
-    VERSION:4.0
-    N:${profile?.Name}
-    TEL;TYPE=CELL:${profile?.Phone}
-    EMAIL;TYPE=INTERNET:${profile?.Email}
-    URL:${web}
-    TITLE: ${profile?.Title}
-    ORG:${company}
-    END:VCARD
-    `;
+BEGIN:VCARD
+VERSION:3.0
+FN:${profile?.Name}
+TEL;TYPE=CELL,voice:${profile?.Phone}
+EMAIL;TYPE=PREF,INTERNET:${profile?.Email}
+URL:${web}
+TITLE:${profile?.Title}
+ORG:${company}
+PHOTO;TYPE=JPG;ENCODING=B:${imageBase64}
+END:VCARD`;
     const blob = new Blob([vcardContent], { type: "text/vcard;charset=utf-8" });
     saveAs(blob, `${profile?.NameId}.vcf`);
   };
@@ -55,7 +62,7 @@ function Name() {
             className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
             onClick={vcf}
           >
-            Add Contact
+            Download vCard
           </button>
         )}
         {!profile && <p>If you don't have a card, please contact the administrator!</p>}

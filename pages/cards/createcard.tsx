@@ -1,7 +1,6 @@
 import React from "react";
 
-import { updateCard } from "../../api/admin/apiCard";
-//import LayoutUser from "../../components/home/LayoutUser";
+import HomeLayout from "../../components/home/HomeLayout";
 import KonvaCard from "../../components/konvacard/KonvaCard";
 
 interface Konva {
@@ -13,24 +12,12 @@ interface Konva {
 
 function CreateCard() {
   const [data, setData] = React.useState<Konva[]>([]);
+  //console.log(data);
 
   return (
-    <div>
-      <button
-        className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-        onClick={() =>
-          updateCard({
-            name: "hêlo",
-            card: data,
-            image:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAWJaMK1saVYSIBXjItyjHcx2HD8RH09iGJg&usqp=CAU",
-          })
-        }
-      >
-        Save New
-      </button>
+    <HomeLayout>
       <KonvaCard data={data} setData={setData} />
-    </div>
+    </HomeLayout>
   );
 }
 export default CreateCard;

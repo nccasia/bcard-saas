@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { editProfile, getNameCard, newProfile } from "../../api/profile/apiProfile";
+import { editProfile, getNameCard, newProfile } from "../../api/admin/apiProfile";
 
 function EditProfile({ value, setOpen, action, data, setData }: any) {
   const {

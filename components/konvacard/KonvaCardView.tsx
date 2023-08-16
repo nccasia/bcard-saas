@@ -1,11 +1,10 @@
 import React from "react";
 
 import { imgUrl } from "../../utils/imgUrl";
-import { editTextCard1 } from "../../utils/konvaCard";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useDataDebouncer } from "../../utils/useDeboune";
+import { getFontSizeToFit } from "../../utils/lineText";
 
-function KonvaCardView({ data, setData }: any) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function KonvaView({ data, setData }: any) {
   const [Konva, setKonva] = React.useState<any>(null);
   const [stageSize, setStageSize] = React.useState<any>({ width: 0, height: 0 });
   React.useEffect(() => {
@@ -22,36 +21,56 @@ function KonvaCardView({ data, setData }: any) {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  const handleNodeClick = (e: any, index: number) => {
-    const newData = [...data];
-    if (newData[index]?.style?.text) {
-      editTextCard1(e).then((main) => {
-        newData[index].style.text = main;
-        setData(newData);
-      });
-    }
-    setData(newData);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const handleNodeClick = (e: any, index: number) => {
+  //   const nodeId = e.target.attrs.id;
+  //   const list = data.map((main: any) => {
+  //     if (main.id === nodeId) {
+  //       return {
+  //         ...main,
+  //         onclick: !main.onclick,
+  //         style: { ...main.style, draggable: !main.style?.draggable },
+  //       };
+  //     } else {
+  //       return { ...main, onclick: false, style: { ...main.style, draggable: false } };
+  //     }
+  //   });
+  //   //console.log(index);
+  //   const newData = [...list];
+  //   // if (newData[index]?.style?.text) {
+  //   //   editTextCard(e).then((main) => {
+  //   //     newData[index].style.text = main;
+  //   //     setData(newData);
+  //   //   });
+  //   // }
+  //   setData(newData);
+  // };
+
+  const scaleLayout = (index: any) => {
+    const scale = stageSize.width < 425 ? Number((stageSize.width - 10) * index) / 425 : index;
+    return scale;
   };
-  console.log(data);
+
+  //console.log(data);
 
   return (
     <div
       style={{
         margin: 0,
         padding: 0,
-        border: "1px solid gray",
+        border: "1px solid #80808033",
+        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 5px",
       }}
     >
       {Konva && (
         <Konva.Stage
-          x={0}
-          y={0}
-          width={350}
-          height={200}
-          scaleX={stageSize.width < 350 ? stageSize.width / 350 : 1}
-          scaleY={stageSize.height < 200 ? stageSize.height / 200 : 1}
+          width={stageSize.width < 425 ? Number(stageSize.width - 10) : 425}
+          height={scaleLayout(250)}
         >
-          <Konva.Layer width={350} height={200}>
+          <Konva.Layer
+            width={stageSize.width < 425 ? Number(stageSize.width - 10) : 425}
+            height={scaleLayout(250)}
+          >
             {data
               ? data.map((node: any, index: number) => {
                   return (
@@ -59,81 +78,66 @@ function KonvaCardView({ data, setData }: any) {
                       {node.type === "text" && (
                         <Konva.Text
                           id={node.id}
+                          x={scaleLayout(node.style?.x)}
+                          y={scaleLayout(node.style?.y)}
+                          width={scaleLayout(node.style?.width)}
+                          height={scaleLayout(node.style?.height)}
                           text={node.style?.text}
                           fill={node.style?.fill}
-                          width={node.style?.width}
-                          height={node.style?.height}
-                          x={node.style?.x}
-                          y={node.style?.y}
-                          fontSize={node.style?.fontSize}
+                          fontStyle={node.style?.fontStyle}
+                          fontFamily={node.style?.fontFamily}
+                          // fontSize={scaleLayout(node.style?.fontSize)}
+                          fontSize={scaleLayout(
+                            getFontSizeToFit(
+                              node.style?.text,
+                              node.style?.width,
+                              node.style?.fontFamily,
+                              Number(node.style?.fontSize),
+                              node.style?.oneLine,
+                            ),
+                          )}
                           draggable={node.style?.draggable}
-                          rotation={node.style?.rotation}
-                          onClick={(e: any) => handleNodeClick(e, index)}
+                          //onClick={(e: any) => handleNodeClick(e, index)}
+                          onDblClick={() => {
+                            // editTextCard(e).then((main)=>{
+                            //    const newData = [...data];
+                            //     newData[index].style.text =main;
+                            //     setData(newData);
+                            // });
+                          }}
                         />
                       )}
                       {node.type === "image" && (
                         <Konva.Image
                           id={node.id}
-                          x={node.style?.x}
-                          y={node.style?.y}
-                          width={node.style?.width}
-                          height={node.style?.height}
+                          x={scaleLayout(node.style?.x)}
+                          y={scaleLayout(node.style?.y)}
+                          width={scaleLayout(node.style?.width)}
+                          height={scaleLayout(node.style?.height)}
                           image={imgUrl(node.style?.image)}
                           draggable={node.style?.draggable}
                           rotation={node.style?.rotation}
-                          cornerRadius={node.style?.cornerRadius}
-                          onClick={handleNodeClick}
+                          //cornerRadius={Math.abs(Number(node.style?.cornerRadius))}
+                          //onClick={handleNodeClick}
+                          perfectDrawEnabled={true}
+                          imageSmoothingEnabled={false}
                         />
                       )}
-                      {node.type === "rect" && (
-                        <Konva.Rect
+                      {node.type === "shape" && (
+                        <Konva.RegularPolygon
                           id={node.id}
-                          x={node.style?.x}
-                          y={node.style?.y}
-                          width={node.style?.width}
-                          height={node.style?.height}
+                          x={scaleLayout(node.style?.x)}
+                          y={scaleLayout(node.style?.y)}
+                          width={scaleLayout(node.style?.width)}
+                          height={scaleLayout(node.style?.height)}
+                          sides={node.style?.sides}
+                          radius={scaleLayout(Number(node.style?.radius))}
                           fill={node.style?.fill}
                           stroke={node.style?.stroke}
                           strokeWidth={node.style?.strokeWidth}
                           draggable={node.style?.draggable}
                           rotation={node.style?.rotation}
-                          cornerRadius={node.style?.cornerRadius}
-                          onClick={handleNodeClick}
-                        />
-                      )}
-                      {node.style?.draggable && (
-                        <Konva.Transformer
-                          id={"transformer" + node.id}
-                          key={node.id}
-                          padding={10}
-                          ref={(item: any) => {
-                            if (item) {
-                              const transformer = item;
-                              const stage = item.getStage();
-                              if (stage) {
-                                const konvaNode = stage.findOne("#" + node.id);
-                                transformer.nodes([konvaNode]);
-                              }
-                            }
-                          }}
-                          //rotateEnabled
-                          onTransformEnd={(e: any) => {
-                            const node1 = e.target;
-                            const newData = [...data];
-                            newData[index].style.width = node1.width() * node1.scaleX();
-                            newData[index].style.height = node1.height() * node1.scaleY();
-                            newData[index].style.rotation = node1.rotation();
-                            setData(newData);
-                            node1.scaleX(1);
-                            node1.scaleY(1);
-                          }}
-                          onDragMove={(e: any) => {
-                            const newData = [...data];
-                            newData[index].style.x = e.target?.attrs?.x;
-                            newData[index].style.y = e.target?.attrs?.y;
-                            //newData[index].style.rotation =e.target?.attrs?.rotation;
-                            setData(newData);
-                          }}
+                          //onClick={handleNodeClick}
                         />
                       )}
                     </React.Fragment>
@@ -147,4 +151,4 @@ function KonvaCardView({ data, setData }: any) {
   );
 }
 
-export default KonvaCardView;
+export default KonvaView;

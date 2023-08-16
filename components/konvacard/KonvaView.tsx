@@ -1,9 +1,7 @@
 import React from "react";
 
-import { imgUrl } from "../../utils/imgUrl";
-import { editTextCard } from "../../utils/konvaCard";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useDataDebouncer } from "../../utils/useDeboune";
+//import { imgUrl } from "../../utils/imgUrl";
+import { getFontSizeToFit } from "../../utils/lineText";
 
 function KonvaView({ data, setData }: any) {
   const [Konva, setKonva] = React.useState<any>(null);
@@ -22,6 +20,7 @@ function KonvaView({ data, setData }: any) {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleNodeClick = (e: any, index: number) => {
     const nodeId = e.target.attrs.id;
     const list = data.map((main: any) => {
@@ -35,34 +34,40 @@ function KonvaView({ data, setData }: any) {
         return { ...main, onclick: false, style: { ...main.style, draggable: false } };
       }
     });
+    //console.log(index);
     const newData = [...list];
-    if (newData[index]?.style?.text) {
-      editTextCard(e).then((main) => {
-        newData[index].style.text = main;
-        setData(newData);
-      });
-    }
+    // if (newData[index]?.style?.text) {
+    //   editTextCard(e).then((main) => {
+    //     newData[index].style.text = main;
+    //     setData(newData);
+    //   });
+    // }
     setData(newData);
   };
 
-  //console.log(data);
+  const scaleLayout = (index: any) => {
+    const scale = stageSize.width < 425 ? Number((stageSize.width - 10) * index) / 425 : index;
+    return scale;
+  };
 
   return (
     <div
       style={{
         margin: 0,
         padding: 0,
-        border: "1px solid gray",
+        border: "1px solid #80808033",
+        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 5px",
       }}
     >
       {Konva && (
         <Konva.Stage
-          width={350}
-          height={200}
-          scaleX={stageSize.width < 350 ? stageSize.width / 350 : 1}
-          scaleY={stageSize.height < 200 ? stageSize.height / 200 : 1}
+          width={stageSize.width < 425 ? Number(stageSize.width - 10) : 425}
+          height={scaleLayout(250)}
         >
-          <Konva.Layer width={350} height={200}>
+          <Konva.Layer
+            width={stageSize.width < 425 ? Number(stageSize.width - 10) : 425}
+            height={scaleLayout(250)}
+          >
             {data
               ? data.map((node: any, index: number) => {
                   return (
@@ -70,15 +75,25 @@ function KonvaView({ data, setData }: any) {
                       {node.type === "text" && (
                         <Konva.Text
                           id={node.id}
+                          x={scaleLayout(node.style?.x)}
+                          y={scaleLayout(node.style?.y)}
+                          width={scaleLayout(node.style?.width)}
+                          height={scaleLayout(node.style?.height)}
                           text={node.style?.text}
                           fill={node.style?.fill}
-                          width={node.style?.width}
-                          height={node.style?.height}
-                          x={node.style?.x}
-                          y={node.style?.y}
-                          fontSize={node.style?.fontSize}
+                          fontStyle={node.style?.fontStyle}
+                          fontFamily={node.style?.fontFamily}
+                          fontSize={scaleLayout(
+                            getFontSizeToFit(
+                              node.style?.text,
+                              node.style?.width,
+                              node.style?.fontFamily,
+                              Number(node.style?.fontSize),
+                              node.style?.oneLine,
+                            ),
+                          )}
+                          wrap={node.style?.oneLine ? "word" : "none"}
                           draggable={node.style?.draggable}
-                          rotation={node.style?.rotation}
                           onClick={(e: any) => handleNodeClick(e, index)}
                           onDblClick={() => {
                             // editTextCard(e).then((main)=>{
@@ -90,32 +105,38 @@ function KonvaView({ data, setData }: any) {
                         />
                       )}
                       {node.type === "image" && (
-                        <Konva.Image
-                          id={node.id}
-                          x={node.style?.x}
-                          y={node.style?.y}
-                          width={node.style?.width}
-                          height={node.style?.height}
-                          image={imgUrl(node.style?.image)}
-                          draggable={node.style?.draggable}
-                          rotation={node.style?.rotation}
-                          cornerRadius={node.style?.cornerRadius}
-                          onClick={handleNodeClick}
-                        />
+                        // <Konva.Image
+                        //   id={node.id}
+                        //   x={scaleLayout(node.style?.x)}
+                        //   y={scaleLayout(node.style?.y)}
+                        //   scaleX={scaleLayout(node.style?.scaleX)}
+                        //   scaleY={scaleLayout(node.style?.scaleY)}
+                        //   width={scaleLayout(node.style?.width)}
+                        //   height={scaleLayout(node.style?.height)}
+                        //   image={imgUrl(node.style?.image)}
+                        //   draggable={node.style?.draggable}
+                        //   rotation={node.style?.rotation}
+                        //   //cornerRadius={Math.abs(Number(node.style?.cornerRadius))}
+                        //   onClick={handleNodeClick}
+                        //   // perfectDrawEnabled={true}
+                        //   // imageSmoothingEnabled={false}
+                        // />
+                        <></>
                       )}
-                      {node.type === "rect" && (
-                        <Konva.Rect
+                      {node.type === "shape" && (
+                        <Konva.RegularPolygon
                           id={node.id}
-                          x={node.style?.x}
-                          y={node.style?.y}
-                          width={node.style?.width}
-                          height={node.style?.height}
+                          x={scaleLayout(node.style?.x)}
+                          y={scaleLayout(node.style?.y)}
+                          width={scaleLayout(node.style?.width)}
+                          height={scaleLayout(node.style?.height)}
+                          sides={node.style?.sides}
+                          radius={scaleLayout(Number(node.style?.radius))}
                           fill={node.style?.fill}
                           stroke={node.style?.stroke}
                           strokeWidth={node.style?.strokeWidth}
                           draggable={node.style?.draggable}
                           rotation={node.style?.rotation}
-                          cornerRadius={node.style?.cornerRadius}
                           onClick={handleNodeClick}
                         />
                       )}
@@ -135,21 +156,33 @@ function KonvaView({ data, setData }: any) {
                             }
                           }}
                           //rotateEnabled
+                          scaleEnabled={true}
+                          //enabledAnchors={["top-left", "top-right", "bottom-left", "bottom-right"]}
                           onTransformEnd={(e: any) => {
                             const node1 = e.target;
                             const newData = [...data];
-                            newData[index].style.width = node1.width() * node1.scaleX();
-                            newData[index].style.height = node1.height() * node1.scaleY();
-                            newData[index].style.rotation = node1.rotation();
+                            newData[index].style.x = Math.round(node1.x());
+                            newData[index].style.y = Math.round(node1.y());
+                            newData[index].style.width = Math.round(node1.width() * node1.scaleX());
+                            newData[index].style.height = Math.round(
+                              node1.height() * node1.scaleY(),
+                            );
+                            if (node.type === "text") {
+                              newData[index].style.fontSize = node1?.fontSize();
+                            }
+                            if (node.type === "shape") {
+                              newData[index].style.radius = Math.round(Math.abs(node1?.radius()));
+                            }
+                            newData[index].style.rotation = Math.round(node1.rotation());
+                            //console.log(node1.radius());
                             setData(newData);
                             node1.scaleX(1);
                             node1.scaleY(1);
                           }}
                           onDragMove={(e: any) => {
                             const newData = [...data];
-                            newData[index].style.x = e.target?.attrs?.x;
-                            newData[index].style.y = e.target?.attrs?.y;
-                            //newData[index].style.rotation =e.target?.attrs?.rotation;
+                            newData[index].style.x = Math.round(e.target?.attrs?.x);
+                            newData[index].style.y = Math.round(e.target?.attrs?.y);
                             setData(newData);
                           }}
                         />

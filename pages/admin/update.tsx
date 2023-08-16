@@ -26,7 +26,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
-import { deleteProfile, getProfile, updateProfile } from "../../api/profile/apiProfile";
+import { deleteProfile, getProfile, updateProfile } from "../../api/admin/apiProfile";
+import DeleteButton from "../../components/button/DeleteButton";
 import HomeLayout from "../../components/home/HomeLayout";
 import EditProfile from "../../components/users/EditProfile";
 import excel from "../../public/excel.png";
@@ -114,7 +115,6 @@ function Update() {
   React.useEffect(() => {
     getProfile().then((main: any) => setDataLink(main));
   }, []);
-  //console.log(dataLink);
 
   const [openEdit, setOpenEdit] = useState("");
   const [openNew, setOpenNew] = useState("");
@@ -122,85 +122,18 @@ function Update() {
   const list = debounce
     ? dataLink.filter((main: any) => main.NameId.toLowerCase().includes(debounce))
     : dataLink;
+  //console.log(dataLink);
   return (
     <HomeLayout>
-      <ToastContainer position="bottom-right" />
-      <Dialog open={openDia} onClose={() => setOpenDia(false)}>
-        <DialogContent>
-          {/* <div className={styles.container}> */}
-          <div>
-            {open === "" && (
-              <div>
-                {/* <h1 className={styles.heading}>CREATE YOUR CARD</h1> */}
-                <InputLabel htmlFor="file-upload">
-                  <Input
-                    id="file-upload"
-                    type="file"
-                    inputProps={{
-                      style: { display: "none", margin: 0 },
-                      accept: ".xlsx, .xls",
-                      onChange: handleUpload,
-                    }}
-                  />
-                  <Button
-                    component="span"
-                    className={styles.fileUp}
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      color: "black",
-                      margin: 0,
-                      fontSize: "14px",
-                      border: "1px dotted gray",
-                      borderRadius: "10px",
-                      padding: "0 20px",
-                      textAlign: "center",
-                      width: "360px",
-                      height: "250px",
-                      //backgroundColor:"#D9D9D9",
-                    }}
-                  >
-                    <FileUploadOutlinedIcon sx={{ fontSize: "100px" }} />
-                    <div style={{ marginTop: "30px" }}>
-                      <p>Select a file</p>
-                      <p style={{ fontSize: "12px" }}>Support: .xlsx</p>
-                    </div>
-                  </Button>
-                </InputLabel>
-                <div className={styles.template}>
-                  <div
-                    style={{
-                      float: "right",
-                      marginTop: "10px",
-                    }}
-                  >
-                    <button
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginRight: "5px",
-                        fontSize: "14px",
-                        gap: 5,
-                        padding: "5px 10px",
-                      }}
-                      className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
-                      onClick={exampleExcel}
-                    >
-                      <p>Download Template</p>
-                      <SaveAltIcon sx={{ fontSize: "18px" }} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-            {open === "upload" && (
-              <div>
-                {/* <h1 className={styles.heading}>CREATE YOUR CARD</h1> */}
-                <div className={styles.boxcontent}>
-                  <div>
-                    <FileUploadOutlinedIcon sx={{ fontSize: "80px" }} />
-                    <p>1 file selected</p>
-                  </div>
+      <div style={{ padding: "100px 10px 10px 10px" }}>
+        <ToastContainer position="bottom-right" />
+        <Dialog open={openDia} onClose={() => setOpenDia(false)}>
+          <DialogContent>
+            {/* <div className={styles.container}> */}
+            <div>
+              {open === "" && (
+                <div>
+                  {/* <h1 className={styles.heading}>CREATE YOUR CARD</h1> */}
                   <InputLabel htmlFor="file-upload">
                     <Input
                       id="file-upload"
@@ -211,178 +144,257 @@ function Update() {
                         onChange: handleUpload,
                       }}
                     />
-                    <Button component="span" className={styles.fileUp}>
-                      <div className={styles.content}>
-                        <Image src={excel} width={50} height={50} alt="excel" />
-                        <div>
-                          <p>{nameFile}</p>
-                          <p>{fileSize(sizeFile)}</p>
-                        </div>
+                    <Button
+                      component="span"
+                      className={styles.fileUp}
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        color: "black",
+                        margin: 0,
+                        fontSize: "14px",
+                        border: "1px dotted gray",
+                        borderRadius: "10px",
+                        padding: "0 20px",
+                        textAlign: "center",
+                        width: "360px",
+                        height: "250px",
+                        //backgroundColor:"#D9D9D9",
+                      }}
+                    >
+                      <FileUploadOutlinedIcon sx={{ fontSize: "100px" }} />
+                      <div style={{ marginTop: "30px" }}>
+                        <p>Select a file</p>
+                        <p style={{ fontSize: "12px" }}>Support: .xlsx</p>
                       </div>
                     </Button>
                   </InputLabel>
-                  <button
-                    onClick={() => {
-                      if (data) {
-                        setOpenDia(false);
-                        updateProfile(data).then((main: any) => {
-                          if (main) {
-                            setDataLink(main);
-                          }
-                        });
-                        // router.push(`/$`);
-                      }
-                    }}
-                    style={{
-                      marginTop: "10px",
-                      padding: "5px 20px",
-                      width: 110,
-                    }}
-                    className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
-                  >
-                    Upload
-                  </button>
+                  <div className={styles.template}>
+                    <div
+                      style={{
+                        float: "right",
+                        marginTop: "10px",
+                      }}
+                    >
+                      <button
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          marginRight: "5px",
+                          fontSize: "14px",
+                          gap: 5,
+                          padding: "5px 10px",
+                        }}
+                        className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
+                        onClick={exampleExcel}
+                      >
+                        <p>Download Template</p>
+                        <SaveAltIcon sx={{ fontSize: "18px" }} />
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-          {/* </div> */}
-        </DialogContent>
-      </Dialog>
-      <Dialog open={openNew ? true : false} onClose={() => setOpenNew("")}>
-        <DialogContent>
-          <EditProfile
-            value={""}
-            setOpen={setOpenNew}
-            action="create"
-            data={dataLink}
-            setData={setDataLink}
-          />
-        </DialogContent>
-      </Dialog>
-      <div
-        style={{
-          padding: "30px 0 30px 0",
-          border: "1px dotted #80808059",
-          borderRadius: "10px",
-        }}
-      >
-        <div className={styles.headerButton}>
-          <TextField
-            label="Search Name..."
-            variant="outlined"
-            value={search}
-            onChange={(e: any) => setSearch(e.target.value)}
-          />
-          <div className={styles.headerRight}>
-            <button
-              style={{ marginRight: "3px" }}
-              className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-              onClick={() => setOpenNew("New Card")}
-            >
-              New Card
-            </button>
-            <Tooltip title="Create, Update">
-              <button
-                className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                onClick={() => setOpenDia(true)}
-              >
-                Upload Excel
-              </button>
-            </Tooltip>
-          </div>
-        </div>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 500 }} aria-label="customized table">
-            <TableBody>
-              <StyledTableRow>
-                <StyledTableCell
-                  className={styles.th}
-                  style={{ fontSize: "18px", textAlign: "center" }}
-                >
-                  ID
-                </StyledTableCell>
-                <StyledTableCell
-                  className={styles.th}
-                  style={{ fontSize: "18px", textAlign: "center" }}
-                >
-                  Name
-                </StyledTableCell>
-                <StyledTableCell
-                  className={styles.th}
-                  style={{ fontSize: "18px", textAlign: "center" }}
-                >
-                  Link
-                </StyledTableCell>
-                <StyledTableCell
-                  className={styles.th}
-                  style={{ fontSize: "18px", textAlign: "center" }}
-                >
-                  Action
-                </StyledTableCell>
-              </StyledTableRow>
-            </TableBody>
-            <TableBody>
-              {list
-                ? list.map((item: any, index: number) => {
-                    return (
-                      <StyledTableRow key={index}>
-                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
-                          <p>{index + 1}</p>
-                        </StyledTableCell>
-                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
-                          <p>{item?.NameId}</p>
-                        </StyledTableCell>
-                        <StyledTableCell className={styles.td} style={{ textAlign: "center" }}>
-                          <Link href={"/card/" + item?.NameId}>
-                            {`${process.env.NEXT_PUBLIC_BASE_URL}/card/${item.NameId}`}
-                          </Link>
-                        </StyledTableCell>
-                        <StyledTableCell
-                          style={{ justifyContent: "center", display: "flex", gap: 3 }}
-                          component="th"
-                          scope="row"
-                        >
-                          <button
-                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                            onClick={() => setOpenEdit(item?.NameId)}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                            onClick={() => {
-                              deleteProfile(item?.NameId).then((main) => {
-                                if (main) {
-                                  const profile = dataLink.filter(
-                                    (main: any) => main.NameId !== item.NameId,
-                                  );
-                                  setDataLink(profile);
-                                }
-                              });
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </StyledTableCell>
-                      </StyledTableRow>
-                    );
-                  })
-                : null}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Dialog open={openEdit ? true : false} onClose={() => setOpenEdit("")}>
+              )}
+              {open === "upload" && (
+                <div>
+                  {/* <h1 className={styles.heading}>CREATE YOUR CARD</h1> */}
+                  <div className={styles.boxcontent}>
+                    <div>
+                      <FileUploadOutlinedIcon sx={{ fontSize: "80px" }} />
+                      <p>1 file selected</p>
+                    </div>
+                    <InputLabel htmlFor="file-upload">
+                      <Input
+                        id="file-upload"
+                        type="file"
+                        inputProps={{
+                          style: { display: "none", margin: 0 },
+                          accept: ".xlsx, .xls",
+                          onChange: handleUpload,
+                        }}
+                      />
+                      <Button component="span" className={styles.fileUp}>
+                        <div className={styles.content}>
+                          <Image src={excel} width={50} height={50} alt="excel" />
+                          <div>
+                            <p>{nameFile}</p>
+                            <p>{fileSize(sizeFile)}</p>
+                          </div>
+                        </div>
+                      </Button>
+                    </InputLabel>
+                    <button
+                      onClick={() => {
+                        if (data) {
+                          setOpenDia(false);
+                          updateProfile(data).then((main: any) => {
+                            if (main) {
+                              setDataLink(main);
+                            }
+                          });
+                          // router.push(`/$`);
+                        }
+                      }}
+                      style={{
+                        marginTop: "10px",
+                        padding: "5px 20px",
+                        width: 110,
+                      }}
+                      className="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-800 my-2 active:bg-green-900"
+                    >
+                      Upload
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* </div> */}
+          </DialogContent>
+        </Dialog>
+        <Dialog open={openNew ? true : false} onClose={() => setOpenNew("")}>
           <DialogContent>
             <EditProfile
-              value={openEdit}
-              setOpen={setOpenEdit}
-              action="edit"
-              data={null}
-              setData={null}
+              value={""}
+              setOpen={setOpenNew}
+              action="create"
+              data={dataLink}
+              setData={setDataLink}
             />
           </DialogContent>
         </Dialog>
+        <div
+          style={{
+            padding: "30px 0 30px 0",
+            border: "1px dotted #80808059",
+            borderRadius: "10px",
+          }}
+        >
+          <div className={styles.headerButton}>
+            <TextField
+              label="Search Name..."
+              variant="outlined"
+              value={search}
+              onChange={(e: any) => setSearch(e.target.value)}
+            />
+            <div className={styles.headerRight}>
+              <button
+                style={{ marginRight: "3px" }}
+                className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                onClick={() => setOpenNew("New Card")}
+              >
+                New Card
+              </button>
+              <Tooltip title="Create, Update">
+                <button
+                  className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                  onClick={() => setOpenDia(true)}
+                >
+                  Upload Excel
+                </button>
+              </Tooltip>
+            </div>
+          </div>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 500 }} aria-label="customized table">
+              <TableBody>
+                <StyledTableRow>
+                  <StyledTableCell
+                    className={styles.th}
+                    style={{ fontSize: "18px", textAlign: "center" }}
+                  >
+                    ID
+                  </StyledTableCell>
+                  <StyledTableCell
+                    className={styles.th}
+                    style={{ fontSize: "18px", textAlign: "center" }}
+                  >
+                    Name
+                  </StyledTableCell>
+                  <StyledTableCell
+                    className={styles.th}
+                    style={{ fontSize: "18px", textAlign: "center" }}
+                  >
+                    Link
+                  </StyledTableCell>
+                  <StyledTableCell
+                    className={styles.th}
+                    style={{ fontSize: "18px", textAlign: "center" }}
+                  >
+                    Action
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+              <TableBody>
+                {list
+                  ? list.map((item: any, index: number) => {
+                      return (
+                        <StyledTableRow key={index}>
+                          <StyledTableCell
+                            style={{ textAlign: "center" }}
+                            component="th"
+                            scope="row"
+                          >
+                            <p>{index + 1}</p>
+                          </StyledTableCell>
+                          <StyledTableCell
+                            style={{ textAlign: "center" }}
+                            component="th"
+                            scope="row"
+                          >
+                            <p>{item?.NameId}</p>
+                          </StyledTableCell>
+                          <StyledTableCell className={styles.td} style={{ textAlign: "center" }}>
+                            <Link href={"/card/" + item?.NameId}>
+                              {`${process.env.NEXT_PUBLIC_BASE_URL}/card/${item.NameId}`}
+                            </Link>
+                          </StyledTableCell>
+                          <StyledTableCell
+                            style={{ justifyContent: "center", display: "flex", gap: 3 }}
+                            component="th"
+                            scope="row"
+                          >
+                            <button
+                              className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                              onClick={() => setOpenEdit(item?.NameId)}
+                            >
+                              Edit
+                            </button>
+                            <DeleteButton
+                              id={item?.NameId}
+                              name={item?.NameId}
+                              data={dataLink}
+                              setData={setDataLink}
+                              handelDelete={() => {
+                                deleteProfile(item?.NameId).then((main: any) => {
+                                  if (main) {
+                                    const list = dataLink.filter(
+                                      (main1: any) => main1.NameId !== item?.NameId,
+                                    );
+                                    setDataLink(list);
+                                  }
+                                });
+                              }}
+                            />
+                          </StyledTableCell>
+                        </StyledTableRow>
+                      );
+                    })
+                  : null}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Dialog open={openEdit ? true : false} onClose={() => setOpenEdit("")}>
+            <DialogContent>
+              <EditProfile
+                value={openEdit}
+                setOpen={setOpenEdit}
+                action="edit"
+                data={null}
+                setData={null}
+              />
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
     </HomeLayout>
   );

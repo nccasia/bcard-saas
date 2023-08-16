@@ -3,34 +3,37 @@ import { getSession } from "next-auth/react";
 
 import { prisma } from "../../../lib/prisma";
 
-const newadmin: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const createCard: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session: any = await getSession({ req });
   if (req.method === "POST") {
     try {
-      const { email } = req.body;
-      if (!email) {
+      const { name, card, image } = req.body;
+      if (!name || !card || !image) {
         throw new Error("Invalid input data");
       }
-      const test = await prisma.admin.findUnique({
-        where: { email: email },
+      const admin: any = await prisma.card.create({
+        data: {
+          name: name,
+          card: card,
+          image: image,
+        },
       });
-      if (!test) {
-        const admin = await prisma.admin.create({
+      if (image === "Active") {
+        await prisma.card.updateMany({
+          where: {
+            id: { not: admin?.id },
+            image: "Active",
+          },
           data: {
-            email: email,
+            image: "Deactive",
           },
         });
-        return res.status(200).json(admin);
-      } else {
-        throw new Error("Duplicate Email");
       }
+      return res.status(200).json(admin);
       if (!session) {
         throw new Error("Access Denied");
       }
     } catch (error: any) {
-      if (error.message === "Duplicate Email") {
-        return res.status(400).json({ errorMessage: "Duplicate Email" });
-      }
       if (error.message === "Access Denied") {
         res.status(401).json({ errorMessage: "Access Denied" });
       }
@@ -44,4 +47,4 @@ const newadmin: NextApiHandler = async (req: NextApiRequest, res: NextApiRespons
   }
 };
 
-export default newadmin;
+export default createCard;

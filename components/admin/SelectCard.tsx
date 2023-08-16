@@ -1,12 +1,15 @@
+import "react-toastify/dist/ReactToastify.css";
+
 import Link from "next/link";
 import React from "react";
+import { ToastContainer } from "react-toastify";
 
-import { getCard } from "../../api/admin/apiCard";
-
+import { deleteCard, getCardAll } from "../../api/admin/apiCard";
+import DeleteButton from "../button/DeleteButton";
 function SelectCard(): JSX.Element {
   const [users, setUsers] = React.useState<any>([]);
   React.useEffect(() => {
-    getCard().then((main) => {
+    getCardAll().then((main) => {
       setUsers(main);
     });
   }, []);
@@ -21,7 +24,8 @@ function SelectCard(): JSX.Element {
         borderRadius: "10px",
       }}
     >
-      <Link href="/card/createcard">
+      <ToastContainer position="bottom-right" />
+      <Link href="/cards/createcard">
         <button
           style={{ float: "right" }}
           className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
@@ -44,13 +48,13 @@ function SelectCard(): JSX.Element {
           >
             <th>Id</th>
             <th>Name</th>
+            <th>Active</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {users
             ? users.map((item: any) => {
-                //console.log((item.card));
                 return (
                   <tr
                     key={item.id}
@@ -66,11 +70,25 @@ function SelectCard(): JSX.Element {
                       <p>{item.name}</p>
                     </td>
                     <td>
-                      <Link href={`/card/${item.id}`}>
+                      <p>{String(item.image)}</p>
+                    </td>
+                    <td style={{ display: "flex", justifyContent: "center", gap: 3 }}>
+                      <Link href={`/cards/${item.id}`}>
                         <button className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900">
                           Edit
                         </button>
                       </Link>
+                      <DeleteButton
+                        name={item?.name}
+                        handelDelete={() => {
+                          deleteCard(item?.id).then((main: any) => {
+                            if (main) {
+                              const list = users.filter((main1: any) => main1.id !== item?.id);
+                              setUsers(list);
+                            }
+                          });
+                        }}
+                      />
                     </td>
                   </tr>
                 );

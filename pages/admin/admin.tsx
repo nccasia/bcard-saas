@@ -7,7 +7,9 @@ function AdminPage() {
   return (
     <div>
       <HomeLayout>
-        <SelectAdmin />
+        <div style={{ padding: "100px 10px 10px 10px" }}>
+          <SelectAdmin />
+        </div>
       </HomeLayout>
     </div>
   );

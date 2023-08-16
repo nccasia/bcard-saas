@@ -62,7 +62,7 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
       } else {
         setOpen(true);
         if (router.pathname.startsWith("/login")) {
-          router.push("/admin/update");
+          router.push("/admin/users");
         }
         return;
       }

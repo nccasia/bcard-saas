@@ -10,10 +10,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   //console.log(name);
   if (req.method === "GET") {
     try {
-      const data = await prisma.excel.findUnique({
-        where: { NameId: String(name) },
+      const data = await prisma.user.findUnique({
+        where: { email: String(name + "@ncc.asia") },
       });
-      res.status(200).json(data);
+      res.status(200).json(data?.image);
     } catch (error) {
       res.status(500).json({
         error: error,

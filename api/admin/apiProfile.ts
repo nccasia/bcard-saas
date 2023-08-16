@@ -35,6 +35,22 @@ export const getNameCard = async (name: string) => {
   }
 };
 
+export const getAvatar = async (name: string) => {
+  try {
+    const res = await axios({
+      url: "/api/avatar/" + name,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res.data;
+  } catch (error: any) {
+    toast.error(error?.response?.data?.errorMessage);
+    return false;
+  }
+};
+
 export const getProfile = async () => {
   try {
     const res = await axios({

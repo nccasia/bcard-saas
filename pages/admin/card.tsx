@@ -7,7 +7,9 @@ function CardPage(): JSX.Element {
   return (
     <div>
       <HomeLayout>
-        <SelectCard />
+        <div style={{ padding: "100px 10px 10px 10px" }}>
+          <SelectCard />
+        </div>
       </HomeLayout>
     </div>
   );
