@@ -31,6 +31,7 @@ function Name() {
     const vcardContent = `
 BEGIN:VCARD
 VERSION:3.0
+N:;${profile?.Name};;;
 FN:${profile?.Name}
 TEL;TYPE=CELL,voice:${profile?.Phone}
 EMAIL;TYPE=PREF,INTERNET:${profile?.Email}
