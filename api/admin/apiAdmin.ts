@@ -45,8 +45,10 @@ export const deleteAdmin = async (id: string) => {
       },
     });
     toast.success("Success!");
+    return true;
   } catch (error: any) {
     toast.error(error?.response?.data?.errorMessage);
+    return false;
   }
 };
 

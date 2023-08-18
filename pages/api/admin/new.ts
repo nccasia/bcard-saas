@@ -8,6 +8,9 @@ const newadmin: NextApiHandler = async (req: NextApiRequest, res: NextApiRespons
   if (req.method === "POST") {
     try {
       const { email } = req.body;
+      if (!email) {
+        throw new Error("Invalid input data");
+      }
       const test = await prisma.admin.findUnique({
         where: { email: email },
       });
@@ -30,6 +33,9 @@ const newadmin: NextApiHandler = async (req: NextApiRequest, res: NextApiRespons
       }
       if (error.message === "Access Denied") {
         res.status(401).json({ errorMessage: "Access Denied" });
+      }
+      if (error.message === "Invalid input data") {
+        res.status(400).json({ errorMessage: "Invalid input data" });
       }
       return res.status(500).json({ errorMessage: "Internal Server Error" });
     } finally {

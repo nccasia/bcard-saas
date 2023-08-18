@@ -35,6 +35,22 @@ export const getNameCard = async (name: string) => {
   }
 };
 
+export const getAvatar = async (name: string) => {
+  try {
+    const res = await axios({
+      url: "/api/avatar/" + name,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res.data;
+  } catch (error: any) {
+    toast.error(error?.response?.data?.errorMessage);
+    return false;
+  }
+};
+
 export const getProfile = async () => {
   try {
     const res = await axios({
@@ -49,6 +65,39 @@ export const getProfile = async () => {
     toast.error(error?.response?.data?.errorMessage);
   }
 };
+
+export const getProfilePage = async (page: number) => {
+  try {
+    const res = await axios({
+      url: `/api/card/getPage/${page}`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res.data;
+  } catch (error: any) {
+    toast.error(error?.response?.data?.errorMessage);
+  }
+};
+
+export const searchProfile = async (index: any) => {
+  try {
+    const res = await axios({
+      url: "/api/card/search",
+      data: JSON.stringify(index),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res?.data;
+  } catch (error: any) {
+    toast.error(error?.response?.data?.errorMessage);
+    return false;
+  }
+};
+
 export const deleteProfile = async (NameId: string) => {
   try {
     await axios({
@@ -58,7 +107,7 @@ export const deleteProfile = async (NameId: string) => {
         "Content-Type": "application/json",
       },
     });
-    toast.success("Success!");
+    toast.success("Delete profile success!");
     return true;
   } catch (error: any) {
     toast.error(error?.response?.data?.errorMessage);
@@ -68,7 +117,7 @@ export const deleteProfile = async (NameId: string) => {
 
 export const editProfile = async (props: any) => {
   try {
-    await axios({
+    const res = await axios({
       url: "/api/card/edit",
       data: JSON.stringify({
         NameId: props?.NameId,
@@ -82,7 +131,8 @@ export const editProfile = async (props: any) => {
         "Content-Type": "application/json",
       },
     });
-    toast.success("Success!");
+    toast.success("Edit profile success!");
+    return res?.data;
     return true;
   } catch (error: any) {
     toast.error(error?.response?.data?.errorMessage);
@@ -105,7 +155,7 @@ export const newProfile = async (props: any) => {
         "Content-Type": "application/json",
       },
     });
-    toast.success("Success!");
+    toast.success("Add profile success!");
     return res.data;
   } catch (error: any) {
     toast.error(error?.response?.data?.errorMessage);

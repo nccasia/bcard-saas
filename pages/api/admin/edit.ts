@@ -8,7 +8,10 @@ const editadmin: NextApiHandler = async (req: NextApiRequest, res: NextApiRespon
   const session = await getSession({ req });
   try {
     const { id, email } = req.body;
-    const admin = await prisma.admin.update({
+    if (!id || !email) {
+      throw new Error("Invalid input data");
+    }
+    await prisma.admin.update({
       where: {
         id: id,
       },
@@ -16,13 +19,16 @@ const editadmin: NextApiHandler = async (req: NextApiRequest, res: NextApiRespon
         email: email,
       },
     });
-    return res.status(201).json(admin);
+    return res.status(201).json(true);
     if (!session) {
       throw new Error("Access Denied");
     }
   } catch (error: any) {
     if (error.message === "Access Denied") {
       res.status(401).json({ errorMessage: "Access Denied" });
+    }
+    if (error.message === "Invalid input data") {
+      res.status(400).json({ errorMessage: "Invalid input data" });
     }
     return res.status(500).json({ error: "Internal Server Error" });
   } finally {

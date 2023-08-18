@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getCard } from "../../api/admin/apiCard";
+import { getCardAll } from "../../api/admin/apiCard";
 import LayoutUser from "../../components/home/LayoutUser";
 import Card from "../../components/users/Card";
 
@@ -8,7 +8,7 @@ function CardPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [card, setCard] = React.useState<any>([]);
   React.useEffect(() => {
-    getCard().then((main) => setCard(main));
+    getCardAll().then((main) => setCard(main));
   }, []);
 
   return (

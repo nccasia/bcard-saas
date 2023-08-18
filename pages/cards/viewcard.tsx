@@ -1,37 +1,38 @@
 import React from "react";
 
-import { getCard } from "../../api/admin/apiCard";
+import { getCardTrue } from "../../api/admin/apiCard";
 import LayoutUser from "../../components/home/LayoutUser";
 import KonvaView from "../../components/konvacard/KonvaView";
 
 function ViewCard() {
-  const [data, setData] = React.useState<any[]>([]);
+  const [data, setData] = React.useState<any>([]);
 
   React.useEffect(() => {
-    getCard().then((main) => setData(main));
+    getCardTrue().then((main: any) => {
+      if (main.length === 1) {
+        main.map((main1: any) => {
+          setData(main1.card);
+        });
+      }
+    });
   }, []);
+  //console.log(data);
 
   return (
     <LayoutUser>
-      {data
-        ? data.map((item: any, index: number) => {
-            return (
-              <div
-                key={index}
-                style={{
-                  margin: 0,
-                  padding: 0,
-                  width: "400px",
-                  height: "400px",
-                  boxSizing: "content-box",
-                  overflow: "hidden",
-                }}
-              >
-                <KonvaView data={data} setData={setData} />
-              </div>
-            );
-          })
-        : null}
+      <div
+        style={{
+          marginTop: "13vh",
+          width: "100%",
+          padding: "0 10px",
+          display: "flex",
+          //justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <KonvaView data={data} setData={setData} />
+      </div>
     </LayoutUser>
   );
 }

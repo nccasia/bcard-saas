@@ -1,0 +1,103 @@
+.divMainView{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    gap: 8px;
+    position:absolute;
+    top: calc(100vh - 135px);
+    right: 20px;
+}
+.buttonMainView{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 8px 20px;
+    border-radius: 5px;
+}
+
+.headerSharePage{
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+}
+.headerShareH1{
+    font-weight: 500; 
+    color: #f44336;
+    font-size: 19px;
+}
+.headerShareIcon:hover{
+    background-color:#e5e7eb63;
+    border-radius: 50%;
+}
+.buttonSharePage{
+    display: flex;
+    gap: 10px; 
+    align-items: center;
+    width:100%;
+    padding: 15px 5px;
+}
+
+.buttonSharePage:hover{
+    background-color: #e5e7eb63;
+}
+
+.buttonShareURL {
+    border: 2px solid #80808045;
+    padding: 2px 5px;
+    color: #646464;
+    font-size: 14px;
+}
+.buttonShareCopied{
+    position:absolute;
+    bottom: 85px;
+    right: 15px;
+    font-size: 14px;
+    background-color:#cacbcd63;
+    padding: 3px;
+    border-radius: 5px;
+}
+.buttonShareCopied::after{
+    content: "";
+    position:absolute;
+    bottom: -8px;
+    right: 15px;
+    background-color:white;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 8px solid #cacbcd63;
+}
+.inputSendEmail{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    border: 2px solid #cacbcd;
+    border-radius: 5px;
+    padding: 0 8px;
+}
+
+.inputSendEmail:focus {
+    border: 2px solid #f44336de;
+    outline: none;
+}
+
+.buttonSendEmail{
+    width: 100%;
+    height: 40px;
+    background-color: #f44336de;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+}
+
+.divDownload{
+    width: 300px;
+    height: 205px;
+}
+
+@media (max-width: 400px) {
+    .divDownload{
+        width: 250px;
+        height: 205px;
+    }
+}

@@ -1,10 +1,10 @@
 import React from "react";
 
-import ImageEdit from "../konvacard/ImageEdit";
-import RectEdit from "../konvacard/RectEdit";
-import TextEdit from "../konvacard/TextEdit";
+import ImageEdit from "./image/ImageEdit";
+import ShapeEdit from "./shape/ShapeEdit";
+import TextEdit from "./text/TextEdit";
 
-function KonvaEdit({ data, setData }: any) {
+function KonvaEdit({ data, setData, setOpen, type }: any) {
   return (
     <div
       style={{
@@ -12,20 +12,37 @@ function KonvaEdit({ data, setData }: any) {
         padding: 0,
       }}
     >
-      <h1>Click to Edit</h1>
       {data
         ? data.map((item: any, index: number) => {
             if (item.onclick) {
               return (
                 <div key={index}>
-                  {item.type === "text" && (
-                    <TextEdit item={item} data={data} setData={setData} type="edit" />
+                  {item.type === "text" && type === "text" && (
+                    <TextEdit
+                      item={item}
+                      data={data}
+                      setData={setData}
+                      type="edit"
+                      setOpen={setOpen}
+                    />
                   )}
-                  {item.type === "image" && (
-                    <ImageEdit item={item} data={data} setData={setData} type="edit" />
+                  {item.type === "image" && type === "image" && (
+                    <ImageEdit
+                      item={item}
+                      data={data}
+                      setData={setData}
+                      type="edit"
+                      setOpen={setOpen}
+                    />
                   )}
-                  {item.type === "rect" && (
-                    <RectEdit item={item} data={data} setData={setData} type="edit" />
+                  {item.type === "shape" && type === "shape" && (
+                    <ShapeEdit
+                      item={item}
+                      data={data}
+                      setData={setData}
+                      type="edit"
+                      setOpen={setOpen}
+                    />
                   )}
                 </div>
               );

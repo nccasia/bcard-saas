@@ -1,7 +1,8 @@
 // import ContactEmergencyIcon from "@mui/icons-material/ContactEmergency";
 // import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 // import Fab from "@mui/material/Fab";
-import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Grid, Menu } from "@mui/material";
 // import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
@@ -22,8 +23,14 @@ import Logout from "../login/Logout";
 //   cursor: pointer;
 //   border-radius: 50%;
 // `;
+interface Head {
+  type?: string;
+  isHidden?: boolean;
+  setIsHidden?: any;
+  isDarkMode: any;
+}
 
-function Header({ isDarkMode }: any) {
+function Header({ type, isHidden, setIsHidden, isDarkMode }: Head) {
   const { data: session, status }: any = useSession();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -38,7 +45,14 @@ function Header({ isDarkMode }: any) {
   return (
     <div className={styles.container} style={{ background: isDarkMode ? "#f44336" : "" }}>
       <div className={styles.headerLetf}>
-        <div>
+        <div style={{ display: "flex", gap: 5 }}>
+          <Grid sx={{ display: { xs: "block", sm: "block", md: "block", lg: "none" } }}>
+            {type === "admin" && (
+              <button onClick={() => setIsHidden(!isHidden)}>
+                <MenuIcon sx={{ color: "white", fontSize: 30 }} />
+              </button>
+            )}
+          </Grid>
           <Image src={logo} alt="logo" width={30} height={30} />
         </div>
         <div className={styles.title}>Business Card</div>

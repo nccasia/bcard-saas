@@ -1,9 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
-import { editProfile, getNameCard, newProfile } from "../../api/profile/apiProfile";
+import { getProfilePage } from "../../api/admin/apiProfile";
+import { editProfile, getNameCard, newProfile } from "../../api/admin/apiProfile";
 
-function EditProfile({ value, setOpen, action, data, setData }: any) {
+function EditProfile({ value, setOpen, action, setData, setTotal, page }: any) {
   const {
     handleSubmit,
     register,
@@ -26,20 +28,27 @@ function EditProfile({ value, setOpen, action, data, setData }: any) {
   const onFormSubmit = async (index: any) => {
     if (action === "edit") {
       editProfile(index);
+      setOpen("");
     }
     if (action === "create") {
-      newProfile(index).then((main: any) => {
-        if (main) {
-          setData([...data, { NameId: main }]);
-        }
-      });
+      if (index?.Email.endsWith("@ncc.asia")) {
+        newProfile(index).then((main: any) => {
+          if (main) {
+            setOpen("");
+            getProfilePage(page).then((main: any) => {
+              setData(main?.data);
+              setTotal(main?.total);
+            });
+          }
+        });
+      } else {
+        toast.error("Not an email NCC.");
+      }
     }
-    setOpen("");
   };
   const onCancelClick = () => {
     setOpen("");
   };
-  //console.log(data);
 
   return (
     <div className="w-full max-w-2xl mx-auto">

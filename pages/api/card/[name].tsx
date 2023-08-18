@@ -7,7 +7,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   //   if (session) {
   const { name } = req.query;
-  console.log(name);
+  //console.log(name);
   if (req.method === "GET") {
     try {
       const data = await prisma.excel.findUnique({
