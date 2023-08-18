@@ -27,9 +27,10 @@ interface Head {
   type?: string;
   isHidden?: boolean;
   setIsHidden?: any;
+  isDarkMode: any;
 }
 
-function Header({ type, isHidden, setIsHidden }: Head) {
+function Header({ type, isHidden, setIsHidden, isDarkMode }: Head) {
   const { data: session, status }: any = useSession();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -42,7 +43,7 @@ function Header({ type, isHidden, setIsHidden }: Head) {
   //console.log(status);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ background: isDarkMode ? "#f44336" : "" }}>
       <div className={styles.headerLetf}>
         <div style={{ display: "flex", gap: 5 }}>
           <Grid sx={{ display: { xs: "block", sm: "block", md: "block", lg: "none" } }}>

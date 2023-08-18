@@ -82,37 +82,39 @@ function SelectAdmin(): JSX.Element {
           </TableBody>
           <TableBody>
             {admin
-              ? admin.map((item: any) => {
-                  return (
-                    <StyledTableRow key={item?.id}>
-                      <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
-                        {item?.id}
-                      </StyledTableCell>
-                      <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
-                        {item?.email}
-                      </StyledTableCell>
-                      <StyledTableCell className={styles.td} style={{ display: "flex" }}>
-                        <EditNewAdmin
-                          name={item?.email}
-                          id={item?.id}
-                          data={admin}
-                          setData={setAdmin}
-                        />
-                        <DeleteButton
-                          name={item?.email}
-                          handelDelete={() => {
-                            deleteAdmin(item?.id).then((main: any) => {
-                              if (main) {
-                                const list = admin.filter((main1: any) => main1.id !== item?.id);
-                                setAdmin(list);
-                              }
-                            });
-                          }}
-                        />
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  );
-                })
+              ? admin
+                  .sort((a: any, b: any) => a.email.localeCompare(b.email))
+                  .map((item: any) => {
+                    return (
+                      <StyledTableRow key={item?.id}>
+                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
+                          {item?.id}
+                        </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
+                          {item?.email}
+                        </StyledTableCell>
+                        <StyledTableCell className={styles.td} style={{ display: "flex" }}>
+                          <EditNewAdmin
+                            name={item?.email}
+                            id={item?.id}
+                            data={admin}
+                            setData={setAdmin}
+                          />
+                          <DeleteButton
+                            name={item?.email}
+                            handelDelete={() => {
+                              deleteAdmin(item?.id).then((main: any) => {
+                                if (main) {
+                                  const list = admin.filter((main1: any) => main1.id !== item?.id);
+                                  setAdmin(list);
+                                }
+                              });
+                            }}
+                          />
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    );
+                  })
               : null}
           </TableBody>
         </Table>

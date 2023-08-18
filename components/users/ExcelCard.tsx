@@ -2,17 +2,48 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 import logo_content from "../../public/logo_content.png";
-// import Image from "next/image";
-// import logo_content from "../../public/logo_content.png";
-// import logoncc from "../../public/logoncc.png";
 import styles from "../../styles/profile.module.css";
 
-function ExcelCard({ profile, params }: any) {
-  //console.log(profile);
-  // const [isHidden, setIsHidden] =React.useState(true);
-  // const toggle = () => setIsHidden(!isHidden);
+function ExcelCard({ profile, params, isDarkMode }: any) {
+  const [fontSize, setFontSize] = useState<number | undefined>();
+  const [fontMail, setFontSizeMain] = useState<number | undefined>();
+  const boxRef = useRef<any>(null);
+  const textRef = useRef<any>(null);
+  const emailRef = useRef<any>(null);
+
+  useEffect(() => {
+    // Lấy đối tượng của box
+    if (!boxRef.current || !textRef.current || !emailRef.current) return;
+    const box = boxRef.current;
+    const text = textRef.current;
+    const email = emailRef.current;
+
+    if (box && text) {
+      if (text.scrollWidth + 20 > box.offsetWidth) {
+        if (window.innerWidth <= 768) {
+          // Giảm kích thước font chữ để nội dung vừa với màn hình
+          setFontSize(16);
+        } else {
+          setFontSize(19);
+        }
+      }
+    }
+
+    if (box && email) {
+      if (email.scrollWidth + 20 > box.offsetWidth) {
+        if (window.innerWidth <= 768) {
+          setFontSizeMain(11);
+        } else {
+          setFontSizeMain(13);
+        }
+
+        // Thay đổi kích thước font của nội dung
+      }
+    }
+  }, [fontMail, fontSize]);
   return (
     <>
       {/* <LayoutUser children={undefined}></LayoutUser> */}
@@ -25,42 +56,28 @@ function ExcelCard({ profile, params }: any) {
             }}
           >
             <div id="card" className={styles.card}>
-              {/* <div className={styles.headCard1}>
-                <div className={styles.headContent}>
-                  <Image
-                    src={logoncc}
-                    alt="logo"
-                    width={100}
-                    height={100}
-                    className={styles.img2}
-                  />
-                  <p className={styles.text}>{profile?.company}</p>
-                </div>
-              </div>
-              <br /> */}
-              <div className={styles.mainCard1}>
+              <div className={styles.mainCard1} style={{ background: isDarkMode ? "#fff" : " " }}>
                 <div className={styles.contenCard}>
                   <div className={styles.cardImage}>
                     <div className={styles.image}>
                       <Image
                         src={logo_content}
                         alt="logo"
-                        // width="100%"
-                        // height="35.7%"
                         layout="responsive"
                         style={{ objectFit: "contain" }}
                       />
-                      {/* <img src={require("../../public/logo_content.png")} alt="" /> */}
                     </div>
-                    {/* <div style={{ display: "flex", alignItems: "center" }}>
-                      <p style={{ color: "red", fontSize: "30px" }}>ncc</p>
-                    </div> */}
-                    {/* <img src={profile?.logo} alt="hello" className={styles.img1} /> */}
                   </div>
                 </div>
-                <div className={styles.contentCard1}>
+                <div ref={boxRef} className={styles.contentCard1}>
                   <div className={styles.title1}>
-                    <h1 className={styles.headingText}>{profile?.Name}</h1>
+                    <h1
+                      ref={textRef}
+                      className={styles.headingText}
+                      style={{ fontSize: `${fontSize}px` }}
+                    >
+                      {profile?.Name}
+                    </h1>
                     <p className={styles.position}>{profile?.Title}</p>
                   </div>
                   {/* <p>{profile.position}</p> */}
@@ -68,28 +85,39 @@ function ExcelCard({ profile, params }: any) {
                     <FontAwesomeIcon
                       icon="envelope"
                       className={styles.icon}
+                      style={{ fontSize: `${fontMail}px` }}
                       // style={{ fontSize: "16px", color: "rgb(157 155 155)" }}
                     />
-                    <p className={styles.text1}>{profile?.Email}</p>
+                    <p
+                      ref={emailRef}
+                      className={styles.text1}
+                      style={{ fontSize: `${fontMail}px` }}
+                    >
+                      {profile?.Email}
+                    </p>
                   </div>
                   <div className={styles.itemContent}>
-                    <FontAwesomeIcon icon="phone" className={styles.icon} />
-                    <p className={styles.text1}>{profile?.Phone}</p>
+                    <FontAwesomeIcon
+                      icon="phone"
+                      className={styles.icon}
+                      style={{ fontSize: `${fontMail}px` }}
+                    />
+                    <p className={styles.text1} style={{ fontSize: `${fontMail}px` }}>
+                      {profile?.Phone}
+                    </p>
                   </div>
                   <div className={styles.itemContent}>
-                    <FontAwesomeIcon icon="globe" className={styles.icon} />
-                    <p className={styles.text1}>
+                    <FontAwesomeIcon
+                      icon="globe"
+                      className={styles.icon}
+                      style={{ fontSize: `${fontMail}px` }}
+                    />
+                    <p className={styles.text1} style={{ fontSize: `${fontMail}px` }}>
                       <Link href="https://ncc.asia/" target="_blank">
                         https://www.ncc.asia
                       </Link>
                     </p>
                   </div>
-                  {/* <div className={styles.itemContent}>
-                    <FontAwesomeIcon icon="location-dot" className={styles.icon} />
-                    <p className={styles.text1} style={{ lineHeight: "20px" }}>
-                      {profile?.address}
-                    </p>
-                  </div> */}
                 </div>
               </div>
             </div>

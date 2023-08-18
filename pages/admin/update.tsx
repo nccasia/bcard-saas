@@ -71,25 +71,18 @@ function Update() {
       rows.push(row.values);
     });
     setData(changeExcel(rows));
-    //const fileName = file ? file.name : "";
     setNameFile(file ? file.name : "");
     setSizeFile(file ? file.size : "");
     setOpen("upload");
   };
-  //console.log(data);
-  // const router = useRouter();
   const exampleExcel = async () => {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Sheet1");
     worksheet.columns = [
-      //{ header: "NameId", key: "NameId", width: 30 },
       { header: "Name", key: "Name", width: 30 },
       { header: "Title", key: "Title", width: 30 },
       { header: "Email", key: "Email", width: 30 },
       { header: "Phone", key: "Phone", width: 30 },
-      // { header: "Address", key: "Address", width: 40 },
-      // { header: "Company", key: "Company", width: 30 },
-      // { header: "Web", key: "Web", width: 30 },
     ];
     const data = [
       {
@@ -98,9 +91,6 @@ function Update() {
         Title: "Vinh Branch Manager",
         Email: "dai.trinhduc@ncc.asia",
         Phone: "(+84) 2466874606",
-        // Address: "4th Floor, 138 Ha Huy Tap St., Vinh City",
-        // Company: "NCCPLUS VIETNAM JSC",
-        // Web: "http://ncc.asia",
       },
     ];
     worksheet.addRows(data);
@@ -110,12 +100,12 @@ function Update() {
     });
     saveAs(blob, "example.xlsx");
   };
+
   const [dataLink, setDataLink] = useState<any>([]);
   const [search, setSearch] = useState("");
   React.useEffect(() => {
     getProfile().then((main: any) => setDataLink(main));
   }, []);
-
   const [openEdit, setOpenEdit] = useState("");
   const [openNew, setOpenNew] = useState("");
   const debounce = useDataDebouncer(search.trim(), 800);

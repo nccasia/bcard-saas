@@ -104,7 +104,7 @@
 .title,
 .title1 {
   line-height: 1;
-  margin-left: 4px;
+  /* margin-left: 4px; */
 }
 
 .title1 {
@@ -173,6 +173,8 @@
   flex: 0.7;
   display: flex;
   border-right: 1.5px solid #777373;
+  width: 40%;
+  
 }
 
 .button {
@@ -194,12 +196,13 @@
 .contentCard1 {
   /* style={{ margin: "auto", textAlign: "left", color: "white", flex: 1 }} */
   font-size: 22px;
-  margin: auto;
+  margin: auto 5px auto 15px;
   text-align: left;
   color: gray;
   flex: 1;
   line-height: 30px;
-  margin-left: 15px;
+  width: 60%;
+  text-overflow: ellipsis;
 }
 
 .headCard1 {
@@ -236,6 +239,11 @@
   border-top: 1px solid #fff;
   margin-top: 20px;
 }
+.boxCard{
+  width: 100%;
+  height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  position: relative;
+}
 
 .divCard {
   margin: auto;
@@ -244,7 +252,7 @@
 
 .iconSwitch {
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
   right: 15px;
   background-color: "#fff";
   border-radius: 50%;
@@ -255,8 +263,7 @@
   color: #606060;
   font-weight: 500;
   white-space: nowrap;
-  /* overflow: hidden; */
-  text-overflow: ellipsis;
+  display: inline-block;
 }
 
 .image {
@@ -266,11 +273,13 @@
 .text1 {
   font-size: 16px;
   color: #767676;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 .icon {
   font-size: 13px;
-  margin-top: 3px;
+  /* margin-top: 3px; */
   color: #7e7b7b;
 }
 
@@ -284,8 +293,17 @@
   right: 15px;
   top: calc(100% + 27vh);;
 }
+.profile{
+  /* position: relative; */
+  padding: 10vh 0;
+  text-align: center;
+  height: calc(100% - 80px);
+}
 
 @media (max-width: 768px) {
+  .profile{
+    height: calc(100% - 200px);
+  }
   .container {
     margin-top: 80px;
   }
@@ -293,17 +311,14 @@
   /* Các kiểu dáng riêng cho mobile ở đây */
   /* Ví dụ: */
   .divCard {
-    padding: 0 15px;
+    padding: 0 10px;
   }
 
   .iconSwitch {
     position: absolute;
-    bottom: 20px;
+    bottom: 100px;
     box-sizing: border-box;
     right: 15px;
-  }
-  .addIcon{
-    bottom: calc(100% + 40vh);
   }
 
   .card {
@@ -317,7 +332,7 @@
   } */
   .headCard1,
   .mainCard1 {
-    width: 360px;
+    width: 350px;
     height: 200px;
   }
 

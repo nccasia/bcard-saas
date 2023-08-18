@@ -24,7 +24,7 @@ function Id() {
       });
     }
   }, [id]);
-  console.log(id1);
+  //console.log(id1);
   return (
     <div>
       <HomeLayout>

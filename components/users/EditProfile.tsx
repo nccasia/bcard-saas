@@ -1,9 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
+import { getProfilePage } from "../../api/admin/apiProfile";
 import { editProfile, getNameCard, newProfile } from "../../api/admin/apiProfile";
 
-function EditProfile({ value, setOpen, action, data, setData }: any) {
+function EditProfile({ value, setOpen, action, setData, setTotal, page }: any) {
   const {
     handleSubmit,
     register,
@@ -26,20 +28,27 @@ function EditProfile({ value, setOpen, action, data, setData }: any) {
   const onFormSubmit = async (index: any) => {
     if (action === "edit") {
       editProfile(index);
+      setOpen("");
     }
     if (action === "create") {
-      newProfile(index).then((main: any) => {
-        if (main) {
-          setData([...data, { NameId: main }]);
-        }
-      });
+      if (index?.Email.endsWith("@ncc.asia")) {
+        newProfile(index).then((main: any) => {
+          if (main) {
+            setOpen("");
+            getProfilePage(page).then((main: any) => {
+              setData(main?.data);
+              setTotal(main?.total);
+            });
+          }
+        });
+      } else {
+        toast.error("Not an email NCC.");
+      }
     }
-    setOpen("");
   };
   const onCancelClick = () => {
     setOpen("");
   };
-  //console.log(data);
 
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -73,9 +82,16 @@ function EditProfile({ value, setOpen, action, data, setData }: any) {
           type="text"
           placeholder="Enter your phone"
           style={{ outlineColor: errors.Phone ? "red" : "none" }}
-          {...register("Phone", { required: true })}
+          {...register("Phone", {
+            required: true,
+            // pattern: {
+            //   value: /^\s*(\+\d{1,3})?[-. (]*(\d{3})[-. )]*(\d{3})[-.]*(\d{4})(?: *x(\d+))?\s*$/,
+            //   message: "Please enter a valid phone number",
+            // },
+          })}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
+        {/* {errors.Phone && <p style={{ color: "red" }}>{errors.Phone.message}</p>} */}
         <p>Title:</p>
         <input
           type="text"

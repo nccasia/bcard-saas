@@ -19,6 +19,7 @@ import {
   TextField,
   Tooltip,
 } from "@mui/material";
+import Pagination from "@mui/material/Pagination";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import Image from "next/image";
@@ -26,14 +27,18 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
-import { deleteProfile, getProfile, updateProfile } from "../../api/admin/apiProfile";
+import {
+  deleteProfile,
+  getProfilePage,
+  searchProfile,
+  updateProfile,
+} from "../../api/admin/apiProfile";
 import DeleteButton from "../../components/button/DeleteButton";
 import EditProfile from "../../components/users/EditProfile";
 import excel from "../../public/excel.png";
 import styles from "../../styles/update.module.css";
 import { changeExcel } from "../../utils/changeExcel";
 import { fileSize } from "../../utils/fileSize";
-import { useDataDebouncer } from "../../utils/useDeboune";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -111,17 +116,69 @@ function SelectUser() {
   };
   const [dataLink, setDataLink] = useState<any>([]);
   const [search, setSearch] = useState("");
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
   React.useEffect(() => {
-    getProfile().then((main: any) => setDataLink(main));
-  }, []);
+    if (page === 1) {
+      getProfilePage(1).then((main: any) => {
+        setDataLink(main?.data);
+        setTotal(main?.total);
+      });
+    }
+  }, [page]);
+
+  const handleChangePage = (event: React.ChangeEvent<unknown>, newPage: number) => {
+    if (newPage !== 1) {
+      if (search.trim() !== "") {
+        searchProfile({
+          page: 1,
+          name: search,
+        }).then((main: any) => {
+          setDataLink(main?.data);
+          setTotal(main?.total);
+        });
+      } else {
+        getProfilePage(newPage).then((main: any) => {
+          setDataLink(main?.data);
+          setTotal(main?.total);
+        });
+      }
+    }
+    setPage(newPage);
+  };
+
+  const handleChangeSearch = (text: string) => {
+    setSearch(text);
+    if (text === "") {
+      getProfilePage(page).then((main: any) => {
+        setDataLink(main?.data);
+        setTotal(main?.total);
+      });
+    }
+  };
+
+  const handleClickSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      if (search !== "") {
+        searchProfile({
+          page: 1,
+          name: search,
+        }).then((main: any) => {
+          setDataLink(main?.data);
+          setTotal(main?.total);
+        });
+      } else {
+        getProfilePage(page).then((main: any) => {
+          setDataLink(main?.data);
+          setTotal(main?.total);
+        });
+      }
+    }
+  };
 
   const [openEdit, setOpenEdit] = useState("");
   const [openNew, setOpenNew] = useState("");
-  const debounce = useDataDebouncer(search.trim(), 800);
-  const list = debounce
-    ? dataLink.filter((main: any) => main.NameId.toLowerCase().includes(debounce))
-    : dataLink;
-  //console.log(dataLink);
+
   return (
     <div style={{ padding: "100px 10px 10px 10px" }}>
       <ToastContainer position="bottom-right" />
@@ -255,14 +312,15 @@ function SelectUser() {
             value={""}
             setOpen={setOpenNew}
             action="create"
-            data={dataLink}
             setData={setDataLink}
+            setTotal={setTotal}
+            page={page}
           />
         </DialogContent>
       </Dialog>
       <div
         style={{
-          padding: "30px 0 30px 0",
+          padding: "30px 0 15px 0",
           border: "1px dotted #80808059",
           borderRadius: "10px",
         }}
@@ -272,7 +330,8 @@ function SelectUser() {
             label="Search Name..."
             variant="outlined"
             value={search}
-            onChange={(e: any) => setSearch(e.target.value)}
+            onChange={(e: any) => handleChangeSearch(e.target.value)}
+            onKeyDown={handleClickSearch}
           />
           <div className={styles.headerRight}>
             <button
@@ -323,64 +382,81 @@ function SelectUser() {
               </StyledTableRow>
             </TableBody>
             <TableBody>
-              {list
-                ? list.map((item: any, index: number) => {
-                    return (
-                      <StyledTableRow key={index}>
-                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
-                          <p>{index + 1}</p>
-                        </StyledTableCell>
-                        <StyledTableCell style={{ textAlign: "center" }} component="th" scope="row">
-                          <p>{item?.NameId}</p>
-                        </StyledTableCell>
-                        <StyledTableCell className={styles.td} style={{ textAlign: "center" }}>
-                          <Link href={"/view/" + item?.NameId}>
-                            {`${process.env.NEXT_PUBLIC_BASE_URL}/view/${item.NameId}`}
-                          </Link>
-                        </StyledTableCell>
-                        <StyledTableCell
-                          style={{ justifyContent: "center", display: "flex", gap: 3 }}
-                          component="th"
-                          scope="row"
-                        >
-                          <button
-                            className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-                            onClick={() => setOpenEdit(item?.NameId)}
+              {dataLink
+                ? dataLink
+                    .sort((a: any, b: any) => a.NameId.localeCompare(b.NameId))
+                    .map((item: any, index: number) => {
+                      return (
+                        <StyledTableRow key={index}>
+                          <StyledTableCell
+                            style={{ textAlign: "center" }}
+                            component="th"
+                            scope="row"
                           >
-                            Edit
-                          </button>
-                          <DeleteButton
-                            id={item?.NameId}
-                            name={item?.NameId}
-                            data={dataLink}
-                            setData={setDataLink}
-                            handelDelete={() => {
-                              deleteProfile(item?.NameId).then((main: any) => {
-                                if (main) {
-                                  const list = dataLink.filter(
-                                    (main1: any) => main1.NameId !== item?.NameId,
-                                  );
-                                  setDataLink(list);
-                                }
-                              });
-                            }}
-                          />
-                        </StyledTableCell>
-                      </StyledTableRow>
-                    );
-                  })
+                            <p>{index + 1}</p>
+                          </StyledTableCell>
+                          <StyledTableCell
+                            style={{ textAlign: "center" }}
+                            component="th"
+                            scope="row"
+                          >
+                            <p>{item?.NameId}</p>
+                          </StyledTableCell>
+                          <StyledTableCell className={styles.td} style={{ textAlign: "center" }}>
+                            <Link href={"/card/" + item?.NameId}>
+                              {`${process.env.NEXT_PUBLIC_BASE_URL}/card/${item.NameId}`}
+                            </Link>
+                          </StyledTableCell>
+                          <StyledTableCell
+                            style={{ justifyContent: "center", display: "flex", gap: 3 }}
+                            component="th"
+                            scope="row"
+                          >
+                            <button
+                              className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
+                              onClick={() => setOpenEdit(item?.NameId)}
+                            >
+                              Edit
+                            </button>
+                            <DeleteButton
+                              name={item?.NameId}
+                              handelDelete={() => {
+                                deleteProfile(item?.NameId).then((main: any) => {
+                                  if (main) {
+                                    getProfilePage(page).then((main: any) => {
+                                      setDataLink(main?.data);
+                                      setTotal(main?.total);
+                                    });
+                                  }
+                                });
+                              }}
+                            />
+                          </StyledTableCell>
+                        </StyledTableRow>
+                      );
+                    })
                 : null}
             </TableBody>
           </Table>
         </TableContainer>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "15px" }}>
+          <Pagination
+            count={Math.ceil(total / 5)}
+            page={page}
+            onChange={handleChangePage}
+            showFirstButton
+            showLastButton
+          />
+        </div>
         <Dialog open={openEdit ? true : false} onClose={() => setOpenEdit("")}>
           <DialogContent>
             <EditProfile
               value={openEdit}
               setOpen={setOpenEdit}
               action="edit"
-              data={null}
               setData={null}
+              setTotal={setTotal}
+              page={page}
             />
           </DialogContent>
         </Dialog>

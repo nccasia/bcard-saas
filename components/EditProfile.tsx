@@ -93,13 +93,6 @@ function EditProfile({ profile }: any) {
           {...register("img")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
-        {/* <p>Email:</p>
-        <input
-          type="text"
-          placeholder="Enter your email"
-          {...register("email")}
-          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
-        /> */}
         <p>Web:</p>
         <input
           type="text"

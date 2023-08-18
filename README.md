@@ -6,21 +6,21 @@
 
 Bcard-saas is a web project that creates personalized business cards for employees of the NCC company. The code is built using Prisma ORM, NextAuth, Next.js , ReactJS,...
 
-## Getting Started
+# Getting Started
 
-# Installation
+## Installation
 
 ```bash
 $ npm install
 ```
 
-# Run
+## Run
 
 ```bash
 $ npm run dev
 ```
 
-# Edit Data
+## Edit Data
 
 ```bash
 $ npx prisma

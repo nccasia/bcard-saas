@@ -1,6 +1,7 @@
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import { addAdmin, updateAdmin } from "../../api/admin/apiAdmin";
 interface Admin {
@@ -22,36 +23,41 @@ function EditNewAdmin({ name, id, data, setData }: Admin) {
   React.useEffect(() => {
     setValue("email", name ? name : "");
     setValue("id", id ? id : "");
-  }, [name, setValue]);
+  }, [id, name, setValue]);
   const [open, setOpen] = React.useState(false);
   const buttonSave = (values: any) => {
-    if (!name || !id) {
-      addAdmin(values.email).then((main: any) => {
-        if (main) {
-          setData([...data, main]);
-        }
-      });
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (emailPattern.test(values.email)) {
+      if (!name || !id) {
+        addAdmin(values.email).then((main: any) => {
+          if (main) {
+            setData([...data, main]);
+          }
+        });
+      } else {
+        updateAdmin(values.id, values.email).then((main: any) => {
+          if (main) {
+            const list = data.map((main1: any) => {
+              if (main1.id === values.id) {
+                return { ...main1, email: values.email };
+              } else {
+                return main1;
+              }
+            });
+            setData(list);
+          }
+        });
+      }
+      setOpen(false);
     } else {
-      updateAdmin(values.id, values.email).then((main: any) => {
-        if (main) {
-          const list = data.map((main1: any) => {
-            if (main1.id === values.id) {
-              return { ...main1, email: values.email };
-            } else {
-              return main1;
-            }
-          });
-          setData(list);
-        }
-      });
+      toast.error("Not an email.");
     }
-    setOpen(false);
   };
   return (
     <div>
       <button
         className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-        style={{ float: "right", marginRight: "10px" }}
+        style={{ float: "right" }}
         onClick={() => setOpen(true)}
       >
         {!name || !id ? "New Admin" : "Edit"}
