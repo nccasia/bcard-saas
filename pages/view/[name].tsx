@@ -207,6 +207,7 @@ END:VCARD`;
                 <p style={{ margin: "15px 5px" }}>How would you like to save contact data?</p>
                 <button
                   onClick={() => setOpenDownloadEmail(true)}
+                  disabled={true}
                   className={styles.buttonSharePage}
                 >
                   <AttachEmailIcon sx={{ fontSize: "20px", color: "#666b74" }} />
