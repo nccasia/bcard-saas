@@ -43,7 +43,7 @@ function ProfileDetails({ profile }: any) {
 
   return (
     <>
-      <Header />
+      <Header isDarkMode={null} />
       {/* <Sidebar /> */}
       <div className="flex flex-col items-center justify-center min-h-screen py-2">
         {router.isFallback ? (

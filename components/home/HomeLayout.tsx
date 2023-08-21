@@ -15,7 +15,7 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Grid container sx={{ position: "relative" }}>
       <Grid item lg={12} md={12} sm={12} xs={12}>
-        <Header type="admin" isHidden={isHidden} setIsHidden={setIsHidden} />
+        <Header type="admin" isHidden={isHidden} setIsHidden={setIsHidden} isDarkMode={null} />
       </Grid>
       <Grid
         item
