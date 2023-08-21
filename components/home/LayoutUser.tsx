@@ -4,7 +4,7 @@ import Header from "../../components/home/Header";
 const LayoutUser = ({ children }: any) => {
   return (
     <div>
-      <Header />
+      <Header isDarkMode={null} />
       <div
         style={{
           padding: "5vh 0",

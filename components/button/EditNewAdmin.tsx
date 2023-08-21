@@ -49,6 +49,7 @@ function EditNewAdmin({ name, id, data, setData }: Admin) {
         });
       }
       setOpen(false);
+      setValue("email", "");
     } else {
       toast.error("Not an email.");
     }
@@ -62,7 +63,13 @@ function EditNewAdmin({ name, id, data, setData }: Admin) {
       >
         {!name || !id ? "New Admin" : "Edit"}
       </button>
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog
+        open={open}
+        onClose={() => {
+          setOpen(false);
+          setValue("email", "");
+        }}
+      >
         <form onSubmit={handleSubmit(buttonSave)} style={{ width: "300px" }}>
           <DialogTitle>
             {!name && "Create"}
@@ -82,7 +89,10 @@ function EditNewAdmin({ name, id, data, setData }: Admin) {
             <button
               type="button"
               className="bg-gray-400 text-white rounded-md px-4 py-2 hover:bg-gray-600 my-2 active:bg-green-900"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+                setValue("email", "");
+              }}
             >
               Cancel
             </button>
