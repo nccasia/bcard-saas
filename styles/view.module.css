@@ -95,16 +95,17 @@
     height: 205px;
 }
 
-@media (max-width: 500px) {
-    .divDownload{
-        width: 250px;
-        height: 205px;
-    }
+@media (max-width: 786px) {
     .divMainView{
         top: calc(100vh - 210px);
     }
 }
-
+@media (max-width: 500px) {
+    .divDownload{
+        width: 248px;
+        height: 205px;
+    }
+}
 @media (max-height: 500px) {
     .divMainView{
         top: calc(100% + 10px);
