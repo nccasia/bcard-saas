@@ -113,7 +113,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div className={styles.footer}>
-        <Link href={"/view/" + session?.user?.email?.split("@")[0]}>
+        <Link href={"/card/" + session?.user?.email?.split("@")[0]}>
           <p>Go to {session?.user?.email?.split("@")[0]}</p>
         </Link>
       </div>

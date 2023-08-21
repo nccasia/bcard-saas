@@ -95,9 +95,9 @@ function Header({ type, isHidden, setIsHidden, isDarkMode }: Head) {
                 }}
               >
                 <p>{session?.user?.name}</p>
-                <button style={{ borderTop: "1px solid #d3d3d3" }}>
+                <div style={{ borderTop: "1px solid #d3d3d3" }}>
                   <Logout />
-                </button>
+                </div>
               </div>
             </Menu>
           </div>

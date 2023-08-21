@@ -61,6 +61,7 @@
 .lists {
   margin-top: 27px;
   height: 200px;
+  padding: 0 8px;
 }
 .footerSidebar {
   display: flex;
