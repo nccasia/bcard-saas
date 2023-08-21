@@ -63,7 +63,7 @@ function ExcelCard({ profile, params, isDarkMode }: any) {
                       <Image
                         src={logo_content}
                         alt="logo"
-                        layout="responsive"
+                        //layout="responsive"
                         style={{ objectFit: "contain" }}
                       />
                     </div>
@@ -74,24 +74,28 @@ function ExcelCard({ profile, params, isDarkMode }: any) {
                     <h1
                       ref={textRef}
                       className={styles.headingText}
-                      style={{ fontSize: `${fontSize}px` }}
+                      style={{ fontSize: profile?.Name?.length > 29 ? "11px" : `${fontSize}px` }}
                     >
                       {profile?.Name}
                     </h1>
-                    <p className={styles.position}>{profile?.Title}</p>
+                    <p
+                      className={styles.position}
+                      style={{ fontSize: profile?.Name?.length > 29 ? "11px" : `${fontSize}px` }}
+                    >
+                      {profile?.Title}
+                    </p>
                   </div>
                   {/* <p>{profile.position}</p> */}
                   <div className={styles.itemContent}>
                     <FontAwesomeIcon
                       icon="envelope"
                       className={styles.icon}
-                      style={{ fontSize: `${fontMail}px` }}
-                      // style={{ fontSize: "16px", color: "rgb(157 155 155)" }}
+                      style={{ fontSize: profile?.Email?.length > 29 ? "9px" : `${fontMail}px` }}
                     />
                     <p
                       ref={emailRef}
                       className={styles.text1}
-                      style={{ fontSize: `${fontMail}px` }}
+                      style={{ fontSize: profile?.Email?.length > 29 ? "9px" : `${fontMail}px` }}
                     >
                       {profile?.Email}
                     </p>
@@ -100,7 +104,7 @@ function ExcelCard({ profile, params, isDarkMode }: any) {
                     <FontAwesomeIcon
                       icon="phone"
                       className={styles.icon}
-                      style={{ fontSize: `${fontMail}px` }}
+                      style={{ fontSize: profile?.Email?.length > 29 ? "9px" : `${fontMail}px` }}
                     />
                     <p className={styles.text1} style={{ fontSize: `${fontMail}px` }}>
                       {profile?.Phone}
@@ -110,9 +114,12 @@ function ExcelCard({ profile, params, isDarkMode }: any) {
                     <FontAwesomeIcon
                       icon="globe"
                       className={styles.icon}
-                      style={{ fontSize: `${fontMail}px` }}
+                      style={{ fontSize: profile?.Email?.length > 29 ? "9px" : `${fontMail}px` }}
                     />
-                    <p className={styles.text1} style={{ fontSize: `${fontMail}px` }}>
+                    <p
+                      className={styles.text1}
+                      style={{ fontSize: profile?.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                    >
                       <Link href="https://ncc.asia/" target="_blank">
                         https://www.ncc.asia
                       </Link>

@@ -8,6 +8,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import SecurityUpdateIcon from "@mui/icons-material/SecurityUpdate";
 import ShareIcon from "@mui/icons-material/Share";
+import CircularProgress from "@mui/material/CircularProgress";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Fab from "@mui/material/Fab";
@@ -27,16 +28,15 @@ import LayoutUser from "../../components/home/LayoutUser";
 import ExcelCard from "../../components/users/ExcelCard";
 import logo from "../../public/logo.png";
 import styles from "../../styles/view.module.css";
+import { logo64 } from "../../utils/logo64";
 
 function Name() {
   const [profile, setProfile] = React.useState<any>();
   const router = useRouter();
   const { name } = router.query;
-  const [image, setImage] = React.useState<any>();
   React.useEffect(() => {
     if (name) {
       getNameCard(String(name)).then((main) => setProfile(main));
-      getAvatar(String(name)).then((main) => setImage(main));
     }
   }, [name]);
   const imageToBase64 = async (url: string) => {
@@ -44,10 +44,10 @@ function Name() {
     const base64Data = Buffer.from(response.data, "binary").toString("base64");
     return base64Data;
   };
-  const changeVCard = async () => {
+  const changeVCard = async (url: string) => {
     const web = "https://www.ncc.asia";
     const company = "NCCPLUS VIETNAM JSC";
-    const imageBase64 = await imageToBase64(image);
+    const imageBase64 = url ? await imageToBase64(url) : logo64;
     const vcardContent = `
 BEGIN:VCARD
 VERSION:3.0
@@ -63,7 +63,8 @@ END:VCARD`;
     return vcardContent;
   };
   const handleDownloadVCardPhone = async () => {
-    const vcardContent = await changeVCard();
+    const url = await getAvatar(String(name));
+    const vcardContent = await changeVCard(url);
     const blob = new Blob([vcardContent], { type: "text/vcard;charset=utf-8" });
     saveAs(blob, `${profile?.NameId}.vcf`);
   };
@@ -128,11 +129,13 @@ END:VCARD`;
       setOpenClickCopy(false);
     }, 800);
   };
-
+  const [loadingSend, setLoadingSend] = React.useState(false);
   const handleClickSendEmail = async (value: string) => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (emailPattern.test(value)) {
-      const vCard = await changeVCard();
+      const url = await getAvatar(String(name));
+      const vCard = await changeVCard(url);
+      setLoadingSend(true);
       sendEmail({
         email: text,
         vCard: vCard,
@@ -143,6 +146,7 @@ END:VCARD`;
           setOpenDownloadEmail(false);
           setOpenDownload(false);
           toast.success(data?.message);
+          setLoadingSend(false);
         }
       });
     } else {
@@ -244,7 +248,11 @@ END:VCARD`;
                     onClick={() => handleClickSendEmail(text)}
                     className={styles.buttonSendEmail}
                   >
-                    Send
+                    {loadingSend ? (
+                      <CircularProgress size={18} sx={{ color: "white", fontWeight: 500 }} />
+                    ) : (
+                      "Send"
+                    )}
                   </button>
                 </div>
               </div>
@@ -259,7 +267,7 @@ END:VCARD`;
         >
           <DialogContent sx={{ display: "flex", flexDirection: "column" }}>
             <div className={styles.headerSharePage}>
-              <h1 className={styles.headerShareH1}>Share</h1>
+              <h1 className={styles.headerShareH1}>Share this page</h1>
               <ClearIcon
                 onClick={() => setOpenShare(false)}
                 className={styles.headerShareIcon}
