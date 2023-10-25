@@ -51,8 +51,8 @@ function Name() {
     const vcardContent = `
 BEGIN:VCARD
 VERSION:3.0
-N:;${profile?.Name};;;
-FN:${profile?.Name}
+N;CHARSET=UTF-8:;${profile?.Name};;;
+FN,CHARSET=UTF-8:${profile?.Name}
 TEL;TYPE=CELL,voice:${profile?.Phone}
 EMAIL;TYPE=PREF,INTERNET:${profile?.Email}
 URL:${web}
