@@ -11,8 +11,14 @@
   "license": "MIT",
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@fortawesome/react-fontawesome",
+      "@prisma/client",
+      "@prisma/engines",
       "better-sqlite3",
-      "@fortawesome/react-fontawesome"
+      "canvas",
+      "prisma",
+      "protobufjs",
+      "tesseract.js"
     ],
     "patchedDependencies": {
       "next-auth@^4.24.13": "patches/next-auth@4.patch"
