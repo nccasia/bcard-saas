@@ -1,9 +1,11 @@
 import "../styles/globals.css";
 import "../lib/fontawesome";
+import "react-toastify/dist/ReactToastify.css";
 
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import React from "react";
+import { ToastContainer } from "react-toastify";
 
 const SessionProviderWrapper = dynamic(
   () => import("../components/providers/SessionProviderWrapper"),
@@ -33,12 +35,15 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   }, []);
 
   return (
-    <SessionProviderWrapper
-      Component={Component}
-      pageProps={pageProps}
-      session={session}
-      isDarkMode={isDarkMode}
-    />
+    <>
+      <SessionProviderWrapper
+        Component={Component}
+        pageProps={pageProps}
+        session={session}
+        isDarkMode={isDarkMode}
+      />
+      <ToastContainer position="bottom-right" />
+    </>
   );
 }
 

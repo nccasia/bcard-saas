@@ -24,9 +24,6 @@ const newadmin: NextApiHandler = async (req: NextApiRequest, res: NextApiRespons
       } else {
         throw new Error("Duplicate Email");
       }
-      if (!session) {
-        throw new Error("Access Denied");
-      }
     } catch (error: any) {
       if (error.message === "Duplicate Email") {
         return res.status(400).json({ errorMessage: "Duplicate Email" });
