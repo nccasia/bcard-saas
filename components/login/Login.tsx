@@ -48,16 +48,6 @@ export default function Login() {
               <h1 style={{ fontSize: "18px" }}>Sign in with Social Networks</h1>
               <div style={{ display: "flex", gap: "10px" }}>
                 <button
-                  style={{ width: "100%" }}
-                  className={styles.btNetwork}
-                  onClick={() => {
-                    signIn("google", { callbackUrl: "/login" });
-                  }}
-                >
-                  <GoogleIcon sx={{ color: "white" }} />
-                  <p>GOOGLE</p>
-                </button>
-                <button
                   style={{ width: "100%", backgroundColor: "#9333ea" }}
                   className={styles.btNetwork}
                   onClick={() => {
@@ -124,13 +114,6 @@ export default function Login() {
                       </Button>
                       <p>Or connect using locial media</p>
                       <div className={styles.icon}>
-                        <button
-                          onClick={() => {
-                            signIn("google", { callbackUrl: "/login" });
-                          }}
-                        >
-                          <Image src={google} alt="google" width={20} height={20} />
-                        </button>
                         <button
                           onClick={() => {
                             signIn("mezon", { callbackUrl: "/login", redirect: false });

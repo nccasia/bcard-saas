@@ -1,6 +1,5 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
 import MezonProvider from "next-auth/providers/mezon";
 
 import { prisma } from "../../../lib/prisma";
@@ -27,10 +26,6 @@ export default NextAuth({
     },
   },
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-    }),
     MezonProvider({
       clientId: process.env.MEZON_CLIENT_ID || "",
       clientSecret: process.env.MEZON_CLIENT_SECRET || "",
