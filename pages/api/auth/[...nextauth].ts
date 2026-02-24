@@ -29,6 +29,9 @@ export default NextAuth({
     MezonProvider({
       clientId: process.env.MEZON_CLIENT_ID || "",
       clientSecret: process.env.MEZON_CLIENT_SECRET || "",
+      // Allow linking accounts from different OAuth providers that share the same email/username.
+      // This avoids OAuthAccountNotLinked errors when a user signs in with another provider.
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
 });
