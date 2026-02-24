@@ -1,4 +1,3 @@
-import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -11,8 +10,8 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 import * as React from "react";
 
-import facebook from "../../public/facebook.png";
 import google from "../../public/google.png";
+import mezon from "../../public/logo-mezon.png";
 import styles from "../../styles/login.module.css";
 const theme = createTheme();
 
@@ -59,12 +58,14 @@ export default function Login() {
                   <p>GOOGLE</p>
                 </button>
                 <button
-                  style={{ width: "100%", backgroundColor: "#2a588a" }}
+                  style={{ width: "100%", backgroundColor: "#9333ea" }}
                   className={styles.btNetwork}
-                  disabled={true}
+                  onClick={() => {
+                    signIn("mezon", { callbackUrl: "/login", redirect: false });
+                  }}
                 >
-                  <FacebookIcon sx={{ color: "white" }} />
-                  <p>FACEBOOK</p>
+                  <Image src={mezon} alt="mezon" width={20} height={20} />
+                  <p>MEZON</p>
                 </button>
               </div>
               <p style={{ fontSize: "13px" }}>
@@ -130,8 +131,12 @@ export default function Login() {
                         >
                           <Image src={google} alt="google" width={20} height={20} />
                         </button>
-                        <button>
-                          <Image src={facebook} alt="facebook" width={20} height={20} />
+                        <button
+                          onClick={() => {
+                            signIn("mezon", { callbackUrl: "/login", redirect: false });
+                          }}
+                        >
+                          <Image src={mezon} alt="mezon" width={20} height={20} />
                         </button>
                       </div>
                     </Box>

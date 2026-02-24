@@ -1,0 +1,105 @@
+diff --git a/providers/mezon.d.ts b/providers/mezon.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..7bda00c315060ea79a5943655bcc7ce6ddd4b1d0
+--- /dev/null
++++ b/providers/mezon.d.ts
+@@ -0,0 +1,11 @@
++import type { OAuthConfig, OAuthUserConfig } from ".";
++export interface MezonProfile extends Record<string, any> {
++    user_id: string;
++    email: string;
++    display_name: string;
++    avatar?: string;
++    mezon_id: string;
++    sub: string;
++    username: string;
++}
++export default function Mezon<P extends MezonProfile>(options: OAuthUserConfig<P>): OAuthConfig<P>;
+diff --git a/providers/mezon.js b/providers/mezon.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..95114d76440b8eeb1028dd476a7053c6884c14df
+--- /dev/null
++++ b/providers/mezon.js
+@@ -0,0 +1,34 @@
++"use strict";
++
++Object.defineProperty(exports, "__esModule", {
++  value: true
++});
++exports.default = Mezon;
++function Mezon(options) {
++  return {
++    id: "mezon",
++    name: "Mezon",
++    type: "oauth",
++    wellKnown: "https://oauth2.mezon.ai/.well-known/openid-configuration",
++    authorization: {
++      url: "https://oauth2.mezon.ai/oauth2/auth",
++      params: {
++        scope: "offline openid",
++      },
++    },
++    token: "https://oauth2.mezon.ai/oauth2/token",
++    userinfo: "https://oauth2.mezon.ai/userinfo",
++    profile(profile) {
++      return {
++        id: profile.user_id,
++        name: profile?.display_name || profile?.username,
++        email: profile.email,
++        image: profile?.avatar,
++      };
++    },
++    client: {
++      token_endpoint_auth_method: "client_secret_post",
++    },
++    options
++  };
++}
+diff --git a/src/providers/mezon.ts b/src/providers/mezon.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..aea2d241d28b35366e3552907d2927deb7b91b6b
+--- /dev/null
++++ b/src/providers/mezon.ts
+@@ -0,0 +1,42 @@
++import type { OAuthConfig, OAuthUserConfig } from "."
++
++export interface MezonProfile extends Record<string, any> {
++  user_id: string;
++  email: string;
++  display_name: string;
++  avatar?: string;
++  mezon_id: string;
++  sub: string;
++  username: string;
++}
++
++export default function Mezon<P extends MezonProfile>(
++  options: OAuthUserConfig<P>
++): OAuthConfig<P> {
++  return {
++    id: "mezon",
++    name: "Mezon",
++    type: "oauth",
++    wellKnown: "https://oauth2.mezon.ai/.well-known/openid-configuration",
++    authorization: {
++      url: "https://oauth2.mezon.ai/oauth2/auth",
++      params: {
++        scope: "offline openid",
++      },
++    },
++    token: "https://oauth2.mezon.ai/oauth2/token",
++    userinfo: "https://oauth2.mezon.ai/userinfo",
++    profile(profile) {
++      return {
++        id: profile.user_id,
++        name: profile?.display_name || profile?.username,
++        email: profile.email,
++        image: profile?.avatar,
++      }
++    },
++    client: {
++      token_endpoint_auth_method: "client_secret_post",
++    },
++    options
++  };
++}

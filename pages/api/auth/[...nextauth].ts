@@ -1,17 +1,21 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth from "next-auth";
-//import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import MezonProvider from "next-auth/providers/mezon";
 
 import { prisma } from "../../../lib/prisma";
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
+  pages: {
+    signIn: "/login",
+    error: "/login",
+  },
   callbacks: {
     async session({ session }) {
       const email = session?.user?.email;
       if (email) {
-        const admin: any = await prisma.admin.findUnique({
+        const admin = await prisma.admin.findUnique({
           where: { email: email },
           select: { email: true },
         });
@@ -23,32 +27,13 @@ export default NextAuth({
     },
   },
   providers: [
-    // CredentialsProvider({
-    //   name: "Credentials",
-    //   credentials: {
-    //     username: { label: "Username", type: "text" },
-    //     password: { label: "Password", type: "password" },
-    //   },
-    //   async authorize(credentials: any) {
-    //     // const { username, password } = credentials as {
-    //     //   username: string;
-    //     //   password: string;
-    //     // };
-    //     console.log(credentials);
-    //     // const admin: any = await prisma.admin.findUnique({
-    //     //   where: { name: username },
-    //     // });
-    //     // if (admin && admin.password === password) {
-    //     //   return admin;
-    //     // } else {
-    //     return null;
-    //     // }
-    //   },
-    // }),
-
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    }),
+    MezonProvider({
+      clientId: process.env.MEZON_CLIENT_ID || "",
+      clientSecret: process.env.MEZON_CLIENT_SECRET || "",
     }),
   ],
 });
