@@ -45,7 +45,7 @@ function Name() {
     return base64Data;
   };
   const changeVCard = async (url: string) => {
-    const web = "https://www.ncc.plus";
+    const web = "https://ncc.plus";
     const company = "NCCPLUS VIETNAM JSC";
     const imageBase64 = url ? await imageToBase64(url) : logo64;
     const vcardContent = `

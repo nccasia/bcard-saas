@@ -120,8 +120,8 @@ function ExcelCard({ profile, params, isDarkMode }: any) {
                       className={styles.text1}
                       style={{ fontSize: profile?.Email?.length > 29 ? "9px" : `${fontMail}px` }}
                     >
-                      <Link href="https://ncc.plus/" target="_blank">
-                        https://www.ncc.plus
+                      <Link href="https://ncc.plus" target="_blank">
+                        https://ncc.plus
                       </Link>
                     </p>
                   </div>
