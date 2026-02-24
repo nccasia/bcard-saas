@@ -11,25 +11,27 @@ Bcard-saas is a web project that creates personalized business cards for employe
 ## Installation
 
 ```bash
-$ npm install
+$ pnpm install
 ```
 
 ## Run
 
 ```bash
-$ npm run dev
+$ pnpm dev
 ```
 
 ## Test
 
 ```bash
-$ npm run build
+$ pnpm build
 ```
 
 ## Edit Data
 
 ```bash
-$ npx prisma
+$ pnpm prisma:generate
+$ pnpm prisma:migrate
+$ pnpm prisma:studio
 ```
 
 # Website

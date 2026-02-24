@@ -71,7 +71,7 @@ function SelectUser() {
     await workbook.xlsx.load(file);
     const worksheet = workbook.getWorksheet("Sheet1");
     const rows: any = [];
-    worksheet.eachRow((row) => {
+    worksheet?.eachRow((row) => {
       rows.push(row.values);
     });
     setData(changeExcel(rows));

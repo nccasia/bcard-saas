@@ -1,4 +1,3 @@
-import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -11,8 +10,8 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 import * as React from "react";
 
-import facebook from "../../public/facebook.png";
 import google from "../../public/google.png";
+import mezon from "../../public/logo-mezon.png";
 import styles from "../../styles/login.module.css";
 const theme = createTheme();
 
@@ -49,22 +48,14 @@ export default function Login() {
               <h1 style={{ fontSize: "18px" }}>Sign in with Social Networks</h1>
               <div style={{ display: "flex", gap: "10px" }}>
                 <button
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", backgroundColor: "#9333ea" }}
                   className={styles.btNetwork}
                   onClick={() => {
-                    signIn("google", { callbackUrl: "/login" });
+                    signIn("mezon", { callbackUrl: "/login", redirect: false });
                   }}
                 >
-                  <GoogleIcon sx={{ color: "white" }} />
-                  <p>GOOGLE</p>
-                </button>
-                <button
-                  style={{ width: "100%", backgroundColor: "#2a588a" }}
-                  className={styles.btNetwork}
-                  disabled={true}
-                >
-                  <FacebookIcon sx={{ color: "white" }} />
-                  <p>FACEBOOK</p>
+                  <Image src={mezon} alt="mezon" width={20} height={20} />
+                  <p>MEZON</p>
                 </button>
               </div>
               <p style={{ fontSize: "13px" }}>
@@ -125,13 +116,10 @@ export default function Login() {
                       <div className={styles.icon}>
                         <button
                           onClick={() => {
-                            signIn("google", { callbackUrl: "/login" });
+                            signIn("mezon", { callbackUrl: "/login", redirect: false });
                           }}
                         >
-                          <Image src={google} alt="google" width={20} height={20} />
-                        </button>
-                        <button>
-                          <Image src={facebook} alt="facebook" width={20} height={20} />
+                          <Image src={mezon} alt="mezon" width={20} height={20} />
                         </button>
                       </div>
                     </Box>

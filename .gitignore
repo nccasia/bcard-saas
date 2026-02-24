@@ -38,8 +38,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# custom server build (root server.ts + services/)
+/dist
+
 # typescript
 *.tsbuildinfo
 node_modules
 node_modules
 node_modules
+
+# Mezon cache
+/mezon-cache

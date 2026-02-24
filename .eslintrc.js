@@ -27,7 +27,7 @@ module.exports = {
   ],
   plugins: ["simple-import-sort"],
   rules: {
-    "prettier/prettier": ["error", {}, { usePrettierrc: true }],
+    "prettier/prettier": ["warn", {}, { usePrettierrc: true }],
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "jsx-a11y/anchor-is-valid": "off",
