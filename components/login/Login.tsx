@@ -1,4 +1,3 @@
-import GoogleIcon from "@mui/icons-material/Google";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -10,15 +9,13 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 import * as React from "react";
 
-import google from "../../public/google.png";
 import mezon from "../../public/logo-mezon.png";
 import styles from "../../styles/login.module.css";
 const theme = createTheme();
 
 export default function Login() {
   const [open, SetOpen] = React.useState("");
-  const [opendisable, SetOpendisable] = React.useState(false);
-  console.log(opendisable);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // const data = new FormData(event.currentTarget);
@@ -28,7 +25,6 @@ export default function Login() {
     // });
   };
   const handleClick = () => {
-    SetOpendisable(true);
     SetOpen("email");
   };
 
