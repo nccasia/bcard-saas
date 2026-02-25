@@ -17,13 +17,14 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 
   const email = session.user.email;
 
-  const { Name, Phone, Title, Address, Web, Company } = req.body as {
+  const { Name, Phone, Title, Address, Web, Company, Slogan } = req.body as {
     Name?: string;
     Phone?: string;
     Title?: string;
     Address?: string;
     Web?: string;
     Company?: string;
+    Slogan?: string;
   };
 
   try {
@@ -36,6 +37,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
         ...(Address !== undefined ? { Address } : {}),
         ...(Web !== undefined ? { Web } : {}),
         ...(Company !== undefined ? { Company } : {}),
+        ...(Slogan !== undefined ? { Slogan } : {}),
       },
     });
 

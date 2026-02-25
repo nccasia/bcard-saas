@@ -22,6 +22,8 @@ export const CARD = {
   radius: 8,
   shadowBlur: 15,
   bg: "rgba(255, 255, 255, 0.95)",
+  bgGradientStart: "#ffffff",
+  bgGradientEnd: "#dde7ff",
   divider: "#777373",
   dividerWidth: 1.5,
   nameColor: "#606060",
@@ -39,6 +41,49 @@ export const CARD = {
   iconGap: 12,
   iconColor: "#7e7b7b",
 };
+
+type CardTheme = {
+  bgStart: string;
+  bgEnd: string;
+  accent: string;
+};
+
+const THEMES: CardTheme[] = [
+  // Cool / neutral
+  { bgStart: "#ffffff", bgEnd: "#dde7ff", accent: "#4f46e5" }, // indigo
+  { bgStart: "#f9fafb", bgEnd: "#e5e7eb", accent: "#1f2937" }, // gray/slate
+  { bgStart: "#eff6ff", bgEnd: "#bfdbfe", accent: "#2563eb" }, // blue
+  { bgStart: "#ecfeff", bgEnd: "#ddd6fe", accent: "#0891b2" }, // cyan/purple
+  { bgStart: "#eef2ff", bgEnd: "#e0f2fe", accent: "#6366f1" }, // indigo/sky mix
+
+  // Warm
+  { bgStart: "#fff7f5", bgEnd: "#ffd6c9", accent: "#ea580c" }, // warm orange
+  { bgStart: "#fffbeb", bgEnd: "#fed7aa", accent: "#d97706" }, // amber
+  { bgStart: "#fef2f2", bgEnd: "#fecaca", accent: "#dc2626" }, // red
+  { bgStart: "#fff1f2", bgEnd: "#ffe4e6", accent: "#fb7185" }, // soft coral
+
+  // Greens
+  { bgStart: "#f0fdf4", bgEnd: "#bbf7d0", accent: "#16a34a" }, // light green
+  { bgStart: "#ecfdf3", bgEnd: "#6ee7b7", accent: "#059669" }, // emerald
+  { bgStart: "#f7fee7", bgEnd: "#bef264", accent: "#65a30d" }, // lime
+
+  // Pinks / violets
+  { bgStart: "#fdf2ff", bgEnd: "#e9d5ff", accent: "#db2777" }, // pink
+  { bgStart: "#fdf2f8", bgEnd: "#fecdd3", accent: "#be185d" }, // rose
+  { bgStart: "#f5f3ff", bgEnd: "#e0f2fe", accent: "#7c3aed" }, // purple/blue
+  { bgStart: "#fdf2ff", bgEnd: "#cffafe", accent: "#a855f7" }, // violet/cyan mix
+
+  // Bold mixed gradients
+  { bgStart: "#0f172a", bgEnd: "#1e293b", accent: "#38bdf8" }, // dark slate + cyan
+  { bgStart: "#022c22", bgEnd: "#064e3b", accent: "#34d399" }, // deep green + mint
+  { bgStart: "#111827", bgEnd: "#312e81", accent: "#f9a8d4" }, // dark indigo + pink
+  { bgStart: "#3f0f1f", bgEnd: "#4c1d95", accent: "#f97316" }, // wine + purple + orange
+];
+
+function pickRandomTheme(): CardTheme {
+  const idx = Math.floor(Math.random() * THEMES.length);
+  return THEMES[idx] ?? THEMES[0];
+}
 
 function getLogoPath(): string {
   return path.join(process.cwd(), "asset", "images", "logo_content.png");
@@ -182,6 +227,202 @@ function drawQuoteIcon(ctx: CanvasRenderingContext2D, x: number, y: number): voi
   ctx.stroke();
 }
 
+// Extra decorative-only icons (abstract shapes)
+function drawCircleBadgeIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const r = CARD.iconSize * 0.9;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.6;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(x, y, r * 0.35, 0, Math.PI * 2);
+  ctx.stroke();
+}
+
+function drawDiamondIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const s = CARD.iconSize * 1.3;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(x, y - s / 2);
+  ctx.lineTo(x + s / 2, y);
+  ctx.lineTo(x, y + s / 2);
+  ctx.lineTo(x - s / 2, y);
+  ctx.closePath();
+  ctx.stroke();
+}
+
+function drawStarIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const outer = CARD.iconSize * 1.2;
+  const inner = outer * 0.45;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  for (let i = 0; i < 10; i += 1) {
+    const angle = (Math.PI / 5) * i - Math.PI / 2;
+    const radius = i % 2 === 0 ? outer : inner;
+    const px = x + Math.cos(angle) * radius;
+    const py = y + Math.sin(angle) * radius;
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+  ctx.stroke();
+}
+
+function drawRingIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const outer = CARD.iconSize * 1.5;
+  const inner = outer * 0.6;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  ctx.arc(x, y, outer, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(x, y, inner, 0, Math.PI * 2);
+  ctx.stroke();
+}
+
+function drawPlusIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const s = CARD.iconSize * 1.2;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.6;
+  ctx.beginPath();
+  ctx.moveTo(x - s / 2, y);
+  ctx.lineTo(x + s / 2, y);
+  ctx.moveTo(x, y - s / 2);
+  ctx.lineTo(x, y + s / 2);
+  ctx.stroke();
+}
+
+function drawChevronIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const s = CARD.iconSize * 1.2;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.6;
+  ctx.beginPath();
+  ctx.moveTo(x - s / 2, y - s / 4);
+  ctx.lineTo(x, y + s / 4);
+  ctx.lineTo(x + s / 2, y - s / 4);
+  ctx.stroke();
+}
+
+function drawTriangleIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const s = CARD.iconSize * 1.4;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(x, y - s / 2);
+  ctx.lineTo(x + s / 2, y + s / 2);
+  ctx.lineTo(x - s / 2, y + s / 2);
+  ctx.closePath();
+  ctx.stroke();
+}
+
+function drawHexagonIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const r = CARD.iconSize * 1.1;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.4;
+  ctx.beginPath();
+  for (let i = 0; i < 6; i += 1) {
+    const angle = (Math.PI / 3) * i;
+    const px = x + Math.cos(angle) * r;
+    const py = y + Math.sin(angle) * r;
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+  ctx.stroke();
+}
+
+function drawDotGridIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const s = CARD.iconSize * 1.4;
+  const step = s / 3;
+  ctx.fillStyle = CARD.iconColor;
+  for (let ix = -1; ix <= 1; ix += 1) {
+    for (let iy = -1; iy <= 1; iy += 1) {
+      const px = x + ix * step;
+      const py = y + iy * step;
+      ctx.beginPath();
+      ctx.arc(px, py, 1.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+
+const DECORATION_ICONS: Array<(ctx: CanvasRenderingContext2D, x: number, y: number) => void> = [
+  // contact-like icons
+  drawEnvelopeIcon,
+  drawPhoneIcon,
+  drawGlobeIcon,
+  drawCompanyIcon,
+  drawLocationIcon,
+  drawQuoteIcon,
+  // abstract decorative icons
+  drawCircleBadgeIcon,
+  drawDiamondIcon,
+  drawStarIcon,
+  drawRingIcon,
+  drawPlusIcon,
+  drawChevronIcon,
+  drawTriangleIcon,
+  drawHexagonIcon,
+  drawDotGridIcon,
+];
+
+function drawDecorativeIcons(ctx: CanvasRenderingContext2D): void {
+  const rightStartX = CARD.width * CARD.leftRatio + CARD.padding;
+  const rightEndX = CARD.width - CARD.padding;
+  const topY = CARD.padding;
+  const bottomY = CARD.height - CARD.padding;
+
+  // Random placement with a minimum distance so icons don't overlap.
+  const maxIcons = 24;
+  const maxAttempts = maxIcons * 10;
+  const placed: { x: number; y: number; radius: number }[] = [];
+
+  const minDist = CARD.iconSize * 2.4; // base minimum distance between icon centers
+
+  let attempts = 0;
+  while (placed.length < maxIcons && attempts < maxAttempts) {
+    attempts += 1;
+
+    const icon = DECORATION_ICONS[Math.floor(Math.random() * DECORATION_ICONS.length)];
+
+    const x = rightStartX + (rightEndX - rightStartX) * Math.random();
+    const y = topY + (bottomY - topY) * Math.random();
+
+    const scale = 0.7 + Math.random() * 0.9; // 0.7–1.6 (smaller)
+    const radius = CARD.iconSize * scale * 1.3;
+
+    let tooClose = false;
+    for (const p of placed) {
+      const dx = x - p.x;
+      const dy = y - p.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < minDist + p.radius + radius) {
+        tooClose = true;
+        break;
+      }
+    }
+    if (tooClose) continue;
+
+    placed.push({ x, y, radius });
+
+    const alpha = 0.05 + Math.random() * 0.08; // a bit stronger for highlight
+
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.lineWidth = 1.6;
+    ctx.translate(x, y);
+    const rotation = (Math.random() - 0.5) * (Math.PI / 1.5);
+    ctx.rotate(rotation);
+    ctx.scale(scale, scale);
+    icon(ctx, 0, 0);
+    ctx.restore();
+  }
+}
+
 /** Splits text into lines that fit within maxWidth (word-wrap; long words break by character). */
 function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {
   if (!text.trim()) return [""];
@@ -229,7 +470,6 @@ function drawContactRight(
   address: string,
   slogan: string,
 ): void {
-  const noInfo = "No Information";
   const left = CARD.width * CARD.leftRatio + CARD.padding + 15;
   const textLeft = left + CARD.iconSize + CARD.iconGap;
   const maxTextWidth = CARD.width - textLeft - CARD.padding;
@@ -239,23 +479,31 @@ function drawContactRight(
   const titleLineH = 38;
 
   ctx.font = `bold ${CARD.textSize}px ${CARD.fontFamily}`;
-  const emailLines = wrapText(ctx, email?.trim() ? email : noInfo, maxTextWidth);
-  const phoneLines = wrapText(ctx, phone?.trim() ? phone : noInfo, maxTextWidth);
-  const companyLines = wrapText(ctx, company?.trim() ? company : noInfo, maxTextWidth);
-  const webLines = wrapText(ctx, web?.trim() ? web : noInfo, maxTextWidth);
-  const addressLines = wrapText(ctx, address?.trim() ? address : noInfo, maxTextWidth);
-  const sloganLines = wrapText(ctx, slogan?.trim() ? slogan : noInfo, maxTextWidth);
 
-  const contactHeights = [
-    emailLines.length,
-    phoneLines.length,
-    companyLines.length,
-    webLines.length,
-    addressLines.length,
-    sloganLines.length,
-  ].map((n) => n * lineH);
+  const rawFields = [
+    { value: email, icon: drawEnvelopeIcon },
+    { value: phone, icon: drawPhoneIcon },
+    { value: company, icon: drawCompanyIcon },
+    { value: web, icon: drawGlobeIcon },
+    { value: address, icon: drawLocationIcon },
+    { value: slogan, icon: drawQuoteIcon },
+  ];
+
+  const fields = rawFields
+    .map((field) => {
+      const trimmed = field.value?.trim() || "";
+      if (!trimmed) return null;
+      return {
+        icon: field.icon,
+        lines: wrapText(ctx, trimmed, maxTextWidth),
+      };
+    })
+    .filter((f): f is { icon: typeof drawEnvelopeIcon; lines: string[] } => Boolean(f));
+
   const totalBlockHeight =
-    nameLineH + titleLineH + contactHeights.reduce((a, b) => a + b, 0);
+    nameLineH +
+    titleLineH +
+    fields.reduce((sum, f) => sum + f.lines.length * lineH, 0);
 
   let y = (CARD.height - totalBlockHeight) / 2 + nameLineH - 4;
 
@@ -281,17 +529,14 @@ function drawContactRight(
     const iconY = y - CARD.textSize * 0.35;
     iconFn(ctx, left + CARD.iconSize / 2, iconY);
     for (const line of lines) {
-      ctx.fillText(line || " ", textLeft, y);
+      ctx.fillText(line, textLeft, y);
       y += lineH;
     }
   };
 
-  drawField(drawEnvelopeIcon, emailLines);
-  drawField(drawPhoneIcon, phoneLines);
-  drawField(drawCompanyIcon, companyLines);
-  drawField(drawGlobeIcon, webLines);
-  drawField(drawLocationIcon, addressLines);
-  drawField(drawQuoteIcon, sloganLines);
+  for (const field of fields) {
+    drawField(field.icon, field.lines);
+  }
 }
 
 
@@ -309,6 +554,16 @@ export async function renderCardToDataURL(card: CardData): Promise<string> {
   const r = CARD.radius;
   const w = CARD.width;
   const h = CARD.height;
+
+  // Pick a random theme for this render and apply highlight colors.
+  const theme = pickRandomTheme();
+  CARD.bgGradientStart = theme.bgStart;
+  CARD.bgGradientEnd = theme.bgEnd;
+  CARD.divider = theme.accent;
+  CARD.iconColor = theme.accent;
+  CARD.nameColor = theme.accent;
+  CARD.sloganAccent = theme.accent;
+
   ctx.beginPath();
   ctx.moveTo(r, 0);
   ctx.lineTo(w - r, 0);
@@ -320,11 +575,16 @@ export async function renderCardToDataURL(card: CardData): Promise<string> {
   ctx.lineTo(0, r);
   ctx.arcTo(0, 0, r, 0, r);
   ctx.closePath();
-  ctx.fillStyle = CARD.bg;
+  const gradient = ctx.createLinearGradient(0, 0, w, h);
+  gradient.addColorStop(0, CARD.bgGradientStart);
+  gradient.addColorStop(1, CARD.bgGradientEnd);
+  ctx.fillStyle = gradient;
   ctx.fill();
   ctx.shadowColor = "transparent";
   ctx.shadowBlur = 0;
   ctx.shadowOffsetY = 0;
+
+  drawDecorativeIcons(ctx);
 
   const logoImage: Image | null = await loadImage(getLogoPath()).catch(() => null);
   await drawLogoLeft(ctx, logoImage);

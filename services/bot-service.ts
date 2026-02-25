@@ -45,7 +45,7 @@ export class MezonBotService {
     const [_, cardName, option] = message.content?.t?.split(" ") || [];
     if (!cardName) {
       return currentMessage.reply(
-        this.generateErrorMessage("Please provide a card name, example: *card tuan.nguyenngocanh, -i for image card"),
+        this.generateErrorMessage("Please provide a card name, example: *card tuan.nguyenngocanh, -t for text card"),
       );
     }
 
@@ -59,23 +59,23 @@ export class MezonBotService {
       return currentMessage.reply(this.generateErrorMessage("No card found with the given name: " + cardName));
     }
     
-    if (option?.trim() === "-i") {
-      const signal = await currentMessage.reply(this.generateErrorMessage("Generating image card... Please wait for a moment"));
-      const dataUrl = await renderCardToDataURL(card);
-      const attachments: ApiMessageAttachment[] = [
-        {
-          url: dataUrl,
-          filename: `card-${card.NameId}.png`,
-          filetype: "image/png",
-          width: CARD.width,
-          height: CARD.height,
-        },
-      ];
-      const waitMessage = await currentChannel?.messages?.fetch(signal.message_id);
-      return waitMessage?.update({}, undefined, attachments);
+    if (option?.trim() === "-t") {
+      return currentMessage.reply(this.generateCardMessage(card));
     }
 
-    return currentMessage.reply(this.generateCardMessage(card));
+    const signal = await currentMessage.reply(this.generateErrorMessage("Generating image card... Please wait for a moment"));
+    const dataUrl = await renderCardToDataURL(card);
+    const attachments: ApiMessageAttachment[] = [
+      {
+        url: dataUrl,
+        filename: `card-${card.NameId}.png`,
+        filetype: "image/png",
+        width: CARD.width,
+        height: CARD.height,
+      },
+    ];
+    const waitMessage = await currentChannel?.messages?.fetch(signal.message_id);
+    return waitMessage?.update({}, undefined, attachments);
   }
 
   generateErrorMessage(errorMessage?: string) {

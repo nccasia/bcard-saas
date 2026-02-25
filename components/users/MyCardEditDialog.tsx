@@ -39,6 +39,7 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
         Address: main?.Address || "",
         Web: main?.Web || "",
         Company: main?.Company || "",
+        Slogan: main?.Slogan || "",
       });
     };
 
@@ -62,6 +63,7 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
             fullWidth
             label="Name"
             InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 60 }}
             {...register("Name")}
           />
           <TextField
@@ -70,6 +72,7 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
             label="Email"
             disabled
             InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 100 }}
             {...register("Email")}
           />
           <TextField
@@ -77,6 +80,7 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
             fullWidth
             label="Phone"
             InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 25 }}
             {...register("Phone")}
           />
           <TextField
@@ -84,6 +88,7 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
             fullWidth
             label="Title"
             InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 60 }}
             {...register("Title")}
           />
           <TextField
@@ -91,6 +96,7 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
             fullWidth
             label="Company"
             InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 80 }}
             {...register("Company")}
           />
           <TextField
@@ -98,6 +104,7 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
             fullWidth
             label="Web"
             InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 120 }}
             {...register("Web")}
           />
           <TextField
@@ -105,7 +112,16 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
             fullWidth
             label="Address"
             InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 160 }}
             {...register("Address")}
+          />
+          <TextField
+            margin="normal"
+            fullWidth
+            label="Slogan"
+            InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 120 }}
+            {...register("Slogan")}
           />
         </DialogContent>
         <DialogActions>

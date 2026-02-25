@@ -86,45 +86,87 @@ function ExcelCard({ profile, params, isDarkMode }: any) {
                     </p>
                   </div>
                   {/* <p>{profile.position}</p> */}
-                  <div className={styles.itemContent}>
-                    <FontAwesomeIcon
-                      icon="envelope"
-                      className={styles.icon}
-                      style={{ fontSize: profile?.Email?.length > 29 ? "9px" : `${fontMail}px` }}
-                    />
-                    <p
-                      ref={emailRef}
-                      className={styles.text1}
-                      style={{ fontSize: profile?.Email?.length > 29 ? "9px" : `${fontMail}px` }}
-                    >
-                      {profile?.Email}
-                    </p>
-                  </div>
-                  <div className={styles.itemContent}>
-                    <FontAwesomeIcon
-                      icon="phone"
-                      className={styles.icon}
-                      style={{ fontSize: profile?.Email?.length > 29 ? "9px" : `${fontMail}px` }}
-                    />
-                    <p className={styles.text1} style={{ fontSize: `${fontMail}px` }}>
-                      {profile?.Phone}
-                    </p>
-                  </div>
-                  <div className={styles.itemContent}>
-                    <FontAwesomeIcon
-                      icon="globe"
-                      className={styles.icon}
-                      style={{ fontSize: profile?.Email?.length > 29 ? "9px" : `${fontMail}px` }}
-                    />
-                    <p
-                      className={styles.text1}
-                      style={{ fontSize: profile?.Email?.length > 29 ? "9px" : `${fontMail}px` }}
-                    >
-                      <Link href="https://ncc.plus" target="_blank">
-                        https://ncc.plus
-                      </Link>
-                    </p>
-                  </div>
+                  {profile?.Email && profile.Email.trim() && (
+                    <div className={styles.itemContent}>
+                      <FontAwesomeIcon
+                        icon="envelope"
+                        className={styles.icon}
+                        style={{ fontSize: profile.Email.length > 29 ? "9px" : `${fontMail}px` }}
+                      />
+                      <p
+                        ref={emailRef}
+                        className={styles.text1}
+                        style={{ fontSize: profile.Email.length > 29 ? "9px" : `${fontMail}px` }}
+                      >
+                        {profile.Email}
+                      </p>
+                    </div>
+                  )}
+                  {profile?.Phone && profile.Phone.trim() && (
+                    <div className={styles.itemContent}>
+                      <FontAwesomeIcon
+                        icon="phone"
+                        className={styles.icon}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      />
+                      <p className={styles.text1} style={{ fontSize: `${fontMail}px` }}>
+                        {profile.Phone}
+                      </p>
+                    </div>
+                  )}
+                  {profile?.Company && profile.Company.trim() && (
+                    <div className={styles.itemContent}>
+                      <FontAwesomeIcon
+                        icon="address-card"
+                        className={styles.icon}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      />
+                      <p className={styles.text1} style={{ fontSize: `${fontMail}px` }}>
+                        {profile.Company}
+                      </p>
+                    </div>
+                  )}
+                  {profile?.Web && profile.Web.trim() && (
+                    <div className={styles.itemContent}>
+                      <FontAwesomeIcon
+                        icon="globe"
+                        className={styles.icon}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      />
+                      <p
+                        className={styles.text1}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      >
+                        <Link href={profile.Web} target="_blank">
+                          {profile.Web}
+                        </Link>
+                      </p>
+                    </div>
+                  )}
+                  {profile?.Address && profile.Address.trim() && (
+                    <div className={styles.itemContent}>
+                      <FontAwesomeIcon
+                        icon="location-dot"
+                        className={styles.icon}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      />
+                      <p className={styles.text1} style={{ fontSize: `${fontMail}px` }}>
+                        {profile.Address}
+                      </p>
+                    </div>
+                  )}
+                  {profile?.Slogan && profile.Slogan.trim() && (
+                    <div className={styles.itemContent}>
+                      <FontAwesomeIcon
+                        icon="fire"
+                        className={styles.icon}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      />
+                      <p className={styles.text1} style={{ fontSize: `${fontMail}px` }}>
+                        {profile.Slogan}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
