@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 import { prisma } from "../../../lib/prisma";
 
 const newadmin: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const session: any = await getSession({ req });
+  await getSession({ req });
   if (req.method === "POST") {
     try {
       const { email } = req.body;
@@ -23,9 +23,6 @@ const newadmin: NextApiHandler = async (req: NextApiRequest, res: NextApiRespons
         return res.status(200).json(admin);
       } else {
         throw new Error("Duplicate Email");
-      }
-      if (!session) {
-        throw new Error("Access Denied");
       }
     } catch (error: any) {
       if (error.message === "Duplicate Email") {

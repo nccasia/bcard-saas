@@ -25,6 +25,30 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
+  events: {
+    async signIn({ user, profile }) {
+      const userEmail = user?.email || profile?.email;
+
+      if (!userEmail) {
+        return;
+      }
+
+      const existingCard = await prisma.excel.findUnique({
+        where: { Email: userEmail },
+      });
+
+      if (!existingCard) {
+        await prisma.excel.create({
+          data: {
+            Email: userEmail,
+            NameId: userEmail.split("@")[0],
+            Name: user?.name || profile?.name || userEmail.split("@")[0],
+            Avatar: user?.image,
+          },
+        });
+      }
+    },
+  },
   providers: [
     MezonProvider({
       clientId: process.env.MEZON_CLIENT_ID || "",

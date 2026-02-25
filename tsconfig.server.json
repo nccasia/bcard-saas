@@ -3,10 +3,14 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
-    "noEmit": false,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "outDir": "dist",
     "rootDir": ".",
-    "skipLibCheck": true
   },
   "include": ["server.ts", "services/**/*.ts"],
   "exclude": ["node_modules", "pages", "components", "lib", "api", "styles"]

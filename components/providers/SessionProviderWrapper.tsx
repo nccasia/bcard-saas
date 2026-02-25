@@ -32,19 +32,20 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
       }
       return;
     }
+
     if (session && !session?.user?.isAdmin) {
       setOpen(true);
       if (router.asPath === "/login") {
-        router.push("/card/" + session.user?.email.split("@")[0]);
+        router.push("/card/me");
       }
-      if (router.asPath === "/card/" + session.user?.email.split("@")[0]) {
+      if (router.asPath === "/card/me") {
         setOpen(true);
       } else {
         if (router.pathname.startsWith("/view/")) {
           setOpen(true);
         } else {
           setOpen(false);
-          router.push("/card/" + session.user?.email.split("@")[0]);
+          router.push("/card/me");
           setOpen(true);
         }
       }
