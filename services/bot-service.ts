@@ -1,6 +1,7 @@
 import { Excel } from "@prisma/client";
-import { ChannelMessage, ChannelMessageContent, EMarkdownType, MezonClient } from "mezon-sdk";
+import { ApiMessageAttachment, ChannelMessage, ChannelMessageContent, EMarkdownType, MezonClient } from "mezon-sdk";
 
+import { CARD, renderCardToDataURL } from "./card-canvas";
 import { MEZON_EMBED_FOOTER, MEZON_IMAGE_URL } from "../constants/mezon-config";
 import { prisma } from "../lib/prisma";
 import { getRandomColor } from "../utils/randomColor";
@@ -41,10 +42,10 @@ export class MezonBotService {
       return;
     }
 
-    const [, cardName] = message.content?.t?.split(" ") || [];
+    const [_, cardName, option] = message.content?.t?.split(" ") || [];
     if (!cardName) {
-      return await currentMessage.reply(
-        this.generateErrorMessage("Please provide a card name, example: *card tuan.nguyenngocanh"),
+      return currentMessage.reply(
+        this.generateErrorMessage("Please provide a card name, example: *card tuan.nguyenngocanh, -i for image card"),
       );
     }
 
@@ -55,8 +56,25 @@ export class MezonBotService {
     });
 
     if (!card) {
-      return currentMessage.reply(this.generateErrorMessage("No card found with the given name"));
+      return currentMessage.reply(this.generateErrorMessage("No card found with the given name: " + cardName));
     }
+    
+    if (option?.trim() === "-i") {
+      const signal = await currentMessage.reply(this.generateErrorMessage("Generating image card... Please wait for a moment"));
+      const dataUrl = await renderCardToDataURL(card);
+      const attachments: ApiMessageAttachment[] = [
+        {
+          url: dataUrl,
+          filename: `card-${card.NameId}.png`,
+          filetype: "image/png",
+          width: CARD.width,
+          height: CARD.height,
+        },
+      ];
+      const waitMessage = await currentChannel?.messages?.fetch(signal.message_id);
+      return waitMessage?.update({}, undefined, attachments);
+    }
+
     return currentMessage.reply(this.generateCardMessage(card));
   }
 
@@ -120,7 +138,7 @@ export class MezonBotService {
     };
 
     const replyMessage: ChannelMessageContent = {
-      embed: [embedMessage],
+      embed: [embedMessage]
     };
 
     return replyMessage;
