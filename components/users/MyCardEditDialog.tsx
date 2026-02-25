@@ -120,4 +120,3 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
 }
 
 export default MyCardEditDialog;
-

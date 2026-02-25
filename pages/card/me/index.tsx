@@ -11,8 +11,8 @@ import React from "react";
 import { getNameCard } from "../../../api/admin/apiProfile";
 import Header from "../../../components/home/Header";
 import QrCode from "../../../components/QrCode";
-import MyCardEditDialog from "../../../components/users/MyCardEditDialog";
 import ExcelCard from "../../../components/users/ExcelCard";
+import MyCardEditDialog from "../../../components/users/MyCardEditDialog";
 import styles from "../../../styles/profile.module.css";
 
 function MyCardPage() {
@@ -77,11 +77,18 @@ function MyCardPage() {
       </div>
       <div className={styles.iconSwitch}>
         <Fab onClick={() => setOpen(!open)} sx={{ width: "45px", height: "45px" }}>
-          {open ? <QrCodeScannerIcon sx={{ color: "#f44336" }} /> : <ContactEmergencyIcon sx={{ color: "#f44336" }} />}
+          {open ? (
+            <QrCodeScannerIcon sx={{ color: "#f44336" }} />
+          ) : (
+            <ContactEmergencyIcon sx={{ color: "#f44336" }} />
+          )}
         </Fab>
       </div>
       <div className={styles.iconSwitch} style={{ bottom: "80px" }}>
-        <Fab onClick={() => setEditOpen(true)} sx={{ width: "45px", height: "45px", backgroundColor: "#1976d2" }}>
+        <Fab
+          onClick={() => setEditOpen(true)}
+          sx={{ width: "45px", height: "45px", backgroundColor: "#1976d2" }}
+        >
           <EditIcon sx={{ color: "#fff" }} />
         </Fab>
       </div>
@@ -96,4 +103,3 @@ function MyCardPage() {
 }
 
 export default MyCardPage;
-

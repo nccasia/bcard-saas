@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 import { prisma } from "../../../lib/prisma";
 
 const newadmin: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const session: any = await getSession({ req });
+  await getSession({ req });
   if (req.method === "POST") {
     try {
       const { email } = req.body;
