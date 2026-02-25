@@ -9,6 +9,7 @@ export interface MyCardPayload {
   Address?: string;
   Web?: string;
   Company?: string;
+  Slogan?: string;
 }
 
 export const updateMyCard = async (payload: MyCardPayload) => {

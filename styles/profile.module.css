@@ -143,8 +143,7 @@
   gap: 10px;
 }
 
-.mainCard,
-.mainCard1 {
+.mainCard {
   width: 500px;
   height: 300px;
   border-radius: 8px;
@@ -156,9 +155,10 @@
 }
 
 .mainCard1 {
-  width: 425px;
+  width: 520px;
+  max-width: 100%;
   padding: 5px;
-  height: 250px;
+  min-height: 260px;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.649);
   display: flex;
@@ -166,7 +166,7 @@
   font-size: 12px;
   color: gray;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  padding: 40px 5px;
+  padding: 40px 16px;
 }
 
 .contenCard {
@@ -262,8 +262,8 @@
   font-size: 21px;
   color: #606060;
   font-weight: 500;
-  white-space: nowrap;
-  display: inline-block;
+  white-space: normal;
+  display: block;
 }
 
 .image {
@@ -273,7 +273,8 @@
 .text1 {
   font-size: 16px;
   color: #767676;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
   display: inline-block;
 }
 
@@ -333,7 +334,7 @@
   .headCard1,
   .mainCard1 {
     width: 350px;
-    height: 200px;
+    min-height: 200px;
   }
 
   .mainCard1 {
