@@ -42,12 +42,24 @@ export class MezonBotService {
       return;
     }
 
-    const [_, cardName, option] = message.content?.t?.split(" ") || [];
-    if (!cardName) {
+    const [_, firstOption, secondOption] = message.content?.t?.split(" ") || [];
+    const cardName = firstOption || message?.username || message?.clan_nick;
+    const cardOption = secondOption?.trim() || firstOption?.trim();
+
+    if (cardOption?.trim() === "-h") {
       return currentMessage.reply(
-        this.generateErrorMessage("Please provide a card name, example: *card tuan.nguyenngocanh, -t for text card"),
+        this.generateErrorMessage("Generate a business card, example: *card tuan.nguyenngocanh, -t for text card"),
       );
     }
+
+    if (!cardName) {
+      return currentMessage.reply(
+        this.generateErrorMessage("Please provide a card name, example: *card tuan.nguyenngocanh"),
+      );
+    }
+
+    const signal = await currentMessage.reply(this.generateErrorMessage("Generating business card... Please wait for a moment"));
+    const waitMessage = await currentChannel?.messages?.fetch(signal.message_id);
 
     const card = await prisma.excel.findUnique({
       where: {
@@ -56,14 +68,13 @@ export class MezonBotService {
     });
 
     if (!card) {
-      return currentMessage.reply(this.generateErrorMessage("No card found with the given name: " + cardName));
-    }
-    
-    if (option?.trim() === "-t") {
-      return currentMessage.reply(this.generateCardMessage(card));
+      return waitMessage?.update(this.generateErrorMessage("No card found with the given name: " + cardName));
     }
 
-    const signal = await currentMessage.reply(this.generateErrorMessage("Generating image card... Please wait for a moment"));
+    if (cardOption?.trim() === "-t") {
+      return waitMessage?.update(this.generateCardMessage(card));
+    }
+
     const dataUrl = await renderCardToDataURL(card);
     const attachments: ApiMessageAttachment[] = [
       {
@@ -74,7 +85,6 @@ export class MezonBotService {
         height: CARD.height,
       },
     ];
-    const waitMessage = await currentChannel?.messages?.fetch(signal.message_id);
     return waitMessage?.update({}, undefined, attachments);
   }
 
