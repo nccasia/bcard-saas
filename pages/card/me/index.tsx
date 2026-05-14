@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ContactEmergencyIcon from "@mui/icons-material/ContactEmergency";
 import EditIcon from "@mui/icons-material/Edit";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
+import ShareIcon from "@mui/icons-material/Share";
 import Fab from "@mui/material/Fab";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
@@ -20,6 +21,7 @@ function MyCardPage() {
   const [profile, setProfile] = React.useState<any | null>(null);
   const [open, setOpen] = React.useState(true);
   const [editOpen, setEditOpen] = React.useState(false);
+  const [qrLink, setQrLink] = React.useState("");
 
   React.useEffect(() => {
     if (status !== "authenticated") return;
@@ -39,6 +41,7 @@ function MyCardPage() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
   const shortName = session?.user?.email?.split("@")[0] || "";
   const link = `${baseUrl}/view/${shortName}`;
+  const businessLink = `${baseUrl}/businessview/${shortName}`;
 
   if (status === "loading" || !session) {
     return (
@@ -66,7 +69,7 @@ function MyCardPage() {
           <div className={styles.container}>
             <div className={styles.divCard}>
               {open && <ExcelCard profile={profile} params={{ exampe: "1" }} />}
-              {!open && <QrCode url={link} />}
+              {!open && <QrCode url={qrLink || link} />}
             </div>
           </div>
         ) : (
@@ -76,12 +79,29 @@ function MyCardPage() {
         )}
       </div>
       <div className={styles.iconSwitch}>
-        <Fab onClick={() => setOpen(!open)} sx={{ width: "45px", height: "45px" }}>
+        <Fab
+          onClick={() => {
+            setQrLink(link);
+            setOpen(!open && qrLink === link);
+          }}
+          sx={{ width: "45px", height: "45px" }}
+        >
           {open ? (
             <QrCodeScannerIcon sx={{ color: "#f44336" }} />
           ) : (
             <ContactEmergencyIcon sx={{ color: "#f44336" }} />
           )}
+        </Fab>
+      </div>
+      <div className={styles.iconSwitch} style={{ right: "75px" }}>
+        <Fab
+          onClick={() => {
+            setQrLink(businessLink);
+            setOpen(false);
+          }}
+          sx={{ width: "45px", height: "45px", backgroundColor: "#1976d2" }}
+        >
+          <ShareIcon sx={{ color: "#fff" }} />
         </Fab>
       </div>
       <div className={styles.iconSwitch} style={{ bottom: "80px" }}>

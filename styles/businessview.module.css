@@ -1,0 +1,137 @@
+.page {
+  min-height: 100vh;
+  background: #ffffff;
+  color: #1f2933;
+}
+
+.hero {
+  min-height: 150px;
+  background: #5f7fc9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px 54px;
+}
+
+.heroName {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.content {
+  max-width: 420px;
+  margin: -32px auto 0;
+  padding: 0 16px 40px;
+}
+
+.profileCard {
+  min-height: 108px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 16px 35px rgba(42, 51, 69, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 26px;
+}
+
+.avatar {
+  width: 62px;
+  height: 72px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex: 0 0 auto;
+  background: #edf1f7;
+}
+
+.title {
+  color: #8f2631;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.45;
+  flex: 1;
+}
+
+.arrow {
+  color: #8b1f2e;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.sectionTitle {
+  margin: 28px 0 18px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.linkButton {
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 10px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(42, 51, 69, 0.08);
+  color: #1f2933;
+  text-decoration: none;
+}
+
+.linkButton + .linkButton {
+  margin-top: 1px;
+}
+
+.iconCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  flex: 0 0 auto;
+}
+
+.linkLabel {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.linkArrow {
+  color: #8a9199;
+  font-size: 27px;
+  line-height: 1;
+}
+
+.empty {
+  color: #667085;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 18px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 150px;
+  }
+
+  .content {
+    max-width: none;
+  }
+
+  .profileCard {
+    padding: 20px 25px;
+  }
+}

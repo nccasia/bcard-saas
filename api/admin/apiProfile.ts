@@ -125,6 +125,10 @@ export const editProfile = async (props: any) => {
         Email: props?.Email,
         Phone: props?.Phone,
         Title: props?.Title,
+        Zalo: props?.Zalo,
+        Telegram: props?.Telegram,
+        Whatsapp: props?.Whatsapp,
+        Linkedin: props?.Linkedin,
       }),
       method: "POST",
       headers: {
@@ -149,6 +153,10 @@ export const newProfile = async (props: any) => {
         Email: props?.Email,
         Phone: props?.Phone,
         Title: props?.Title,
+        Zalo: props?.Zalo,
+        Telegram: props?.Telegram,
+        Whatsapp: props?.Whatsapp,
+        Linkedin: props?.Linkedin,
       }),
       method: "POST",
       headers: {

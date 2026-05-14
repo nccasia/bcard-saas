@@ -40,6 +40,10 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
         Web: main?.Web || "",
         Company: main?.Company || "",
         Slogan: main?.Slogan || "",
+        Zalo: main?.Zalo || "",
+        Telegram: main?.Telegram || "",
+        Whatsapp: main?.Whatsapp || "",
+        Linkedin: main?.Linkedin || "",
       });
     };
 
@@ -122,6 +126,42 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
             InputLabelProps={{ shrink: true }}
             inputProps={{ maxLength: 120 }}
             {...register("Slogan")}
+          />
+          <TextField
+            margin="normal"
+            fullWidth
+            label="Zalo"
+            placeholder="Phone or profile link"
+            InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 120 }}
+            {...register("Zalo")}
+          />
+          <TextField
+            margin="normal"
+            fullWidth
+            label="Telegram"
+            placeholder="Username, phone, or profile link"
+            InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 120 }}
+            {...register("Telegram")}
+          />
+          <TextField
+            margin="normal"
+            fullWidth
+            label="Whatsapp"
+            placeholder="Phone or chat link"
+            InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 120 }}
+            {...register("Whatsapp")}
+          />
+          <TextField
+            margin="normal"
+            fullWidth
+            label="LinkedIn"
+            placeholder="Profile handle or link"
+            InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 160 }}
+            {...register("Linkedin")}
           />
         </DialogContent>
         <DialogActions>

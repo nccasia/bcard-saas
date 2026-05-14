@@ -7,6 +7,7 @@ const QRCode = ({ url }: any) => {
       try {
         const QRCodeStyling = await import("qr-code-styling");
         if (canvasRef.current) {
+          canvasRef.current.innerHTML = "";
           const qrCode = new QRCodeStyling.default({
             width: 250,
             height: 250,
