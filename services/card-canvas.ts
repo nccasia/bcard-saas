@@ -12,6 +12,10 @@ export interface CardData {
   Web?: string | null;
   Address?: string | null;
   Slogan?: string | null;
+  Zalo?: string | null;
+  Telegram?: string | null;
+  Whatsapp?: string | null;
+  Linkedin?: string | null;
 }
 
 export const CARD = {
@@ -227,6 +231,159 @@ function drawQuoteIcon(ctx: CanvasRenderingContext2D, x: number, y: number): voi
   ctx.stroke();
 }
 
+/** Generic share / outbound link icon for social rows without a dedicated glyph. */
+function drawShareIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const s = CARD.iconSize * 0.85;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.5;
+  ctx.lineJoin = "round";
+  ctx.lineCap = "round";
+  const bw = s * 0.9;
+  const bh = s * 0.52;
+  const bx = x - bw / 2;
+  const by = y + s * 0.06;
+  ctx.strokeRect(bx, by, bw, bh);
+  ctx.beginPath();
+  ctx.moveTo(x, by);
+  ctx.lineTo(x, y - s * 0.52);
+  ctx.moveTo(x - s * 0.32, y - s * 0.32);
+  ctx.lineTo(x, y - s * 0.52);
+  ctx.lineTo(x + s * 0.32, y - s * 0.32);
+  ctx.stroke();
+}
+
+/**
+ * Zalo: rounded app tile with speech bubble (brand uses bubble-on-tile; see Wikimedia Commons Zalo icon references).
+ */
+function drawZaloIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const s = CARD.iconSize * 0.95;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.5;
+  ctx.lineJoin = "round";
+  ctx.lineCap = "round";
+  const tile = s * 0.92;
+  const tl = x - tile / 2;
+  const tt = y - tile / 2;
+  const tr = s * 0.16;
+  ctx.beginPath();
+  ctx.moveTo(tl + tr, tt);
+  ctx.lineTo(tl + tile - tr, tt);
+  ctx.quadraticCurveTo(tl + tile, tt, tl + tile, tt + tr);
+  ctx.lineTo(tl + tile, tt + tile - tr);
+  ctx.quadraticCurveTo(tl + tile, tt + tile, tl + tile - tr, tt + tile);
+  ctx.lineTo(tl + tr, tt + tile);
+  ctx.quadraticCurveTo(tl, tt + tile, tl, tt + tile - tr);
+  ctx.lineTo(tl, tt + tr);
+  ctx.quadraticCurveTo(tl, tt, tl + tr, tt);
+  ctx.closePath();
+  ctx.stroke();
+
+  const bw = s * 0.44;
+  const bh = s * 0.34;
+  const bx = x - bw / 2;
+  const by = y - bh / 2 - s * 0.02;
+  const br = s * 0.09;
+  ctx.beginPath();
+  ctx.moveTo(bx + br, by);
+  ctx.lineTo(bx + bw - br, by);
+  ctx.quadraticCurveTo(bx + bw, by, bx + bw, by + br);
+  ctx.lineTo(bx + bw, by + bh - br);
+  ctx.quadraticCurveTo(bx + bw, by + bh, bx + bw - br, by + bh);
+  ctx.lineTo(bx + bw * 0.4, by + bh);
+  ctx.lineTo(bx + bw * 0.28, by + bh + s * 0.13);
+  ctx.lineTo(bx + bw * 0.34, by + bh);
+  ctx.lineTo(bx + br, by + bh);
+  ctx.quadraticCurveTo(bx, by + bh, bx, by + bh - br);
+  ctx.lineTo(bx, by + br);
+  ctx.quadraticCurveTo(bx, by, bx + br, by);
+  ctx.closePath();
+  ctx.stroke();
+}
+
+/** Telegram: circular badge with paper-plane mark (Telegram’s widely recognized motif). */
+function drawTelegramIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const s = CARD.iconSize * 0.95;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.5;
+  ctx.lineJoin = "round";
+  ctx.lineCap = "round";
+  const r = s * 0.42;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.stroke();
+  const ps = s * 0.38;
+  ctx.beginPath();
+  ctx.moveTo(x + ps * 0.52, y - ps * 0.06);
+  ctx.lineTo(x - ps * 0.4, y + ps * 0.38);
+  ctx.lineTo(x - ps * 0.26, y - ps * 0.02);
+  ctx.lineTo(x - ps * 0.4, y - ps * 0.38);
+  ctx.closePath();
+  ctx.stroke();
+}
+
+/** WhatsApp: speech bubble with handset inside (matches common WhatsApp iconography). */
+function drawWhatsAppIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const s = CARD.iconSize * 0.92;
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.lineWidth = 1.5;
+  ctx.lineJoin = "round";
+  ctx.lineCap = "round";
+  const bx = x - s * 0.02;
+  const by = y - s * 0.06;
+  ctx.beginPath();
+  ctx.moveTo(bx + s * 0.05, by - s * 0.28);
+  ctx.bezierCurveTo(bx + s * 0.42, by - s * 0.38, bx + s * 0.38, by + s * 0.28, bx + s * 0.08, by + s * 0.22);
+  ctx.lineTo(bx - s * 0.18, by + s * 0.42);
+  ctx.lineTo(bx - s * 0.12, by + s * 0.18);
+  ctx.bezierCurveTo(bx - s * 0.38, by + s * 0.12, bx - s * 0.38, by - s * 0.28, bx + s * 0.05, by - s * 0.28);
+  ctx.closePath();
+  ctx.stroke();
+
+  const ps = s * 0.2;
+  const px = bx + s * 0.06;
+  const py = by;
+  ctx.beginPath();
+  ctx.moveTo(px - ps / 5, py - ps / 2);
+  ctx.lineTo(px - ps / 5, py + ps / 2);
+  ctx.lineTo(px, py + ps / 2 + 1);
+  ctx.lineTo(px + ps / 5, py + ps / 2);
+  ctx.lineTo(px + ps / 5, py - ps / 2);
+  ctx.closePath();
+  ctx.stroke();
+}
+
+/** LinkedIn: rounded square with “in” wordmark (LinkedIn app tile style). */
+function drawLinkedInIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  const s = CARD.iconSize * 0.95;
+  ctx.save();
+  ctx.strokeStyle = CARD.iconColor;
+  ctx.fillStyle = CARD.iconColor;
+  ctx.lineWidth = 1.5;
+  ctx.lineJoin = "round";
+  const w = s * 0.88;
+  const h = s * 0.88;
+  const rx = s * 0.14;
+  const left = x - w / 2;
+  const top = y - h / 2;
+  ctx.beginPath();
+  ctx.moveTo(left + rx, top);
+  ctx.lineTo(left + w - rx, top);
+  ctx.quadraticCurveTo(left + w, top, left + w, top + rx);
+  ctx.lineTo(left + w, top + h - rx);
+  ctx.quadraticCurveTo(left + w, top + h, left + w - rx, top + h);
+  ctx.lineTo(left + rx, top + h);
+  ctx.quadraticCurveTo(left, top + h, left, top + h - rx);
+  ctx.lineTo(left, top + rx);
+  ctx.quadraticCurveTo(left, top, left + rx, top);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.font = `bold ${Math.max(7, s * 0.36)}px ${CARD.fontFamily}`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("in", x, y + s * 0.02);
+  ctx.restore();
+}
+
 // Extra decorative-only icons (abstract shapes)
 function drawCircleBadgeIcon(ctx: CanvasRenderingContext2D, x: number, y: number): void {
   const r = CARD.iconSize * 0.9;
@@ -358,6 +515,7 @@ const DECORATION_ICONS: Array<(ctx: CanvasRenderingContext2D, x: number, y: numb
   drawCompanyIcon,
   drawLocationIcon,
   drawQuoteIcon,
+  drawShareIcon,
   // abstract decorative icons
   drawCircleBadgeIcon,
   drawDiamondIcon,
@@ -459,17 +617,7 @@ function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number)
   return lines.length ? lines : [""];
 }
 
-function drawContactRight(
-  ctx: CanvasRenderingContext2D,
-  name: string,
-  title: string,
-  company: string,
-  email: string,
-  phone: string,
-  web: string,
-  address: string,
-  slogan: string,
-): void {
+function drawContactRight(ctx: CanvasRenderingContext2D, card: CardData): void {
   const left = CARD.width * CARD.leftRatio + CARD.padding + 15;
   const textLeft = left + CARD.iconSize + CARD.iconGap;
   const maxTextWidth = CARD.width - textLeft - CARD.padding;
@@ -481,12 +629,16 @@ function drawContactRight(
   ctx.font = `bold ${CARD.textSize}px ${CARD.fontFamily}`;
 
   const rawFields = [
-    { value: email, icon: drawEnvelopeIcon },
-    { value: phone, icon: drawPhoneIcon },
-    { value: company, icon: drawCompanyIcon },
-    { value: web, icon: drawGlobeIcon },
-    { value: address, icon: drawLocationIcon },
-    { value: slogan, icon: drawQuoteIcon },
+    { value: card.Email, icon: drawEnvelopeIcon },
+    { value: card.Phone, icon: drawPhoneIcon },
+    { value: card.Company, icon: drawCompanyIcon },
+    { value: card.Web, icon: drawGlobeIcon },
+    { value: card.Zalo, icon: drawZaloIcon },
+    { value: card.Telegram, icon: drawTelegramIcon },
+    { value: card.Whatsapp, icon: drawWhatsAppIcon },
+    { value: card.Linkedin, icon: drawLinkedInIcon },
+    { value: card.Address, icon: drawLocationIcon },
+    // { value: card.Slogan, icon: drawQuoteIcon },
   ];
 
   const fields = rawFields
@@ -511,12 +663,12 @@ function drawContactRight(
 
   ctx.font = `bold ${CARD.nameSize}px ${CARD.fontFamily}`;
   ctx.fillStyle = CARD.nameColor;
-  ctx.fillText(name || "—", left, y);
+  ctx.fillText(card.Name?.trim() || "—", left, y);
   y += nameLineH;
 
   ctx.font = `${CARD.titleSize}px ${CARD.fontFamily}`;
   ctx.fillStyle = CARD.titleColor;
-  ctx.fillText(title || "—", left, y);
+  ctx.fillText(card.Title?.trim() || "—", left, y);
   y += titleLineH;
 
   ctx.font = `bold ${CARD.textSize}px ${CARD.fontFamily}`;
@@ -589,17 +741,7 @@ export async function renderCardToDataURL(card: CardData): Promise<string> {
   const logoImage: Image | null = await loadImage(getLogoPath()).catch(() => null);
   await drawLogoLeft(ctx, logoImage);
   drawDivider(ctx);
-  drawContactRight(
-    ctx,
-    card.Name || "",
-    card.Title || "",
-    card.Company ?? "",
-    card.Email || "",
-    card.Phone || "",
-    card.Web || "",
-    card.Address ?? "",
-    card.Slogan ?? "",
-  );
+  drawContactRight(ctx, card);
 
   return canvas.toDataURL("image/png");
 }

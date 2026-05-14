@@ -1,4 +1,10 @@
 /* eslint-disable react/no-children-prop */
+import {
+  faLinkedinIn,
+  faTelegram,
+  faWhatsapp,
+} from "@fortawesome/free-brands-svg-icons";
+import { faComments } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +12,10 @@ import { useEffect, useRef, useState } from "react";
 
 import logo_content from "../../public/logo_content.png";
 import styles from "../../styles/profile.module.css";
+
+function isHttpUrl(value: string): boolean {
+  return /^https?:\/\//i.test(value.trim());
+}
 
 function ExcelCard({ profile, params, isDarkMode }: any) {
   const [fontSize, setFontSize] = useState<number | undefined>();
@@ -140,6 +150,90 @@ function ExcelCard({ profile, params, isDarkMode }: any) {
                         <Link href={profile.Web} target="_blank">
                           {profile.Web}
                         </Link>
+                      </p>
+                    </div>
+                  )}
+                  {profile?.Zalo && profile.Zalo.trim() && (
+                    <div className={styles.itemContent}>
+                      <FontAwesomeIcon
+                        icon={faComments}
+                        className={styles.icon}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      />
+                      <p
+                        className={styles.text1}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      >
+                        {isHttpUrl(profile.Zalo) ? (
+                          <Link href={profile.Zalo.trim()} target="_blank" rel="noopener noreferrer">
+                            {profile.Zalo.trim()}
+                          </Link>
+                        ) : (
+                          profile.Zalo.trim()
+                        )}
+                      </p>
+                    </div>
+                  )}
+                  {profile?.Telegram && profile.Telegram.trim() && (
+                    <div className={styles.itemContent}>
+                      <FontAwesomeIcon
+                        icon={faTelegram}
+                        className={styles.icon}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      />
+                      <p
+                        className={styles.text1}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      >
+                        {isHttpUrl(profile.Telegram) ? (
+                          <Link href={profile.Telegram.trim()} target="_blank" rel="noopener noreferrer">
+                            {profile.Telegram.trim()}
+                          </Link>
+                        ) : (
+                          profile.Telegram.trim()
+                        )}
+                      </p>
+                    </div>
+                  )}
+                  {profile?.Whatsapp && profile.Whatsapp.trim() && (
+                    <div className={styles.itemContent}>
+                      <FontAwesomeIcon
+                        icon={faWhatsapp}
+                        className={styles.icon}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      />
+                      <p
+                        className={styles.text1}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      >
+                        {isHttpUrl(profile.Whatsapp) ? (
+                          <Link href={profile.Whatsapp.trim()} target="_blank" rel="noopener noreferrer">
+                            {profile.Whatsapp.trim()}
+                          </Link>
+                        ) : (
+                          profile.Whatsapp.trim()
+                        )}
+                      </p>
+                    </div>
+                  )}
+                  {profile?.Linkedin && profile.Linkedin.trim() && (
+                    <div className={styles.itemContent}>
+                      <FontAwesomeIcon
+                        icon={faLinkedinIn}
+                        className={styles.icon}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      />
+                      <p
+                        className={styles.text1}
+                        style={{ fontSize: profile.Email?.length > 29 ? "9px" : `${fontMail}px` }}
+                      >
+                        {isHttpUrl(profile.Linkedin) ? (
+                          <Link href={profile.Linkedin.trim()} target="_blank" rel="noopener noreferrer">
+                            {profile.Linkedin.trim()}
+                          </Link>
+                        ) : (
+                          profile.Linkedin.trim()
+                        )}
                       </p>
                     </div>
                   )}

@@ -59,14 +59,13 @@ export class MezonBotService {
     }
 
     const signal = await currentMessage.reply(this.generateErrorMessage("Generating business card... Please wait for a moment"));
-    const waitMessage = await currentChannel?.messages?.fetch(signal.message_id);
-
     const card = await prisma.excel.findUnique({
       where: {
         NameId: cardName,
       },
     });
-
+    
+    const waitMessage = await currentChannel?.messages?.fetch(signal.message_id);
     if (!card) {
       return waitMessage?.update(this.generateErrorMessage("No card found with the given name: " + cardName));
     }
@@ -129,6 +128,22 @@ export class MezonBotService {
         {
           name: `• Phone`,
           value: `  ${card.Phone}`,
+        },
+        {
+          name: `• Zalo`,
+          value: `  ${card?.Zalo || "No Information"}`,
+        },
+        {
+          name: `• Telegram`,
+          value: `  ${card?.Telegram || "No Information"}`,
+        },
+        {
+          name: `• WhatsApp`,
+          value: `  ${card?.Whatsapp || "No Information"}`,
+        },
+        {
+          name: `• LinkedIn`,
+          value: `  ${card?.Linkedin || "No Information"}`,
         },
         {
           name: `• Title`,
