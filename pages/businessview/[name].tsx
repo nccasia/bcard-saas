@@ -78,6 +78,27 @@ function BusinessViewPage() {
 
   const socialItems: SocialLink[] = [
     {
+      key: "Mezon",
+      label: "Mezon",
+      value: profile?.Mezon,
+      color: "#5865f2",
+      icon: (
+        <img
+          src="/logo-mezon.png"
+          alt="Mezon"
+          style={{
+            width: 44,
+            height: 44,
+            objectFit: "cover",
+            objectPosition: "center",
+            borderRadius: "50%",
+            display: "block",
+          }}
+        />
+      ),
+      href: buildSocialHref("Mezon", profile?.Mezon),
+    },
+    {
       key: "Whatsapp",
       label: "WhatsApp",
       value: profile?.Whatsapp,
@@ -94,24 +115,6 @@ function BusinessViewPage() {
       href: buildSocialHref("Linkedin", profile?.Linkedin),
     },
     {
-      key: "Mezon",
-      label: "Mezon",
-      value: profile?.Mezon,
-      color: "#5865f2",
-      icon: (
-        <img
-          src="/upload/logo-mezon.img"
-          alt="Mezon"
-          style={{
-            width: 24,
-            height: 24,
-            objectFit: "contain",
-          }}
-        />
-      ),
-      href: buildSocialHref("Mezon", profile?.Mezon),
-    },
-    {
       key: "Telegram",
       label: "Telegram",
       value: profile?.Telegram,
@@ -124,7 +127,20 @@ function BusinessViewPage() {
       label: "Zalo",
       value: profile?.Zalo,
       color: "#0a73ff",
-      icon: <ChatIcon fontSize="medium" />,
+      icon: (
+        <img
+          src="/logo-zalo.png"
+          alt="Zalo"
+          style={{
+            width: 44,
+            height: 44,
+            objectFit: "cover",
+            objectPosition: "center",
+            borderRadius: "50%",
+            display: "block",
+          }}
+        />
+      ),
       href: buildSocialHref("Zalo", profile?.Zalo),
     },
   ];

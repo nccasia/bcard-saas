@@ -1,0 +1,1 @@
+ALTER TABLE "Excel" ADD COLUMN "Mezon" TEXT;

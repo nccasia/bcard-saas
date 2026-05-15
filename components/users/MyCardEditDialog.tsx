@@ -134,7 +134,7 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
             label="Mezon"
             placeholder="Profile link"
             InputLabelProps={{ shrink: true }}
-            inputProps={{ maxLength: 120 }}
+            inputProps={{ maxLength: 5000 }}
             {...register("Mezon")}
           />
           <TextField

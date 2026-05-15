@@ -633,12 +633,12 @@ function drawContactRight(ctx: CanvasRenderingContext2D, card: CardData): void {
     { value: card.Phone, icon: drawPhoneIcon },
     { value: card.Company, icon: drawCompanyIcon },
     { value: card.Web, icon: drawGlobeIcon },
-    { value: card.Zalo, icon: drawZaloIcon },
-    { value: card.Telegram, icon: drawTelegramIcon },
-    { value: card.Whatsapp, icon: drawWhatsAppIcon },
-    { value: card.Linkedin, icon: drawLinkedInIcon },
+    // { value: card.Zalo, icon: drawZaloIcon },
+    // { value: card.Telegram, icon: drawTelegramIcon },
+    // { value: card.Whatsapp, icon: drawWhatsAppIcon },
+    // { value: card.Linkedin, icon: drawLinkedInIcon },
     { value: card.Address, icon: drawLocationIcon },
-    // { value: card.Slogan, icon: drawQuoteIcon },
+    { value: card.Slogan, icon: drawQuoteIcon },
   ];
 
   const fields = rawFields
