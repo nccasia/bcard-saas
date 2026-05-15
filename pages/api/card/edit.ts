@@ -7,7 +7,7 @@ import { prisma } from "../../../lib/prisma";
 const editexcard: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   try {
-    const { NameId, Name, Email, Phone, Title, Zalo, Telegram, Whatsapp, Linkedin } = req.body;
+    const { NameId, Name, Email, Phone, Title, Mezon, Zalo, Telegram, Whatsapp, Linkedin } = req.body;
     const admin = await prisma.excel.update({
       where: {
         NameId: NameId,
@@ -17,6 +17,7 @@ const editexcard: NextApiHandler = async (req: NextApiRequest, res: NextApiRespo
         Email: Email,
         Phone: Phone,
         Title: Title,
+        Mezon: Mezon,
         Zalo: Zalo,
         Telegram: Telegram,
         Whatsapp: Whatsapp,

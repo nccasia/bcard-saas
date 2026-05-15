@@ -9,7 +9,7 @@ import React from "react";
 import { getAvatar, getNameCard } from "../../api/admin/apiProfile";
 import styles from "../../styles/businessview.module.css";
 
-type SocialKey = "Whatsapp" | "Linkedin" | "Telegram" | "Zalo";
+type SocialKey = "Whatsapp" | "Linkedin" | "Mezon" | "Telegram" | "Zalo";
 
 type SocialLink = {
   key: SocialKey;
@@ -43,6 +43,9 @@ const buildSocialHref = (key: SocialKey, rawValue?: string | null) => {
     const phone = sanitizePhone(value);
     if (value.startsWith("+") && phone) return `tg://resolve?phone=${phone}`;
     return `https://t.me/${value.replace(/^@/, "")}`;
+  }
+  if (key === "Mezon") {
+    return value;
   }
 
   const linkedinName = value
@@ -89,6 +92,24 @@ function BusinessViewPage() {
       color: "#2f80b9",
       icon: <LinkedInIcon fontSize="medium" />,
       href: buildSocialHref("Linkedin", profile?.Linkedin),
+    },
+    {
+      key: "Mezon",
+      label: "Mezon",
+      value: profile?.Mezon,
+      color: "#5865f2",
+      icon: (
+        <img
+          src="/upload/logo-mezon.img"
+          alt="Mezon"
+          style={{
+            width: 24,
+            height: 24,
+            objectFit: "contain",
+          }}
+        />
+      ),
+      href: buildSocialHref("Mezon", profile?.Mezon),
     },
     {
       key: "Telegram",

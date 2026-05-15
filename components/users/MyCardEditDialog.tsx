@@ -40,6 +40,7 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
         Web: main?.Web || "",
         Company: main?.Company || "",
         Slogan: main?.Slogan || "",
+        Mezon: main?.Mezon || "",
         Zalo: main?.Zalo || "",
         Telegram: main?.Telegram || "",
         Whatsapp: main?.Whatsapp || "",
@@ -126,6 +127,15 @@ function MyCardEditDialog({ open, onClose, shortName, onUpdated }: MyCardEditDia
             InputLabelProps={{ shrink: true }}
             inputProps={{ maxLength: 120 }}
             {...register("Slogan")}
+          />
+          <TextField
+            margin="normal"
+            fullWidth
+            label="Mezon"
+            placeholder="Profile link"
+            InputLabelProps={{ shrink: true }}
+            inputProps={{ maxLength: 120 }}
+            {...register("Mezon")}
           />
           <TextField
             margin="normal"
