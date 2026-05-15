@@ -17,15 +17,20 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 
   const email = session.user.email;
 
-  const { Name, Phone, Title, Address, Web, Company, Slogan } = req.body as {
-    Name?: string;
-    Phone?: string;
-    Title?: string;
-    Address?: string;
-    Web?: string;
-    Company?: string;
-    Slogan?: string;
-  };
+  const { Name, Phone, Title, Address, Web, Company, Slogan, Zalo, Telegram, Whatsapp, Linkedin } =
+    req.body as {
+      Name?: string;
+      Phone?: string;
+      Title?: string;
+      Address?: string;
+      Web?: string;
+      Company?: string;
+      Slogan?: string;
+      Zalo?: string;
+      Telegram?: string;
+      Whatsapp?: string;
+      Linkedin?: string;
+    };
 
   try {
     const updated = await prisma.excel.update({
@@ -38,6 +43,10 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
         ...(Web !== undefined ? { Web } : {}),
         ...(Company !== undefined ? { Company } : {}),
         ...(Slogan !== undefined ? { Slogan } : {}),
+        ...(Zalo !== undefined ? { Zalo } : {}),
+        ...(Telegram !== undefined ? { Telegram } : {}),
+        ...(Whatsapp !== undefined ? { Whatsapp } : {}),
+        ...(Linkedin !== undefined ? { Linkedin } : {}),
       },
     });
 

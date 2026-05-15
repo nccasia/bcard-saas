@@ -96,6 +96,10 @@ model Excel {
   Action    String?
   Avatar    String?
   Company   String?
+  Zalo      String?
+  Telegram  String?
+  Whatsapp  String?
+  Linkedin  String?
   NameId    String @unique 
 }
 

@@ -21,6 +21,10 @@ function EditProfile({ value, setOpen, action, setData, setTotal, page }: any) {
         setValue("Email", main?.Email || "");
         setValue("Phone", main?.Phone || "");
         setValue("Title", main?.Title || "");
+        setValue("Zalo", main?.Zalo || "");
+        setValue("Telegram", main?.Telegram || "");
+        setValue("Whatsapp", main?.Whatsapp || "");
+        setValue("Linkedin", main?.Linkedin || "");
       });
     }
   }, [value, setValue]);
@@ -98,6 +102,34 @@ function EditProfile({ value, setOpen, action, setData, setTotal, page }: any) {
           placeholder="Enter your title"
           style={{ outlineColor: errors.Title ? "red" : "none" }}
           {...register("Title", { required: true })}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
+        <p>Zalo:</p>
+        <input
+          type="text"
+          placeholder="Enter Zalo phone or link"
+          {...register("Zalo")}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
+        <p>Telegram:</p>
+        <input
+          type="text"
+          placeholder="Enter Telegram username, phone, or link"
+          {...register("Telegram")}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
+        <p>Whatsapp:</p>
+        <input
+          type="text"
+          placeholder="Enter WhatsApp phone or link"
+          {...register("Whatsapp")}
+          className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
+        />
+        <p>LinkedIn:</p>
+        <input
+          type="text"
+          placeholder="Enter LinkedIn profile or link"
+          {...register("Linkedin")}
           className="w-full bg-gray-100 text-gray-900 rounded-md pl-6 py-2 my-1"
         />
         <div style={{ float: "right", display: "flex", gap: 5, marginTop: "10px" }}>

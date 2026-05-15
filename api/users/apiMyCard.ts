@@ -10,6 +10,10 @@ export interface MyCardPayload {
   Web?: string;
   Company?: string;
   Slogan?: string;
+  Zalo?: string;
+  Telegram?: string;
+  Whatsapp?: string;
+  Linkedin?: string;
 }
 
 export const updateMyCard = async (payload: MyCardPayload) => {
@@ -29,4 +33,3 @@ export const updateMyCard = async (payload: MyCardPayload) => {
     return null;
   }
 };
-

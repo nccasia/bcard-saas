@@ -21,7 +21,7 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
     if (status === "loading") return;
 
     if (!session || router.pathname === "/") {
-      if (router.pathname.startsWith("/view/")) {
+      if (router.pathname.startsWith("/view/") || router.pathname.startsWith("/businessview/")) {
         setOpen(true);
       } else {
         router.push("/login");
@@ -41,7 +41,7 @@ function PageWithAuthCheck({ children }: { children: React.ReactNode }) {
       if (router.asPath === "/card/me") {
         setOpen(true);
       } else {
-        if (router.pathname.startsWith("/view/")) {
+        if (router.pathname.startsWith("/view/") || router.pathname.startsWith("/businessview/")) {
           setOpen(true);
         } else {
           setOpen(false);

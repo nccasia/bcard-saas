@@ -1,0 +1,4 @@
+ALTER TABLE "Excel" ADD COLUMN "Zalo" TEXT;
+ALTER TABLE "Excel" ADD COLUMN "Telegram" TEXT;
+ALTER TABLE "Excel" ADD COLUMN "Whatsapp" TEXT;
+ALTER TABLE "Excel" ADD COLUMN "Linkedin" TEXT;
