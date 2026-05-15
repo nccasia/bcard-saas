@@ -9,7 +9,7 @@ import React from "react";
 import { getAvatar, getNameCard } from "../../api/admin/apiProfile";
 import styles from "../../styles/businessview.module.css";
 
-type SocialKey = "Whatsapp" | "Linkedin" | "Telegram" | "Zalo";
+type SocialKey = "Whatsapp" | "Linkedin" | "Mezon" | "Telegram" | "Zalo";
 
 type SocialLink = {
   key: SocialKey;
@@ -44,6 +44,9 @@ const buildSocialHref = (key: SocialKey, rawValue?: string | null) => {
     if (value.startsWith("+") && phone) return `tg://resolve?phone=${phone}`;
     return `https://t.me/${value.replace(/^@/, "")}`;
   }
+  if (key === "Mezon") {
+    return value;
+  }
 
   const linkedinName = value
     .replace(/^@/, "")
@@ -75,6 +78,27 @@ function BusinessViewPage() {
 
   const socialItems: SocialLink[] = [
     {
+      key: "Mezon",
+      label: "Mezon",
+      value: profile?.Mezon,
+      color: "#5865f2",
+      icon: (
+        <img
+          src="/logo-mezon.png"
+          alt="Mezon"
+          style={{
+            width: 44,
+            height: 44,
+            objectFit: "cover",
+            objectPosition: "center",
+            borderRadius: "50%",
+            display: "block",
+          }}
+        />
+      ),
+      href: buildSocialHref("Mezon", profile?.Mezon),
+    },
+    {
       key: "Whatsapp",
       label: "WhatsApp",
       value: profile?.Whatsapp,
@@ -103,7 +127,20 @@ function BusinessViewPage() {
       label: "Zalo",
       value: profile?.Zalo,
       color: "#0a73ff",
-      icon: <ChatIcon fontSize="medium" />,
+      icon: (
+        <img
+          src="/logo-zalo.png"
+          alt="Zalo"
+          style={{
+            width: 44,
+            height: 44,
+            objectFit: "cover",
+            objectPosition: "center",
+            borderRadius: "50%",
+            display: "block",
+          }}
+        />
+      ),
       href: buildSocialHref("Zalo", profile?.Zalo),
     },
   ];

@@ -96,6 +96,7 @@ model Excel {
   Action    String?
   Avatar    String?
   Company   String?
+  Mezon     String?
   Zalo      String?
   Telegram  String?
   Whatsapp  String?

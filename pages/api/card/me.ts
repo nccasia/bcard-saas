@@ -17,7 +17,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 
   const email = session.user.email;
 
-  const { Name, Phone, Title, Address, Web, Company, Slogan, Zalo, Telegram, Whatsapp, Linkedin } =
+  const { Name, Phone, Title, Address, Web, Company, Slogan, Mezon, Zalo, Telegram, Whatsapp, Linkedin } =
     req.body as {
       Name?: string;
       Phone?: string;
@@ -26,6 +26,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
       Web?: string;
       Company?: string;
       Slogan?: string;
+      Mezon?: string;
       Zalo?: string;
       Telegram?: string;
       Whatsapp?: string;
@@ -43,6 +44,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
         ...(Web !== undefined ? { Web } : {}),
         ...(Company !== undefined ? { Company } : {}),
         ...(Slogan !== undefined ? { Slogan } : {}),
+        ...(Mezon !== undefined ? { Mezon } : {}),
         ...(Zalo !== undefined ? { Zalo } : {}),
         ...(Telegram !== undefined ? { Telegram } : {}),
         ...(Whatsapp !== undefined ? { Whatsapp } : {}),

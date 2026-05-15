@@ -10,6 +10,7 @@ export interface MyCardPayload {
   Web?: string;
   Company?: string;
   Slogan?: string;
+  Mezon?: string;
   Zalo?: string;
   Telegram?: string;
   Whatsapp?: string;

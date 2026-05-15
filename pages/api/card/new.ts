@@ -7,7 +7,7 @@ const newcard: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
   const session: any = await getSession({ req });
   if (req.method === "POST") {
     try {
-      const { Name, Email, Phone, Title, Zalo, Telegram, Whatsapp, Linkedin } = req.body;
+      const { Name, Email, Phone, Title, Mezon, Zalo, Telegram, Whatsapp, Linkedin } = req.body;
       const test = await prisma.excel.findUnique({
         where: { NameId: Email.split("@")[0] },
       });
@@ -19,6 +19,7 @@ const newcard: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
             Email: Email,
             Phone: Phone,
             Title: Title,
+            Mezon: Mezon,  
             Zalo: Zalo,
             Telegram: Telegram,
             Whatsapp: Whatsapp,
